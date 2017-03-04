@@ -869,7 +869,9 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
                 }
             }, DSWorkbenchSettingsDialog.getSingleton().getOffense(),
                     DSWorkbenchSettingsDialog.getSingleton().getDefense(),
-                    GlobalOptions.getProperties().getInt("max.sim.rounds", 500), GlobalOptions.getProperties().getInt("max.loss.ratio", 50), pReAnalyze);
+                    GlobalOptions.getProperties().getInt("max.sim.rounds"),
+                    GlobalOptions.getProperties().getInt("max.loss.ratio"),
+                    pReAnalyze);
             a.start();
         }
     }
@@ -1064,7 +1066,7 @@ class SupportCountdownThread extends Thread {
     }
 
     public void updateSettings() {
-        showCountdown = Boolean.parseBoolean(GlobalOptions.getProperty("show.live.countdown"));
+        showCountdown = GlobalOptions.getProperties().getBoolean("show.live.countdown");
     }
 
     @Override

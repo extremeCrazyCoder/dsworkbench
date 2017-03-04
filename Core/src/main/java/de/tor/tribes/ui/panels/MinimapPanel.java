@@ -910,9 +910,7 @@ private void fireCloseScreenshotEvent(java.awt.event.MouseEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_fireCloseScreenshotEvent
 private void fireSaveScreenshotEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireSaveScreenshotEvent
     String dir = GlobalOptions.getProperty("screen.dir");
-    if (dir == null) {
-        dir = ".";
-    }
+    
     JFileChooser chooser = null;
     try {
         chooser = new JFileChooser(dir);
@@ -1083,25 +1081,24 @@ class MinimapRepaintThread extends Thread {
         Graphics2D g2d = (Graphics2D) mBuffer.getGraphics();
         g2d.setColor(new Color(35, 125, 0));
         g2d.fillRect(0, 0, mBuffer.getWidth(null), mBuffer.getHeight(null));
-        boolean markPlayer = GlobalOptions.getProperties().getBoolean("mark.villages.on.minimap", true);
+        boolean markPlayer = GlobalOptions.getProperties().getBoolean("mark.villages.on.minimap");
         if (ServerSettings.getSingleton().getMapDimension() == null) {
             //could not draw minimap if dimensions are not loaded yet
             return false;
         }
-        boolean showBarbarian = GlobalOptions.getProperties().getBoolean("show.barbarian", true);
+        boolean showBarbarian = GlobalOptions.getProperties().getBoolean("show.barbarian");
 
         Color DEFAULT = Constants.DS_DEFAULT_MARKER;
-        try {
-            int mark = Integer.parseInt(GlobalOptions.getProperty("default.mark"));
-            if (mark == 0) {
-                DEFAULT = Constants.DS_DEFAULT_MARKER;
-            } else if (mark == 1) {
+        switch(GlobalOptions.getProperties().getInt("default.mark")) {
+            case 1:
                 DEFAULT = Color.RED;
-            } else if (mark == 2) {
+                break;
+            case 2:
                 DEFAULT = Color.WHITE;
-            }
-        } catch (Exception e) {
-            DEFAULT = Constants.DS_DEFAULT_MARKER;
+                break;
+            case 0:
+            default:
+                DEFAULT = Constants.DS_DEFAULT_MARKER;
         }
 
         double wField = ServerSettings.getSingleton().getMapDimension().getWidth() / (double) visiblePart.width;
@@ -1173,7 +1170,7 @@ class MinimapRepaintThread extends Thread {
         }
 
         try {
-            if (GlobalOptions.getProperties().getBoolean("map.showcontinents", true)) {
+            if (GlobalOptions.getProperties().getBoolean("map.showcontinents")) {
                 g2d.setColor(Color.BLACK);
                 Composite c = g2d.getComposite();
                 Composite a = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f);

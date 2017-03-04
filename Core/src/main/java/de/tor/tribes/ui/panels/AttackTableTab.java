@@ -177,10 +177,10 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         }
         jxAttackTable.getSelectionModel().addListSelectionListener(AttackTableTab.this);
         jDateField.setDate(new Date());
-        jShowAttacksInVillageInfo.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.village.info", true));
-        jShowAttacksOnConfirmPage.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.on.confirm.page", true));
-        jShowAttacksInPlace.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.place", true));
-        jShowAttacksInOverview.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.overview", true));
+        jShowAttacksInVillageInfo.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.village.info"));
+        jShowAttacksOnConfirmPage.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.on.confirm.page"));
+        jShowAttacksInPlace.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.place"));
+        jShowAttacksInOverview.setSelected(GlobalOptions.getProperties().getBoolean("attack.script.attacks.in.overview"));
         jTimeChangeDialog.pack();
         jSendAttacksIGMDialog.pack();
         jChangeAttackTypeDialog.pack();
@@ -1604,9 +1604,6 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         }
 
         String dir = GlobalOptions.getProperty("screen.dir");
-        if (dir == null) {
-            dir = ".";
-        }
         String selectedPlan = sAttackPlan;
         JFileChooser chooser = null;
         try {

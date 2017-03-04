@@ -513,7 +513,7 @@ public class MapRenderer {
 
         // <editor-fold defaultstate="collapsed" desc="Mark current players villages">
 
-        if (!mouseDown && GlobalOptions.getProperties().getBoolean("highlight.tribes.villages", false)) {
+        if (!mouseDown && GlobalOptions.getProperties().getBoolean("highlight.tribes.villages")) {
             Tribe mouseTribe = Barbarians.getSingleton();
             if (mouseVillage != null) {
                 mouseTribe = mouseVillage.getTribe();
@@ -568,7 +568,7 @@ public class MapRenderer {
                 int cnt = 0;
                 for (UnitHolder u : DataHolder.getSingleton().getUnits()) {
                     de.tor.tribes.types.drawing.Circle c = new de.tor.tribes.types.drawing.Circle();
-                    int r = GlobalOptions.getProperties().getInt("radar.size", 1);
+                    int r = GlobalOptions.getProperties().getInt("radar.size");
                     double diam = 2 * (double) r / u.getSpeed();
                     double xp = v.getX() + 0.5 - diam / 2;
                     double yp = v.getY() + 0.5 - diam / 2;
@@ -583,7 +583,7 @@ public class MapRenderer {
                     c.setStrokeWidth(3f);
                     c.setXPosEnd(xp + diam);
                     c.setYPosEnd(yp + diam);
-                    Color co = Color.decode(GlobalOptions.getProperties().getString(u.getName() + ".color", "#FF0000"));
+                    Color co = Color.decode(GlobalOptions.getProperty(u.getName() + ".color"));
                     c.setDrawColor(co);
                     c.setDrawAlpha(0.8f);
                     c.renderForm(g2d);
@@ -633,7 +633,7 @@ public class MapRenderer {
 
 
         //draw additional info
-        if (!mouseDown && mouseVillage != null && Boolean.parseBoolean(GlobalOptions.getProperty("show.mouseover.info"))) {
+        if (!mouseDown && mouseVillage != null && GlobalOptions.getProperties().getBoolean("show.mouseover.info")) {
             Rectangle rect = mVillagePositions.get(mouseVillage);
             AnimatedVillageInfoRenderer animator = mAnimators.get(mouseVillage);
             if (animator == null) {
@@ -668,7 +668,7 @@ public class MapRenderer {
             }
             g2d.setColor(cBefore);
         }
-        if (GlobalOptions.getProperties().getBoolean("show.ruler", true)) {
+        if (GlobalOptions.getProperties().getBoolean("show.ruler")) {
             //ruler drawing
             HashMap<Color, Rectangle> vertRulerParts = new HashMap<>();
             HashMap<Color, Rectangle> horRulerParts = new HashMap<>();
@@ -802,7 +802,7 @@ public class MapRenderer {
         }
 
         if (!MapPanel.getSingleton().isMouseDown()
-                && Boolean.parseBoolean(GlobalOptions.getProperty("show.map.popup"))
+                && GlobalOptions.getProperties().getBoolean("show.map.popup")
                 && !DSWorkbenchMainFrame.getSingleton().isGlasspaneVisible()) {
             try {
                 if (DSWorkbenchMainFrame.getSingleton().isActive() && MapPanel.getSingleton().getMousePosition() != null) {

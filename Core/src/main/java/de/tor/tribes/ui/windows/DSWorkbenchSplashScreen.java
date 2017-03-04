@@ -238,7 +238,8 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
                     GlobalOptions.addProperty("default.server", (String) result.get("server"));
                     GlobalOptions.addProperty("player." + result.get("server"), (String) result.get("tribe"));
                     logger.debug("Creating initial profile");
-                    UserProfile p = UserProfile.create(GlobalOptions.getProperty("default.server"), GlobalOptions.getProperty("player." + GlobalOptions.getProperty("default.server")));
+                    UserProfile p = UserProfile.create(GlobalOptions.getProperty("default.server"),
+                            GlobalOptions.getProperty("player." + GlobalOptions.getProperty("default.server")));
                     GlobalOptions.setSelectedProfile(p);
                     GlobalOptions.addProperty("selected.profile", Long.toString(p.getProfileId()));
                     logger.debug(" - Disabling first start wizard");
@@ -295,11 +296,7 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
                 });
                 List<Object> path = new LinkedList<>();
                 DefaultMutableTreeNode root = new DefaultMutableTreeNode("Profile");
-                long selectedProfile = -1;
-                try {
-                    selectedProfile = Long.parseLong(GlobalOptions.getProperty("selected.profile"));
-                } catch (Exception ignored) {
-                }
+                long selectedProfile = GlobalOptions.getProperties().getLong("selected.profile");
                 path.add(root);
                 for (String server : servers) {
                     DefaultMutableTreeNode serverNode = new DefaultMutableTreeNode(server);
@@ -344,7 +341,7 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
 
         // <editor-fold defaultstate="collapsed" desc=" Check for data updates ">
         logger.debug("Checking for application updates");
-        boolean checkForUpdates = Boolean.parseBoolean(GlobalOptions.getProperty("check.updates.on.startup"));
+        boolean checkForUpdates = GlobalOptions.getProperties().getBoolean("check.updates.on.startup");
 
         try {
             if (!DataHolder.getSingleton().loadData(checkForUpdates)) {
@@ -374,9 +371,9 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
             }
 
             try {
-                ReportServer.getSingleton().start(GlobalOptions.getProperties().getInt("report.server.port", 8080));
-            } catch (IOException ioe) {
-                logger.error("Failed to start report server", ioe);
+                ReportServer.getSingleton().start(GlobalOptions.getProperties().getInt("report.server.port"));
+            } catch (Exception e) {
+                logger.error("Failed to start report server", e);
             }
             t.stopRunning();
             setVisible(false);
@@ -510,6 +507,7 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         }
 
         try {
+            GlobalDefaults.initialize();
             GlobalOptions.initialize();
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

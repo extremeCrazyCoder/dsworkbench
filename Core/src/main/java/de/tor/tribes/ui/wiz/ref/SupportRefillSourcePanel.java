@@ -440,12 +440,8 @@ public class SupportRefillSourcePanel extends WizardPage {
     }
 
     public void update() {
-        int supportTolerance = 10;
-
-        try {
-            supportTolerance = GlobalOptions.getProperties().getInt("support.tolerance", 10);
-        } catch (Exception ignored) {
-        }
+        int supportTolerance = GlobalOptions.getProperties().getInt("support.tolerance");
+        
         for (REFSourceElement element : getAllElements()) {
             element.updateAvailableSupports(SupportRefillSettingsPanel.getSingleton().getSplit(), supportTolerance);
         }

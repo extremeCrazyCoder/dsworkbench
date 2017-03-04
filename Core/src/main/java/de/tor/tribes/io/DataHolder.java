@@ -1260,7 +1260,7 @@ public class DataHolder {
       int xEnd = (pEnd.x > pStart.x) ? pEnd.x : pStart.x;
       int yStart = (pStart.y < pEnd.y) ? pStart.y : pEnd.y;
       int yEnd = (pEnd.y > pStart.y) ? pEnd.y : pStart.y;
-      boolean showBarbarian = GlobalOptions.getProperties().getBoolean("show.barbarian", true);
+      boolean showBarbarian = GlobalOptions.getProperties().getBoolean("show.barbarian");
       for (int x = xStart; x <= xEnd; x++) {
         for (int y = yStart; y <= yEnd; y++) {
           Village v = getVillages()[x][y];

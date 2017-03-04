@@ -35,9 +35,7 @@ public class AttackToBBCodeFormater {
         String sendtime = null;
         String arrivetime = null;
         String template = GlobalOptions.getProperty("attack.bbexport.template");
-        if (template == null) {
-            template = STANDARD_TEMPLATE;
-        }
+        
         //bot protection
         template = template.replaceAll("red", getRandomRed());
         template = template.replaceAll("green", getRandomGreen());
@@ -127,12 +125,9 @@ public class AttackToBBCodeFormater {
         String sendtime = null;
         String arrivetime = null;
         String template = GlobalOptions.getProperty("attack.bbexport.template");
-        if (template == null) {
-            template = "%TYPE% von %ATTACKER% aus %SOURCE% mit %UNIT% auf %DEFENDER% in %TARGET% startet am [color=red]%SEND%[/color] und kommt am [color=green]%ARRIVE%[/color] an";
-        }
-
+        
         Date aTime = new Date(pSendTime.getTime() + (long) (DSCalculator.calculateMoveTimeInSeconds(pSource, pTarget, pUnit.getSpeed()) * 1000));
-
+        
         if (pExtended) {
             sendtime = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.'[size=8]'SSS'[/size]'").format(pSendTime);
             arrivetime = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.'[size=8]'SSS'[/size]'").format(aTime);
@@ -140,7 +135,7 @@ public class AttackToBBCodeFormater {
             sendtime = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.SSS").format(pSendTime);
             arrivetime = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.SSS").format(aTime);
         }
-
+        
         switch (pType) {
             case Attack.CLEAN_TYPE: {
                 template = template.replaceAll("%TYPE%", "Angriff (Clean-Off)");
