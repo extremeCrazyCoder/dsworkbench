@@ -759,7 +759,7 @@ private void fireApplyTroopAddEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
     mMouseGestures.start();
     try {
       //  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-      UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+      //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
     } catch (Exception ignored) {
     }
     GlobalOptions.setSelectedServer("de43");

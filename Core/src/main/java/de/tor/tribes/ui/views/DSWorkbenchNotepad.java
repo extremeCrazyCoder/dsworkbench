@@ -709,7 +709,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
                 mMouseGestures.start();
                 try {
                     //  UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+                    //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
                     //JFrame.setDefaultLookAndFeelDecorated(true);
 
                     // SubstanceLookAndFeel.setSkin(SubstanceLookAndFeel.getAllSkins().get("Twilight").getClassName());

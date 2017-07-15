@@ -164,7 +164,7 @@ public class DefensePlanerWizard extends WizardPanelProvider {
     public static void main(String[] args) throws Exception {
         try {
             // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception ignored) {
         }
 

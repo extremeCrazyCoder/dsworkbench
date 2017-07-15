@@ -3844,7 +3844,7 @@ private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event
                 mMouseGestures.addMouseGesturesListener(new MouseGestureHandler());
                 mMouseGestures.start();
                 try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                     //  UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
                     //JFrame.setDefaultLookAndFeelDecorated(true);
 
