@@ -78,9 +78,9 @@ public class UnitHolder implements Serializable {
                 this.name = "Unbekannt (" + pElement.getName() + ")";
             }
 
-            this.wood = Double.parseDouble(pElement.getChild("wood").getText());
-            this.stone = Double.parseDouble(pElement.getChild("stone").getText());
-            this.iron = Double.parseDouble(pElement.getChild("iron").getText());
+            this.wood = 10;
+            this.stone = 10;
+            this.iron = 10;
             this.pop = Double.parseDouble(pElement.getChild("pop").getText());
             this.speed = Double.parseDouble(pElement.getChild("speed").getText());
             this.attack = Double.parseDouble(pElement.getChild("attack").getText());
