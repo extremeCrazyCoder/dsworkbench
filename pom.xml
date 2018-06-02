@@ -192,11 +192,6 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>flamingo</groupId>
-            <artifactId>flamingo</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>laf-plugin</groupId>
             <artifactId>laf-plugin</artifactId>
             <version>1.0</version>

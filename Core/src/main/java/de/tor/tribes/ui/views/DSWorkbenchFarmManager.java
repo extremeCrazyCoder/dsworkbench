@@ -2048,66 +2048,6 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
     private FarmTableModel getModel() {
         return TableHelper.getTableModel(jFarmTable);
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) throws Exception {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException | InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DSWorkbenchFarmManager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        Logger.getRootLogger().addAppender(new ConsoleAppender(new org.apache.log4j.PatternLayout("%d - %-5p - %-20c (%C [%L]) - %m%n")));
-        Logger.getRootLogger().setLevel(Level.ERROR);
-        GlobalOptions.setSelectedServer("de43");
-        ProfileManager.getSingleton().loadProfiles();
-        GlobalOptions.setSelectedProfile(ProfileManager.getSingleton().getProfiles("de43")[0]);
-        DataHolder.getSingleton().loadData(false);
-        GlobalOptions.loadUserData();
-
-        for (Village v : GlobalOptions.getSelectedProfile().getTribe().getVillageList()) {
-            VillageTroopsHolder h = TroopsManager.getSingleton().getTroopsForVillage(v, TroopsManager.TROOP_TYPE.OWN, true);
-            TroopAmountFixed troops = new TroopAmountFixed(0);
-            troops.setAmountForUnit(DataHolder.getSingleton().getUnitByPlainName("axe"), 2000);
-            troops.setAmountForUnit(DataHolder.getSingleton().getUnitByPlainName("light"), 2000);
-            troops.setAmountForUnit(DataHolder.getSingleton().getUnitByPlainName("spy"), 100);
-            h.setTroops(troops);
-        }
-
-        DataHolder.getSingleton().getUnitByPlainName("light").setSpeed(.1);
-        DataHolder.getSingleton().getUnitByPlainName("spy").setSpeed(.01);
-        new ReportGenerator().setVisible(true);
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                DSWorkbenchFarmManager.getSingleton().resetView();
-                /*
-                 * for (int i = 0; i < 10; i++) { trayIcon.displayMessage("Test", "Hello World " + Math.random(),
-                 * TrayIcon.MessageType.INFO); try { Thread.sleep(500); } catch (Exception e) { } }
-                 */
-                DSWorkbenchFarmManager.getSingleton().setVisible(true);
-            }
-        });
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> JCataTarget;
