@@ -219,6 +219,16 @@ public class PluginManager {
     }
     return false;
   }
+  
+  public boolean executeHQParser(String pData) {
+    try {
+      Object parser = loadParser("de.tor.tribes.util.parser.HQParser");
+      return ((SilentParserInterface) parser).parse(pData);
+    } catch (Exception e) {
+      logger.error("Failed to execute HQ parser", e);
+    }
+    return false;
+  }
 
   public String getVariableValue(String pName) {
     if (mVariableManager == null) {
