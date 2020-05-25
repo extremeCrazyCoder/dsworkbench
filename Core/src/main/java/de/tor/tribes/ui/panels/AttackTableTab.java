@@ -17,10 +17,10 @@ package de.tor.tribes.ui.panels;
 
 import de.tor.tribes.control.ManageableType;
 import de.tor.tribes.io.DataHolder;
-import de.tor.tribes.io.ServerManager;
 import de.tor.tribes.io.TroopAmountElement;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.Attack;
+import de.tor.tribes.types.TimeSpan;
 import de.tor.tribes.types.UserProfile;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.ImageManager;
@@ -59,6 +59,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
+import org.apache.commons.lang3.Range;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdesktop.swingx.JXTable;
@@ -692,32 +693,34 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
 
         jLabel17.setText("Zeitfenster");
         jLabel17.setEnabled(false);
-        jLabel17.setMaximumSize(new java.awt.Dimension(80, 25));
-        jLabel17.setMinimumSize(new java.awt.Dimension(80, 25));
-        jLabel17.setPreferredSize(new java.awt.Dimension(80, 25));
+        jLabel17.setMaximumSize(new java.awt.Dimension(100, 25));
+        jLabel17.setMinimumSize(new java.awt.Dimension(100, 25));
+        jLabel17.setPreferredSize(new java.awt.Dimension(100, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
         jPanel5.add(jLabel17, gridBagConstraints);
 
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel18.setText("+/-");
         jLabel18.setEnabled(false);
-        jLabel18.setMaximumSize(new java.awt.Dimension(16, 25));
-        jLabel18.setMinimumSize(new java.awt.Dimension(16, 25));
-        jLabel18.setPreferredSize(new java.awt.Dimension(16, 25));
+        jLabel18.setMaximumSize(new java.awt.Dimension(30, 25));
+        jLabel18.setMinimumSize(new java.awt.Dimension(30, 25));
+        jLabel18.setName(""); // NOI18N
+        jLabel18.setPreferredSize(new java.awt.Dimension(30, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         jPanel5.add(jLabel18, gridBagConstraints);
 
         jRandomField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jRandomField.setToolTipText("<html>Zeitfenster in Stunden<br/>Wird hier 2 eingegeben, so werden alle Befehle um einen zufälligen Wert<br/>\n in einem Bereich von -2 bis +2 Stunden,<br/> ausgehend von ihrer aktuellen Zeit, verschoben.</html>");
+        jRandomField.setToolTipText("<html>Zeitfenster in Minuten<br/>Wird hier 2 eingegeben, so werden alle Befehle um einen zufälligen Wert<br/>\n in einem Bereich von -2 bis +2 Minuten,<br/> ausgehend von ihrer aktuellen Zeit, verschoben.</html>");
         jRandomField.setEnabled(false);
         jRandomField.setMinimumSize(new java.awt.Dimension(6, 25));
         jRandomField.setPreferredSize(new java.awt.Dimension(6, 25));
@@ -767,7 +770,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             .addGroup(jTimeChangeDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jTimeChangeDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jRandomizeOption)
                     .addGroup(jTimeChangeDialogLayout.createSequentialGroup()
                         .addComponent(jModifyArrivalOption)
@@ -778,8 +781,8 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                         .addComponent(jCancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jOKButton))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jTimeChangeDialogLayout.setVerticalGroup(
@@ -1171,23 +1174,40 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                 }
             }
         } else if (jRandomizeOption.isSelected()) {
-            long rand = (Long) jRandomField.getValue() * 60 * 60 * 1000;
+            long rand = Long.parseLong(jRandomField.getText()) * 60 * 1000;
+            
+            TimeSpan span;
             for (Attack attack : attacksToModify) {
-                Calendar c = Calendar.getInstance();
-                boolean valid = false;
-                while (!valid) {
+                boolean invalid = true;
+                long arrive = attack.getArriveTime().getTime();
+                long newArrive = 0;
+                int tries = 0;
+                while (invalid) {
                     //random until valid value was found
-                    long arrive = attack.getArriveTime().getTime();
-                    //later if first index is selected
-                    //if later, add diff to arrival, else remove diff from arrival
-                    int sign = (Math.random() > .5) ? 1 : -1;
-                    arrive = (long) (arrive + (sign * Math.random() * rand));
-
-                    c.setTimeInMillis(arrive);
-                    int hours = c.get(Calendar.HOUR_OF_DAY);
-                    valid = !(hours >= 0 && hours < 8 && jNotRandomToNightBonus.isSelected());
+                    newArrive = (long) (arrive + (Math.random()*2*rand - rand));
+                    span = new TimeSpan(new Date(newArrive));
+                    
+                    invalid = jNotRandomToNightBonus.isSelected() && span.intersectsWithNightBonus();
+                    if(invalid) {
+                        //check if this could possibly fit
+                        span = new TimeSpan(Range.between(arrive-rand, arrive+rand), false);
+                        logger.debug("Span: {}/{}", span, span.partlyOutOfNightBonus());
+                        if(!span.partlyOutOfNightBonus()) {
+                            //this span cannot be outside night bonus -> just ignore lazy user input
+                            logger.warn("Ignoring Attack {} when changing arrive time since impossible", attack);
+                            invalid = false;
+                            newArrive = arrive;
+                        }
+                    }
+                    tries++;
+                    if(tries > 100) {
+                        //to hard to find / a bug
+                        logger.error("Unable to find new position for {} with {} in time Night: {}\n{}", arrive, rand,
+                                jNotRandomToNightBonus.isSelected(), attack);
+                        invalid = false;
+                    }
                 }
-                attack.setArriveTime(c.getTime());
+                attack.setArriveTime(new Date(newArrive));
             }
         }
         attackModel.fireTableDataChanged();
@@ -1446,47 +1466,8 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                 showInfo("Keine Befehle ausgewählt");
                 return;
             }
-            int answer = JOptionPaneHelper.showQuestionThreeChoicesBox(this, "Welcher BB-Codes Typ soll verwendet werden?\n(Erweiterte BB-Codes sind nur für das Forum und die Notizen geeignet)", "Erweiterter BB-Code", "Normal", "IGM", "Erweitert");
             
-            StringBuilder buffer = new StringBuilder();
-            switch (answer) {
-                case JOptionPane.YES_OPTION:
-                    //IGM
-                    buffer.append("[u]Geplante Befehle[/u]\n\n");
-                    String sUrl = ServerManager.getServerURL(GlobalOptions.getSelectedServer()) + "/";
-                    for (Attack a : attacks) {
-                        buffer.append(AttackToBBCodeFormater.formatAttack(a, sUrl, false));
-                    }
-                    
-                    buffer.append("\nErstellt am ");
-                    buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                    buffer.append(" mit DS Workbench ");
-                    buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
-                    break;
-                case JOptionPane.CANCEL_OPTION:
-                    //Erweitert
-                    buffer.append("[u][size=12]Geplante Befehle[/size][/u]\n\n");
-                    buffer.append(new AttackListFormatter().formatElements(attacks, true));
-                    
-                    buffer.append("\n[size=8]Erstellt am ");
-                    buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                    buffer.append(" mit DS Workbench ");
-                    buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
-                    break;
-                case JOptionPane.NO_OPTION:
-                default:
-                    //Normal
-                    buffer.append("[u]Geplante Befehle[/u]\n\n");
-                    buffer.append(new AttackListFormatter().formatElements(attacks, false));
-                    
-                    buffer.append("\nErstellt am ");
-                    buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                    buffer.append(" mit DS Workbench ");
-                    buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
-                    break;
-            }
-
-            String b = buffer.toString();
+            String b = AttackListFormatter.AttackListToBBCodes(this, attacks, "Angriffsplan");
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
