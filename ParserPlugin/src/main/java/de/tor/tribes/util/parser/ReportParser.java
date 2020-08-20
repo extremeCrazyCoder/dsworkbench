@@ -85,7 +85,13 @@ public class ReportParser implements SilentParserInterface {
             if (line.startsWith(getVariable("report.fight.time"))) {
                 logger.debug("Found send line");
                 line = line.replaceAll(getVariable("report.fight.time"), "").trim();
-                SimpleDateFormat f = new SimpleDateFormat(getVariable("report.date.format"));
+                
+                SimpleDateFormat f;
+                if (ServerSettings.getSingleton().isMillisArrival()) {
+                    f = new SimpleDateFormat(getVariable("report.date.format.ms"));
+                } else {
+                    f = new SimpleDateFormat(getVariable("report.date.format"));
+                }
                 try {
                     Date d = f.parse(line);
                     result.setTimestamp(d.getTime());
@@ -466,7 +472,8 @@ public class ReportParser implements SilentParserInterface {
         Tribe attacker = result.getAttacker();
         Tribe defender = result.getDefender();
         if (winString == null) {
-            logger.debug("No winString found. Leaving isWon as it is.");
+            logger.debug("No winString found. Guessing winner based on surviving Defenders");
+            result.setWon(result.getSurvivingDefenders().getTroopSum() == 0);
         } else {
             if (attacker != null && defender != null) {
                 if (winString.contains(getVariable("report.win.win"))) {
