@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.List;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
+import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdom2.Element;
@@ -52,7 +53,7 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
         "%TYPE%", "%STD_NAME%", "%UNIT%",
         "%ATTACKER%", "%SOURCE%", "%ATTACKER_NO_BB%", "%SOURCE_NO_BB%", "%ATTACKER_ALLY%", "%ATTACKER_ALLY_NO_BB%", "%ATTACKER_ALLY_NAME%",
         "%DEFENDER%", "%TARGET%", "%DEFENDER_NO_BB%", "%TARGET_NO_BB%", "%DEFENDER_ALLY%", "%DEFENDER_ALLY_NO_BB%", "%DEFENDER_ALLY_NAME%",
-        "%SEND%", "%ARRIVE%", "%PLACE%", "%PLACE_URL%"
+        "%SEND%", "%ARRIVE%", "%RUNTIME%", "%PLACE%", "%PLACE_URL%"
     };
     public static final int NO_TYPE = StandardAttack.NO_ICON;
     public static final int CLEAN_TYPE = StandardAttack.OFF_ICON;
@@ -161,18 +162,22 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
             return;
         }
 
-        long runtime = DSCalculator.calculateMoveTimeInMillis(source, target, getRealUnit().getSpeed());
+        long runtime = getRuntime();
         setArriveTime(new Date(pSendTime.getTime() + runtime));
     }
 
     public Date getSendTime() {
-        long runtime = DSCalculator.calculateMoveTimeInMillis(source, target, getRealUnit().getSpeed());
+        long runtime = getRuntime();
         return new Date(arriveTime.getTime() - runtime);
     }
 
     public Date getReturnTime() {
-        long runtime = DSCalculator.calculateMoveTimeInMillis(source, target, getRealUnit().getSpeed());
+        long runtime = getRuntime();
         return new Date((arriveTime.getTime() + runtime) / 1000 * 1000);
+    }
+    
+    public long getRuntime() {
+        return DSCalculator.calculateMoveTimeInMillis(source, target, getRealUnit().getSpeed());
     }
 
     public boolean isShowOnMap() {
@@ -375,10 +380,10 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
     @Override
     public String[] getReplacements(boolean pExtended) {
         String sendVal = null;
-        String arrivetVal = null;
+        String arriveVal = null;
 
-        Date aTime = getArriveTime();
         Date sTime = getSendTime();
+        Date aTime = getArriveTime();
         SimpleDateFormat sdf;
         if(ServerSettings.getSingleton().isMillisArrival()) {
             if(pExtended) {
@@ -390,7 +395,9 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
             sdf = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss");
         }
         sendVal = sdf.format(sTime);
-        arrivetVal = sdf.format(sTime);
+        arriveVal = sdf.format(aTime);
+        
+        String runtimeVal = DurationFormatUtils.formatDuration(getRuntime(), "HHH:mm:ss.SSS", true);
         
         String typeVal = "";
         switch (type) {
@@ -511,7 +518,7 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
             typeVal, stdName, unitVal,
             attackerVal, sourceVal, attackerNoBBVal, sourceNoBBVal, attackerAllyVal, attackerAllyNoBBVal, attackerAllyNameVal,
             defenderVal, targetVal, defenderNoBBVal, targetNoBBVal, defenderAllyVal, defenderAllyNoBBVal, defenderAllyNameVal,
-            sendVal, arrivetVal, "[url=\"" + placeURL + "\"]Versammlungsplatz[/url]", placeURLVal};
+            sendVal, arriveVal, runtimeVal, "[url=\"" + placeURL + "\"]Versammlungsplatz[/url]", placeURLVal};
     }
     
     @Override
