@@ -435,7 +435,7 @@ public class GlobalOptions {
         
         public DSPropertiesConfiguration() {
             GLOBAL_PROPERTIES = new PropertiesConfiguration();
-}
+        }
         
         public DSPropertiesConfiguration(String fileName) throws ConfigurationException {
             this(new File(fileName));

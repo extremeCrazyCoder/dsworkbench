@@ -1,0 +1,32 @@
+ui.models.AttackTableModel.attacker=Angreifer
+ui.models.AttackTableModel.attacker_tribe=Stamm (Angreifer)
+ui.models.AttackTableModel.source=Herkunft
+ui.models.AttackTableModel.defender=Verteidiger
+ui.models.AttackTableModel.defender_tribe=Stamm (Verteidiger)
+ui.models.AttackTableModel.target=Ziel
+ui.models.AttackTableModel.unit=Einheit
+ui.models.AttackTableModel.type=Typ
+ui.models.AttackTableModel.send_time=Abschickzeit
+ui.models.AttackTableModel.arrive_time=Ankunftzeit
+ui.models.AttackTableModel.runtime=Laufzeit
+ui.models.AttackTableModel.remaining=Verbleibend
+ui.models.AttackTableModel.show_on_map=Einzeichnen
+ui.models.AttackTableModel.transfer=\u00DCbertragen
+ui.models.AttackTableModel.times=Mult
+
+io.UnitHolder.spear=Speertr\u00E4ger
+io.UnitHolder.sword=Schwertk\u00E4mpfer
+io.UnitHolder.axe=Axtk\u00E4mpfer
+io.UnitHolder.archer=Bogensch\u00FCtze
+io.UnitHolder.spy=Sp\u00E4her
+io.UnitHolder.light=Leichte Kavallerie
+io.UnitHolder.marcher=Berittener Bogensch\u00FCtze
+io.UnitHolder.heavy=Schwere Kavallerie
+io.UnitHolder.ram=Ramme
+io.UnitHolder.catapult=Katapult
+io.UnitHolder.knight=Paladin
+io.UnitHolder.snob=Adelsgeschlecht
+io.UnitHolder.militia=Miliz
+io.UnitHolder.unknown=Unbekannt
+
+

@@ -18,6 +18,7 @@ package de.tor.tribes.util;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.util.bb.BasicFormatter;
+import de.tor.tribes.util.translation.TranslationManager;
 import java.awt.Toolkit;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.logging.log4j.LogManager;
@@ -138,6 +139,7 @@ public class GlobalDefaults {
         GLOBAL_DEFAULTS.addProperty("tap.height", 0);
         GLOBAL_DEFAULTS.addProperty("tap.width", 0);
         GLOBAL_DEFAULTS.addProperty("text.attacks.per.file", "10");
+        GLOBAL_DEFAULTS.addProperty("ui.language", TranslationManager.DEFAULT_LANGUAGE);
         GLOBAL_DEFAULTS.addProperty("village.order", 0);
         GLOBAL_DEFAULTS.addProperty("watchtower.frame.alwaysOnTop", false);
         GLOBAL_DEFAULTS.addProperty("zip.text.attacks", false);

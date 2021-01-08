@@ -39,6 +39,8 @@ import de.tor.tribes.util.attack.StandardAttackManager;
 import de.tor.tribes.util.bb.AttackListFormatter;
 import de.tor.tribes.util.html.AttackPlanHTMLExporter;
 import de.tor.tribes.util.js.AttackScriptWriter;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
@@ -76,6 +78,7 @@ import org.jdesktop.swingx.table.TableColumnExt;
  */
 public class AttackTableTab extends javax.swing.JPanel implements ListSelectionListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.panels.AttackTableTab");
     private static Logger logger = LogManager.getLogger("AttackTableTab");
 
     public enum TRANSFER_TYPE {
@@ -109,13 +112,13 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         attackModel = new AttackTableModel(AttackManager.DEFAULT_GROUP);
 
         jxAttackTable.setModel(attackModel);
-        TableColumnExt drawCol = jxAttackTable.getColumnExt("Einzeichnen");
+        TableColumnExt drawCol = jxAttackTable.getColumnExt(trans.getRaw("ui.models.AttackTableModel.show_on_map"));
         drawCol.setCellRenderer(new CustomBooleanRenderer(CustomBooleanRenderer.LayoutStyle.DRAW_NOTDRAW));
         drawCol.setCellEditor(new CustomCheckBoxEditor(CustomBooleanRenderer.LayoutStyle.DRAW_NOTDRAW));
-        TableColumnExt transferCol = jxAttackTable.getColumnExt("Übertragen");
+        TableColumnExt transferCol = jxAttackTable.getColumnExt(trans.getRaw("ui.models.AttackTableModel.transfer"));
         transferCol.setCellRenderer(new CustomBooleanRenderer(CustomBooleanRenderer.LayoutStyle.SENT_NOTSENT));
         transferCol.setCellEditor(new CustomCheckBoxEditor(CustomBooleanRenderer.LayoutStyle.SENT_NOTSENT));
-        TableColumnExt runtimeCol = jxAttackTable.getColumnExt("Laufzeit");
+        TableColumnExt runtimeCol = jxAttackTable.getColumnExt(trans.getRaw("ui.models.AttackTableModel.runtime"));
         runtimeCol.setVisible(false);
         
         BufferedImage back = ImageUtils.createCompatibleBufferedImage(5, 5, BufferedImage.BITMASK);
@@ -308,7 +311,13 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
 
     public void updatePlan() {
         attackModel.setPlan(sAttackPlan);
-        UIHelper.initTableColums(jxAttackTable, "Einheit", "Typ", "Übertragen", "Einzeichnen");
+        UIHelper.initTableColums(
+                jxAttackTable,
+                trans.getRaw("ui.models.AttackTableModel.unit"),
+                trans.getRaw("ui.models.AttackTableModel.type"),
+                trans.getRaw("ui.models.AttackTableModel.transfer"),
+                trans.getRaw("ui.models.AttackTableModel.show_on_map")
+        );
 
         jScrollPane1.setViewportView(jxAttackTable);
         updateSortHighlighter();

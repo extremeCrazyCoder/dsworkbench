@@ -26,6 +26,7 @@ import de.tor.tribes.ui.wiz.FirstStartWizard;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.GithubVersionCheck.UpdateInfo;
 import de.tor.tribes.util.ThreadDeadlockDetector.DefaultDeadlockListener;
+import de.tor.tribes.util.translation.TranslationManager;
 import java.io.*;
 import java.util.Collections;
 import java.util.Comparator;
@@ -499,6 +500,7 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         try {
             GlobalDefaults.initialize();
             GlobalOptions.initialize();
+            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             logger.error("Failed to setup LnF", e);

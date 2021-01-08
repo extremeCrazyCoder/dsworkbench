@@ -27,6 +27,8 @@ import de.tor.tribes.types.ext.NoAlly;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,6 +51,8 @@ public class AttackTableModel extends AbstractTableModel {
     private final List<Boolean> editable = new LinkedList<>();
     private int unitAfter;
     private List<UnitHolder> units;
+    
+    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTableModel");
 
     public AttackTableModel(String pPlan) {
         sPlan = pPlan;
@@ -71,28 +75,28 @@ public class AttackTableModel extends AbstractTableModel {
         columnTypes.clear();
         editable.clear();
         
-        columnNames.add("Angreifer"); columnTypes.add(Tribe.class); editable.add(false);
-        columnNames.add("Stamm (Angreifer)"); columnTypes.add(Ally.class); editable.add(false);
-        columnNames.add("Herkunft"); columnTypes.add(Village.class); editable.add(true);
-        columnNames.add("Verteidiger"); columnTypes.add(Tribe.class); editable.add(false);
-        columnNames.add("Stamm (Verteidiger)"); columnTypes.add(Ally.class); editable.add(false);
-        columnNames.add("Ziel"); columnTypes.add(Village.class); editable.add(true);
-        columnNames.add("Einheit"); columnTypes.add(UnitHolder.class); editable.add(true);
-        columnNames.add("Typ"); columnTypes.add(Integer.class); editable.add(true);
+        columnNames.add(trans.get("attacker")); columnTypes.add(Tribe.class); editable.add(false);
+        columnNames.add(trans.get("attacker_tribe")); columnTypes.add(Ally.class); editable.add(false);
+        columnNames.add(trans.get("source")); columnTypes.add(Village.class); editable.add(true);
+        columnNames.add(trans.get("defender")); columnTypes.add(Tribe.class); editable.add(false);
+        columnNames.add(trans.get("defender_tribe")); columnTypes.add(Ally.class); editable.add(false);
+        columnNames.add(trans.get("target")); columnTypes.add(Village.class); editable.add(true);
+        columnNames.add(trans.get("unit")); columnTypes.add(UnitHolder.class); editable.add(true);
+        columnNames.add(trans.get("type")); columnTypes.add(Integer.class); editable.add(true);
         units = DataHolder.getSingleton().getSendableUnits();
         for (UnitHolder unit : units) {
-            columnNames.add(unit.getPlainName());
+            columnNames.add(unit.getName());
             columnTypes.add(TroopAmountElement.class);
             editable.add(true);
         }
         unitAfter = columnNames.size();
-        columnNames.add("Abschickzeit"); columnTypes.add(Date.class); editable.add(true);
-        columnNames.add("Ankunftzeit"); columnTypes.add(Date.class); editable.add(true);
-        columnNames.add("Laufzeit"); columnTypes.add(Long.class); editable.add(false);
-        columnNames.add("Verbleibend"); columnTypes.add(Long.class); editable.add(false);
-        columnNames.add("Einzeichnen"); columnTypes.add(Boolean.class); editable.add(true);
-        columnNames.add("Übertragen"); columnTypes.add(Boolean.class); editable.add(true);
-        columnNames.add("Mult"); columnTypes.add(Short.class); editable.add(true);
+        columnNames.add(trans.get("send_time")); columnTypes.add(Date.class); editable.add(true);
+        columnNames.add(trans.get("arrive_time")); columnTypes.add(Date.class); editable.add(true);
+        columnNames.add(trans.get("runtime")); columnTypes.add(Long.class); editable.add(false);
+        columnNames.add(trans.get("remaining")); columnTypes.add(Long.class); editable.add(false);
+        columnNames.add(trans.get("show_on_map")); columnTypes.add(Boolean.class); editable.add(true);
+        columnNames.add(trans.get("transfer")); columnTypes.add(Boolean.class); editable.add(true);
+        columnNames.add(trans.get("times")); columnTypes.add(Short.class); editable.add(true);
         
         fireTableStructureChanged();
     }

@@ -1,0 +1,32 @@
+ui.models.AttackTableModel.attacker=Attacker
+ui.models.AttackTableModel.attacker_tribe=Tribe (Attacker)
+ui.models.AttackTableModel.source=Source
+ui.models.AttackTableModel.defender=Defender
+ui.models.AttackTableModel.defender_tribe=Tribe (Defender)
+ui.models.AttackTableModel.target=Target
+ui.models.AttackTableModel.unit=Unit
+ui.models.AttackTableModel.type=Type
+ui.models.AttackTableModel.send_time=Send time
+ui.models.AttackTableModel.arrive_time=Arrive time
+ui.models.AttackTableModel.runtime=Runtime
+ui.models.AttackTableModel.remaining=Remaining
+ui.models.AttackTableModel.show_on_map=Draw
+ui.models.AttackTableModel.transfer=Transfer
+ui.models.AttackTableModel.times=Multiplier
+
+io.UnitHolder.spear=Speerträger
+io.UnitHolder.sword=Schwertkämpfer
+io.UnitHolder.axe=Axtkämpfer
+io.UnitHolder.archer=Bogenschütze
+io.UnitHolder.spy=Späher
+io.UnitHolder.light=Leichte Kavallerie
+io.UnitHolder.marcher=Berittener Bogenschütze
+io.UnitHolder.heavy=Schwere Kavallerie
+io.UnitHolder.ram=Ramme
+io.UnitHolder.catapult=Katapult
+io.UnitHolder.knight=Paladin
+io.UnitHolder.snob=Adelsgeschlecht
+io.UnitHolder.militia=Miliz
+io.UnitHolder.unknown=unknown
+
+

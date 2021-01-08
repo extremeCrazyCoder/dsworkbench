@@ -15,9 +15,13 @@
  */
 package de.tor.tribes.io;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdom2.Element;
 
 /**
@@ -25,6 +29,8 @@ import org.jdom2.Element;
  * @author Charon
  */
 public class UnitHolder implements Serializable {
+
+    private static Logger logger = LogManager.getLogger("UnitHolder");
 
     public static final Comparator<UnitHolder> RUNTIME_COMPARATOR = new RuntimeComparator();
     private static final long serialVersionUID = 10L;
@@ -38,6 +44,8 @@ public class UnitHolder implements Serializable {
     private double defenseArcher = 0;
     private double carry = 0;
     private double buildTime = 0;
+    
+    private Translator trans = TranslationManager.getTranslator("io.UnitHolder");
 
     public UnitHolder() {
         name = "";
@@ -47,34 +55,11 @@ public class UnitHolder implements Serializable {
     public UnitHolder(Element pElement) throws Exception {
         try {
             this.plainName = pElement.getName();
-            if (pElement.getName().equals("spear")) {
-                this.name = "Speerträger";
-            } else if (pElement.getName().equals("sword")) {
-                this.name = "Schwertkämpfer";
-            } else if (pElement.getName().equals("axe")) {
-                this.name = "Axtkämpfer";
-            } else if (pElement.getName().equals("archer")) {
-                this.name = "Bogenschütze";
-            } else if (pElement.getName().equals("spy")) {
-                this.name = "Späher";
-            } else if (pElement.getName().equals("light")) {
-                this.name = "Leichte Kavallerie";
-            } else if (pElement.getName().equals("marcher")) {
-                this.name = "Berittener Bogenschütze";
-            } else if (pElement.getName().equals("heavy")) {
-                this.name = "Schwere Kavallerie";
-            } else if (pElement.getName().equals("ram")) {
-                this.name = "Ramme";
-            } else if (pElement.getName().equals("catapult")) {
-                this.name = "Katapult";
-            } else if (pElement.getName().equals("knight")) {
-                this.name = "Paladin";
-            } else if (pElement.getName().equals("snob")) {
-                this.name = "Adelsgeschlecht";
-            } else if (pElement.getName().equals("militia")) {
-                this.name = "Miliz";
-            } else {
-                this.name = "Unbekannt (" + pElement.getName() + ")";
+            try {
+                this.name = trans.get(pElement.getName());
+            } catch (Exception e) {
+                logger.error("Unit not found", e);
+                this.name = trans.get("unknown") + " (" + pElement.getName() + ")";
             }
             
             this.pop = Double.parseDouble(pElement.getChild("pop").getText());
