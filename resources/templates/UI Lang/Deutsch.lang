@@ -256,39 +256,10 @@ ui.models.WatchtowerTableModel.Dorf=Dorf
 ui.models.WatchtowerTableModel.Stufe=Stufe
 ui.models.WatchtowerTableModel.Farbe=Farbe
 
+ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html>Du befindest dich in der Dorfauswahl. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, mit denen du angreifen m&ouml;chtest. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:<ul> <li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Gruppen der Gruppen&uuml;bersicht</li></ul></html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ui.wiz.tap.AttackSourcePanel.InformationPanel=Informationen Einblenden
+ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Verwendete D\u00f6rfer
 
 
 

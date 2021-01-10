@@ -28,6 +28,8 @@ import de.tor.tribes.ui.windows.AbstractDSWorkbenchFrame;
 import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.mark.MarkerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.village.KnownVillage;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.awt.*;
@@ -75,6 +77,8 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
     private static DSWorkbenchChurchFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;
 
+    private static Translator trans = TranslationManager.getTranslator("ui.models.DSWorkbenchChurchFrame");
+    
     public static synchronized DSWorkbenchChurchFrame getSingleton() {
         if (SINGLETON == null) {
             SINGLETON = new DSWorkbenchChurchFrame();
@@ -442,7 +446,9 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         KnownVillageManager.getSingleton().addManagerListener(this);
         MarkerManager.getSingleton().addManagerListener(this);
         jChurchTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
-        UIHelper.initTableColums(jChurchTable, "Stufe", "Farbe");
+        UIHelper.initTableColums(jChurchTable, 
+                trans.getRaw("ui.models.ChurchTableModel.Stufe"), 
+                trans.getRaw("ui.models.ChurchTableModel.Farbe"));
 
         ((ChurchTableModel) jChurchTable.getModel()).fireTableDataChanged();
     }

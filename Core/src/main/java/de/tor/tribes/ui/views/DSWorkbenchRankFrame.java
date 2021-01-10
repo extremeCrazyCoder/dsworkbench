@@ -23,6 +23,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.PropertyHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -86,6 +88,9 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
         }
         
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.panels.DSWorkbenchRankFrame");
+    
     private static Logger logger = LogManager.getLogger("RankDialog");
     private static DSWorkbenchRankFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;

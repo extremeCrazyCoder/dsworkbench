@@ -32,6 +32,8 @@ import de.tor.tribes.ui.wiz.tap.types.TAPAttackSourceElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.PluginManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
 import java.awt.BorderLayout;
@@ -60,11 +62,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class AttackSourcePanel extends WizardPage {
     
-    private static final String GENERAL_INFO = "<html>Du befindest dich in der Dorfauswahl. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, "
-            + "mit denen du angreifen m&ouml;chtest. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:"
-            + "<ul> <li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>"
-            + "<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Gruppen der Gruppen&uuml;bersicht</li>"
-            + "</ul></html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackSourcePanel");
+    
+ 
     private static AttackSourcePanel singleton = null;
     private VillageSelectionPanel villageSelectionPanel = null;
     private VillageOverviewMapPanel overviewPanel = null;
@@ -132,7 +132,7 @@ public class AttackSourcePanel extends WizardPage {
         });
         
         
-        jInfoTextPane.setText(GENERAL_INFO);
+        
         overviewPanel = new VillageOverviewMapPanel();
         jPanel2.add(overviewPanel, BorderLayout.CENTER);
     }
@@ -196,9 +196,9 @@ public class AttackSourcePanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Help_attackmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -212,7 +212,7 @@ public class AttackSourcePanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
+        jLabel1.setText(trans.get("InformationPanel"));
         jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -251,7 +251,7 @@ public class AttackSourcePanel extends WizardPage {
 
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Verwendete Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("VerwendeteDoerfer")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 

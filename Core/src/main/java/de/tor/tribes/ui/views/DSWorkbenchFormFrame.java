@@ -30,6 +30,8 @@ import de.tor.tribes.ui.windows.FormConfigFrame;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.bb.FormListFormatter;
 import de.tor.tribes.util.map.FormManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
@@ -70,6 +72,9 @@ public class DSWorkbenchFormFrame extends AbstractDSWorkbenchFrame implements Li
             deleteSelection();
         }
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchFormFrame");
+    
     private static Logger logger = LogManager.getLogger("FormFrame");
     private static DSWorkbenchFormFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;
@@ -147,7 +152,7 @@ public class DSWorkbenchFormFrame extends AbstractDSWorkbenchFrame implements Li
         //update view
         FormManager.getSingleton().addManagerListener(DSWorkbenchFormFrame.this);
         jFormsTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
-        UIHelper.initTableColums(jFormsTable, "X", "Y", "Höhe", "Breite", "Sichtbar");
+        UIHelper.initTableColums(jFormsTable, trans.getRaw("ui.models.FormTableModel.X"), trans.getRaw("ui.models.FormTableModel.Y"), trans.getRaw("ui.models.FormTableModel.Hoehe"), trans.getRaw("ui.models.FormTableModel.Breite"), trans.getRaw("ui.models.FormTableModel.Sichtbar"));
 
         ((FormTableModel) jFormsTable.getModel()).fireTableDataChanged();
     }

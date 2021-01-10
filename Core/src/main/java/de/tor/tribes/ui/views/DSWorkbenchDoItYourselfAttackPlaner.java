@@ -37,6 +37,8 @@ import de.tor.tribes.util.PropertyHelper;
 import de.tor.tribes.util.attack.AttackManager;
 import de.tor.tribes.util.attack.StandardAttackManager;
 import de.tor.tribes.util.bb.AttackListFormatter;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.HeadlessException;
@@ -119,6 +121,9 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
             }
         }
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DoItYourselflAttackPlaner");
+    
     private static final Logger logger = LogManager.getLogger("DoItYourselflAttackPlaner");
     private static DSWorkbenchDoItYourselfAttackPlaner SINGLETON = null;
 
@@ -268,7 +273,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
     }
 
     protected void updateCountdown() {
-        TableColumnExt col = jAttackTable.getColumnExt("Verbleibend");
+        TableColumnExt col = jAttackTable.getColumnExt(trans.getRaw("ui.models.DoItYourselfAttackTableModel.Verbleibend"));
         if (col.isVisible()) {
             int startX = 0;
             for (int i = 0; i < jAttackTable.getColumnCount(); i++) {

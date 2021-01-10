@@ -256,28 +256,10 @@ ui.models.WatchtowerTableModel.Dorf=Village
 ui.models.WatchtowerTableModel.Stufe=Level
 ui.models.WatchtowerTableModel.Farbe=colour
 
+ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html> You are in the village selection. Here you can select the target of origin with which you would like to attack. You have the following options for this: <ul> <li> Inserting village coordinates from the clipboard using CTRL + V </li> <li> Inserting the originators from groups in the group overview </li> </ul> </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ui.wiz.tap.AttackSourcePanel.InformationPanel=Show information 
+ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Used villages
 
 
 

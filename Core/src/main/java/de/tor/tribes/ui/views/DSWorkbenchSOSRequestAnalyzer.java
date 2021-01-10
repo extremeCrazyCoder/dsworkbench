@@ -37,6 +37,8 @@ import de.tor.tribes.ui.wiz.tap.TacticsPlanerWizard;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.bb.SosListFormatter;
 import de.tor.tribes.util.sos.SOSManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -82,6 +84,9 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             removeSelection();
         }
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchSOSRequestAnalyzer");
+    
     private static Logger logger = LogManager.getLogger("SOSRequestAnalyzer");
     private static DSWorkbenchSOSRequestAnalyzer SINGLETON = null;
     private GenericTestPanel centerPanel = null;
@@ -131,10 +136,10 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
         jAttacksTable.setModel(new DefenseToolModel());
         jAttacksTable.setHighlighters(HighlighterFactory.createAlternateStriping(Constants.DS_ROW_A, Constants.DS_ROW_B));
-        jAttacksTable.getColumnExt("Tendenz").setCellRenderer(new TendencyTableCellRenderer());
-        jAttacksTable.getColumnExt("Status").setCellRenderer(new DefenseStatusTableCellRenderer());
+        jAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Tendenz")).setCellRenderer(new TendencyTableCellRenderer());
+        jAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Status")).setCellRenderer(new DefenseStatusTableCellRenderer());
         //jAttacksTable.getColumnExt("Wall").setCellRenderer(new WallLevellCellRenderer());
-        jAttacksTable.getColumnExt("Verlustrate").setCellRenderer(new LossRatioTableCellRenderer());
+        jAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Verlustrate")).setCellRenderer(new LossRatioTableCellRenderer());
         jAttacksTable.setDefaultRenderer(Date.class, new DateCellRenderer());
         jAttacksTable.setColumnControlVisible(false);
         jAttacksTable.setDefaultRenderer(Date.class, new DateCellRenderer());

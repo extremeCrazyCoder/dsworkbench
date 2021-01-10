@@ -27,6 +27,8 @@ import de.tor.tribes.util.*;
 import de.tor.tribes.util.bb.NoteListFormatter;
 import de.tor.tribes.util.bb.VillageListFormatter;
 import de.tor.tribes.util.note.NoteManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
@@ -68,6 +70,8 @@ public class NoteTableTab extends javax.swing.JPanel implements ListSelectionLis
 
     private static Logger logger = LogManager.getLogger("NoteTableTab");
 
+    private static Translator trans = TranslationManager.getTranslator("ui.models.NoteTableTab");
+    
     public enum TRANSFER_TYPE {
 
         CLIPBOARD_PLAIN, CLIPBOARD_BB, CUT_TO_INTERNAL_CLIPBOARD, COPY_TO_INTERNAL_CLIPBOARD, FROM_INTERNAL_CLIPBOARD
@@ -91,10 +95,10 @@ public class NoteTableTab extends javax.swing.JPanel implements ListSelectionLis
         noteModel = new NoteTableModel(NoteManager.DEFAULT_GROUP);
 
         jxNoteTable.setModel(noteModel);
-        jxNoteTable.getColumnExt("Icon").setCellRenderer(new NoteIconCellRenderer(NoteIconCellRenderer.ICON_TYPE.NOTE));
-        jxNoteTable.getColumnExt("Kartensymbol").setCellRenderer(new NoteIconCellRenderer(NoteIconCellRenderer.ICON_TYPE.MAP));
-        jxNoteTable.getColumnExt("Icon").setCellEditor(new NoteIconCellEditor(NoteIconCellEditor.ICON_TYPE.NOTE));
-        jxNoteTable.getColumnExt("Kartensymbol").setCellEditor(new NoteIconCellEditor(NoteIconCellEditor.ICON_TYPE.MAP));
+        jxNoteTable.getColumnExt(trans.getRaw("ui.models.NoteTableModel.Icon")).setCellRenderer(new NoteIconCellRenderer(NoteIconCellRenderer.ICON_TYPE.NOTE));
+        jxNoteTable.getColumnExt(trans.getRaw("ui.models.NoteTableModel.Kartensymbol")).setCellRenderer(new NoteIconCellRenderer(NoteIconCellRenderer.ICON_TYPE.MAP));
+        jxNoteTable.getColumnExt(trans.getRaw("ui.models.NoteTableModel.Icon")).setCellEditor(new NoteIconCellEditor(NoteIconCellEditor.ICON_TYPE.NOTE));
+        jxNoteTable.getColumnExt(trans.getRaw("ui.models.NoteTableModel.Kartensymbol")).setCellEditor(new NoteIconCellEditor(NoteIconCellEditor.ICON_TYPE.MAP));
 
         BufferedImage corner_dr = ImageUtils.createCompatibleBufferedImage(5, 5, BufferedImage.BITMASK);
         Graphics2D g = corner_dr.createGraphics();
@@ -240,7 +244,9 @@ public class NoteTableTab extends javax.swing.JPanel implements ListSelectionLis
 
     public void updateSet() {
         noteModel.setNoteSet(sNoteSet);
-        UIHelper.initTableColums(jxNoteTable, "Icon", "Kartensymbol");
+        UIHelper.initTableColums(jxNoteTable, 
+                trans.getRaw("ui.models.NoteTableModel.Icon"), 
+                trans.getRaw("ui.models.NoteTableModel.Kartensymbol"));
         jScrollPane1.setViewportView(jxNoteTable);
         jScrollPane2.setViewportView(jxVillageList);
         jxNoteTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());

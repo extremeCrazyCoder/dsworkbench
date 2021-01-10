@@ -31,6 +31,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.PluginManager;
 import de.tor.tribes.util.dist.DistanceManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -77,6 +79,9 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         }
 
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.models.DSWorkbenchDistanceFrame");
+    
     private static Logger logger = LogManager.getLogger("DistanceFrame");
     private static DSWorkbenchDistanceFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;
@@ -358,7 +363,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
             realCols[i] = jDistanceTable.convertColumnIndexToModel(selection[i]);
         }
 
-        colsToRemove.remove(jDistanceTable.getColumn("Eigene"));
+        colsToRemove.remove(jDistanceTable.getColumn(trans.getRaw("ui.models.DistanceTableModel.Eigene")));
         for (TableColumn colu : colsToRemove) {
             jDistanceTable.getColumnModel().removeColumn(colu);
         }

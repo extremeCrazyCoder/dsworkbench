@@ -270,7 +270,7 @@ public class TroopsTableModel extends AbstractTableModel {
             case DEF_ARCH:
                 return trans.get("VerteidigungBogen");
             case OUTSIDE:
-                return trans.get("Unterstuetzungenaußerhalb");
+                return trans.get("Unterstuetzungenaussserhalb");
             case INSIDE:
                 return trans.get("Unterstuetzungeninnerhalb");
             case FARM:

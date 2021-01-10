@@ -78,7 +78,7 @@ public class DSWorkbenchConquersFrame extends AbstractDSWorkbenchFrame implement
 
             for (int i = 0; i < jConquersTable.getColumnCount(); i++) {
                 TableColumnExt col = jConquersTable.getColumnExt(i);
-                if (col.isVisible() && !col.getTitle().equals("Entfernung") && !col.getTitle().equals("Dorfpunkte")) {
+                if (col.isVisible() && !col.getTitle().equals(trans.getRaw("ui.models.ConquerTableModel.Entfernung")) && !col.getTitle().equals(trans.getRaw("ui.models.ConquerTableModel.Dorfpunkte"))) {
                     model.addElement(col.getTitle());
                 }
             }

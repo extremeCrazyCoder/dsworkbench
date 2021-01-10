@@ -31,6 +31,8 @@ import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.PropertyHelper;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -107,8 +109,11 @@ public class DSWorkbenchAttackFrame extends AbstractDSWorkbenchFrame implements 
                 for (int i = 0; i < activeTab.getAttackTable().getColumnCount(); i++) {
                     TableColumnExt col = activeTab.getAttackTable().getColumnExt(i);
                     if (col.isVisible()) {
-                        if (!col.getTitle().equals("Einheit") && !col.getTitle().equals("Typ") && !col.getTitle().equals("Sonstiges")
-                                && !col.getTitle().equals("Abschickzeit") && !col.getTitle().equals("Ankunftzeit") && !col.getTitle().equals("Verbleibend")) {
+                        if (!col.getTitle().equals(trans.getRaw("ui.models.AttackTableModel.unit")) && 
+                                !col.getTitle().equals(trans.getRaw("ui.models.AttackTableModel.type")) &&
+                                !col.getTitle().equals(trans.getRaw("ui.models.AttackTableModel.send_time")) && 
+                                !col.getTitle().equals(trans.getRaw("ui.models.AttackTableModel.arrive_time")) && 
+                                !col.getTitle().equals(trans.getRaw("ui.models.AttackTableModel.remaining"))) {
                             model.addElement(col.getTitle());
                         }
                     }
@@ -119,6 +124,9 @@ public class DSWorkbenchAttackFrame extends AbstractDSWorkbenchFrame implements 
             }
         }
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchAttackFrame");
+    
     private static Logger logger = LogManager.getLogger("AttackView");
     private static DSWorkbenchAttackFrame SINGLETON = null;
     private CountdownThread mCountdownThread = null;

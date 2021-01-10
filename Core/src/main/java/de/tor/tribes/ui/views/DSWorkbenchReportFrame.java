@@ -34,6 +34,8 @@ import de.tor.tribes.util.bb.TribeReportStatsFormatter;
 import de.tor.tribes.util.farm.FarmManager;
 import de.tor.tribes.util.report.ReportManager;
 import de.tor.tribes.util.report.ReportStatBuilder;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -91,7 +93,9 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
                 for (int i = 0; i < activeTab.getReportTable().getColumnCount(); i++) {
                     TableColumnExt col = activeTab.getReportTable().getColumnExt(i);
                     if (col.isVisible()) {
-                        if (!col.getTitle().equals("Status") && !col.getTitle().equals("Typ") && !col.getTitle().equals("Sonstiges")) {
+                        if (!col.getTitle().equals (trans.getRaw("ui.models.ReportManagerTableModel.Status")) && 
+                                !col.getTitle().equals(trans.getRaw("ui.models.ReportManagerTableModel.Typ")) && 
+                                !col.getTitle().equals(trans.getRaw("ui.models.ReportManagerTableModel.Sonstiges"))) {
                             model.addElement(col.getTitle());
                         }
                     }
@@ -115,6 +119,9 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             tab.updateSet();
         }
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchReportFrame");
+    
     private static Logger logger = LogManager.getLogger("ReportView");
     private static DSWorkbenchReportFrame SINGLETON = null;
     private FightStats lastStats = null;

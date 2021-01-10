@@ -25,6 +25,8 @@ import de.tor.tribes.ui.views.DSWorkbenchSOSRequestAnalyzer;
 import de.tor.tribes.ui.wiz.dep.types.SupportSourceElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.TableHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
@@ -40,6 +42,8 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class DefenseFinishPanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseFinishPanel");
+    
     private static final String GENERAL_INFO = "<html>Fertig! Wenn alles geklappt hat befinden sich nun in der Tabelle Informationen zu gefundenen Unterst&uuml;tzungen. "
             + "Diese solltest du &uuml;ber den entsprechenden Button in die Angriffs&uuml;bersicht transferieren, um die Unterst&uuml;tzungen komfortabel abschicken zu k&ouml;nnen. "
             + "Das sollte nat&uuml; sobald wie m&ouml;glich geschehen.<br/>"
@@ -66,7 +70,7 @@ public class DefenseFinishPanel extends WizardPage {
         jxResultsTable.setModel(new DEPResultTableModel());
         jxResultsTable.setHighlighters(HighlighterFactory.createAlternateStriping(Constants.DS_ROW_A, Constants.DS_ROW_B));
         jxResultsTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
-        jxResultsTable.getColumnExt("Status").setCellRenderer(new DefenseStatusTableCellRenderer());
+        jxResultsTable.getColumnExt(trans.getRaw("ui.models.DEPResultTableModel.Status")).setCellRenderer(new DefenseStatusTableCellRenderer());
         jXCollapsiblePane1.setLayout(new BorderLayout());
         jXCollapsiblePane1.add(jInfoScrollPane, BorderLayout.CENTER);
         jInfoTextPane.setText(GENERAL_INFO);

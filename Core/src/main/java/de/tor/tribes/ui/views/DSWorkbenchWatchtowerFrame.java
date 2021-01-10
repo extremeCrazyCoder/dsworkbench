@@ -28,6 +28,8 @@ import de.tor.tribes.ui.windows.AbstractDSWorkbenchFrame;
 import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.mark.MarkerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.village.KnownVillage;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.awt.*;
@@ -73,6 +75,9 @@ public class DSWorkbenchWatchtowerFrame extends AbstractDSWorkbenchFrame impleme
     public void dataChangedEvent(String pGroup) {
         ((WatchtowerTableModel) jWatchtowerTable.getModel()).fireTableDataChanged();
     }
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchWatchtowerFrame");
+    
     private final static Logger logger = LogManager.getLogger("WatchtowerView");
     private static DSWorkbenchWatchtowerFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;
@@ -445,7 +450,7 @@ public class DSWorkbenchWatchtowerFrame extends AbstractDSWorkbenchFrame impleme
         KnownVillageManager.getSingleton().addManagerListener(this);
         MarkerManager.getSingleton().addManagerListener(this);
         jWatchtowerTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
-        String[] cols = new String[]{"Stufe", "Farbe"};
+        String[] cols = new String[]{trans.getRaw("ui.models.WatchtowerTableModel.Stufe"), trans.getRaw("ui.models.WatchtowerTableModel.Farbe")};
         for (String col : cols) {
             TableColumnExt columns = jWatchtowerTable.getColumnExt(col);
             columns.setPreferredWidth(80);

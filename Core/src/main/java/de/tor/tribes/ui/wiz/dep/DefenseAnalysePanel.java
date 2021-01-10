@@ -27,6 +27,8 @@ import de.tor.tribes.ui.renderer.LossRatioTableCellRenderer;
 import de.tor.tribes.ui.renderer.TendencyTableCellRenderer;
 import de.tor.tribes.ui.views.DSWorkbenchSOSRequestAnalyzer;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -47,6 +49,8 @@ import org.netbeans.spi.wizard.*;
  */
 public class DefenseAnalysePanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseAnalysePanel");
+    
     private static final String GENERAL_INFO = "Du befindest dich in der Angriffsanalyse. In diesem Schritt kannst du eingelesene SOS-Anfragen "
             + "aus dem SOS-Analyzer in den Verteidigungsplaner übertragen und bei Bedarf einzelne von der Berechnung ausschließen, indem du sie "
             + "per ENTF löscht.";
@@ -73,9 +77,9 @@ public class DefenseAnalysePanel extends WizardPage {
         numFormat.setMaximumFractionDigits(0);
         numFormat.setMinimumFractionDigits(0);
         jxAttacksTable.setModel(new DefenseToolModel());
-        jxAttacksTable.getColumnExt("Tendenz").setCellRenderer(new TendencyTableCellRenderer());
-        jxAttacksTable.getColumnExt("Status").setCellRenderer(new DefenseStatusTableCellRenderer());
-        jxAttacksTable.getColumnExt("Verlustrate").setCellRenderer(new LossRatioTableCellRenderer());
+        jxAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Tendenz")).setCellRenderer(new TendencyTableCellRenderer());
+        jxAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Status")).setCellRenderer(new DefenseStatusTableCellRenderer());
+        jxAttacksTable.getColumnExt(trans.getRaw("ui.models.DefenseToolModel.Verlustrate")).setCellRenderer(new LossRatioTableCellRenderer());
         jxAttacksTable.setDefaultRenderer(Date.class, new DateCellRenderer());
         jxAttacksTable.setHighlighters(HighlighterFactory.createAlternateStriping(Constants.DS_ROW_A, Constants.DS_ROW_B));
         jxAttacksTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
