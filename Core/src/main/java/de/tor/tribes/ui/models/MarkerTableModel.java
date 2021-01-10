@@ -17,6 +17,8 @@ package de.tor.tribes.ui.models;
 
 import de.tor.tribes.types.Marker;
 import de.tor.tribes.util.mark.MarkerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
 import javax.swing.table.AbstractTableModel;
 
@@ -25,10 +27,10 @@ import javax.swing.table.AbstractTableModel;
  * @author Charon
  */
 public class MarkerTableModel extends AbstractTableModel {
-    
+    private Translator trans = TranslationManager.getTranslator("ui.models.MarkerTableModel");    
     private String sMarkerSet = null;
     private final Class[] types = new Class[]{Marker.class, Color.class, Boolean.class};
-    private final String colNames[] = new String[]{"Name", "Markierung", "Sichtbar"};
+    private final String colNames[] = new String[]{trans.get("Name"), trans.get("Markierung"), trans.get("Sichtbar")};
     
     public MarkerTableModel(String pMarkerSet) {
         sMarkerSet = pMarkerSet;

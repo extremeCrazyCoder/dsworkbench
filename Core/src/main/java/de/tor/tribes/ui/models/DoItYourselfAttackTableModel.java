@@ -19,6 +19,8 @@ import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.Attack;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import org.apache.logging.log4j.LogManager;
@@ -29,10 +31,10 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class DoItYourselfAttackTableModel extends AbstractTableModel {
-
+    private static Translator trans = TranslationManager.getTranslator("ui.models.DoItYourselfAttackTableModel");
     private static Logger logger = LogManager.getLogger("DoItYourselfAttackTable");
     protected static Class[] types = new Class[]{Integer.class, UnitHolder.class, Village.class, Village.class, Date.class, Date.class, Long.class};
-    protected static String[] colNames = new String[]{"Angriffstyp", "Einheit", "Herkunft", "Ziel", "Abschickzeit", "Ankunftzeit", "Verbleibend"};
+    protected static String[] colNames = new String[]{trans.get("Angriffstyp"), trans.get("Einheit"), trans.get("Herkunft"), trans.get("Ziel"), trans.get("Abschickzeit"), trans.get("Ankunftzeit"), trans.get("Verbleibend")};
     protected static boolean[] editableColumns = new boolean[]{true, true, true, true, true, true, false};
 
     public DoItYourselfAttackTableModel() {

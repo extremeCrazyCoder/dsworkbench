@@ -25,6 +25,8 @@ import de.tor.tribes.ui.ImageManager;
 import de.tor.tribes.ui.panels.MapPanel;
 import de.tor.tribes.ui.renderer.map.MapRenderer;
 import de.tor.tribes.util.DSCalculator;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
 import java.text.NumberFormat;
@@ -55,7 +57,7 @@ public class TroopsTableModel extends AbstractTableModel {
     private NumberFormat nf = NumberFormat.getInstance();
     private HashMap<String, ImageIcon> columnIcons = null;
     private List<COL_CONTENT> content = null;
-
+private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTableModel");
     public TroopsTableModel(String pSet) {
         sSet = pSet;
         nf.setMinimumFractionDigits(0);
@@ -80,10 +82,10 @@ public class TroopsTableModel extends AbstractTableModel {
         content.add(COL_CONTENT.VILLAGE);
         content.add(COL_CONTENT.LAST_CHANGE);
         columnIcons = new HashMap<>();
-        columnIcons.put("Stamm", null);
-        columnIcons.put("Spieler", null);
-        columnIcons.put("Dorf", null);
-        columnIcons.put("Stand", null);
+        columnIcons.put(trans.get("Stamm"), null);
+        columnIcons.put(trans.get("Spieler"), null);
+        columnIcons.put(trans.get("Dorf"), null);
+        columnIcons.put(trans.get("Stand"), null);
 
         for (UnitHolder pUnit : DataHolder.getSingleton().getUnits()) {
             switch (pUnit.getPlainName()) {
@@ -136,13 +138,13 @@ public class TroopsTableModel extends AbstractTableModel {
         content.add(COL_CONTENT.OUTSIDE);
         content.add(COL_CONTENT.INSIDE);
         content.add(COL_CONTENT.FARM);
-        columnIcons.put("Angriff", new ImageIcon("graphics/icons/att.png"));
-        columnIcons.put("Verteidigung", new ImageIcon("graphics/icons/def.png"));
-        columnIcons.put("Verteidigung (Kavallerie)", new ImageIcon("graphics/icons/def_cav.png"));
-        columnIcons.put("Verteidigung (Bogen)", new ImageIcon("graphics/icons/def_archer.png"));
-        columnIcons.put("Unterstützungen außerhalb", new ImageIcon("graphics/icons/move_out.png"));
-        columnIcons.put("Unterstützungen innerhalb", new ImageIcon("graphics/icons/move_in.png"));
-        columnIcons.put("Bauernhofbedarf", new ImageIcon("graphics/icons/farm.png"));
+        columnIcons.put(trans.get("Angriff"), new ImageIcon("graphics/icons/att.png"));
+        columnIcons.put(trans.get("Verteidigung"), new ImageIcon("graphics/icons/def.png"));
+        columnIcons.put(trans.get("VerteidigungKavallerie"), new ImageIcon("graphics/icons/def_cav.png"));
+        columnIcons.put(trans.get("VerteidigungBogen"), new ImageIcon("graphics/icons/def_archer.png"));
+        columnIcons.put(trans.get("Unterstützungenaußerhalb"), new ImageIcon("graphics/icons/move_out.png"));
+        columnIcons.put(trans.get("Unterstützungeninnerhalb"), new ImageIcon("graphics/icons/move_in.png"));
+        columnIcons.put(trans.get("Bauernhofbedarf"), new ImageIcon("graphics/icons/farm.png"));
         super.fireTableStructureChanged();
     }
 
@@ -226,53 +228,53 @@ public class TroopsTableModel extends AbstractTableModel {
         COL_CONTENT colContent = content.get(columnIndex);
         switch (colContent) {
             case ALLY:
-                return "Stamm";
+                return trans.get("Stamm");
             case TRIBE:
-                return "Spieler";
+                return trans.get("Spieler");
             case VILLAGE:
-                return "Dorf";
+                return trans.get("Dorf");
             case LAST_CHANGE:
-                return "Stand";
+                return trans.get("Stand");
             case SPEAR:
-                return "Speerträger";
+                return trans.get("Speerträger");
             case SWORD:
-                return "Schwertkämpfer";
+                return trans.get("Schwertkämpfer");
             case AXE:
-                return "Axtkämpfer";
+                return trans.get("Axtkämpfer");
             case ARCHER:
-                return "Bogenschütze";
+                return trans.get("Bogenschütze");
             case SPY:
-                return "Späher";
+                return trans.get("Späher");
             case LIGHT:
-                return "Leichte Kavallerie";
+                return trans.get("LeichteKavallerie");
             case MARCHER:
-                return "Berittener Bogenschütze";
+                return trans.get("BerittenerBogenschütze");
             case HEAVY:
-                return "Schwere Kavallerie";
+                return trans.get("SchwereKavallerie");
             case RAM:
-                return "Ramme";
+                return trans.get("Ramme");
             case CATA:
-                return "Katapult";
+                return trans.get("Katapult");
             case KNIGHT:
-                return "Paladin";
+                return trans.get("Paladin");
             case MILITIA:
-                return "Miliz";
+                return trans.get("Miliz");
             case SNOB:
-                return "Adelsgeschlecht";
+                return trans.get("Adelsgeschlecht");
             case OFF:
-                return "Angriff";
+                return trans.get("Angriff");
             case DEF:
-                return "Verteidigung";
+                return trans.get("Verteidigung");
             case DEF_CAV:
-                return "Verteidigung (Kavallerie)";
+                return trans.get("VerteidigungKavallerie");
             case DEF_ARCH:
-                return "Verteidigung (Bogen)";
+                return trans.get("VerteidigungBogen");
             case OUTSIDE:
-                return "Unterstützungen außerhalb";
+                return trans.get("Unterstützungenaußerhalb");
             case INSIDE:
-                return "Unterstützungen innerhalb";
+                return trans.get("Unterstützungeninnerhalb");
             case FARM:
-                return "Bauernhofbedarf";
+                return trans.get("Bauernhofbedarf");
         }
         return null;
     }

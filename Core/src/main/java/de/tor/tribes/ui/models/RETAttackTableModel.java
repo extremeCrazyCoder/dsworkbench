@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.Attack;
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,9 +30,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class RETAttackTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.RETAttackTableModel");
     private String[] columnNames = new String[]{
-        "Herkunft", "Ziel", "Ankunft", "Einheit"
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Ankunft"), trans.get("Einheit")
     };
     private Class[] types = new Class[]{
         Village.class, Village.class, Date.class, UnitHolder.class

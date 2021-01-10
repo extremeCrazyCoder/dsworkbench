@@ -16,6 +16,8 @@
 package de.tor.tribes.ui.models;
 
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -27,9 +29,9 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class REFTargetTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.REFTargetTableModel");
     private String[] columnNames = new String[]{
-        "Dorf"
+        trans.get("Dorf")
     };
     Class[] types = new Class[]{
         Village.class

@@ -22,6 +22,8 @@ import de.tor.tribes.types.ext.NoAlly;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.ui.editors.BuildingLevelCellEditor.BuildingLevelModel;
 import de.tor.tribes.util.BuildingSettings;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.village.KnownVillage;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ import org.apache.logging.log4j.Logger;
 public class KnownVillageTableModel extends AbstractTableModel implements BuildingLevelModel {
 
     private static Logger logger = LogManager.getLogger("KnownVillageTableModel");
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.KnownVillageTableModel");
     private final List<String> columnNames = new ArrayList<>();
     private final List<Class> columnTypes = new ArrayList<>();
     private final List<Boolean> editable = new ArrayList<>();
@@ -68,10 +70,10 @@ public class KnownVillageTableModel extends AbstractTableModel implements Buildi
         editable.clear();
         buildingNames.clear();
         
-        columnNames.add("Spieler"); columnTypes.add(Tribe.class); editable.add(false);
-        columnNames.add("Stamm"); columnTypes.add(Ally.class); editable.add(false);
-        columnNames.add("Dorf"); columnTypes.add(KnownVillage.class); editable.add(false);
-        columnNames.add("Stand"); columnTypes.add(Date.class); editable.add(true);
+        columnNames.add(trans.get("Spieler")); columnTypes.add(Tribe.class); editable.add(false);
+        columnNames.add(trans.get("Stamm")); columnTypes.add(Ally.class); editable.add(false);
+        columnNames.add(trans.get("Dorf")); columnTypes.add(KnownVillage.class); editable.add(false);
+        columnNames.add(trans.get("Stand")); columnTypes.add(Date.class); editable.add(true);
         buildingOffset = columnNames.size();
         for (String buildingName : BuildingSettings.BUILDING_NAMES) {
             if(BuildingSettings.getMaxBuildingLevel(buildingName) == -1) continue;

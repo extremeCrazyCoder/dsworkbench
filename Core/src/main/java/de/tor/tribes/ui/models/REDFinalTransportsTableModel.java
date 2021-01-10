@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.types.Resource;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.red.types.ExtendedTransport;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -27,9 +29,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class REDFinalTransportsTableModel extends AbstractTableModel {
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.REDFinalTransportsTableModel");
     private String[] columnNames = new String[]{
-        "Herkunft", "Ziel", "Holz", "Lehm", "Eisen", "Händler", "Übertragen"
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Holz"), trans.get("Lehm"), trans.get("Eisen"), trans.get("Händler"), trans.get("Übertragen")
     };
     Class[] types = new Class[]{
         Village.class, Village.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class

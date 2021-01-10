@@ -20,6 +20,8 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.dist.DistanceManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -57,11 +59,11 @@ public class DistanceTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return DistanceManager.getSingleton().getVillages().length + 1;
     }
-
+private Translator trans = TranslationManager.getTranslator("ui.models.DistanceTableModel");
     @Override
     public String getColumnName(int col) {
         if (col == 0) {
-            return "Eigene";
+            return trans.get("Eigene");
         }
         return DistanceManager.getSingleton().getVillages()[col - 1].toString();
     }

@@ -17,6 +17,8 @@ package de.tor.tribes.ui.models;
 
 import de.tor.tribes.types.DefenseInformation;
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,10 +31,10 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class DefenseToolModel extends DefaultTableModel {
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.DefenseToolModel");
     private List<DefenseInformation> entries = null;
     private Class[] types = new Class[]{Integer.class, Village.class, Integer.class, Integer.class, Date.class, Date.class, DefenseInformation.DEFENSE_STATUS.class, Double.class, String.class};
-    private String[] colNames = new String[]{"Tendenz", "Ziel", "Angriffe", "Fakes", "Erster Angriff", "Letzter Angriff", "Status", "Verlustrate", "Unterstützungen"};
+    private String[] colNames = new String[]{trans.get("Tendenz"), trans.get("Ziel"), trans.get("Angriffe"), trans.get("Fakes"), trans.get("ErsterAngriff"), trans.get("LetzterAngriff"), trans.get("Status"), trans.get("Verlustrate"), trans.get("Unterstützungen")};
 
     public DefenseToolModel() {
         super();

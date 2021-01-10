@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.dep.types.SupportSourceElement;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -29,9 +31,9 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class DEPSourceTableModel extends AbstractTableModel {
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.DEPSourceTableModel");
     private String[] columnNames = new String[]{
-        "Spieler", "Dorf", "Einzelverteidigungen"
+        trans.get("Spieler"), trans.get("Dorf"), trans.get("Einzelverteidigungen")
     };
     private Class[] types = new Class[]{
         Tribe.class, Village.class, Integer.class

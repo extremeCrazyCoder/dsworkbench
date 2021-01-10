@@ -118,7 +118,7 @@ public class AttackTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if(columnNames.get(columnIndex).equals("Einheit")) {
+        if(columnNames.get(columnIndex).equals(trans.get("unit"))) {
             Attack a = (Attack) AttackManager.getSingleton().getAllElements(sPlan).get(rowIndex);
             
             UnitHolder slowest = a.getTroops().getSlowestUnit();

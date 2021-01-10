@@ -21,6 +21,8 @@ import de.tor.tribes.types.drawing.Circle;
 import de.tor.tribes.types.drawing.Line;
 import de.tor.tribes.types.drawing.Rectangle;
 import de.tor.tribes.util.map.FormManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -28,9 +30,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class FormTableModel extends AbstractTableModel {
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.FormTableModel");
     private Class[] types = new Class[]{String.class, String.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class};
-    private String[] colNames = new String[]{"Name", "Typ", "X", "Y", "Breite", "Höhe", "Sichtbar"};
+    private String[] colNames = new String[]{trans.get("Name"), trans.get("Typ"), trans.get("X"), trans.get("Y"), trans.get("Breite"), trans.get("Höhe"), trans.get("Sichtbar")};
     private boolean[] editableColumns = new boolean[]{true, false, true, true, true, true, false};
 
     @Override
@@ -66,24 +68,24 @@ public class FormTableModel extends AbstractTableModel {
             case 0: {
                 String name = f.getFormName();
                 if (name == null || name.length() == 0) {
-                    return "Kein Name";
+                    return trans.get("KeinName");
                 }
                 return name;
             }
             case 1: {
                 switch (type) {
                     case ARROW:
-                        return "Pfeil";
+                        return trans.get("Pfeil");
                     case CIRCLE:
-                        return "Kreis";
+                        return trans.get("Kreis");
                     case FREEFORM:
-                        return "Freihandzeichnung";
+                        return trans.get("Freihandzeichnung");
                     case LINE:
-                        return "Linie";
+                        return trans.get("Linie");
                     case RECTANGLE:
-                        return "Rechteck";
+                        return trans.get("Rechteck");
                     default:
-                        return "Text";
+                        return trans.get("Text");
                 }
             }
             case 2:

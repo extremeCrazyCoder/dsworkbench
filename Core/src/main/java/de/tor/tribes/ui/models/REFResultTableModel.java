@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.ref.types.REFResultElement;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,9 +30,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class REFResultTableModel extends AbstractTableModel {
-
+   private Translator trans = TranslationManager.getTranslator("ui.models.REFResultTableModel");
     private String[] columnNames = new String[]{
-        "Herkunft", "Ziel", "Einheit", "Späteste Abschickzeit", "Ankunftzeit"
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Einheit"), trans.get("SpätesteAbschickzeit"), trans.get("Ankunftzeit")
     };
     Class[] types = new Class[]{
         Village.class, Village.class, UnitHolder.class, Date.class, Date.class

@@ -17,6 +17,8 @@ package de.tor.tribes.ui.models;
 
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.ret.types.RETSourceElement;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -26,9 +28,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class RETSourceFilterTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.RETSourceFilterTableModel");
     private String[] columnNames = new String[]{
-        "Dorf", "Ignoriert"
+        trans.get("Dorf"), trans.get("Ignoriert")
     };
     private Class[] types = new Class[]{
         Village.class, Boolean.class

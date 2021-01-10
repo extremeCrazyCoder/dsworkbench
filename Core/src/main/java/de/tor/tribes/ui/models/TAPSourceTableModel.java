@@ -19,6 +19,8 @@ import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.tap.types.TAPAttackSourceElement;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -28,9 +30,9 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class TAPSourceTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.TAPSourceTableModel");
     private String[] columnNames = new String[]{
-        "Spieler", "Dorf", "Einheit", "Fake"
+        trans.get("Spieler"), trans.get("Dorf"), trans.get("Einheit"), trans.get("Fake")
     };
     private Class[] types = new Class[]{
         Tribe.class, Village.class, UnitHolder.class, Boolean.class

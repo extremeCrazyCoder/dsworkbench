@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.types.FarmInformation;
 import de.tor.tribes.types.StorageStatus;
 import de.tor.tribes.util.farm.FarmManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Date;
 import javax.swing.table.AbstractTableModel;
 import org.apache.commons.lang3.time.DurationFormatUtils;
@@ -27,9 +29,9 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
  * @author Torridity
  */
 public class FarmTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.FarmTableModel");
     private Class[] types = new Class[]{FarmInformation.FARM_STATUS.class, Boolean.class, Date.class, String.class, FarmInformation.SIEGE_STATUS.class, String.class, StorageStatus.class, String.class, FarmInformation.FARM_RESULT.class, Float.class};
-    private String[] colNames = new String[]{"Status", "Resourcen gefunden", "Letzter Bericht", "Dorf", "Kata Status", "Wall", "Rohstoffe", "Ankunft", "Übertragen", "Erfolgsquote"};
+    private String[] colNames = new String[]{trans.get("Status"), trans.get("Resourcengefunden"), trans.get("LetzterBericht"), trans.get("Dorf"), trans.get("KataStatus"), trans.get("Wall"), trans.get("Rohstoffe"), trans.get("Ankunft"), trans.get("Übertragen"), trans.get("Erfolgsquote")};
 
     public FarmTableModel() {
     }
@@ -75,7 +77,7 @@ public class FarmTableModel extends AbstractTableModel {
                 return elem.getSiegeStatus();
             case 5:
                 int wall = elem.getWallLevel();
-                if(wall < 0) return "unbekannt";
+                if(wall < 0) return trans.get("unbekannt");
                 return Integer.toString(wall);
             case 6:
                 return elem.getStorageStatus();
@@ -83,7 +85,7 @@ public class FarmTableModel extends AbstractTableModel {
                 long t = elem.getRuntimeInformation();
                 t = (t <= 0) ? 0 : t;
                 if (t == 0) {
-                    return "Keine Truppen unterwegs";
+                    return trans.get("KeineTruppenunterwegs");
                 }
                 return DurationFormatUtils.formatDuration(t, "HH:mm:ss", true);
             case 8:

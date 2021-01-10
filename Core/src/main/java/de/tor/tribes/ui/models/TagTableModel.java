@@ -18,15 +18,17 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.types.Tag;
 import de.tor.tribes.types.TagMapMarker;
 import de.tor.tribes.util.tag.TagManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import javax.swing.table.AbstractTableModel;
 
 /**
  * @author Torridity
  */
 public class TagTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.TagTableModel");
     private Class[] types = new Class[]{String.class, Integer.class, TagMapMarker.class, Boolean.class};
-    private String[] colNames = new String[]{"Name", "Dörfer", "Kartenmarkierung", "Einzeichnen"};
+    private String[] colNames = new String[]{trans.get("Name"), trans.get("Dörfer"), trans.get("Kartenmarkierung"), trans.get("Einzeichnen")};
     private boolean[] editableColumns = new boolean[]{true, false, true, true};
 
     public TagTableModel() {

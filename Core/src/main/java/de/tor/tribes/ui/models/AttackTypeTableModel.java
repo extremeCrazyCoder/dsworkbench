@@ -21,6 +21,8 @@ import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.StandardAttack;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.attack.StandardAttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -38,11 +40,11 @@ public class AttackTypeTableModel extends AbstractTableModel {
     private List<String> columnNames = new LinkedList<>();
     private List<Class> columnTypes = new LinkedList<>();
     private final List<UnitHolder> units;
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTypeTableModel");
     public AttackTypeTableModel() {
-        columnNames.add("Name");
+        columnNames.add(trans.get("Name"));
         columnTypes.add(String.class);
-        columnNames.add("Symbol");
+        columnNames.add(trans.get("Symbol"));
         columnTypes.add(Integer.class);
         units = DataHolder.getSingleton().getSendableUnits();
         for (UnitHolder unit : units) {
@@ -105,8 +107,8 @@ public class AttackTypeTableModel extends AbstractTableModel {
                     error.append(cause.getMessage()).append("\n");
                 }
                 error.append(e.getMessage());
-                JOptionPaneHelper.showWarningBox(null, "Konnte den Wert nicht setzen:\n"
-                        + error.toString(), "Konnte den Wert nicht setzen");
+                JOptionPaneHelper.showWarningBox(null,  trans.get("Error") + ":\n"
+                        + error.toString(), trans.get("Error"));
             }
         }
     }

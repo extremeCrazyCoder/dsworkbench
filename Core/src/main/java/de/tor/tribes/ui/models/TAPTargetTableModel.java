@@ -18,6 +18,8 @@ package de.tor.tribes.ui.models;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.wiz.tap.types.TAPAttackTargetElement;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -29,9 +31,9 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class TAPTargetTableModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.TAPTargetTableModel");
     private String[] columnNames = new String[]{
-        "Spieler", "Dorf", "Fake", "Angriffe"
+        trans.get("Spieler"), trans.get("Dorf"), trans.get("Fake"), trans.get("Angriffe")
     };
     private Class[] types = new Class[]{
         Tribe.class, Village.class, Boolean.class, Integer.class

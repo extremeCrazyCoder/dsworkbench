@@ -17,6 +17,8 @@ package de.tor.tribes.ui.models;
 
 import de.tor.tribes.types.Defense;
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,10 +30,10 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
  * @author Torridity
  */
 public class SupportsModel extends AbstractTableModel {
-
+private Translator trans = TranslationManager.getTranslator("ui.models.SupportsModel");
     private List<Defense> entries = null;
     private Class[] types = new Class[]{Village.class, Village.class, Date.class, Date.class, String.class, Boolean.class};
-    private String[] colNames = new String[]{"Herkunft", "Ziel", "Früheste Abschickzeit", "Späteste Abschickzeit", "Countdown", "Übertragen"};
+    private String[] colNames = new String[]{trans.get("Herkunft"), trans.get("Ziel"), trans.get("FrühesteAbschickzeit"), trans.get("SpätesteAbschickzeit"), trans.get("Countdown"), trans.get("Übertragen")};
 
     public SupportsModel() {
         entries = new ArrayList<>();
