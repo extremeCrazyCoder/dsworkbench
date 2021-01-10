@@ -247,7 +247,7 @@ ui.models.TroopsTableModel.Angriff=attack
 ui.models.TroopsTableModel.Verteidigung=defense
 ui.models.TroopsTableModel.VerteidigungKavallerie=defense (cavalry)
 ui.models.TroopsTableModel.VerteidigungBogen=defense (archer)
-ui.models.TroopsTableModel.Unterstuetzungenaußerhalb=Supports outside
+ui.models.TroopsTableModel.Unterstuetzungenaussserhalb=Supports outside
 ui.models.TroopsTableModel.Unterstuetzungeninnerhalb=Supports within
 ui.models.TroopsTableModel.Bauernhofbedarf=Farm supplies
 

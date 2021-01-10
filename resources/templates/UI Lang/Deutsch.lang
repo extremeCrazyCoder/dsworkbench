@@ -247,7 +247,7 @@ ui.models.TroopsTableModel.Angriff=Angriff
 ui.models.TroopsTableModel.Verteidigung=Verteidigung
 ui.models.TroopsTableModel.VerteidigungKavallerie=Verteidigung (Kavallerie)
 ui.models.TroopsTableModel.VerteidigungBogen=Verteidigung (Bogen)
-ui.models.TroopsTableModel.Unterstuetzungenaußerhalb=Unterst\u00FCtzungen außerhalb
+ui.models.TroopsTableModel.Unterstuetzungenaussserhalb=Unterst\u00FCtzungen au\u00DFerhalb
 ui.models.TroopsTableModel.Unterstuetzungeninnerhalb=Unterst\u00FCtzungen innerhalb
 ui.models.TroopsTableModel.Bauernhofbedarf=Bauernhofbedarf
 

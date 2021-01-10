@@ -142,7 +142,7 @@ public class TroopsTableModel extends AbstractTableModel {
         columnIcons.put(trans.get("Verteidigung"), new ImageIcon("graphics/icons/def.png"));
         columnIcons.put(trans.get("VerteidigungKavallerie"), new ImageIcon("graphics/icons/def_cav.png"));
         columnIcons.put(trans.get("VerteidigungBogen"), new ImageIcon("graphics/icons/def_archer.png"));
-        columnIcons.put(trans.get("Unterstuetzungenaußerhalb"), new ImageIcon("graphics/icons/move_out.png"));
+        columnIcons.put(trans.get("Unterstuetzungenaussserhalb"), new ImageIcon("graphics/icons/move_out.png"));
         columnIcons.put(trans.get("Unterstuetzungeninnerhalb"), new ImageIcon("graphics/icons/move_in.png"));
         columnIcons.put(trans.get("Bauernhofbedarf"), new ImageIcon("graphics/icons/farm.png"));
         super.fireTableStructureChanged();
