@@ -500,8 +500,12 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         try {
             GlobalDefaults.initialize();
             GlobalOptions.initialize();
-            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            logger.error("Failed to setup LnF", e);
+        }
+        try {
+            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
         } catch (Exception e) {
             logger.error("Failed to setup LnF", e);
         }
