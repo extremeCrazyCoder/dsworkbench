@@ -30,9 +30,10 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class REFResultTableModel extends AbstractTableModel {
-   private Translator trans = TranslationManager.getTranslator("ui.models.REFResultTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.REFResultTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Einheit"), trans.get("SpätesteAbschickzeit"), trans.get("Ankunftzeit")
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Einheit"), trans.get("SpaetesteAbschickzeit"), trans.get("Ankunftzeit")
     };
     Class[] types = new Class[]{
         Village.class, Village.class, UnitHolder.class, Date.class, Date.class

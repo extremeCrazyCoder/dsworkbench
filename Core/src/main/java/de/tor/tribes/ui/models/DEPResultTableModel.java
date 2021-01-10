@@ -31,8 +31,9 @@ import javax.swing.table.AbstractTableModel;
 
 public class DEPResultTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.DEPResultTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Ziel"), trans.get("Unterstützungen"), trans.get("Status")
+        trans.get("Ziel"), trans.get("Unterstuetzungen"), trans.get("Status")
     };
     private Class[] types = new Class[]{
         Village.class, String.class, DEFENSE_STATUS.class

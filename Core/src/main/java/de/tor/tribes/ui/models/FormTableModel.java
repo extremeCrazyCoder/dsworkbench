@@ -31,8 +31,17 @@ import javax.swing.table.AbstractTableModel;
  */
 public class FormTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.FormTableModel");
-    private Class[] types = new Class[]{String.class, String.class, Integer.class, Integer.class, Integer.class, Integer.class, Boolean.class};
-    private String[] colNames = new String[]{trans.get("Name"), trans.get("Typ"), trans.get("X"), trans.get("Y"), trans.get("Breite"), trans.get("Höhe"), trans.get("Sichtbar")};
+    
+    private Class[] types = new Class[]{
+        String.class, String.class, Integer.class,
+        Integer.class, Integer.class, Integer.class,
+        Boolean.class
+    };
+    private String[] colNames = new String[]{
+        trans.get("Name"), trans.get("Typ"), trans.get("X"),
+        trans.get("Y"), trans.get("Breite"), trans.get("Hoehe"),
+        trans.get("Sichtbar")
+    };
     private boolean[] editableColumns = new boolean[]{true, false, true, true, true, true, false};
 
     @Override

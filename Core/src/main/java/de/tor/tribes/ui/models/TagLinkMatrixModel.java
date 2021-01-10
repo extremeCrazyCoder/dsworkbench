@@ -35,7 +35,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class TagLinkMatrixModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.TagLinkMatrixModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TagLinkMatrixModel");
+    
     private String[] columnNames = null;
     private Object[][] values = null;
     private Tag[] rowTags = null;
@@ -313,7 +314,7 @@ private Translator trans = TranslationManager.getTranslator("ui.models.TagLinkMa
         return builder.toString();
 
     }
-//Übersetzen?
+    
     public static void main(String[] args) {
         String data = "<html>Der verknüpfte Tag ist<BR/><b><font color='#0000FF'>in Gruppe 'Off' und auf Kontinent K74 und in Gruppe 'Off_F' und auf Kontinent K74 und in Gruppe 'Off_R' und auf Kontinent K83</font></b><BR/> oder <BR/> <b><font color='#FF00FF'>in Gruppe 'Def_R' und in Gruppe 'Deff'</font></b></html>";
         JOptionPane.showMessageDialog(null, data);

@@ -31,9 +31,11 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class RETResultTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.RETResultTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.RETResultTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Abschickzeit"), trans.get("Ankunftszeit"), trans.get("Einheit"), trans.get("Kampfkraft")
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("Abschickzeit"),
+        trans.get("Ankunftszeit"), trans.get("Einheit"), trans.get("Kampfkraft")
     };
     private Class[] types = new Class[]{
         Village.class, Village.class, Date.class, Date.class, UnitHolder.class, Integer.class

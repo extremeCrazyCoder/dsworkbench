@@ -31,9 +31,9 @@ import org.apache.logging.log4j.Logger;
  * @author extremeCrazyCoder
  */
 public class ChurchTableModel extends AbstractTableModel implements BuildingLevelModel {
-    
     private static Logger logger = LogManager.getLogger("ChurchTableModel");
-   private Translator trans = TranslationManager.getTranslator("ui.models.ChurchTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.ChurchTableModel");
+    
     private final Class[] types = new Class[]{Tribe.class, KnownVillage.class, Integer.class, Color.class};
     private final String[] colNames = new String[]{trans.get("Spieler"), trans.get("Dorf"), trans.get("Stufe"), trans.get("Farbe")};
     private final boolean[] editableColumns = new boolean[]{false, false, true, false};

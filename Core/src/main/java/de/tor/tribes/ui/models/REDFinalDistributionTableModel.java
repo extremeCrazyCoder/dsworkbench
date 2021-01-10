@@ -30,6 +30,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class REDFinalDistributionTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.REDFinalDistributionTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Dorf"), trans.get("Rohstoffe"), trans.get("Handelsrichtung")
     };

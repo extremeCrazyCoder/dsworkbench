@@ -31,7 +31,8 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class TAPTargetTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.TAPTargetTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TAPTargetTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Spieler"), trans.get("Dorf"), trans.get("Fake"), trans.get("Angriffe")
     };

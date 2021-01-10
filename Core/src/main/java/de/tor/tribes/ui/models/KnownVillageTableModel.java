@@ -40,9 +40,9 @@ import org.apache.logging.log4j.Logger;
  * @author extremeCrazyCoder
  */
 public class KnownVillageTableModel extends AbstractTableModel implements BuildingLevelModel {
-
     private static Logger logger = LogManager.getLogger("KnownVillageTableModel");
     private Translator trans = TranslationManager.getTranslator("ui.models.KnownVillageTableModel");
+    
     private final List<String> columnNames = new ArrayList<>();
     private final List<Class> columnTypes = new ArrayList<>();
     private final List<Boolean> editable = new ArrayList<>();

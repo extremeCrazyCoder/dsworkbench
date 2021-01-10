@@ -27,6 +27,8 @@ import de.tor.tribes.ui.windows.AbstractDSWorkbenchFrame;
 import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.conquer.ConquerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,7 +60,8 @@ import org.jdesktop.swingx.table.TableColumnExt;
  * @author Charon
  */
 public class DSWorkbenchConquersFrame extends AbstractDSWorkbenchFrame implements GenericManagerListener, ListSelectionListener, ActionListener {
-
+    private Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchConquersFrame");
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Find")) {
@@ -611,8 +614,13 @@ public class DSWorkbenchConquersFrame extends AbstractDSWorkbenchFrame implement
         ConquerManager.getSingleton().addManagerListener(this);
         //update view
         jConquersTable.getTableHeader().setDefaultRenderer(new DefaultTableHeaderRenderer());
-        UIHelper.initTableColums(jConquersTable, "Dorfpunkte", "Kontinent", "Entfernung");
-        UIHelper.initTableColums(jConquersTable, 90, "Zustimmung");
+        UIHelper.initTableColums(jConquersTable,
+                trans.getRaw("ui.models.ConquerTableModel.Dorfpunkte"),
+                trans.getRaw("ui.models.ConquerTableModel.Kontinent"),
+                trans.getRaw("ui.models.ConquerTableModel.Entfernung"));
+        UIHelper.initTableColums(jConquersTable, 90,
+                trans.getRaw("ui.models.ConquerTableModel.Zustimmung")
+        );
 
         ((ConquerTableModel) jConquersTable.getModel()).fireTableDataChanged();
     }

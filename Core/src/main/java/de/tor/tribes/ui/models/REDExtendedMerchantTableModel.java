@@ -32,8 +32,10 @@ import org.apache.commons.collections4.Predicate;
  */
 public class REDExtendedMerchantTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.REDExtendedMerchantTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Dorf"), trans.get("Rohstoffe"), trans.get("Speicher"), trans.get("Händler"), trans.get("Bauernhof"), trans.get("Handelsrichtung")
+        trans.get("Dorf"), trans.get("Rohstoffe"), trans.get("Speicher"),
+        trans.get("Haendler"), trans.get("Bauernhof"), trans.get("Handelsrichtung")
     };
     Class[] types = new Class[]{
         Village.class, StorageStatus.class, Integer.class, String.class, String.class, VillageMerchantInfo.Direction.class

@@ -28,9 +28,10 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class REFSettingsTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.REFSettingsTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.REFSettingsTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Dorf"), trans.get("NotwendigeUnterstützungen")
+        trans.get("Dorf"), trans.get("NotwendigeUnterstuetzungen")
     };
     Class[] types = new Class[]{
         Village.class, Integer.class

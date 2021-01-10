@@ -29,9 +29,20 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
  * @author Torridity
  */
 public class FarmTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.FarmTableModel");
-    private Class[] types = new Class[]{FarmInformation.FARM_STATUS.class, Boolean.class, Date.class, String.class, FarmInformation.SIEGE_STATUS.class, String.class, StorageStatus.class, String.class, FarmInformation.FARM_RESULT.class, Float.class};
-    private String[] colNames = new String[]{trans.get("Status"), trans.get("Resourcengefunden"), trans.get("LetzterBericht"), trans.get("Dorf"), trans.get("KataStatus"), trans.get("Wall"), trans.get("Rohstoffe"), trans.get("Ankunft"), trans.get("Übertragen"), trans.get("Erfolgsquote")};
+    private Translator trans = TranslationManager.getTranslator("ui.models.FarmTableModel");
+    
+    private Class[] types = new Class[]{
+        FarmInformation.FARM_STATUS.class, Boolean.class, Date.class,
+        String.class, FarmInformation.SIEGE_STATUS.class, String.class,
+        StorageStatus.class, String.class, FarmInformation.FARM_RESULT.class,
+        Float.class
+    };
+    private String[] colNames = new String[]{
+        trans.get("Status"), trans.get("Resourcengefunden"), trans.get("LetzterBericht"),
+        trans.get("Dorf"), trans.get("KataStatus"), trans.get("Wall"),
+        trans.get("Rohstoffe"), trans.get("Ankunft"), trans.get("UEbertragen"),
+        trans.get("Erfolgsquote")
+    };
 
     public FarmTableModel() {
     }

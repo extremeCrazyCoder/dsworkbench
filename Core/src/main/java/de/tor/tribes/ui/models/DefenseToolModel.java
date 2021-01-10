@@ -32,9 +32,18 @@ import org.apache.commons.collections4.Predicate;
  */
 public class DefenseToolModel extends DefaultTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.DefenseToolModel");
+    
     private List<DefenseInformation> entries = null;
-    private Class[] types = new Class[]{Integer.class, Village.class, Integer.class, Integer.class, Date.class, Date.class, DefenseInformation.DEFENSE_STATUS.class, Double.class, String.class};
-    private String[] colNames = new String[]{trans.get("Tendenz"), trans.get("Ziel"), trans.get("Angriffe"), trans.get("Fakes"), trans.get("ErsterAngriff"), trans.get("LetzterAngriff"), trans.get("Status"), trans.get("Verlustrate"), trans.get("Unterstützungen")};
+    private Class[] types = new Class[]{
+        Integer.class, Village.class, Integer.class,
+        Integer.class, Date.class, Date.class,
+        DefenseInformation.DEFENSE_STATUS.class, Double.class, String.class
+    };
+    private String[] colNames = new String[]{
+        trans.get("Tendenz"), trans.get("Ziel"), trans.get("Angriffe"),
+        trans.get("Fakes"), trans.get("ErsterAngriff"), trans.get("LetzterAngriff"),
+        trans.get("Status"), trans.get("Verlustrate"), trans.get("Unterstuetzungen")
+    };
 
     public DefenseToolModel() {
         super();

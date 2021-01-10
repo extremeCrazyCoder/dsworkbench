@@ -27,7 +27,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Charon
  */
 public class MarkerTableModel extends AbstractTableModel {
-    private Translator trans = TranslationManager.getTranslator("ui.models.MarkerTableModel");    
+    private Translator trans = TranslationManager.getTranslator("ui.models.MarkerTableModel"); 
+    
     private String sMarkerSet = null;
     private final Class[] types = new Class[]{Marker.class, Color.class, Boolean.class};
     private final String colNames[] = new String[]{trans.get("Name"), trans.get("Markierung"), trans.get("Sichtbar")};

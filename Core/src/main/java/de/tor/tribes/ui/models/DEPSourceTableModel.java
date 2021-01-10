@@ -32,6 +32,7 @@ import org.apache.commons.collections4.Predicate;
  */
 public class DEPSourceTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.DEPSourceTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Spieler"), trans.get("Dorf"), trans.get("Einzelverteidigungen")
     };

@@ -28,9 +28,13 @@ import javax.swing.table.AbstractTableModel;
  */
 public class NoteTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.NoteTableModel");
+    
     private String sNoteSet = null;
     private final Class[] types = new Class[]{Integer.class, String.class, Integer.class, Integer.class, Date.class};
-    private final String colNames[] = new String[]{trans.get("Icon"), trans.get("Notiz"), trans.get("Dörfer"), trans.get("Kartensymbol"), trans.get("LetzteÄnderung")};
+    private final String colNames[] = new String[]{
+        trans.get("Icon"), trans.get("Notiz"), trans.get("Doerfer"),
+        trans.get("Kartensymbol"), trans.get("LetzteAEnderung")
+    };
     private boolean[] editableColumns = new boolean[]{true, true, false, true, false};
 
     public NoteTableModel(String pMarkerSet) {

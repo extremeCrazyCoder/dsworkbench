@@ -29,7 +29,7 @@ import javax.swing.table.AbstractTableModel;
  * @author Charon
  */
 public class DistanceTableModel extends AbstractTableModel {
-
+    private Translator trans = TranslationManager.getTranslator("ui.models.DistanceTableModel");
 
     public DistanceTableModel() {
     }
@@ -59,7 +59,7 @@ public class DistanceTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return DistanceManager.getSingleton().getVillages().length + 1;
     }
-private Translator trans = TranslationManager.getTranslator("ui.models.DistanceTableModel");
+    
     @Override
     public String getColumnName(int col) {
         if (col == 0) {

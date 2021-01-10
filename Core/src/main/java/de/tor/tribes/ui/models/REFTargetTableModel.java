@@ -29,7 +29,8 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class REFTargetTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.REFTargetTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.REFTargetTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Dorf")
     };

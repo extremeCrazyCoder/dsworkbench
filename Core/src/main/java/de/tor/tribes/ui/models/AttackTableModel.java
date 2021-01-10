@@ -42,8 +42,8 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class AttackTableModel extends AbstractTableModel {
-
     private static Logger logger = LogManager.getLogger("AttackTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTableModel");
 
     private String sPlan = null;
     private final List<String> columnNames = new LinkedList<>();
@@ -51,8 +51,6 @@ public class AttackTableModel extends AbstractTableModel {
     private final List<Boolean> editable = new LinkedList<>();
     private int unitAfter;
     private List<UnitHolder> units;
-    
-    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTableModel");
 
     public AttackTableModel(String pPlan) {
         sPlan = pPlan;

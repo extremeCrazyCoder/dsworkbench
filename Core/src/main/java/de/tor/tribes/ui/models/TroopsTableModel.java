@@ -45,8 +45,8 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class TroopsTableModel extends AbstractTableModel {
-
     private static Logger logger = LogManager.getLogger("TroopTable");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTableModel");
 
     public enum COL_CONTENT {
         ALLY, TRIBE, VILLAGE, LAST_CHANGE,
@@ -57,7 +57,7 @@ public class TroopsTableModel extends AbstractTableModel {
     private NumberFormat nf = NumberFormat.getInstance();
     private HashMap<String, ImageIcon> columnIcons = null;
     private List<COL_CONTENT> content = null;
-private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTableModel");
+    
     public TroopsTableModel(String pSet) {
         sSet = pSet;
         nf.setMinimumFractionDigits(0);
@@ -142,8 +142,8 @@ private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTab
         columnIcons.put(trans.get("Verteidigung"), new ImageIcon("graphics/icons/def.png"));
         columnIcons.put(trans.get("VerteidigungKavallerie"), new ImageIcon("graphics/icons/def_cav.png"));
         columnIcons.put(trans.get("VerteidigungBogen"), new ImageIcon("graphics/icons/def_archer.png"));
-        columnIcons.put(trans.get("Unterstützungenaußerhalb"), new ImageIcon("graphics/icons/move_out.png"));
-        columnIcons.put(trans.get("Unterstützungeninnerhalb"), new ImageIcon("graphics/icons/move_in.png"));
+        columnIcons.put(trans.get("Unterstuetzungenaußerhalb"), new ImageIcon("graphics/icons/move_out.png"));
+        columnIcons.put(trans.get("Unterstuetzungeninnerhalb"), new ImageIcon("graphics/icons/move_in.png"));
         columnIcons.put(trans.get("Bauernhofbedarf"), new ImageIcon("graphics/icons/farm.png"));
         super.fireTableStructureChanged();
     }
@@ -236,31 +236,31 @@ private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTab
             case LAST_CHANGE:
                 return trans.get("Stand");
             case SPEAR:
-                return trans.get("Speerträger");
+                return trans.getRaw("io.UnitHolder.spear");
             case SWORD:
-                return trans.get("Schwertkämpfer");
+                return trans.getRaw("io.UnitHolder.sword");
             case AXE:
-                return trans.get("Axtkämpfer");
+                return trans.getRaw("io.UnitHolder.axe");
             case ARCHER:
-                return trans.get("Bogenschütze");
+                return trans.getRaw("io.UnitHolder.archer");
             case SPY:
-                return trans.get("Späher");
+                return trans.getRaw("io.UnitHolder.spy");
             case LIGHT:
-                return trans.get("LeichteKavallerie");
+                return trans.getRaw("io.UnitHolder.light");
             case MARCHER:
-                return trans.get("BerittenerBogenschütze");
+                return trans.getRaw("io.UnitHolder.marcher");
             case HEAVY:
-                return trans.get("SchwereKavallerie");
+                return trans.getRaw("io.UnitHolder.heavy");
             case RAM:
-                return trans.get("Ramme");
+                return trans.getRaw("io.UnitHolder.ram");
             case CATA:
-                return trans.get("Katapult");
+                return trans.getRaw("io.UnitHolder.catapult");
             case KNIGHT:
-                return trans.get("Paladin");
-            case MILITIA:
-                return trans.get("Miliz");
+                return trans.getRaw("io.UnitHolder.knight");
             case SNOB:
-                return trans.get("Adelsgeschlecht");
+                return trans.getRaw("io.UnitHolder.snob");
+            case MILITIA:
+                return trans.getRaw("io.UnitHolder.militia");
             case OFF:
                 return trans.get("Angriff");
             case DEF:
@@ -270,9 +270,9 @@ private Translator trans = TranslationManager.getTranslator("ui.models.TroopsTab
             case DEF_ARCH:
                 return trans.get("VerteidigungBogen");
             case OUTSIDE:
-                return trans.get("Unterstützungenaußerhalb");
+                return trans.get("Unterstuetzungenaußerhalb");
             case INSIDE:
-                return trans.get("Unterstützungeninnerhalb");
+                return trans.get("Unterstuetzungeninnerhalb");
             case FARM:
                 return trans.get("Bauernhofbedarf");
         }

@@ -28,7 +28,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class RETSourceTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.RETSourceTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.RETSourceTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Herkunft")
     };

@@ -40,7 +40,7 @@ ui.models.DEPFilterTableModel.Dorf=Dorf
 ui.models.DEPFilterTableModel.Ignoriert=Ignoriert
 
 ui.models.DEPResultTableModel.Ziel=Ziel
-ui.models.DEPResultTableModel.Unterstützungen=Unterstützungen
+ui.models.DEPResultTableModel.Unterstuetzungen=Unterst\u00FCtzungen
 ui.models.DEPResultTableModel.Status=Status
 
 ui.models.DEPSourceTableModel.Spieler=Spieler
@@ -55,7 +55,7 @@ ui.models.DefenseToolModel.ErsterAngriff=Erster Angriff
 ui.models.DefenseToolModel.LetzterAngriff=Letzter Angriff
 ui.models.DefenseToolModel.Status=Status
 ui.models.DefenseToolModel.Verlustrate=Verlustrate
-ui.models.DefenseToolModel.Unterstützungen=Unterstützungen
+ui.models.DefenseToolModel.Unterstuetzungen=Unterst\u00FCtzungen
 
 ui.models.DistanceTableModel.Eigene=Eigene
 
@@ -75,7 +75,7 @@ ui.models.FarmTableModel.KataStatus=Kata Status
 ui.models.FarmTableModel.Wall=Wall
 ui.models.FarmTableModel.Rohstoffe=Rohstoffe
 ui.models.FarmTableModel.Ankunft=Ankunft
-ui.models.FarmTableModel.Übertragen=Übertragen
+ui.models.FarmTableModel.UEbertragen=\u00DCbertragen
 ui.models.FarmTableModel.Erfolgsquote=Erfolgsquote
 ui.models.FarmTableModel.unbekannt=unbekannt
 ui.models.FarmTableModel.KeineTruppenunterwegs=Keine Truppen unterwegs
@@ -96,7 +96,7 @@ ui.models.FormTableModel.Typ=Typ
 ui.models.FormTableModel.X=X
 ui.models.FormTableModel.Y=Y
 ui.models.FormTableModel.Breite=Breite
-ui.models.FormTableModel.Höhe=Höhe
+ui.models.FormTableModel.Hoehe=H\u00F6he
 ui.models.FormTableModel.Sichtbar=Sichtbar
 ui.models.FormTableModel.KeinName=Kein Name
 ui.models.FormTableModel.Pfeil=Pfeil
@@ -117,14 +117,14 @@ ui.models.MarkerTableModel.Sichtbar=Sichtbar
 
 ui.models.NoteTableModel.Icon=Icon
 ui.models.NoteTableModel.Notiz=Notiz
-ui.models.NoteTableModel.Dörfer=Dörfer
+ui.models.NoteTableModel.Doerfer=D\u00F6rfer
 ui.models.NoteTableModel.Kartensymbol=Kartensymbol
-ui.models.NoteTableModel.LetzteÄnderung=Letzte Änderung
+ui.models.NoteTableModel.LetzteAEnderung=Letzte \u00C4nderung
 
 ui.models.REDExtendedMerchantTableModel.Dorf=Dorf
 ui.models.REDExtendedMerchantTableModel.Rohstoffe=Rohstoffe
 ui.models.REDExtendedMerchantTableModel.Speicher=Speicher
-ui.models.REDExtendedMerchantTableModel.Händler=Händler
+ui.models.REDExtendedMerchantTableModel.Haendler=H\u00E4ndler
 ui.models.REDExtendedMerchantTableModel.Bauernhof=Bauernhof
 ui.models.REDExtendedMerchantTableModel.Handelsrichtung=Handelsrichtung
 
@@ -137,26 +137,26 @@ ui.models.REDFinalTransportsTableModel.Ziel=Ziel
 ui.models.REDFinalTransportsTableModel.Holz=Holz
 ui.models.REDFinalTransportsTableModel.Lehm=Lehm
 ui.models.REDFinalTransportsTableModel.Eisen=Eisen
-ui.models.REDFinalTransportsTableModel.Händler=Händler
-ui.models.REDFinalTransportsTableModel.Übertragen=Übertragen
+ui.models.REDFinalTransportsTableModel.Haendler=H\u00E4ndler
+ui.models.REDFinalTransportsTableModel.UEbertragen=\u00DCbertragen
 
 ui.models.REDSourceTableModel.Dorf=Dorf
 ui.models.REDSourceTableModel.Rohstoffe=Rohstoffe
 ui.models.REDSourceTableModel.Speicher=Speicher
-ui.models.REDSourceTableModel.VerfügbareHändler=Verfügbare Händler
+ui.models.REDSourceTableModel.VerfuegbareHaendler=Verf\u00FCgbare H\u00E4ndler
 ui.models.REDSourceTableModel.Bauernhof=Bauernhof
 
 ui.models.REFResultTableModel.Herkunft=Herkunft
 ui.models.REFResultTableModel.Ziel=Ziel
 ui.models.REFResultTableModel.Einheit=Einheit
-ui.models.REFResultTableModel.SpätesteAbschickzeit=Späteste Abschickzeit
+ui.models.REFResultTableModel.SpaetesteAbschickzeit=Sp\u00E4teste Abschickzeit
 ui.models.REFResultTableModel.Ankunftzeit=Ankunftzeit
 
 ui.models.REFSettingsTableModel.Dorf=Dorf
-ui.models.REFSettingsTableModel.NotwendigeUnterstützungen=Notwendige Unterstützungen
+ui.models.REFSettingsTableModel.NotwendigeUnterstuetzungen=Notwendige Unterst\u00FCtzungen
 
 ui.models.REFSourceTableModel.Dorf=Dorf
-ui.models.REFSourceTableModel.VerfügbareUnterstützungen=Verfügbare Unterstützungen
+ui.models.REFSourceTableModel.VerfuegbareUnterstuetzungen=Verf\u00FCgbare Unterst\u00FCtzungen
 
 ui.models.REFTargetTableModel.Dorf=Dorf
 
@@ -192,25 +192,13 @@ ui.models.SupportTableModel.Dorf=Dorf
 ui.models.SupportTableModel.Richtung=Richtung
 ui.models.SupportTableModel.Spieler=Spieler
 ui.models.SupportTableModel.Dorf=Dorf
-ui.models.SupportTableModel.Speerträger=Speerträger
-ui.models.SupportTableModel.Schwertkämpfer=Schwertkämpfer
-ui.models.SupportTableModel.Axtkämpfer=Axtkämpfer
-ui.models.SupportTableModel.Bogenschütze=Bogenschütze
-ui.models.SupportTableModel.Späher=Späher
-ui.models.SupportTableModel.LeichteKavallerie=Leichte Kavallerie
-ui.models.SupportTableModel.BerittenerBogenschütze=Berittener Bogenschütze
-ui.models.SupportTableModel.SchwereKavallerie=Schwere Kavallerie
-ui.models.SupportTableModel.Ramme=Ramme
-ui.models.SupportTableModel.Katapult=Katapult
-ui.models.SupportTableModel.Paladin=Paladin
-ui.models.SupportTableModel.Adelsgeschlecht=Adelsgeschlecht
 
 ui.models.SupportsModel.Herkunft=Herkunft
 ui.models.SupportsModel.Ziel=Ziel
-ui.models.SupportsModel.FrühesteAbschickzeit=Früheste Abschickzeit
-ui.models.SupportsModel.SpätesteAbschickzeit=Späteste Abschickzeit
+ui.models.SupportsModel.FruehesteAbschickzeit=Fr\u00FCheste Abschickzeit
+ui.models.SupportsModel.SpaetesteAbschickzeit=Sp\u00E4teste Abschickzeit
 ui.models.SupportsModel.Countdown=Countdown
-ui.models.SupportsModel.Übertragen=Übertragen
+ui.models.SupportsModel.UEbertragen=\u00DCbertragen
 
 ui.models.TAPResultDetailsTableModel.Herkunft=Herkunft
 ui.models.TAPResultDetailsTableModel.Ziel=Ziel
@@ -247,7 +235,7 @@ ui.models.TagLinkMatrixModel.sowieaufKontinent=sowie auf Kontinent
 ui.models.TagLinkMatrixModel.inGruppe=in Gruppe
 
 ui.models.TagTableModel.Name=Name
-ui.models.TagTableModel.Dörfer=Dörfer
+ui.models.TagTableModel.Doerfer=D\u00F6rfer
 ui.models.TagTableModel.Kartenmarkierung=Kartenmarkierung
 ui.models.TagTableModel.Einzeichnen=Einzeichnen
 
@@ -259,22 +247,9 @@ ui.models.TroopsTableModel.Angriff=Angriff
 ui.models.TroopsTableModel.Verteidigung=Verteidigung
 ui.models.TroopsTableModel.VerteidigungKavallerie=Verteidigung (Kavallerie)
 ui.models.TroopsTableModel.VerteidigungBogen=Verteidigung (Bogen)
-ui.models.TroopsTableModel.Unterstützungenaußerhalb=Unterstützungen außerhalb
-ui.models.TroopsTableModel.Unterstützungeninnerhalb=Unterstützungen innerhalb
+ui.models.TroopsTableModel.Unterstuetzungenaußerhalb=Unterst\u00FCtzungen außerhalb
+ui.models.TroopsTableModel.Unterstuetzungeninnerhalb=Unterst\u00FCtzungen innerhalb
 ui.models.TroopsTableModel.Bauernhofbedarf=Bauernhofbedarf
-ui.models.TroopsTableModel.Speerträger=Speerträger
-ui.models.TroopsTableModel.Schwertkämpfer=Schwertkämpfer
-ui.models.TroopsTableModel.Axtkämpfer=Axtkämpfer
-ui.models.TroopsTableModel.Bogenschütze=Bogenschütze
-ui.models.TroopsTableModel.Späher=Späher
-ui.models.TroopsTableModel.LeichteKavallerie=Leichte Kavallerie
-ui.models.TroopsTableModel.BerittenerBogenschütze=Berittener Bogenschütze
-ui.models.TroopsTableModel.SchwereKavallerie=Schwere Kavallerie
-ui.models.TroopsTableModel.Ramme=Ramme
-ui.models.TroopsTableModel.Katapult=Katapult
-ui.models.TroopsTableModel.Paladin=Paladin
-ui.models.TroopsTableModel.Miliz=Miliz
-ui.models.TroopsTableModel.Adelsgeschlecht=Adelsgeschlecht
 
 ui.models.WatchtowerTableModel.Spieler=Spieler
 ui.models.WatchtowerTableModel.Dorf=Dorf

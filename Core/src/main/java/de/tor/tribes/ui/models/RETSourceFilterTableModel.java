@@ -28,7 +28,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class RETSourceFilterTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.RETSourceFilterTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.RETSourceFilterTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Dorf"), trans.get("Ignoriert")
     };

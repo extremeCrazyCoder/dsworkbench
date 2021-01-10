@@ -39,10 +39,12 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class SupportTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.SupportTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.SupportTableModel");
+    
     public enum COL_CONTENT {
-
-        DIRECTION, TRIBE, VILLAGE, SPEAR, SWORD, AXE, ARCHER, SPY, LIGHT, MARCHER, HEAVY, RAM, CATA, KNIGHT, MILITIA, SNOB, OFF, DEF, DEF_CAV, DEF_ARCH, FARM
+        DIRECTION, TRIBE, VILLAGE,
+        SPEAR, SWORD, AXE, ARCHER, SPY, LIGHT, MARCHER, HEAVY, RAM, CATA, KNIGHT, MILITIA, SNOB,
+        OFF, DEF, DEF_CAV, DEF_ARCH, FARM
     }
     private NumberFormat nf = NumberFormat.getInstance();
     private HashMap<String, ImageIcon> columnIcons = null;
@@ -185,29 +187,29 @@ private Translator trans = TranslationManager.getTranslator("ui.models.SupportTa
             case VILLAGE:
                 return trans.get("Dorf");
             case SPEAR:
-                return trans.get("Speerträger");
+                return trans.getRaw("io.UnitHolder.spear");
             case SWORD:
-                return trans.get("Schwertkämpfer");
+                return trans.getRaw("io.UnitHolder.sword");
             case AXE:
-                return trans.get("Axtkämpfer");
+                return trans.getRaw("io.UnitHolder.axe");
             case ARCHER:
-                return trans.get("Bogenschütze");
+                return trans.getRaw("io.UnitHolder.archer");
             case SPY:
-                return trans.get("Späher");
+                return trans.getRaw("io.UnitHolder.spy");
             case LIGHT:
-                return trans.get("LeichteKavallerie");
+                return trans.getRaw("io.UnitHolder.light");
             case MARCHER:
-                return trans.get("BerittenerBogenschütze");
+                return trans.getRaw("io.UnitHolder.marcher");
             case HEAVY:
-                return trans.get("SchwereKavallerie");
+                return trans.getRaw("io.UnitHolder.heavy");
             case RAM:
-                return trans.get("Ramme");
+                return trans.getRaw("io.UnitHolder.ram");
             case CATA:
-                return trans.get("Katapult");
+                return trans.getRaw("io.UnitHolder.catapult");
             case KNIGHT:
-                return trans.get("Paladin");
+                return trans.getRaw("io.UnitHolder.knight");
             case SNOB:
-                return trans.get("Adelsgeschlecht");
+                return trans.getRaw("io.UnitHolder.snob");
         }
         return null;
     }

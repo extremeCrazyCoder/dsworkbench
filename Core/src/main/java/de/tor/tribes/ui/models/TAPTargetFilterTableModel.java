@@ -29,9 +29,10 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class TAPTargetFilterTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.TAPTargetFilterTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TAPTargetFilterTableModel");
+    
     private String[] columnNames = new String[]{
-        "Spieler", "Dorf", "Ignoriert"
+        trans.get("Spieler"), trans.get("Dorf"), trans.get("Ignoriert")
     };
     private Class[] types = new Class[]{
         Tribe.class, Village.class, Boolean.class

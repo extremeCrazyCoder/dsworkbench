@@ -31,7 +31,7 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class DEPFilterTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.DEPFilterTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.DEPFilterTableModel");
 
     private String[] columnNames = new String[]{
         trans.get("Spieler"), trans.get("Dorf"), trans.get("Ignoriert")

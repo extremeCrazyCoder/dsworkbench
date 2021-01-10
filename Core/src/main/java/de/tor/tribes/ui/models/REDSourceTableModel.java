@@ -32,8 +32,9 @@ import org.apache.commons.collections4.Predicate;
  */
 public class REDSourceTableModel extends AbstractTableModel {
     private Translator trans = TranslationManager.getTranslator("ui.models.REDSourceTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Dorf"), trans.get("Rohstoffe"), trans.get("Speicher"), trans.get("VerfügbareHändler"), trans.get("Bauernhof")
+        trans.get("Dorf"), trans.get("Rohstoffe"), trans.get("Speicher"), trans.get("VerfuegbareHaendler"), trans.get("Bauernhof")
     };
     Class[] types = new Class[]{
         Village.class, StorageStatus.class, Integer.class, String.class, String.class

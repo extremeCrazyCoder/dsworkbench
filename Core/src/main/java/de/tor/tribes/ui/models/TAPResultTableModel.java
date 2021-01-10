@@ -29,7 +29,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class TAPResultTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.TAPResultTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TAPResultTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Spieler"), trans.get("Ziel"), trans.get("ZugewieseneAngriffe")
     };

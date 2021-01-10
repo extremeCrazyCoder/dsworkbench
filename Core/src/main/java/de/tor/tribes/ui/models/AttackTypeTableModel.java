@@ -36,11 +36,12 @@ import org.apache.logging.log4j.Logger;
  */
 public class AttackTypeTableModel extends AbstractTableModel {
     private static final Logger logger = LogManager.getLogger("AttackTypeTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTypeTableModel");
 
     private List<String> columnNames = new LinkedList<>();
     private List<Class> columnTypes = new LinkedList<>();
     private final List<UnitHolder> units;
-    private Translator trans = TranslationManager.getTranslator("ui.models.AttackTypeTableModel");
+    
     public AttackTypeTableModel() {
         columnNames.add(trans.get("Name"));
         columnTypes.add(String.class);

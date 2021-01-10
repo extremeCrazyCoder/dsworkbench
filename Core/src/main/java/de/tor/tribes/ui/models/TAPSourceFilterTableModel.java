@@ -29,7 +29,8 @@ import javax.swing.table.AbstractTableModel;
  * @author Torridity
  */
 public class TAPSourceFilterTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.TAPSourceFilterTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.TAPSourceFilterTableModel");
+    
     private String[] columnNames = new String[]{
         trans.get("Spieler"), trans.get("Dorf"), trans.get("Ignoriert")
     };

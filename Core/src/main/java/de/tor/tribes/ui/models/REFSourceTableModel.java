@@ -30,9 +30,10 @@ import org.apache.commons.collections4.Predicate;
  * @author Torridity
  */
 public class REFSourceTableModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.REFSourceTableModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.REFSourceTableModel");
+    
     private String[] columnNames = new String[]{
-        trans.get("Dorf"), trans.get("VerfügbareUnterstützungen")
+        trans.get("Dorf"), trans.get("VerfuegbareUnterstuetzungen")
     };
     Class[] types = new Class[]{
         Village.class, Integer.class

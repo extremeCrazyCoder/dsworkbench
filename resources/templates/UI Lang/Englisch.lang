@@ -40,7 +40,7 @@ ui.models.DEPFilterTableModel.Dorf=Village
 ui.models.DEPFilterTableModel.Ignoriert=Ignored
 
 ui.models.DEPResultTableModel.Ziel=target
-ui.models.DEPResultTableModel.Unterstützungen=Supports
+ui.models.DEPResultTableModel.Unterstuetzungen=Supports
 ui.models.DEPResultTableModel.Status=status
 
 ui.models.DEPSourceTableModel.Spieler=Player
@@ -55,7 +55,7 @@ ui.models.DefenseToolModel.ErsterAngriff=First attack
 ui.models.DefenseToolModel.LetzterAngriff=Last attack
 ui.models.DefenseToolModel.Status=status
 ui.models.DefenseToolModel.Verlustrate=Loss rate
-ui.models.DefenseToolModel.Unterstützungen=Supports
+ui.models.DefenseToolModel.Unterstuetzungen=Supports
 
 ui.models.DistanceTableModel.Eigene=Own
 
@@ -75,7 +75,7 @@ ui.models.FarmTableModel.KataStatus=catapult status
 ui.models.FarmTableModel.Wall=Wall
 ui.models.FarmTableModel.Rohstoffe=resource
 ui.models.FarmTableModel.Ankunft=Arrivals
-ui.models.FarmTableModel.Übertragen=Transfer
+ui.models.FarmTableModel.UEbertragen=Transfer
 ui.models.FarmTableModel.Erfolgsquote=Success rate
 ui.models.FarmTableModel.unbekannt=unknown
 ui.models.FarmTableModel.KeineTruppenunterwegs=No troops on the way
@@ -96,7 +96,7 @@ ui.models.FormTableModel.Typ=Type
 ui.models.FormTableModel.X=X
 ui.models.FormTableModel.Y=Y
 ui.models.FormTableModel.Breite=Breite
-ui.models.FormTableModel.Höhe=height
+ui.models.FormTableModel.Hoehe=height
 ui.models.FormTableModel.Sichtbar=Visible
 ui.models.FormTableModel.KeinName=No Name
 ui.models.FormTableModel.Pfeil=arrow
@@ -117,14 +117,14 @@ ui.models.MarkerTableModel.Sichtbar=Visible
 
 ui.models.NoteTableModel.Icon=Icon
 ui.models.NoteTableModel.Notiz=note
-ui.models.NoteTableModel.Dörfer=Villages
+ui.models.NoteTableModel.Doerfer=Villages
 ui.models.NoteTableModel.Kartensymbol=Map icon
-ui.models.NoteTableModel.LetzteÄnderung=Last change
+ui.models.NoteTableModel.LetzteAEnderung=Last change
 
 ui.models.REDExtendedMerchantTableModel.Dorf=Village
 ui.models.REDExtendedMerchantTableModel.Rohstoffe=resource
 ui.models.REDExtendedMerchantTableModel.Speicher=Storage
-ui.models.REDExtendedMerchantTableModel.Händler=Merchants
+ui.models.REDExtendedMerchantTableModel.Haendler=Merchants
 ui.models.REDExtendedMerchantTableModel.Bauernhof=Farm
 ui.models.REDExtendedMerchantTableModel.Handelsrichtung=Trade direction
 
@@ -137,26 +137,26 @@ ui.models.REDFinalTransportsTableModel.Ziel=target
 ui.models.REDFinalTransportsTableModel.Holz=Wood
 ui.models.REDFinalTransportsTableModel.Lehm=Clay
 ui.models.REDFinalTransportsTableModel.Eisen=Iron
-ui.models.REDFinalTransportsTableModel.Händler=Merchants
-ui.models.REDFinalTransportsTableModel.Übertragen=Transfer
+ui.models.REDFinalTransportsTableModel.Haendler=Merchants
+ui.models.REDFinalTransportsTableModel.UEbertragen=Transfer
 
 ui.models.REDSourceTableModel.Dorf=Village
 ui.models.REDSourceTableModel.Rohstoffe=resource
 ui.models.REDSourceTableModel.Speicher=Storage
-ui.models.REDSourceTableModel.VerfügbareHändler=Available Merchants
+ui.models.REDSourceTableModel.VerfuegbareHaendler=Available Merchants
 ui.models.REDSourceTableModel.Bauernhof=Farm
 
 ui.models.REFResultTableModel.Herkunft=origin
 ui.models.REFResultTableModel.Ziel=target
 ui.models.REFResultTableModel.Einheit=unit
-ui.models.REFResultTableModel.SpätesteAbschickzeit=Latest dispatch time
+ui.models.REFResultTableModel.SpaetesteAbschickzeit=Latest dispatch time
 ui.models.REFResultTableModel.Ankunftzeit=arrival time
 
 ui.models.REFSettingsTableModel.Dorf=Village
-ui.models.REFSettingsTableModel.NotwendigeUnterstützungen=Necessary support
+ui.models.REFSettingsTableModel.NotwendigeUnterstuetzungen=Necessary support
 
 ui.models.REFSourceTableModel.Dorf=Village
-ui.models.REFSourceTableModel.VerfügbareUnterstützungen=Available supports
+ui.models.REFSourceTableModel.VerfuegbareUnterstuetzungen=Available supports
 
 ui.models.REFTargetTableModel.Dorf=Village
 
@@ -192,25 +192,13 @@ ui.models.SupportTableModel.Dorf=Village
 ui.models.SupportTableModel.Richtung=direction
 ui.models.SupportTableModel.Spieler=Player
 ui.models.SupportTableModel.Dorf=Village
-ui.models.SupportTableModel.Speerträger=Spear fighters 
-ui.models.SupportTableModel.Schwertkämpfer=Swordsmen
-ui.models.SupportTableModel.Axtkämpfer=Axeman 
-ui.models.SupportTableModel.Bogenschütze=Archer
-ui.models.SupportTableModel.Späher=Scouts
-ui.models.SupportTableModel.LeichteKavallerie= Light cavalry 
-ui.models.SupportTableModel.BerittenerBogenschütze=Mounted archer
-ui.models.SupportTableModel.SchwereKavallerie=Heavy cavalry 
-ui.models.SupportTableModel.Ramme=Ram 
-ui.models.SupportTableModel.Katapult=Catapult 
-ui.models.SupportTableModel.Paladin=Paladin 
-ui.models.SupportTableModel.Adelsgeschlecht=Nobleman	
 
 ui.models.SupportsModel.Herkunft=origin
 ui.models.SupportsModel.Ziel=target
-ui.models.SupportsModel.FrühesteAbschickzeit=Earliest dispatch time
-ui.models.SupportsModel.SpätesteAbschickzeit=Latest dispatch time
+ui.models.SupportsModel.FruehesteAbschickzeit=Earliest dispatch time
+ui.models.SupportsModel.SpaetesteAbschickzeit=Latest dispatch time
 ui.models.SupportsModel.Countdown=Countdown
-ui.models.SupportsModel.Übertragen=Transfer
+ui.models.SupportsModel.UEbertragen=Transfer
 
 ui.models.TAPResultDetailsTableModel.Herkunft=origin
 ui.models.TAPResultDetailsTableModel.Ziel=target
@@ -247,7 +235,7 @@ ui.models.TagLinkMatrixModel.sowieaufKontinent=as well as on continent
 ui.models.TagLinkMatrixModel.inGruppe=in group
 
 ui.models.TagTableModel.Name=Name
-ui.models.TagTableModel.Dörfer=Villages
+ui.models.TagTableModel.Doerfer=Villages
 ui.models.TagTableModel.Kartenmarkierung=Map marking
 ui.models.TagTableModel.Einzeichnen=Draw in
 
@@ -259,22 +247,9 @@ ui.models.TroopsTableModel.Angriff=attack
 ui.models.TroopsTableModel.Verteidigung=defense
 ui.models.TroopsTableModel.VerteidigungKavallerie=defense (cavalry)
 ui.models.TroopsTableModel.VerteidigungBogen=defense (archer)
-ui.models.TroopsTableModel.Unterstützungenaußerhalb=Supports outside
-ui.models.TroopsTableModel.Unterstützungeninnerhalb=Supports within
+ui.models.TroopsTableModel.Unterstuetzungenaußerhalb=Supports outside
+ui.models.TroopsTableModel.Unterstuetzungeninnerhalb=Supports within
 ui.models.TroopsTableModel.Bauernhofbedarf=Farm supplies
-ui.models.TroopsTableModel.Speerträger=Spear fighters 
-ui.models.TroopsTableModel.Schwertkämpfer=Swordsmen
-ui.models.TroopsTableModel.Axtkämpfer=Axeman 
-ui.models.TroopsTableModel.Bogenschütze=Archer
-ui.models.TroopsTableModel.Späher=Scouts
-ui.models.TroopsTableModel.LeichteKavallerie=Light cavalry 
-ui.models.TroopsTableModel.BerittenerBogenschütze=Mounted archer
-ui.models.TroopsTableModel.SchwereKavallerie=Heavy cavalry 
-ui.models.TroopsTableModel.Ramme=Ram
-ui.models.TroopsTableModel.Katapult=Catapult
-ui.models.TroopsTableModel.Paladin=Paladin
-ui.models.TroopsTableModel.Miliz=Militia 
-ui.models.TroopsTableModel.Adelsgeschlecht=Nobleman
 
 ui.models.WatchtowerTableModel.Spieler=Player
 ui.models.WatchtowerTableModel.Dorf=Village
@@ -309,14 +284,17 @@ ui.models.WatchtowerTableModel.Farbe=colour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+io.UnitHolder.spear=Spear fighters
+io.UnitHolder.sword=Swordsmen
+io.UnitHolder.axe=Axeman
+io.UnitHolder.archer=Archer
+io.UnitHolder.spy=Scouts
+io.UnitHolder.light=Light cavalry
+io.UnitHolder.marcher=Mounted archer
+io.UnitHolder.heavy=Heavy cavalry
+io.UnitHolder.ram=Ram
+io.UnitHolder.catapult=Catapult
+io.UnitHolder.knight=Paladin
+io.UnitHolder.snob=Nobleman
+io.UnitHolder.militia=Militia
+io.UnitHolder.unknown=Unknown

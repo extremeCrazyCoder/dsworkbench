@@ -30,10 +30,14 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
  * @author Torridity
  */
 public class SupportsModel extends AbstractTableModel {
-private Translator trans = TranslationManager.getTranslator("ui.models.SupportsModel");
+    private Translator trans = TranslationManager.getTranslator("ui.models.SupportsModel");
+    
     private List<Defense> entries = null;
     private Class[] types = new Class[]{Village.class, Village.class, Date.class, Date.class, String.class, Boolean.class};
-    private String[] colNames = new String[]{trans.get("Herkunft"), trans.get("Ziel"), trans.get("FrühesteAbschickzeit"), trans.get("SpätesteAbschickzeit"), trans.get("Countdown"), trans.get("Übertragen")};
+    private String[] colNames = new String[]{
+        trans.get("Herkunft"), trans.get("Ziel"), trans.get("FruehesteAbschickzeit"),
+        trans.get("SpaetesteAbschickzeit"), trans.get("Countdown"), trans.get("UEbertragen")
+    };
 
     public SupportsModel() {
         entries = new ArrayList<>();

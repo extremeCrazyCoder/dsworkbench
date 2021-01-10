@@ -31,11 +31,20 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class DoItYourselfAttackTableModel extends AbstractTableModel {
-    private static Translator trans = TranslationManager.getTranslator("ui.models.DoItYourselfAttackTableModel");
     private static Logger logger = LogManager.getLogger("DoItYourselfAttackTable");
-    protected static Class[] types = new Class[]{Integer.class, UnitHolder.class, Village.class, Village.class, Date.class, Date.class, Long.class};
-    protected static String[] colNames = new String[]{trans.get("Angriffstyp"), trans.get("Einheit"), trans.get("Herkunft"), trans.get("Ziel"), trans.get("Abschickzeit"), trans.get("Ankunftzeit"), trans.get("Verbleibend")};
-    protected static boolean[] editableColumns = new boolean[]{true, true, true, true, true, true, false};
+    private Translator trans = TranslationManager.getTranslator("ui.models.DoItYourselfAttackTableModel");
+    
+    protected Class[] types = new Class[]{
+        Integer.class, UnitHolder.class, Village.class,
+        Village.class, Date.class, Date.class,
+        Long.class
+    };
+    protected String[] colNames = new String[]{
+        trans.get("Angriffstyp"), trans.get("Einheit"), trans.get("Herkunft"),
+        trans.get("Ziel"), trans.get("Abschickzeit"), trans.get("Ankunftzeit"),
+        trans.get("Verbleibend")
+    };
+    protected boolean[] editableColumns = new boolean[]{true, true, true, true, true, true, false};
 
     public DoItYourselfAttackTableModel() {
     }
