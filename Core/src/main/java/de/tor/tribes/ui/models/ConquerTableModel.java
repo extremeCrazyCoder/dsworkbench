@@ -46,9 +46,15 @@ public class ConquerTableModel extends AbstractTableModel {
         Double.class
     };
     private String[] colNames = new String[]{
-        trans.get("Dorf"), trans.get("Dorfpunkte"), trans.get("Kontinent"),
-        trans.get("Geadeltam"), trans.get("Verlierer"), trans.get("StammVerlierer"),
-        trans.get("Gewinner"), trans.get("StammGewinner"), trans.get("Zustimmung"),
+        trans.get("Dorf"), 
+        trans.get("Dorfpunkte"), 
+        trans.get("Kontinent"),
+        trans.get("Geadeltam"), 
+        trans.get("Verlierer"), 
+        trans.get("StammVerlierer"),
+        trans.get("Gewinner"), 
+        trans.get("StammGewinner"), 
+        trans.get("Zustimmung"),
         trans.get("Entfernung")
     };
     private boolean[] editableColumns = new boolean[]{false, false, false, false, false, false, false, false, false, false};

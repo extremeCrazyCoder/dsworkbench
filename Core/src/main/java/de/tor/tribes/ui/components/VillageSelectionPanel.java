@@ -24,6 +24,8 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.renderer.UnitListCellRenderer;
 import de.tor.tribes.ui.wiz.red.ResourceDistributorDataReadPanel;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
@@ -47,6 +49,8 @@ import org.jdesktop.swingx.JXList;
  */
 public class VillageSelectionPanel extends javax.swing.JPanel{
 
+    private Translator trans = TranslationManager.getTranslator("ui.components.VillageSelectionPanel");
+    
     public enum SELECTION_ELEMENT {
 
         ALLY, TRIBE, GROUP, CONTINENT, VILLAGE
@@ -449,7 +453,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jUnitBox, gridBagConstraints);
 
-        jFakeBox.setText("Als Fake einfügen");
+        jFakeBox.setText(trans.get("AlsFakeeinfuegen"));
         jFakeBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/no_fake.png"))); // NOI18N
         jFakeBox.setMaximumSize(new java.awt.Dimension(80, 27));
         jFakeBox.setMinimumSize(new java.awt.Dimension(80, 27));

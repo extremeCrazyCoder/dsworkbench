@@ -42,7 +42,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jTextPane1">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;Willkommen beim DS Workbench Taktikplaner.&lt;br/&gt;&#xa;In den folgenden Schritten kannst du dir entweder einen Angriffs- oder einen Verteidigungsplan erstellen lassen. W&amp;auml;hle bitte zuerst aus, welche Art von Plan du erstellen m&#xf6;chtest.&lt;/html&gt;"/>
           </Properties>

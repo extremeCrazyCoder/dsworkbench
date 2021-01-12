@@ -29,6 +29,8 @@ import de.tor.tribes.ui.wiz.tap.types.TAPAttackTargetElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.PluginManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -57,11 +59,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class AttackTargetPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>Du befindest dich in der Zielauswahl f&uuml; die zu planenden Angriffe. W&auml;hle die "
-            + "D&ouml;rfer aus die du angreifen magst und f&uuml;ge sie &uuml;ber den entsprechenden Button ein. Du kannst DS Workbench "
-            + "per STRG+V auch dazu veranlassen, in der Zwischenablage nach Dorfkoordinaten zu suchen.<br/>"
-            + "Willst du mehrere Angriffe auf ein Dorf durchf&uuml;hren, so f&uuml;ge diese entsprechenden D&ouml;rfer einfach mehrmals ein."
-            + "</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackTargetPanel");
+    
+    private static final String GENERAL_INFO = trans.get("ZielauswahlplanendenAngriffe");
     private static AttackTargetPanel singleton = null;
     private VillageSelectionPanel villageSelectionPanel = null;
     private VillageOverviewMapPanel overviewPanel = null;
@@ -210,8 +210,8 @@ public class AttackTargetPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInformationenEinAus"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,7 +229,7 @@ public class AttackTargetPanel extends WizardPage {
         jVillageTablePanel.setPreferredSize(new java.awt.Dimension(400, 257));
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Anzugreifende Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AnzugreifendeDoerfer")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 
@@ -267,7 +267,7 @@ public class AttackTargetPanel extends WizardPage {
         jVillageTablePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskartevergroessern"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -336,7 +336,7 @@ public class AttackTargetPanel extends WizardPage {
         jPanel3.add(jRemoveAttackButton, gridBagConstraints);
 
         jToFakeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/fake.png"))); // NOI18N
-        jToFakeButton.setToolTipText("Gewählte Ziele auf \"Fake-Ziele\" setzen");
+        jToFakeButton.setToolTipText(trans.get("GewaehlteZieleaufFakeZielesetzen"));
         jToFakeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeFakeEvent(evt);
@@ -353,7 +353,7 @@ public class AttackTargetPanel extends WizardPage {
         jPanel3.add(jToFakeButton, gridBagConstraints);
 
         jToNoFakeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/no_fake.png"))); // NOI18N
-        jToNoFakeButton.setToolTipText("Gewählte Ziele auf \"Keine Fake-Ziele\" setzen");
+        jToNoFakeButton.setToolTipText(trans.get("GewaehlteZieleaufKeinFakeZielesetzen"));
         jToNoFakeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeFakeEvent(evt);
@@ -400,10 +400,10 @@ public class AttackTargetPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 

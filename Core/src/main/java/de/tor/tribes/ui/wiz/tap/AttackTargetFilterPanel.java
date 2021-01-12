@@ -26,6 +26,8 @@ import de.tor.tribes.ui.wiz.tap.types.TAPAttackSourceElement;
 import de.tor.tribes.ui.wiz.tap.types.TAPAttackTargetElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -44,16 +46,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class AttackTargetFilterPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "Du befindest dich in der Filterauswahl. Hier kannst du vorher gew&auml;hlte Herkunftsd&ouml;rfer herausfiltern, "
-            + "wenn sie nicht bestimmten Kriterien entsprechen. M&ouml;gliche Filterkriterien sind:"
-            + "<ul> <li>D&ouml;rfer werden bereits in einem Angriffsplan verwendet</li> "
-            + "<li>D&ouml;rfer geh&ouml;ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D&ouml;rfer zu entfernen, die aufgrund ihrer Gruppenzugeh&ouml;rigkeit in die Auswahl gelangt sind, zu entfernen.</li>"
-            + "<li>Die Anzahl der belegten Bauernhofpl&auml;tze in einem Dorf ist kleiner als ein bestimmter Wert</li>"
-            + "<li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li>"
-            + "</ul> "
-            + "Nach einer &Auml;nderung der Filtereinstellungen muss die Filterung aktualisiert werden. "
-            + "Herausgefilterte D&ouml;rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D&ouml;rfer, die herausgefiltert wurden."
-            + "</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackTargetFilterPanel");
+    
+    private static final String GENERAL_INFO = trans.get("DubefindestdichinderFilterauswahl");
     private static AttackTargetFilterPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
 
@@ -158,8 +153,8 @@ public class AttackTargetFilterPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInformationenEinAus"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,7 +172,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         jFilterPanel.setPreferredSize(new java.awt.Dimension(400, 200));
         jFilterPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Angriffspläne"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Angriffsplaene")));
         jPanel3.setMinimumSize(new java.awt.Dimension(160, 88));
         jPanel3.setPreferredSize(new java.awt.Dimension(160, 195));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -198,7 +193,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         jPanel3.add(jScrollPane3, gridBagConstraints);
 
-        jButton1.setText("Keinen auswählen");
+        jButton1.setText(trans.get("Keinenauswaehlen"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireRemoveAttackPlanSelectionEvent(evt);
@@ -220,7 +215,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFilterPanel.add(jPanel3, gridBagConstraints);
 
-        jButton3.setText("Filterung aktualisieren");
+        jButton3.setText(trans.get("Filterungaktualisieren"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireUpdateFilterEvent(evt);
@@ -246,7 +241,8 @@ public class AttackTargetFilterPanel extends WizardPage {
         jVillagePanel.setPreferredSize(new java.awt.Dimension(400, 232));
         jVillagePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Gefilterte Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("GefilterteDoerfer")
+        ));
 
         jVillageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,7 +278,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         jVillagePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskartevergroessern"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -300,7 +296,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jIgnoreButton.setToolTipText("Gewählte Dörfer ignorieren");
+        jIgnoreButton.setToolTipText(trans.get("GewaelteDoerferignorieren"));
         jIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -316,7 +312,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         jPanel4.add(jIgnoreButton, gridBagConstraints);
 
         jNotIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox_disabled.png"))); // NOI18N
-        jNotIgnoreButton.setToolTipText("Gewählte Dörfer nicht ignorieren");
+        jNotIgnoreButton.setToolTipText(trans.get("GewaehlteDoerfernichtignorieren"));
         jNotIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -332,7 +328,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         jPanel4.add(jNotIgnoreButton, gridBagConstraints);
 
         jNotIgnoreButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/remove.gif"))); // NOI18N
-        jNotIgnoreButton1.setToolTipText("Gefilterte Einträge löschen");
+        jNotIgnoreButton1.setToolTipText(trans.get("GefilterteEintraegeloeschen"));
         jNotIgnoreButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireRemoveFilteredEntriesEvent(evt);
@@ -367,10 +363,10 @@ public class AttackTargetFilterPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 

@@ -27,6 +27,8 @@ import de.tor.tribes.ui.wiz.ret.RetimerFinishPanel;
 import de.tor.tribes.ui.wiz.ret.RetimerSourcePanel;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -45,6 +47,8 @@ import org.netbeans.spi.wizard.WizardPanelProvider;
  */
 public class TacticsPlanerWizard extends WizardPanelProvider {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.TacticsPlanerWizard");
+    
     private static JFrame parent = null;
 
     public TacticsPlanerWizard() {

@@ -27,6 +27,8 @@ import de.tor.tribes.util.algo.AbstractAttackAlgorithm;
 import de.tor.tribes.util.algo.BruteForce;
 import de.tor.tribes.util.algo.Iterix;
 import de.tor.tribes.util.algo.types.TimeFrame;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.text.SimpleDateFormat;
@@ -50,6 +52,8 @@ import org.netbeans.spi.wizard.*;
  */
 public class AttackCalculationPanel extends WizardPage {
 
+  
+    
     private static final String GENERAL_INFO = "<html>Bist du hier angekommen, steht einer Berechnung der Angriffe nichts mehr im Wege. "
             + "Im oberen Bereich werden noch einmal Informationen zu den bisherigen Einstellungen angezeigt, im mittleren Bereich "
             + "k&ouml;nnen letzte Einstellungen vorgenommen werden, die im Normalfall jedoch nicht ver&auml;ndert werden m&uuml;ssen. "
@@ -59,6 +63,8 @@ public class AttackCalculationPanel extends WizardPage {
     private AbstractAttackAlgorithm calculator = null;
     private SimpleDateFormat dateFormat = null;
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackCalculationPanel");
+    
     public static synchronized AttackCalculationPanel getSingleton() {
         if (singleton == null) {
             singleton = new AttackCalculationPanel();
@@ -176,8 +182,8 @@ public class AttackCalculationPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInformationenEinAus"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -192,10 +198,10 @@ public class AttackCalculationPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jAllowFakeOffs.setText("Fakes auf Off-Ziele erlauben");
+        jAllowFakeOffs.setText(trans.get("FakesaufOffZieleerlauben"));
         jAllowFakeOffs.setToolTipText("<html>Erlaubt das Zuweisen von Fakes auf Off-Ziele, die nicht mit Offs belegt werden konnten.<br/>Aktiviere diese Option, falls keine Fakes zugewiesen werden konnten  oder zuviele Off-Ziele &uuml;brig bleiben.</html>");
         jAllowFakeOffs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -207,7 +213,7 @@ public class AttackCalculationPanel extends WizardPage {
 
         buttonGroup1.add(jBruteForce);
         jBruteForce.setSelected(true);
-        jBruteForce.setText("Zufällige Berechnung");
+        jBruteForce.setText(trans.get("ZufaelligeBerechnung"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -216,7 +222,7 @@ public class AttackCalculationPanel extends WizardPage {
         jPanel3.add(jBruteForce, gridBagConstraints);
 
         buttonGroup1.add(jSystematicCalculation);
-        jSystematicCalculation.setText("Systematische Berechnung");
+        jSystematicCalculation.setText(trans.get("SystematischeBerechnung"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -224,8 +230,9 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jSystematicCalculation, gridBagConstraints);
 
-        jAllowMultiSnob.setText("Mehrfachangriffe mit AGs erlauben");
-        jAllowMultiSnob.setToolTipText("<html>Erlaubt, dass ein Herkunftsdorf öfters dasselbe Zieldorf angreift, falls es sich dabei um AG Angriffe handelt</html>");
+        jAllowMultiSnob.setText(trans.get("MehrfachangriffemitAGserlauben"));
+        jAllowMultiSnob.setToolTipText(trans.get("ErlaubtdasseinHerkunftsdorf")
+        );
         jAllowMultiSnob.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -242,7 +249,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jPanel3, gridBagConstraints);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen zur Berechnung"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("InformationenzurBerechnung")));
         jScrollPane1.setViewportView(jTextPane1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -256,7 +263,7 @@ public class AttackCalculationPanel extends WizardPage {
 
         jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCalculateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jCalculateButton.setText("Angriffe berechnen");
+        jCalculateButton.setText(trans.get("Angriffeberechnen"));
         jCalculateButton.setMaximumSize(new java.awt.Dimension(167, 40));
         jCalculateButton.setMinimumSize(new java.awt.Dimension(167, 40));
         jCalculateButton.setPreferredSize(new java.awt.Dimension(167, 40));
@@ -272,10 +279,10 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jCalculateButton, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Angreifende Dörfer");
+        jLabel2.setText(trans.get("AngreifendeDoerfer"));
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -290,7 +297,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallSources, gridBagConstraints);
 
-        jLabel4.setText("<html>&nbsp;&nbsp;&nbsp;Angriffe</html>");
+        jLabel4.setText(trans.get("Angriffe"));
         jLabel4.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
@@ -307,7 +314,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallAttacks, gridBagConstraints);
 
-        jLabel6.setText("<html>&nbsp;&nbsp;&nbsp;Fakes</html>");
+        jLabel6.setText(trans.get("Fakes"));
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
@@ -324,7 +331,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallFakes, gridBagConstraints);
 
-        jLabel8.setText("<html>&nbsp;&nbsp;&nbsp;Angriffe</html>");
+        jLabel8.setText(trans.get("Angriffee"));
         jLabel8.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -342,7 +349,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jTargetAttacks, gridBagConstraints);
 
-        jLabel10.setText("Angegriffene Dörfer");
+        jLabel10.setText(trans.get("AngegriffeneDoerferr"));
         jLabel10.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -360,7 +367,7 @@ public class AttackCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallTargets, gridBagConstraints);
 
-        jLabel12.setText("<html>&nbsp;&nbsp;&nbsp;Fakes</html>");
+        jLabel12.setText(trans.get("Fakess"));
         jLabel12.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -407,10 +414,10 @@ public class AttackCalculationPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -432,7 +439,7 @@ public class AttackCalculationPanel extends WizardPage {
             }
         }
 
-        jCalculateButton.setText("Abbrechen");
+        jCalculateButton.setText(trans.get("Abbrechen"));
         calculator.start();
         setBusy(true);
         //wait until calculation is running

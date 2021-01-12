@@ -27,6 +27,8 @@ import de.tor.tribes.ui.wiz.tap.types.TAPAttackTargetElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.algo.types.TimeFrame;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.HashMap;
@@ -48,6 +50,8 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  * @author Torridity
  */
 public class ValidationPanel extends WizardPage implements SettingsChangedListener {
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.ValidationPanel");
     
     Logger logger = LogManager.getLogger("ValidationPanel");
     @Override

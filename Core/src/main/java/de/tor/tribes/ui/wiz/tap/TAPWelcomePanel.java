@@ -16,6 +16,8 @@
 package de.tor.tribes.ui.wiz.tap;
 
 import de.tor.tribes.ui.panels.TAPAttackInfoPanel;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.event.ItemEvent;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -29,6 +31,8 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class TAPWelcomePanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.TAPWelcomePanel");
+    
     private static final String ATTACK_HELP = "<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/>"
             + "Du hast die Angriffsplanung gew&auml;hlt. Diese erlaubt es dir, Angriffe in gro&szlig;en Mengen zu erstellen. "
             + "Dabei bietet er dir die M&ouml;glichkeit, Abschick- und Ankunftzeiten nach deinen W&uuml;nschen zu gestalten. "

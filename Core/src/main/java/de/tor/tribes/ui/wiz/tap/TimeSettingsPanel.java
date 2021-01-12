@@ -21,6 +21,8 @@ import de.tor.tribes.ui.algo.AttackTimePanel;
 import de.tor.tribes.ui.algo.SettingsChangedListener;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.algo.types.TimeFrame;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.util.Date;
 import java.util.LinkedList;
@@ -35,6 +37,8 @@ import org.netbeans.spi.wizard.*;
  */
 public class TimeSettingsPanel extends WizardPage implements SettingsChangedListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.TimeSettingsPanel");
+    
     @Override
     public void fireTimeFrameChangedEvent() {
         setProblem(null);

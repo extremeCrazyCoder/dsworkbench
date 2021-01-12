@@ -160,7 +160,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jFakeBox">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Als Fake einf&#xfc;gen"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;AlsFakeeinfuegen&quot;)" type="code"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/res/ui/no_fake.png"/>
         </Property>

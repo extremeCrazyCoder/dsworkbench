@@ -261,6 +261,136 @@ ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html> You are in the village sele
 ui.wiz.tap.AttackSourcePanel.InformationPanel=Show information 
 ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Used villages
 
+ui.wiz.tap.AttackFinishPanel.Zusammenfassunganzeigen=Show summary
+ui.wiz.tap.AttackFinishPanel.AbschliessendeAktionen=Final Actions
+ui.wiz.tap.AttackFinishPanel.StandardangriffOffs=Standard attack for off:
+ui.wiz.tap.AttackFinishPanel.StandardangriffFakes=Standard attack for fakes:
+ui.wiz.tap.AttackFinishPanel.AlleAngriffeindieBefehlsuebersichtuebertragen=Transfer all attacks to the command overview.
+ui.wiz.tap.AttackFinishPanel.NurvolleAngriffeindieBefehlsuebersichtuebertragen=Transfer only full attacks to the command overview.
+ui.wiz.tap.AttackFinishPanel.AusgewaehlteAngriffeindieBefehlsuebersichtuebertragen=Transfer selected attacks to the command overview.
+ui.wiz.tap.AttackFinishPanel.AngegriffeneZiele=Attacked Targets
+ui.wiz.tap.AttackFinishPanel.Informationeneinblenden=Show information
+ui.wiz.tap.AttackFinishPanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackFinishPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+ui.wiz.tap.AttackFinishPanel.Zieleentfernenaufdieweniger=<html> Remove targets on which fewer than the percentage of maximum attacks are running below. <br/> The removal may 'free' originating countries that can be used for other targets. </html>
+ui.wiz.tap.AttackFinishPanel.Expertenansicht=Expert view
+ui.wiz.tap.AttackFinishPanel.Informationskartevergroessern=Enlarge information map
+
+ui.wiz.tap.AttackCalculationPanel.Informationeneinblenden=Show information
+ui.wiz.tap.AttackCalculationPanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackCalculationPanel.Abbrechen=Abort
+ui.wiz.tap.AttackCalculationPanel.Angriffeberechnen=Calculate attacks
+ui.wiz.tap.AttackCalculationPanel.MehrfachangriffemitAGserlauben=Allow multiple attacks with Noble
+ui.wiz.tap.AttackCalculationPanel.SystematischeBerechnung=Systematic calculation
+ui.wiz.tap.AttackCalculationPanel.ZufaelligeBerechnung=Random calculation
+ui.wiz.tap.AttackCalculationPanel.FakesaufOffZieleerlauben=Allow fakes on off targets
+ui.wiz.tap.AttackCalculationPanel.InformationenzurBerechnung=Calculation information
+ui.wiz.tap.AttackCalculationPanel.ErlaubtdasseinHerkunftsdorf=<html> Allows a village of origin to attack the same target village more than once if these are noble attacks </html>
+ui.wiz.tap.AttackCalculationPanel.Zusammenfassung=Summary
+ui.wiz.tap.AttackCalculationPanel.AngreifendeDoerfer=Attacking villages
+ui.wiz.tap.AttackCalculationPanel.Angriffe=<html>&nbsp;&nbsp;&nbsp;Attacks</html>
+ui.wiz.tap.AttackCalculationPanel.Fakes=<html>&nbsp;&nbsp;&nbsp;Fakes</html>
+ui.wiz.tap.AttackCalculationPanel.AngegriffeneDoerferr=<html>&nbsp;&nbsp;&nbsp;Attacked villages</html>
+ui.wiz.tap.AttackCalculationPanel.Angriffee=<html>&nbsp;&nbsp;&nbsp;Attacks</html>
+ui.wiz.tap.AttackCalculationPanel.Fakess=<html>&nbsp;&nbsp;&nbsp;Fakes</html>
+ui.wiz.tap.AttackCalculationPanel.Einstellungen=Settings
+ui.wiz.tap.AttackCalculationPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+
+ui.wiz.tap.AttackSourceFilterPanel.Filterauswahl=<html> You are in the filter selection. Here you can filter out previously selected originators if they do not meet certain criteria. Possible filter criteria are: <ul> <li> Villages are already used in an attack plan </li> <li> Villages do not belong to the currently active player. This option is used to remove villages who were selected because of their group membership. </li> <li> The number of occupied farm spaces in a village is less than a certain value </li> <li> The troops stationed in the village do not meet certain requirements. </li> </ul> After changing the filter settings, the filtering must be updated. The villages that have been filtered out are then marked in the table. Below the table you can see the exact number of villages that were filtered out. </html>
+ui.wiz.tap.AttackSourceFilterPanel.Informationeneinblenden=how information
+ui.wiz.tap.AttackSourceFilterPanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackSourceFilterPanel.TruppenSonstiges=Troops & miscellaneous
+ui.wiz.tap.AttackSourceFilterPanel.NurSpielerdoerferverwenden=Use only player Village
+ui.wiz.tap.AttackSourceFilterPanel.FilternnachBauernhofplaetzen=Filter by farm places
+ui.wiz.tap.AttackSourceFilterPanel.Filterungaktivieren=Activate filtering
+ui.wiz.tap.AttackSourceFilterPanel.FilterungnachBauernhofplaetzendurchfuehren=Carry out filtering by farm place
+ui.wiz.tap.AttackSourceFilterPanel.MinBHPlaetze=Min. FARM Places
+ui.wiz.tap.AttackSourceFilterPanel.MinBHPlaetzeBonus=Min. FARM Places (Bonus)
+ui.wiz.tap.AttackSourceFilterPanel.Angriffsplaene=Attack plans
+ui.wiz.tap.AttackSourceFilterPanel.Keinenauswaehlen=Select none
+ui.wiz.tap.AttackSourceFilterPanel.Filterungaktualisieren=Update filtering
+ui.wiz.tap.AttackSourceFilterPanel.GefilterteDoerfer=Filtered villages
+ui.wiz.tap.AttackSourceFilterPanel.GewaelteDoerferignorieren=Ignore selected villages
+ui.wiz.tap.AttackSourceFilterPanel.GewaehlteDoerfernichtignorieren=Do not ignore selected delegates
+ui.wiz.tap.AttackSourceFilterPanel.GefilterteEintraegeloeschen=Delete filtered entries
+ui.wiz.tap.AttackSourceFilterPanel.Informationskartevergroessern=Enlarge information map
+
+ui.wiz.tap.AttackTargetFilterPanel.DubefindestdichinderFilterauswahl=<html> You are in the filter selection. Here you can filter out previously selected villages of origin if they do not meet certain criteria. Possible filter criteria are: <ul> <li> Villages are already used in an attack plan </li> <li> Villages do not belong to the currently active player. This option is used to remove villages that were included in the selection due to their group membership. </li> <li> The number of occupied farm spaces in a village is less than a certain value </li> <li> The troops stationed in the village do not meet certain requirements. </li> </ul> After changing the filter settings, the filtering must be updated. The villages that have been filtered out are then marked in the table. Below the table you can see the exact number of villages that were filtered out. </html>
+ui.wiz.tap.AttackTargetFilterPanel.Informationeneinblenden=how information
+ui.wiz.tap.AttackTargetFilterPanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackTargetFilterPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+ui.wiz.tap.AttackTargetFilterPanel.Angriffsplaene=Attack plans
+ui.wiz.tap.AttackTargetFilterPanel.Keinenauswaehlen=Select none
+ui.wiz.tap.AttackTargetFilterPanel.Filterungaktualisieren=Update filtering
+ui.wiz.tap.AttackTargetFilterPanel.GefilterteDoerfer=Filtered villages
+ui.wiz.tap.AttackTargetFilterPanel.GewaelteDoerferignorieren=Ignore selected villages
+ui.wiz.tap.AttackTargetFilterPanel.GewaehlteDoerfernichtignorieren=Do not ignore selected delegates
+ui.wiz.tap.AttackTargetFilterPanel.GefilterteEintraegeloeschen=Delete filtered entries
+ui.wiz.tap.AttackTargetFilterPanel.Informationskartevergroessern=Enlarge information map
+
+ui.wiz.tap.AttackTargetPanel.ZielauswahlplanendenAngriffe=<html> You are in the target selection for the attacks to be planned. Select the villages you want to attack and add them using the corresponding button. You can also use CTRL + V to make DS Workbench look for village coordinates in the clipboard. <br/> If you want to carry out several attacks on a village, just paste these villages several times. </html>
+ui.wiz.tap.AttackTargetPanel.Informationeneinblenden=how information
+ui.wiz.tap.AttackTargetPanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackTargetPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+ui.wiz.tap.AttackTargetPanel.AnzugreifendeDoerfer=Attacking villages
+ui.wiz.tap.AttackTargetPanel.Informationskartevergroessern=Enlarge information map
+ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufFakeZielesetzen=Selected target Set to "fake target"
+ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufKeinFakeZielesetzen=Set the selected targets to "No fake targets"
+
+ui.components.VillageSelectionPanel.AlsFakeeinfuegen=Insert as fake
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+
+
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+
+
+
 
 
 

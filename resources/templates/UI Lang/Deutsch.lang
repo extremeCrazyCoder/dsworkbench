@@ -261,6 +261,144 @@ ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html>Du befindest dich in der Dor
 ui.wiz.tap.AttackSourcePanel.InformationPanel=Informationen Einblenden
 ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Verwendete D\u00f6rfer
 
+ui.wiz.tap.AttackFinishPanel.Zusammenfassunganzeigen=Zusammenfassung anzeigen
+ui.wiz.tap.AttackFinishPanel.AbschliessendeAktionen=Abschlie\u00dfende Aktion
+ui.wiz.tap.AttackFinishPanel.StandardangriffOffs=Standardangriff f\u00fcr Offs:
+ui.wiz.tap.AttackFinishPanel.StandardangriffFakes=Standardangriff f\u00fcr Fakes:
+ui.wiz.tap.AttackFinishPanel.AlleAngriffeindieBefehlsuebersichtuebertragen=Alle Angriffe in die Befehls\u00fcbersicht \u00fcbertragen.
+ui.wiz.tap.AttackFinishPanel.NurvolleAngriffeindieBefehlsuebersichtuebertragen=Nur volle Angriffe in die Befehls\u00fcbersicht \u00fcbertragen.
+ui.wiz.tap.AttackFinishPanel.AusgewaehlteAngriffeindieBefehlsuebersichtuebertragen=Ausgew\u00e4hlte Angriffe in die Befehls\u00fcbersicht \u00fcbertragen.
+ui.wiz.tap.AttackFinishPanel.AngegriffeneZiele=Angegriffene Ziele
+ui.wiz.tap.AttackFinishPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackFinishPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackFinishPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.AttackFinishPanel.Zieleentfernenaufdieweniger=<html>Ziele entfernen, auf die weniger als die unten angezeigte Prozentzahl der max. Angriffe laufen.<br/>Durch die Entfernung werden ggf. Herkunftsd&ouml;rfer 'frei', die f\u00fcr andere Ziele verwendet werden k\u00f6nnen.</html>
+ui.wiz.tap.AttackFinishPanel.Expertenansicht=Expertenansicht
+ui.wiz.tap.AttackFinishPanel.Informationskartevergroessern=Informationskartevergr\u00f6\u00dfern
+
+ui.wiz.tap.AttackCalculationPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackCalculationPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackCalculationPanel.Abbrechen=Abbrechen
+ui.wiz.tap.AttackCalculationPanel.Angriffeberechnen=Angriffe berechnen
+ui.wiz.tap.AttackCalculationPanel.MehrfachangriffemitAGserlauben=Mehrfachangriffe mit AGs erlauben
+ui.wiz.tap.AttackCalculationPanel.SystematischeBerechnung=Systematische Berechnung
+ui.wiz.tap.AttackCalculationPanel.ZufaelligeBerechnung=Zuf\u00e4llige Berechnung
+ui.wiz.tap.AttackCalculationPanel.FakesaufOffZieleerlauben=Fakes auf Off-Ziele erlauben
+ui.wiz.tap.AttackCalculationPanel.InformationenzurBerechnung=Informationen zur Berechnung
+ui.wiz.tap.AttackCalculationPanel.ErlaubtdasseinHerkunftsdorf=<html>Erlaubt, dass ein Herkunftsdorf \u00f6fters dasselbe Zieldorf angreift, falls es sich dabei um AG Angriffe handelt</html>
+ui.wiz.tap.AttackCalculationPanel.Zusammenfassung=Zusammenfassung
+ui.wiz.tap.AttackCalculationPanel.AngreifendeDoerfer=Angreifende D\u00f6rfer
+ui.wiz.tap.AttackCalculationPanel.Angriffe=<html>&nbsp;&nbsp;&nbsp;Angriffe</html>
+ui.wiz.tap.AttackCalculationPanel.Fakes=<html>&nbsp;&nbsp;&nbsp;Fakes</html>
+ui.wiz.tap.AttackCalculationPanel.AngegriffeneDoerferr=<html>&nbsp;&nbsp;&nbsp;Angegriffene D\u00f6rfer</html>
+ui.wiz.tap.AttackCalculationPanel.Angriffee=<html>&nbsp;&nbsp;&nbsp;Angriffe</html>
+ui.wiz.tap.AttackCalculationPanel.Fakess=<html>&nbsp;&nbsp;&nbsp;Fakes</html>
+ui.wiz.tap.AttackCalculationPanel.Einstellungen=Einstellungen
+ui.wiz.tap.AttackCalculationPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+
+ui.wiz.tap.AttackSourceFilterPanel.Filterauswahl=<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew\u00e4hlte Herkunftsd\u00f6rfer herausfiltern, wenn sie nicht bestimmten Kriterien entsprechen. M\u00f6gliche Filterkriterien sind:<ul> <li>D&ouml;rfer werden bereits in einem Angriffsplan verwendet</li> <li>D&ouml;rfer geh&ouml;ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D&ouml;rfer zu entfernen, die aufgrund ihrer Gruppenzugeh&ouml;rigkeit in die Auswahl gelangt sind, zu entfernen.</li> <li>Die Anzahl der belegten Bauernhofpl\u00e4tze in einem Dorf ist kleiner als ein bestimmter Wert</li> <li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li></ul>Nach einer \u00c4nderung der Filtereinstellungen muss die Filterung aktualisiert werden. Herausgefilterte D&ouml;rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D&ouml;rfer, die herausgefiltert wurden.</html>
+ui.wiz.tap.AttackSourceFilterPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackSourceFilterPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackSourceFilterPanel.TruppenSonstiges=Truppen & Sonstiges
+ui.wiz.tap.AttackSourceFilterPanel.NurSpielerdoerferverwenden=Nur Spielerd\u00f6rfer verwenden
+ui.wiz.tap.AttackSourceFilterPanel.FilternnachBauernhofplaetzen=Filtern nach Bauernhofpl\u00e4tzen
+ui.wiz.tap.AttackSourceFilterPanel.Filterungaktivieren=Filterung aktivieren
+ui.wiz.tap.AttackSourceFilterPanel.FilterungnachBauernhofplaetzendurchfuehren=Filterung nach Bauernhofpl\u00e4tzen durchf\u00fchren
+ui.wiz.tap.AttackSourceFilterPanel.MinBHPlaetze=Min. BH Pl\u00e4tze
+ui.wiz.tap.AttackSourceFilterPanel.MinBHPlaetzeBonus=Min. BH Pl\u00e4tze (Bonus)
+ui.wiz.tap.AttackSourceFilterPanel.Angriffsplaene=Angriffspl\u00e4ne
+ui.wiz.tap.AttackSourceFilterPanel.Keinenauswaehlen=Keinen ausw\u00e4hlen
+ui.wiz.tap.AttackSourceFilterPanel.Filterungaktualisieren=Filterung aktualisieren
+ui.wiz.tap.AttackSourceFilterPanel.GefilterteDoerfer=Gefilterte D\u00f6rfer
+ui.wiz.tap.AttackSourceFilterPanel.GewaelteDoerferignorieren=Gew\u00e4hlte D\u00f6rfer ignorieren
+ui.wiz.tap.AttackSourceFilterPanel.GewaehlteDoerfernichtignorieren=Gew\u00e4hlte D\u00e4hrfer nicht ignorieren
+ui.wiz.tap.AttackSourceFilterPanel.GefilterteEintraegeloeschen=Gefilterte Eintr\u00e4ge l\u00e4schen
+ui.wiz.tap.AttackSourceFilterPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
+
+ui.wiz.tap.AttackTargetFilterPanel.DubefindestdichinderFilterauswahl=<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew\u00e4hlte Herkunftsd\u00f6rfer herausfiltern, wenn sie nicht bestimmten Kriterien entsprechen. M\u00f6gliche Filterkriterien sind:<ul> <li>D\u00f6rfer werden bereits in einem Angriffsplan verwendet</li> <li>D\u00f6rfer geh\u00f6ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D\u00f6rfer zu entfernen, die aufgrund ihrer Gruppenzugeh\u00f6rigkeit in die Auswahl gelangt sind, zu entfernen.</li><li>Die Anzahl der belegten Bauernhofpl\u00e4tze in einem Dorf ist kleiner als ein bestimmter Wert</li><li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li></ul> Nach einer \u00c4nderung der Filtereinstellungen muss die Filterung aktualisiert werden. Herausgefilterte D\u00f6rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D\u00f6rfer, die herausgefiltert wurden.</html>
+ui.wiz.tap.AttackTargetFilterPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackTargetFilterPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackTargetFilterPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.AttackTargetFilterPanel.Angriffsplaene=Angriffspl\u00e4ne
+ui.wiz.tap.AttackTargetFilterPanel.Keinenauswaehlen=Keinen ausw\u00e4hlen
+ui.wiz.tap.AttackTargetFilterPanel.Filterungaktualisieren=Filterung aktualisieren
+ui.wiz.tap.AttackTargetFilterPanel.GefilterteDoerfer=Gefilterte D\u00f6rfer
+ui.wiz.tap.AttackTargetFilterPanel.GewaelteDoerferignorieren=Gew\u00e4hlte D\u00f6rfer ignorieren
+ui.wiz.tap.AttackTargetFilterPanel.GewaehlteDoerfernichtignorieren=Gew\u00e4hlte D\u00e4hrfer nicht ignorieren
+ui.wiz.tap.AttackTargetFilterPanel.GefilterteEintraegeloeschen=Gefilterte Eintr\u00e4ge l\u00e4schen
+ui.wiz.tap.AttackTargetFilterPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
+
+ui.wiz.tap.AttackTargetPanel.ZielauswahlplanendenAngriffe=<html>Du befindest dich in der Zielauswahl f\u00fcr die zu planenden Angriffe. W\u00e4hle die D\u00f6rfer aus die du angreifen magst und f\u00fcge sie \u00fcber den entsprechenden Button ein. Du kannst DS Workbench per STRG+V auch dazu veranlassen, in der Zwischenablage nach Dorfkoordinaten zu suchen.<br/>Willst du mehrere Angriffe auf ein Dorf durchf\u00fchren, so f\u00fcge diese entsprechenden D\u00f6rfer einfach mehrmals ein.</html>
+ui.wiz.tap.AttackTargetPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackTargetPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackTargetPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.AttackTargetPanel.AnzugreifendeDoerfer=Anzugreifende D\u00f6rfer
+ui.wiz.tap.AttackTargetPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
+ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufFakeZielesetzen=Gew\u00e4hltes Ziel Auf "Fake-Ziel" setzen
+ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufKeinFakeZielesetzen=Gew\u00e4hlte Ziele auf "Keine Fake-Ziele" setzen
+
+ui.components.VillageSelectionPanel.AlsFakeeinfuegen=Als Fake einf\u00fcgen
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.
+
+
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.
+
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TacticsPlanerWizard.
+
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TimeSettingsPanel.
+
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+ui.wiz.tap.ValidationPanel.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
