@@ -29,8 +29,8 @@ import org.jdom2.Element;
  * @author Charon
  */
 public class UnitHolder implements Serializable {
-
-   private static Logger logger = LogManager.getLogger("UnitHolder");
+    private static Logger logger = LogManager.getLogger("UnitHolder");
+    private Translator trans = TranslationManager.getTranslator("io.UnitHolder");
 
     public static final Comparator<UnitHolder> RUNTIME_COMPARATOR = new RuntimeComparator();
     private static final long serialVersionUID = 10L;
@@ -44,8 +44,6 @@ public class UnitHolder implements Serializable {
     private double defenseArcher = 0;
     private double carry = 0;
     private double buildTime = 0;
-    
-   private Translator trans = TranslationManager.getTranslator("io.UnitHolder");
 
     public UnitHolder() {
         name = "";

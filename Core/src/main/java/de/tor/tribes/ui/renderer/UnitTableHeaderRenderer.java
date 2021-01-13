@@ -38,7 +38,7 @@ public class UnitTableHeaderRenderer extends DefaultTableCellRenderer {
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        UnitHolder unit = DataHolder.getSingleton().getUnitByPlainName((String) value);
+        UnitHolder unit = DataHolder.getSingleton().getUnitByName((String) value);
         JLabel result = (JLabel) defaultRenderer.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (unit.equals(UnknownUnit.getSingleton())) {
             return result;

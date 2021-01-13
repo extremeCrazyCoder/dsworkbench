@@ -32,7 +32,7 @@ import javax.swing.table.JTableHeader;
  * @author Torridity
  */
 public class DefaultTableHeaderRenderer extends DefaultTableCellRenderer implements UIResource {
-
+    
     private boolean horizontalTextPositionSet;
 
     public DefaultTableHeaderRenderer() {
@@ -96,7 +96,7 @@ public class DefaultTableHeaderRenderer extends DefaultTableCellRenderer impleme
                 }
             }
         }
-
+        
         setText(value == null ? "" : value.toString());
         setIcon(sortIcon);
 

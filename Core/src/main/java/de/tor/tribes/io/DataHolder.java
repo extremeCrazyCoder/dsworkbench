@@ -52,6 +52,7 @@ public class DataHolder {
     private HashMap<String, Ally> mAlliesByTagName = null;
     private HashMap<String, Tribe> mTribesByName = null;
     private List<UnitHolder> mUnits = null;
+    private HashMap<String, UnitHolder> mUnitsByPlainName = null;;
     private HashMap<String, UnitHolder> mUnitsByName = null;
     private List<DataHolderListener> mListeners = null;
     private boolean bAborted = false;
@@ -91,6 +92,7 @@ public class DataHolder {
         mAlliesByName = new HashMap<>();
         mAlliesByTagName = new HashMap<>();
         mUnitsByName = new HashMap<>();
+        mUnitsByPlainName = new HashMap<>();
         mUnits = new LinkedList<>();
         DATA_VALID = false;
     }
@@ -935,6 +937,7 @@ public class DataHolder {
     private void parseUnits() {
         mUnits.clear();
         mUnitsByName.clear();
+        mUnitsByPlainName.clear();
         String unitFile = getDataDirectory() + "/units.xml";
         logger.debug("Loading units");
         try {
@@ -945,7 +948,8 @@ public class DataHolder {
                     UnitHolder unit = new UnitHolder(e);
                     if (unit.getPlainName() != null) {
                         mUnits.add(unit);
-                        mUnitsByName.put(unit.getPlainName(), unit);
+                        mUnitsByName.put(unit.getName(), unit);
+                        mUnitsByPlainName.put(unit.getPlainName(), unit);
                     }
                 } catch (Exception inner) {
                     logger.error("Failed loading unit", inner);
@@ -1160,9 +1164,23 @@ public class DataHolder {
     }
 
     /**
-     * Get a unit by its name
+     * Get a unit by its plainname
      */
     public UnitHolder getUnitByPlainName(String pName) {
+        UnitHolder result = null;
+        if (pName != null) {
+            result = mUnitsByPlainName.get(pName);
+        }
+        if (result == null) {
+            result = UnknownUnit.getSingleton();
+        }
+        return result;
+    }
+
+    /**
+     * Get a unit by its name
+     */
+    public UnitHolder getUnitByName(String pName) {
         UnitHolder result = null;
         if (pName != null) {
             result = mUnitsByName.get(pName);
