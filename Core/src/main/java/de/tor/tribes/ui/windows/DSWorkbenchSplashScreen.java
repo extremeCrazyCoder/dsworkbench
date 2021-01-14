@@ -504,11 +504,8 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         } catch (Exception e) {
             logger.error("Failed to setup LnF", e);
         }
-        try {
-            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
-        } catch (Exception e) {
-            logger.error("Failed to setup LnF", e);
-        }
+        
+        TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
 
         final boolean useSSD = ssd;
 

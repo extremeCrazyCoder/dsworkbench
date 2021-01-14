@@ -19,6 +19,7 @@ package de.tor.tribes.util.translation;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.logging.Level;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.ex.ConfigurationException;
@@ -64,6 +65,23 @@ public class TranslationManager {
                 logger.fatal("Can't read Translations for default {}", newLanguage, ex);
                 throw new RuntimeException(ex);
             }
+        }
+        
+        String locale = getString("locale");
+        Locale all[] = java.util.Locale.getAvailableLocales();
+        boolean found = false;
+        for(Locale cur : all) {
+            logger.debug("Running through locales {} / {}", cur.getLanguage());
+            if(cur.getLanguage().equals(locale)) {
+                logger.debug("Found {}", cur);
+                java.util.Locale.setDefault(cur);
+                found = true;
+                break;
+            }
+        }
+        
+        if(!found) {
+            throw new RuntimeException("Locale not found");
         }
     }
     
