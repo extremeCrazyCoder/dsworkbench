@@ -457,6 +457,7 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        TranslationManager.setWorkbenchBoot(true);
         File runningIndicator = new File("runningFile");
         if (runningIndicator.exists()) {
             int answer = JOptionPaneHelper.showQuestionConfirmBox(null, "Es scheint so als ob DSWorkbench noch laufen würde "
@@ -467,7 +468,6 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
             }
         }
         
-        Locale.setDefault(Locale.GERMAN);
         int mode = -1;
         int minimal = 0;
         boolean ssd = false;

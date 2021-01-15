@@ -35,6 +35,11 @@ public class TranslationManager {
     private static Logger logger = LogManager.getLogger("TranslationManager");
     private static TranslationManager SINGLETON = null;
     public static final String DEFAULT_LANGUAGE = "Deutsch";
+    private static boolean workbenchBoot = false;
+
+    public static void setWorkbenchBoot(boolean b) {
+        workbenchBoot = b;
+    }
 
     private PropertiesConfiguration language;
     
@@ -87,7 +92,11 @@ public class TranslationManager {
     
     public String getString(String key) {
         if(language == null) {
-            throw new RuntimeException("Cannot read variables before a language has been set");
+            if(workbenchBoot) {
+                throw new RuntimeException("Cannot read variables before a language has been set");
+            } else {
+                return "unknown translation";
+            }
         }
         //logger.trace("Fetching {}", key);
         Object obj = language.getProperty(key);
