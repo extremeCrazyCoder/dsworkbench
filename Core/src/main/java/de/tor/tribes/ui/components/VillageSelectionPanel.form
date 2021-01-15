@@ -23,7 +23,9 @@
   <SubComponents>
     <Component class="org.jdesktop.swingx.JXButton" name="jFromClipboard">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="Sucht in der Zwischenablage nach D&#xf6;rfern und f&#xfc;gt diese ein. "/>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;SuchtZwischenablage&quot;)" type="code"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[90, 23]"/>
         </Property>
@@ -96,7 +98,9 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;Elemente der Reihe nach ausw&amp;auml;hlen. F&amp;uuml;r eine Suche nach Elementen in die entsprechende Liste klicken und den Elementnamen tippen oder per STRG+F die Suche &amp;ouml;ffnen. Mehrere Elemente mit gedr&amp;uuml;ckter STRG-Taste ausw&amp;auml;hlen.&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;ElementederReihe&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -112,7 +116,9 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;Gruppeneintrag doppelt klicken, um Art der Verkn&amp;uuml;pfung zu &amp;auml;ndern. Verwendung einer Gruppe &amp;uuml;ber &lt;b&gt;ENTF&lt;/b&gt; l&amp;ouml;schen.&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Gruppeneintrag&quot;)" type="code"/>
+        </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Constraints>
@@ -130,8 +136,12 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXButton" name="jButtonUseSelection">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Auswahl verwenden"/>
-        <Property name="toolTipText" type="java.lang.String" value="F&#xfc;gt alle gew&#xe4;hlten D&#xf6;rfer ein."/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Auswahlverwenden&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;FuegtallegewaehltenDoerferein&quot;)" type="code"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[90, 23]"/>
         </Property>
@@ -187,7 +197,12 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="jTextFieldSearchAlly">
       <Properties>
-        <Property name="prompt" type="java.lang.String" value="Name/Tag eingeben"/>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;NameTageingeben&quot;)" type="code"/>
+        </Property>
+        <Property name="prompt" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;NameTageingebenprompt&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="fireAllyNameTagChangedEvent"/>
@@ -200,7 +215,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jAmountLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Anzahl"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Anzahl&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -220,8 +237,12 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jExpertSelection">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Expertenansicht"/>
-        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Aktiviert die Expertenansicht. Hierbei k&#xf6;nnen komplexe Verkn&#xfc;pfungen zwischen&lt;br/&gt;Gruppen erstellt werden, um Gruppen gezielt ein- und auszuschlie&#xdf;en.&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Expertenansicht&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;AktiviertdieExpertenansicht&quot;)" type="code"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[70, 23]"/>
         </Property>
@@ -243,7 +264,9 @@
     </Component>
     <Component class="org.jdesktop.swingx.JXTextField" name="jTextFieldSearchTribe">
       <Properties>
-        <Property name="prompt" type="java.lang.String" value="Name eingeben"/>
+        <Property name="prompt" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Nameeingeben&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="fireTribeNameTagChangedEvent"/>

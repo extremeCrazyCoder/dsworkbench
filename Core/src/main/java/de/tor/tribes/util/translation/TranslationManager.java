@@ -95,7 +95,7 @@ public class TranslationManager {
             if(workbenchBoot) {
                 throw new RuntimeException("Cannot read variables before a language has been set");
             } else {
-                return "unknown translation";
+                return "";
             }
         }
         //logger.trace("Fetching {}", key);

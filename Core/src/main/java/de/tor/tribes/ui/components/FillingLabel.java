@@ -15,6 +15,8 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -28,6 +30,8 @@ import javax.swing.*;
  */
 public class FillingLabel extends JLabel {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.compoents.FillingLabel");
+    
     private double[] fillings = null;
     private Color[] colors = null;
     private String text = "";
@@ -58,7 +62,7 @@ public class FillingLabel extends JLabel {
         if(res > 0) {
             text = nf.format(res) + " K";
         } else {
-            text = "keine";
+            text = trans.get("keine");
         }
     }
 

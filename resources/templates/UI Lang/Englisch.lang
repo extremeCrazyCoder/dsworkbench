@@ -1,3 +1,63 @@
+ui.compoents.ProfileQuickChangePanel.Standard=default
+ui.compoents.ProfileQuickChangePanel.ProfilSchnellauswahl=Quick profile selection
+ui.compoents.ProfileQuickChangePanel.Schnellauswahl=Allows quick selection of the user profile with which transports are transferred to the browser
+
+ui.compoents.LayerOrderPanel.Formen=molding
+ui.compoents.LayerOrderPanel.Zeichnungen=drawings
+ui.compoents.LayerOrderPanel.Angriffe=Attacks
+ui.compoents.LayerOrderPanel.Dorfsymbole=Village symbols
+ui.compoents.LayerOrderPanel.Notizmarkierungen=Note markers
+ui.compoents.LayerOrderPanel.Doerfer=Villages
+ui.compoents.LayerOrderPanel.Unterstuetzungen=Supports
+ui.compoents.LayerOrderPanel.Markierungen=Markings
+ui.compoents.LayerOrderPanel.Truppendichte=Troop density
+ui.compoents.LayerOrderPanel.Kirchenradien=Church radii
+ui.compoents.LayerOrderPanel.Wachturmradien=Watchtower radii
+
+ui.compoents.DateTimeField.ddMMyyyy=dd.MM.yyyy
+ui.compoents.DateTimeField.HHmmssSSS=HH:mm:ss:SSS
+ui.compoents.DateTimeField.HHmmss=HH:mm:ss
+ui.compoents.DateTimeField.Datumauswaehlen=Select date
+ui.compoents.DateTimeField.Zeitauswaehlen=Select time
+
+ui.compoents.GroupSelectionList.Information=information
+ui.compoents.GroupSelectionList.AlleDoeferDie=All villages the
+ui.compoents.GroupSelectionList.NICHTinGruppe=NOT in a group '
+ui.compoents.GroupSelectionList.inGruppe=in group '
+ui.compoents.GroupSelectionList.UNDinGruppe=AND in a group '
+ui.compoents.GroupSelectionList.ODERinGruppe=OR in a group '
+ui.compoents.GroupSelectionList.sind=are
+ui.compoents.GroupSelectionList.KeineEintraegegewaehlt=No entries selected
+ui.compoents.GroupSelectionList.AlleDoerferin=All villages in
+ui.compoents.GroupSelectionList.derGruppe=the group
+ui.compoents.GroupSelectionList.denGruppen=the groups
+ui.compoents.GroupSelectionList.UND=AND
+
+ui.compoents.FillingLabel.keine=None
+
+ui.compoents.DatePicker.MMMMMyyyy=MMMMM yyyy
+ui.compoents.DatePicker.Mo=Mo
+ui.compoents.DatePicker.Di=Tu
+ui.compoents.DatePicker.Mi=We
+ui.compoents.DatePicker.Do=Th
+ui.compoents.DatePicker.Fr=Fr
+ui.compoents.DatePicker.Sa=Sa
+ui.compoents.DatePicker.So=Su
+ui.compoents.DatePicker.Juli=July 2018
+ui.compoents.DatePicker.Heute=Today
+ui.compoents.DatePicker.OK=OK
+
+ui.compoents.CapabilityInfoPanel.KopierenAusschneiden=<html> <b> Copy / cut entries with CTRL + C or CTRL + X </b> <br/> In some views, entries are copied in such a way that <br/> they are in exactly these or a comparable view can be pasted again. <br/> In other views, village coordinates are copied, <br/> which can be read from the clipboard in various other places </html>
+ui.compoents.CapabilityInfoPanel.Einfuegen=<html> <b> Inserting entries via CTRL + V </b> <br/> Only special entries can be inserted in separate views, <br/> those previously from the same view were copied. <br/> In other views, village coordinates can be pasted from any source </html>
+ui.compoents.CapabilityInfoPanel.KopierenEintragen=<html> <b> Copy entries as BB codes using CTRL + B </b> <br/> In this view, entries can be copied to the clipboard as BB codes. <br/> From there, you can use CTRL + V to paste them into notes, IGMs or the forum in the game. </html>
+ui.compoents.CapabilityInfoPanel.delete=<html> <b> Delete entries with DEL </b> </html>
+ui.compoents.CapabilityInfoPanel.Suche=<html> <b> Search for entries with CTRL + F </b> </html>
+
+ui.compoents.ClickAccountPanel.Klickaufgeladen=Click (s) charged
+ui.compoents.ClickAccountPanel.KlickKonto=Click account
+ui.compoents.ClickAccountPanel.Klick_Konto=Click account [%d]
+ui.compoents.ClickAccountPanel.KeineKlicks=0 click (s) charged
+
 ui.models.AttackTableModel.attacker=attacker
 ui.models.AttackTableModel.attacker_tribe=Tribe (attacker)
 ui.models.AttackTableModel.source=origin
@@ -6,14 +66,13 @@ ui.models.AttackTableModel.defender_tribe=Tribe (defender)
 ui.models.AttackTableModel.target=target
 ui.models.AttackTableModel.unit=unit
 ui.models.AttackTableModel.type=Type
-ui.models.AttackTableModel.send_time=Dispatch time
-ui.models.AttackTableModel.arrive_time=arrival time
+ui.models.AttackTableModel.send_time=sending time
+ui.models.AttackTableModel.arrive_time=landing time
 ui.models.AttackTableModel.runtime=running time
 ui.models.AttackTableModel.remaining=Remaining
 ui.models.AttackTableModel.show_on_map=Draw in
 ui.models.AttackTableModel.transfer=Transferred
 ui.models.AttackTableModel.times=times
-
 
 ui.models.AttackTypeTableModel.Name=Name
 ui.models.AttackTypeTableModel.Symbol=symbol
@@ -63,8 +122,8 @@ ui.models.DoItYourselfAttackTableModel.Angriffstyp=Attack type
 ui.models.DoItYourselfAttackTableModel.Einheit=unit
 ui.models.DoItYourselfAttackTableModel.Herkunft=origin
 ui.models.DoItYourselfAttackTableModel.Ziel=target
-ui.models.DoItYourselfAttackTableModel.Abschickzeit=Dispatch time
-ui.models.DoItYourselfAttackTableModel.Ankunftzeit=arrival time
+ui.models.DoItYourselfAttackTableModel.Abschickzeit=sending time
+ui.models.DoItYourselfAttackTableModel.Ankunftzeit=landing time
 ui.models.DoItYourselfAttackTableModel.Verbleibend=Remaining
 
 ui.models.FarmTableModel.Status=status
@@ -79,17 +138,6 @@ ui.models.FarmTableModel.UEbertragen=Transfer
 ui.models.FarmTableModel.Erfolgsquote=Success rate
 ui.models.FarmTableModel.unbekannt=unknown
 ui.models.FarmTableModel.KeineTruppenunterwegs=No troops on the way
-
-ui.models.ConquerTableModel.Dorf=Village
-ui.models.ConquerTableModel.Dorfpunkte=Village points
-ui.models.ConquerTableModel.Kontinent=continent
-ui.models.ConquerTableModel.Geadeltam=ennoble on
-ui.models.ConquerTableModel.Verlierer=loser
-ui.models.ConquerTableModel.StammVerlierer=Tribe loser
-ui.models.ConquerTableModel.Gewinner=Winner
-ui.models.ConquerTableModel.StammGewinner=Tribe Winner
-ui.models.ConquerTableModel.Zustimmung=Loyalty
-ui.models.ConquerTableModel.Entfernung=distance
 
 ui.models.FormTableModel.Name=Name
 ui.models.FormTableModel.Typ=Type
@@ -149,8 +197,8 @@ ui.models.REDSourceTableModel.Bauernhof=Farm
 ui.models.REFResultTableModel.Herkunft=origin
 ui.models.REFResultTableModel.Ziel=target
 ui.models.REFResultTableModel.Einheit=unit
-ui.models.REFResultTableModel.SpaetesteAbschickzeit=Latest dispatch time
-ui.models.REFResultTableModel.Ankunftzeit=arrival time
+ui.models.REFResultTableModel.SpaetesteAbschickzeit=Latest sending time
+ui.models.REFResultTableModel.Ankunftzeit=landing time
 
 ui.models.REFSettingsTableModel.Dorf=Village
 ui.models.REFSettingsTableModel.NotwendigeUnterstuetzungen=Necessary support
@@ -167,8 +215,8 @@ ui.models.RETAttackTableModel.Einheit=unit
 
 ui.models.RETResultTableModel.Herkunft=origin
 ui.models.RETResultTableModel.Ziel=target
-ui.models.RETResultTableModel.Abschickzeit=Dispatch time
-ui.models.RETResultTableModel.Ankunftszeit=arrival time
+ui.models.RETResultTableModel.Abschickzeit=sending time
+ui.models.RETResultTableModel.Ankunftszeit=landing time
 ui.models.RETResultTableModel.Einheit=unit
 ui.models.RETResultTableModel.Kampfkraft=Combat strength
 
@@ -195,8 +243,8 @@ ui.models.SupportTableModel.Dorf=Village
 
 ui.models.SupportsModel.Herkunft=origin
 ui.models.SupportsModel.Ziel=target
-ui.models.SupportsModel.FruehesteAbschickzeit=Earliest dispatch time
-ui.models.SupportsModel.SpaetesteAbschickzeit=Latest dispatch time
+ui.models.SupportsModel.FruehesteAbschickzeit=Earliest sending time
+ui.models.SupportsModel.SpaetesteAbschickzeit=Latest sending time
 ui.models.SupportsModel.Countdown=Countdown
 ui.models.SupportsModel.UEbertragen=Transfer
 
@@ -257,9 +305,21 @@ ui.models.WatchtowerTableModel.Stufe=Level
 ui.models.WatchtowerTableModel.Farbe=colour
 
 ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html> You are in the village selection. Here you can select the target of origin with which you would like to attack. You have the following options for this: <ul> <li> Inserting village coordinates from the clipboard using CTRL + V </li> <li> Inserting the originators from groups in the group overview </li> </ul> </html>
-
 ui.wiz.tap.AttackSourcePanel.InformationPanel=Show information 
 ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Used villages
+ui.wiz.tap.AttackSourcePanel.DoerferindenenAGsvorhandensind=For villages with Nobleman, set the slowest unit to Nobleman
+ui.wiz.tap.AttackSourcePanel.GewaehlteDoerferduplizieren=Duplicate selected villages by splitting them into troops
+ui.wiz.tap.AttackSourcePanel.Dorfgewaehlt=Village / villages chosen
+ui.wiz.tap.AttackSourcePanel.Herkunft=origin
+ui.wiz.tap.AttackSourcePanel.Informationenausblenden=Hide information
+ui.wiz.tap.AttackSourcePanel.Informationeneinblenden=Show information
+ui.wiz.tap.AttackSourcePanel.Einheitin=Unit in
+ui.wiz.tap.AttackSourcePanel.DorfaufAGgeaendert=Village / villages changed to nobleman
+ui.wiz.tap.AttackSourcePanel.Dorfeingefuegt=Village / villages inserted
+ui.wiz.tap.AttackSourcePanel.Dorfentfernt=Village / villages away
+ui.wiz.tap.AttackSourcePanel.KeineDoerfergewaehlt=No villages chosen
+ui.wiz.tap.AttackSourcePanel.BlendetInformationen=Shows / hides information about this view and the data sources
+ui.wiz.tap.AttackSourcePanel.Informationskartevergroessern=Enlarge information map
 
 ui.wiz.tap.AttackFinishPanel.Zusammenfassunganzeigen=Show summary
 ui.wiz.tap.AttackFinishPanel.AbschliessendeAktionen=Final Actions
@@ -275,7 +335,33 @@ ui.wiz.tap.AttackFinishPanel.BlendetInformationenEinAus=Shows / hides informatio
 ui.wiz.tap.AttackFinishPanel.Zieleentfernenaufdieweniger=<html> Remove targets on which fewer than the percentage of maximum attacks are running below. <br/> The removal may 'free' originating countries that can be used for other targets. </html>
 ui.wiz.tap.AttackFinishPanel.Expertenansicht=Expert view
 ui.wiz.tap.AttackFinishPanel.Informationskartevergroessern=Enlarge information map
+ui.wiz.tap.AttackFinishPanel.Ergebniseberechnung=<html> In this final step, all results of the calculation are displayed. In the table above all targets are listed, as well as the percentage of how many of the number of attacks specified under 'Targets' could be allocated to this village. You can view the individual attacks by selecting one or more lines and clicking the 'Details' button. <br/> If you are satisfied with the result, you have various options in the lower area, all or selected Transfer the selected attacks to a new attack planner in the attack overview. Move the mouse over the individual buttons to display a tooltip with the corresponding explanation. </html>
+ui.wiz.tap.AttackFinishPanel.Fertig=Finished
+ui.wiz.tap.AttackFinishPanel.Zielwurdenentfernt=Target (s) have been removed. Now switch to the previous step \ s
+ui.wiz.tap.AttackFinishPanel.Berechnungerneutdurch=and perform the calculation again.
+ui.wiz.tap.AttackFinishPanel.Information=information
+ui.wiz.tap.AttackFinishPanel.EswurdenalleZieleentfernt=All targets have been removed. \ N Please select new targets or use the previous hereditary features.
+ui.wiz.tap.AttackFinishPanel.KeineentsprechendenZielegefunden=No matching destinations found.
+ui.wiz.tap.AttackFinishPanel.Zieldetails=Target details
+ui.wiz.tap.AttackFinishPanel.KeineAngriffegewaehlt=No attacks selected
+ui.wiz.tap.AttackFinishPanel.Angriffsmodus_Herkunft=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the source of origin from the SOS-Analyzer </li> <li> Insert the source of origin from the report </li> <li> Insert from the selection overview </li> < li> Manual entry </li> </ul> </html>
+ui.wiz.tap.AttackFinishPanel.Angriffsdetails=Attack details
+ui.wiz.tap.AttackFinishPanel.Zusammenfassung=Summary
+ui.wiz.tap.AttackFinishPanel.VollbelegteZiele=Fully booked goals
+ui.wiz.tap.AttackFinishPanel.VerwendeteHerkunftsdoerfer=Used villages of origin
+ui.wiz.tap.AttackFinishPanel.ZugeteilteAngriffe=Assigned attacks
 
+ui.wiz.tap.AttackCalculationPanel.Angriffsmodus_Text=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the source of origin from the SOS-Analyzer </li> <li> Insert the source of origin from the report </li> <li> Insert from the selection overview </li> < li> Manual entry </li> </ul> </html>
+ui.wiz.tap.AttackCalculationPanel.ZuweisenFakes=<html> Allows you to assign fakes to off targets that could not be assigned with offs. <br/> Activate this option if no fakes could be assigned or too many off targets remain. </html>
+ui.wiz.tap.AttackCalculationPanel.Berechnung=calculation
+ui.wiz.tap.AttackCalculationPanel.VorherigeBerechnungverwerfen=Discard previous calculation
+ui.wiz.tap.AttackCalculationPanel.Berechnungverwerfen=Discard calculation
+ui.wiz.tap.AttackCalculationPanel.Nein=No
+ui.wiz.tap.AttackCalculationPanel.Ja=Yes
+ui.wiz.tap.AttackCalculationPanel.BerechnungerzieltekeineErgebnisse=Calculation yielded no results
+ui.wiz.tap.AttackCalculationPanel.Angriffeberechnen=Calculate attacks
+ui.wiz.tap.AttackCalculationPanel.NochkeineBerechnungdurchgefuehrt=No calculation performed yet
+ui.wiz.tap.AttackCalculationPanel.BerechnungAngriffe="<html> Once you have arrived here, nothing stands in the way of calculating the attacks. In the upper area, information on the previous settings is displayed again, in the middle area, the last settings can be made, which are normally not changed. The calculation starts with a click on 'Calculate attacks'. </html>
 ui.wiz.tap.AttackCalculationPanel.Informationeneinblenden=Show information
 ui.wiz.tap.AttackCalculationPanel.Informationenausblenden=Hide information
 ui.wiz.tap.AttackCalculationPanel.Abbrechen=Abort
@@ -297,6 +383,7 @@ ui.wiz.tap.AttackCalculationPanel.Einstellungen=Settings
 ui.wiz.tap.AttackCalculationPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
 
 ui.wiz.tap.AttackSourceFilterPanel.Filterauswahl=<html> You are in the filter selection. Here you can filter out previously selected originators if they do not meet certain criteria. Possible filter criteria are: <ul> <li> Villages are already used in an attack plan </li> <li> Villages do not belong to the currently active player. This option is used to remove villages who were selected because of their group membership. </li> <li> The number of occupied farm spaces in a village is less than a certain value </li> <li> The troops stationed in the village do not meet certain requirements. </li> </ul> After changing the filter settings, the filtering must be updated. The villages that have been filtered out are then marked in the table. Below the table you can see the exact number of villages that were filtered out. </html>
+ui.wiz.tap.AttackSourceFilterPanel.AngriffsmodusHerkunft=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the source of origin from the SOS-Analyzer </li> <li> Insert the source of origin from the report </li> <li> Insert from the selection overview </li> < li> Manual entry </li> </ul> </html>
 ui.wiz.tap.AttackSourceFilterPanel.Informationeneinblenden=how information
 ui.wiz.tap.AttackSourceFilterPanel.Informationenausblenden=Hide information
 ui.wiz.tap.AttackSourceFilterPanel.TruppenSonstiges=Troops & miscellaneous
@@ -314,87 +401,90 @@ ui.wiz.tap.AttackSourceFilterPanel.GewaelteDoerferignorieren=Ignore selected vil
 ui.wiz.tap.AttackSourceFilterPanel.GewaehlteDoerfernichtignorieren=Do not ignore selected delegates
 ui.wiz.tap.AttackSourceFilterPanel.GefilterteEintraegeloeschen=Delete filtered entries
 ui.wiz.tap.AttackSourceFilterPanel.Informationskartevergroessern=Enlarge information map
+ui.wiz.tap.AttackSourceFilterPanel.AngriffsmodusHerkunft=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the sources of origin from the SOS Analyzer </li> <li> Insert the sources of origin from reports </li> <li> Insert from the selection overview </ li > <li> Manual entry </li> </ul> </html>
+ui.wiz.tap.AttackSourceFilterPanel.Informationen=Shows / hides information about this view and the data sources
+ui.wiz.tap.AttackSourceFilterPanel.Ignoriert_Herkunft=Ignores all villages of origin that do not belong to the player to whom the current profile applies.
+ui.wiz.tap.AttackSourceFilterPanel.FilterungHerkunft=Filtering (origin)
+ui.wiz.tap.AttackSourceFilterPanel.Aktiv=active
+ui.wiz.tap.AttackSourceFilterPanel.Inaktivklicken=Inactive (click)
+ui.wiz.tap.AttackSourceFilterPanel.AlleDoerferwerdenignoriert=All villages are ignored
+ui.wiz.tap.AttackSourceFilterPanel.nichts=nichts
 
-ui.wiz.tap.AttackTargetFilterPanel.DubefindestdichinderFilterauswahl=<html> You are in the filter selection. Here you can filter out previously selected villages of origin if they do not meet certain criteria. Possible filter criteria are: <ul> <li> Villages are already used in an attack plan </li> <li> Villages do not belong to the currently active player. This option is used to remove villages that were included in the selection due to their group membership. </li> <li> The number of occupied farm spaces in a village is less than a certain value </li> <li> The troops stationed in the village do not meet certain requirements. </li> </ul> After changing the filter settings, the filtering must be updated. The villages that have been filtered out are then marked in the table. Below the table you can see the exact number of villages that were filtered out. </html>
-ui.wiz.tap.AttackTargetFilterPanel.Informationeneinblenden=how information
+ui.wiz.tap.AttackTargetFilterPanel.DubefindestdichinderFilterauswahl=<html> You are in the filter selection. Here you can filter out previously selected countries of origin if they do not meet certain criteria. Possible filter criteria are: <ul> <li> Villages are already being used in an attack plan </li> <li> Villages do not belong to the currently active player. This option is used to remove villages who were selected because of their group membership. </li> <li> The number of occupied farm spaces in a village is less than a certain value < / li> <li> The troops stationed in the village do not meet certain requirements. </li> </ul> After changing the filter settings, the filtering must be updated. The filtered out destinations are then marked in the table. Below the table you can see the exact number of villages that have been filtered out. </html>
+ui.wiz.tap.AttackTargetFilterPanel.Informationeneinblenden=Show information
 ui.wiz.tap.AttackTargetFilterPanel.Informationenausblenden=Hide information
-ui.wiz.tap.AttackTargetFilterPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+ui.wiz.tap.AttackTargetFilterPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources
 ui.wiz.tap.AttackTargetFilterPanel.Angriffsplaene=Attack plans
 ui.wiz.tap.AttackTargetFilterPanel.Keinenauswaehlen=Select none
 ui.wiz.tap.AttackTargetFilterPanel.Filterungaktualisieren=Update filtering
 ui.wiz.tap.AttackTargetFilterPanel.GefilterteDoerfer=Filtered villages
 ui.wiz.tap.AttackTargetFilterPanel.GewaelteDoerferignorieren=Ignore selected villages
-ui.wiz.tap.AttackTargetFilterPanel.GewaehlteDoerfernichtignorieren=Do not ignore selected delegates
+ui.wiz.tap.AttackTargetFilterPanel.GewaehlteDoerfernichtignorieren=Do not ignore selected villages
 ui.wiz.tap.AttackTargetFilterPanel.GefilterteEintraegeloeschen=Delete filtered entries
 ui.wiz.tap.AttackTargetFilterPanel.Informationskartevergroessern=Enlarge information map
+ui.wiz.tap.AttackTargetFilterPanel.FilterungZiel=Filtering (target)
+ui.wiz.tap.AttackTargetFilterPanel.AlleDoerferwerdenignoriert=All villages are ignored
 
-ui.wiz.tap.AttackTargetPanel.ZielauswahlplanendenAngriffe=<html> You are in the target selection for the attacks to be planned. Select the villages you want to attack and add them using the corresponding button. You can also use CTRL + V to make DS Workbench look for village coordinates in the clipboard. <br/> If you want to carry out several attacks on a village, just paste these villages several times. </html>
-ui.wiz.tap.AttackTargetPanel.Informationeneinblenden=how information
+ui.wiz.tap.AttackTargetPanel.ZielauswahlplanendenAngriffe=<html> You are in the target selection for the attacks to be planned. Select the villages you want to attack and insert them using the appropriate button. You can also use CTRL + V to make DS Workbench look for village coordinates in the clipboard. <br/> If you want to carry out several attacks on a village, just enter these villages several times. </ html>
+ui.wiz.tap.AttackTargetPanel.Informationeneinblenden=Show information
 ui.wiz.tap.AttackTargetPanel.Informationenausblenden=Hide information
-ui.wiz.tap.AttackTargetPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources.
+ui.wiz.tap.AttackTargetPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources
 ui.wiz.tap.AttackTargetPanel.AnzugreifendeDoerfer=Attacking villages
 ui.wiz.tap.AttackTargetPanel.Informationskartevergroessern=Enlarge information map
 ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufFakeZielesetzen=Selected target Set to "fake target"
 ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufKeinFakeZielesetzen=Set the selected targets to "No fake targets"
+ui.wiz.tap.AttackTargetPanel.Ziele=Target
+ui.wiz.tap.AttackTargetPanel.Dorfgewaehlt=Village / villages chosen
+ui.wiz.tap.AttackTargetPanel.KeineZielegewaehlt=No targets chosen
+ui.wiz.tap.AttackTargetPanel.Dorfeingefuegt=Village / villages inserted
+ui.wiz.tap.AttackTargetPanel.Dorfentfernt=Village / villages deleted
 
 ui.components.VillageSelectionPanel.AlsFakeeinfuegen=Insert as fake
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.NameTageingeben=Enter name / day
+ui.components.VillageSelectionPanel.NameTageingebenprompt=Enter name / day
+ui.components.VillageSelectionPanel.Nameeingeben=Enter name
+ui.components.VillageSelectionPanel.AktiviertdieExpertenansicht=<html> Activates the expert view. Complex links between <br/> groups can be created to specifically include and exclude groups. </html>
+ui.components.VillageSelectionPanel.Gruppeneintrag=Double-click <html> group entry to change the type of link. Use of a group via <b> DEL </b> delete. </html>
+ui.components.VillageSelectionPanel.ElementederReihe=<html> Select elements one after the other. To search for elements, click in the corresponding list and type the element name or open the search with CTRL + F. Select several elements with the CTRL key pressed. </html>
+ui.components.VillageSelectionPanel.Anzahl=number
+ui.components.VillageSelectionPanel.SuchtZwischenablage=Searches for villages in the clipboard and pastes them.
+ui.components.VillageSelectionPanel.Auswahlverwenden=Use selection
+ui.components.VillageSelectionPanel.FuegtallegewaehltenDoerferein=Includes all selected villages.
+ui.components.VillageSelectionPanel.Expertenansicht=Expert view
 
+ui.components.WelcomePanel.WillkommenbeiDSWorkbench=<html><h2 style="color:#953333"> Welcome to DS Workbench </h2> <p> If you see this page, then you have successfully installed DS Workbench and mastered the first steps just as successfully. Actually nothing stands in the way of carefree attack planning and execution. Nevertheless, allow me to briefly point out a few things that may help you <b> using DS Workbench </b> or give you the opportunity to play an important part in the <b> further development and continuous improvement </ b > Contribute to this program. Simply move the mouse over one of the four symbols in the corners to find out helpful and interesting information about DS Workbench. Click on an icon to go directly to the corresponding destination. <br> <h3 style = "color: # 953333"> Now have fun; with DS Workbench. </h3> </html>
+ui.components.WelcomePanel.DankeDSWorkbenchverwenden=Thanks, I want to use DS Workbench now.
 
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.WillkommenbeimDSWorkbenchTaktikplaner=<html> Welcome to the DS Workbench Tactic Planner. <br/> In the following steps you can have either an attack or a defense plan drawn up. Please select first which type of plan you would like to create. </html>
+ui.wiz.tap.TAPWelcomePanel.Angriffsplann=<html> <b> Welcome to the DS Workbench Tactic Planner. </b> <br/> <br/> You have chosen attack planning. This allows you to create attacks in large quantities. He offers you the opportunity to arrange the sending and arrival times according to your wishes. But please also note: The automatic attack planner is <b> NOT </b> suitable for creating the perfect attack plans including ennobling. Please use the manual attack planner to plan evictions. </html>
+ui.wiz.tap.TAPWelcomePanel.Verteidigungsplanung= <html> <b> Welcome to the DS Workbench Tactics Planner. </b> <br/> <br/> You have chosen defense planning. This allows you to draw up a defense plan for the attacked villages on the basis of SOS requests that have been read. Defense planning works closely with the SOS Analyzer. SOS requests are read into the SOS analyzer, analyzed and can then be added to the defense planning from there. DS Workbench can then attempt to use the imported troop information to create a defense plan. Results are sent back directly to the SOS analyzer and the support commands can then be sent from there. Requests for troops that are still needed can also be made from there. </html>
+ui.wiz.tap.TAPWelcomePanel.Unterstuezung= <html> <b> Welcome to the DS Workbench Tactic Planner. </b> <br/> <br/> You have chosen to be filled with supports. This allows you to bring the support in your villages back to a certain level. This requires that you have imported your troops from the game into DS Workbench. During the replenishment, an attempt is made to fill selected villages with free defensive troops until they have a certain number of troops again. </html>
+ui.wiz.tap.TAPWelcomePanel.Retimer= <html> <b> Welcome to the DS Workbench Tactic Planner. </b> <br/> <br/> The retimer is used to <br/> destroy troops from enemy attacks on their return to their home village . With DS Workbench you can calculate retimes for one or more attacks. The prerequisite for this is that you have imported your troop information <br/> from the game. DS Workbench calculates all possible retimes for all of your own villages. In the end, all you have to do is <br/> decide which retimes you really want to submit. If, for example, you cannot be online at the time of sending a ram retime, you can <br/> choose the retime with axe fighters, which has a lower penetration power, but also a shorter duration.
+ui.wiz.tap.TAPWelcomePanel.Willkommen=Welcome
+ui.wiz.tap.TAPWelcomePanel.DSWorkbenchTaktikplaner=DS Workbench - Tactics Planner
+ui.wiz.tap.TAPWelcomePanel.Taktikplaner=Tactic planner
 
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TimeSettingsPanel.BlendetInformationenEinAus=Shows / hides information about this view and the data sources
+ui.wiz.tap.TimeSettingsPanel.Informationeneinblenden=Show information
+ui.wiz.tap.TimeSettingsPanel.Informationenausblenden=Hide information
+ui.wiz.tap.TimeSettingsPanel.Zeiteinstellungenunvollstaendig=Time settings incomplete
+ui.wiz.tap.TimeSettingsPanel.Zeiteinstellungen=Time settings
+ui.wiz.tap.TimeSettingsPanel.DieZeiteinstellung=<html> The time settings are used to classify the possible attacks in terms of time. All attacks are roughly classified using the two fields 'start date' and 'end date'. DS Workbench will not plan an attack before or after this data. The greater the interval between these points in time, the longer the calculation takes. <br/> A more precise definition of the departure and arrival times is then made using the time frames. The following options are available here : <ul> <li> Always: Time frames of this type are valid on every day between the specified hours </li> <li> Day: Time frames of this type are only valid on the specified day between the specified hours </li> <li > Time: Elements of this type are valid on the specified day and at the specified time. They are therefore primarily intended for the arrival of attacks. </li> </ul> Set time frames are dragged and dropped into the time frame list and can be deleted again with DEL. To perform a calculation , at least a sending and an arrival timeframe is required. </html>
+ui.wiz.tap.TimeSettingsPanel.Angriffsmodus=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the sources of origin from the SOS Analyzer </li> <li> Insert the sources of origin from reports </li> <li> Insert from the selection overview </ li > <li> Manual entry </li> </ul> </html>
 
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TacticsPlanerWizard.Taktikplaner=Tactic planner
+ui.wiz.tap.TacticsPlanerWizard.DSWorkbenchTaktikplaner=DS Workbench Tactic Planner
+ui.wiz.tap.TacticsPlanerWizard.Willkommen=Welcome
 
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-
-
-
-
-
-
-
+types.Attack.AngriffCleanOff=Attack (FULL-Off)
+types.Attack.AngriffFake=Attack (Fake)
+types.Attack.AngriffAG=Attack Nobleman
+types.Attack.Unterstuetzung=Support
+types.Attack.Angriff=Attack
+types.Attack.Versammlungsplatz=Rally point
+types.Attack.Time1=dd.MM.yy 'at' HH:mm:ss.'[size=8]'SSS'[/size]'
+types.Attack.Time2=dd.MM.yy 'at' HH:mm:ss.SSS
+types.Attack.Time3=dd.MM.yy 'at' HH:mm:ss
 
 io.UnitHolder.spear=Spear fighters
 io.UnitHolder.sword=Swordsmen
@@ -410,3 +500,17 @@ io.UnitHolder.knight=Paladin
 io.UnitHolder.snob=Nobleman
 io.UnitHolder.militia=Militia
 io.UnitHolder.unknown=Unknown
+
+ui.wiz.tap.ValidationPanel.Info_Ergebnis=<html>In this step you can check once again whether your previous settings can lead to a result at all. The table above shows you all the villages of origin used and the percentage of the target villages that can be reached by the respective village of origin can reach. The smaller the percentage, the less likely it is that the respective village will be used for an attack. The percentage can be increased by changing the time settings. </html>
+ui.wiz.tap.ValidationPanel.Ueberpruefung=Verification
+ui.wiz.tap.ValidationPanel.Informationenausblenden=Hide information
+ui.wiz.tap.ValidationPanel.Informationeneinblenden=Show information
+ui.wiz.tap.ValidationPanel.Spieler=Player
+ui.wiz.tap.ValidationPanel.Dorf=Village
+ui.wiz.tap.ValidationPanel.Verwendungen=Uses
+ui.wiz.tap.ValidationPanel.BlendetInfo=Shows / hides information about this view and the data sources
+ui.wiz.tap.ValidationPanel.MoeglicheVerwendungen=Possible uses of the villages of origin
+ui.wiz.tap.ValidationPanel.Informationskartevergroessern=Enlarge information map
+ui.wiz.tap.ValidationPanel.MoeglicheZieldoerfer=Possible uses of the target villages
+
+locale=en

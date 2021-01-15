@@ -15,12 +15,17 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
+
 /**
  *
  * @author Torridity
  */
 public class ClickAccountPanel extends javax.swing.JPanel {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.ClickAccountPanel");
+    
     private int clickAccount = 0;
 
     /** Creates new form ClickAccountPanel */
@@ -43,8 +48,8 @@ public class ClickAccountPanel extends javax.swing.JPanel {
 
         jClickAccountLabel.setBackground(new java.awt.Color(255, 255, 255));
         jClickAccountLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/LeftClick.png"))); // NOI18N
-        jClickAccountLabel.setText("Klick-Konto [0]");
-        jClickAccountLabel.setToolTipText("0 Klick(s) aufgeladen");
+        jClickAccountLabel.setText(String.format(trans.get("Klick_Konto"), 0));
+        jClickAccountLabel.setToolTipText(trans.get("KeineKlicks"));
         jClickAccountLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         jClickAccountLabel.setMaximumSize(new java.awt.Dimension(140, 40));
         jClickAccountLabel.setMinimumSize(new java.awt.Dimension(140, 40));
@@ -64,8 +69,8 @@ public class ClickAccountPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_fireUpdateClickAccountEvent
 
     private void updateClickAccount() {
-        jClickAccountLabel.setToolTipText(clickAccount + " Klick(s) aufgeladen");
-        jClickAccountLabel.setText("Klick-Konto [" + clickAccount + "]");
+        jClickAccountLabel.setToolTipText(clickAccount + trans.get("Klickaufgeladen"));
+        jClickAccountLabel.setText(String.format(trans.get("Klick_Konto"), clickAccount));
     }
 
     public boolean useClick() {

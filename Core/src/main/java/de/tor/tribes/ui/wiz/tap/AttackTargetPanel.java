@@ -74,7 +74,7 @@ public class AttackTargetPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Ziele";
+        return trans.get("Ziele");
     }
 
     public static String getStep() {
@@ -132,7 +132,7 @@ public class AttackTargetPanel extends WizardPage {
             public void valueChanged(ListSelectionEvent e) {
                 int selectedRows = jVillageTable.getSelectedRowCount();
                 if (selectedRows != 0) {
-                    jStatusLabel.setText(selectedRows + " Dorf/Dörfer gewählt");
+                    jStatusLabel.setText(selectedRows + trans.get("Dorfgewaehlt"));
                 }
             }
         });
@@ -454,7 +454,7 @@ public class AttackTargetPanel extends WizardPage {
                 jVillageTable.repaint();
             }
         } else {
-            jStatusLabel.setText("Keine Ziele gewählt");
+            jStatusLabel.setText(trans.get("KeineZielegewaehlt"));
         }
         updateOverview();
     }//GEN-LAST:event_fireChangeAttackCountEvent
@@ -482,7 +482,7 @@ public class AttackTargetPanel extends WizardPage {
         if (getModel().getRowCount() > 0) {
             setProblem(null);
         }
-        jStatusLabel.setText(pVillages.length + " Dorf/Dörfer eingefügt");
+        jStatusLabel.setText(pVillages.length + trans.get("Dorfeingefuegt"));
         updateOverview();
     }
 
@@ -510,9 +510,9 @@ public class AttackTargetPanel extends WizardPage {
                 getModel().removeRow(rows.get(i));
             }
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Ziele gewählt");
+                setProblem(trans.get("KeineZielegewaehlt"));
             }
-            jStatusLabel.setText(selection.length + " Dorf/Dörfer entfernt");
+            jStatusLabel.setText(selection.length + trans.get("Dorfentfernt"));
             updateOverview();
         }
     }
@@ -604,7 +604,7 @@ public class AttackTargetPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getModel().getRowCount() <= 0) {
-            setProblem("Keine Ziele gewählt");
+            setProblem(trans.get("KeineZielegewaehlt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

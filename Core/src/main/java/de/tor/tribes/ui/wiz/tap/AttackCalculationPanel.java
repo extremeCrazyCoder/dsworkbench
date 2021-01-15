@@ -52,18 +52,13 @@ import org.netbeans.spi.wizard.*;
  */
 public class AttackCalculationPanel extends WizardPage {
 
-  
+  private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackCalculationPanel");
     
-    private static final String GENERAL_INFO = "<html>Bist du hier angekommen, steht einer Berechnung der Angriffe nichts mehr im Wege. "
-            + "Im oberen Bereich werden noch einmal Informationen zu den bisherigen Einstellungen angezeigt, im mittleren Bereich "
-            + "k&ouml;nnen letzte Einstellungen vorgenommen werden, die im Normalfall jedoch nicht ver&auml;ndert werden m&uuml;ssen. "
-            + "Mit einem Klick auf 'Angriffe berechnen' startet die Berechnung."
-            + "</html>";
+    private static final String GENERAL_INFO = trans.get("BerechnungAngriffe");
     private static AttackCalculationPanel singleton = null;
     private AbstractAttackAlgorithm calculator = null;
     private SimpleDateFormat dateFormat = null;
 
-    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackCalculationPanel");
     
     public static synchronized AttackCalculationPanel getSingleton() {
         if (singleton == null) {
@@ -88,7 +83,7 @@ public class AttackCalculationPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Berechnung";
+        return trans.get("Berechnung");
     }
 
     public static String getStep() {
@@ -166,9 +161,9 @@ public class AttackCalculationPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -202,7 +197,7 @@ public class AttackCalculationPanel extends WizardPage {
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jAllowFakeOffs.setText(trans.get("FakesaufOffZieleerlauben"));
-        jAllowFakeOffs.setToolTipText("<html>Erlaubt das Zuweisen von Fakes auf Off-Ziele, die nicht mit Offs belegt werden konnten.<br/>Aktiviere diese Option, falls keine Fakes zugewiesen werden konnten  oder zuviele Off-Ziele &uuml;brig bleiben.</html>");
+        jAllowFakeOffs.setToolTipText(trans.get("ZuweisenFakes"));
         jAllowFakeOffs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -429,7 +424,7 @@ public class AttackCalculationPanel extends WizardPage {
                 calculator.abort();
                 return;
             } else {//not in use...recalculate
-                if (calculator.hasResults() && JOptionPaneHelper.showQuestionConfirmBox(this, "Vorherige Berechnung verwerfen?", "Berechnung verwerfen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (calculator.hasResults() && JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("VorherigeBerechnungverwerfen"), trans.get("Berechnungverwerfen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     //not recalculate
                     return;
                 } else {
@@ -547,9 +542,9 @@ public class AttackCalculationPanel extends WizardPage {
         if (calculator.hasResults()) {
             setProblem(null);
         } else {
-            setProblem("Berechnung erzielte keine Ergebnisse");
+            setProblem(trans.get("BerechnungerzieltekeineErgebnisse"));
         }
-        jCalculateButton.setText("Angriffe berechnen");
+        jCalculateButton.setText(trans.get("Angriffeberechnen"));
     }
 
     public void notifyStatusUpdate(String pMessage) {
@@ -613,7 +608,7 @@ public class AttackCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (calculator == null) {
-            setProblem("Noch keine Berechnung durchgeführt");
+            setProblem(trans.get("NochkeineBerechnungdurchgefuehrt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         if (calculator != null && calculator.isRunning()) {

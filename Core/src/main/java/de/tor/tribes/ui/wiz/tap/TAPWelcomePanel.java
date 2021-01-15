@@ -33,31 +33,10 @@ public class TAPWelcomePanel extends WizardPage {
 
     private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.TAPWelcomePanel");
     
-    private static final String ATTACK_HELP = "<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/>"
-            + "Du hast die Angriffsplanung gew&auml;hlt. Diese erlaubt es dir, Angriffe in gro&szlig;en Mengen zu erstellen. "
-            + "Dabei bietet er dir die M&ouml;glichkeit, Abschick- und Ankunftzeiten nach deinen W&uuml;nschen zu gestalten. "
-            + "Bitte beachte aber auch: Der automatische Angriffsplaner ist <b>NICHT</b> daf&uuml;r geeignet, die perfekten "
-            + "Angriffspl&auml;ne inklusive Adelungen zu erstellen. F&uuml;r die Planung von Adelungen verwende bitte den "
-            + "manuellen Angriffsplaner.</html>";
-    private static final String DEFENSE_HELP = "<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/>"
-            + "Du hast die Verteigungsplanung gew&auml;hlt. Diese erlaubt es dir, ausgehend von eingelesenen SOS-Anfragen, "
-            + "einen Verteidigungsplan f&uuml;r die angegriffenen D&ouml;rfer zu erstellen. Die Verteidigungsplanung arbeitet "
-            + "dabei eng mit dem SOS-Analyzer zusammen. SOS-Anfragen werden im SOS-Analyzer eingelesen, analysiert und k&ouml;nnen "
-            + "dann von dort in die Verteidigungsplanung eingef&uuml;gt werden. DS Workbench kann anschlie&szlig;end versuchen, "
-            + "mit den importierten Truppeninformationen einen Verteidigungsplan aufzustellen. Ergebnisse werden direkt in den SOS-Analyzer "
-            + "zur&uuml;ck&uuml;bertragen und die Unterst&uuml;tzungsbefehle k&ouml;nnen dann von dort abgeschickt werden. Ebenso k&ouml;nnen "
-            + "von dort aus Anfragen nach noch notwendigen Truppen gestellt werden.</html>";
-    private static final String REFILL_HELP = "<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/>"
-            + "Du hast die Auff&uuml;llung von Unterst&uuml;tzungen gew&auml;hlt. Diese erlaubt es dir, die Unterst&uuml;tzungen in deinen "
-            + "D&ouml;rfern wieder auf einen bestimmten Stand zu bringen. Daf&uuml;r ist es notwendig, dass du deine Truppen aus dem Spiel "
-            + "in DS Workbench importiert hast. W&auml;hrend der Auff&uuml;llung wird versucht, ausge&auml;hlte D&ouml;rfer mit freien Defensivtruppen "
-            + "zu bef&uuml;llen, bis sie wieder einen bestimmten Truppenbestand aufweisen.</html>";
-    private static final String RETIME_HELP = "<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/>"
-            + "Der Retimer wird dazu verwendet, die Truppen von gegnerischen Angriffen bei der Rückkehr in ihr Heimatdorf zu<br/>"
-            + "vernichten. Mit DS Workbench kannst du für einen oder mehrere Angriffe Retimes berechnen. Voraussetzung dafür ist, dass du deine Truppeninformationen<br/>"
-            + "aus dem Spiel importiert hast. DS Workbench berechnet dir für alle gewünschten, eigenen Dörfer alle möglichen Retimes. Am Ende musst du nur noch<br/>"
-            + "entscheiden, welche Retimes du wirklich abschicken möchtest. Falls du z.B. zur Abschickzeit eines Ramme-Retimes nicht Online sein kannst, so kannst<br/>"
-            + "du den Retime mit Axtkämpfern wählen, der zwar eine geringere Durschlagskraft, aber auch eine kürzere Laufzeit hat.";
+    private static final String ATTACK_HELP = trans.get("Angriffsplann");
+    private static final String DEFENSE_HELP = trans.get("Verteidigungsplanung");
+    private static final String REFILL_HELP = trans.get("Unterstuezung");
+    private static final String RETIME_HELP = trans.get("Retimer");
     private static TAPWelcomePanel singleton = null;
     public static final String TYPE = "type";
     public final static Integer ATTACK_TYPE = 0;
@@ -85,7 +64,7 @@ public class TAPWelcomePanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Willkommen";
+        return trans.get("Willkommen");
     }
 
     public static String getStep() {
@@ -114,9 +93,9 @@ public class TAPWelcomePanel extends WizardPage {
         setPreferredSize(new java.awt.Dimension(600, 600));
         setLayout(new java.awt.BorderLayout());
 
-        jTextPane1.setContentType("text/html");
         jTextPane1.setEditable(false);
-        jTextPane1.setText("<html>Willkommen beim DS Workbench Taktikplaner.<br/>\nIn den folgenden Schritten kannst du dir entweder einen Angriffs- oder einen Verteidigungsplan erstellen lassen. W&auml;hle bitte zuerst aus, welche Art von Plan du erstellen möchtest.</html>");
+        jTextPane1.setContentType("text/html"); // NOI18N
+        jTextPane1.setText(trans.get("WillkommenbeimDSWorkbenchTaktikplaner"));
         jScrollPane1.setViewportView(jTextPane1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

@@ -97,7 +97,7 @@ public class AttackSourceFilterPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Filterung (Herkunft)";
+        return trans.get("FilterungHerkunft");
     }
 
     public static String getStep() {
@@ -178,9 +178,9 @@ public class AttackSourceFilterPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("AngriffsmodusHerkunft"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -197,7 +197,7 @@ public class AttackSourceFilterPanel extends WizardPage {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(trans.get("Informationeneinblenden"));
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setToolTipText(trans.get("Informationen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -277,7 +277,7 @@ public class AttackSourceFilterPanel extends WizardPage {
 
         jPlayerVillagesOnly.setSelected(true);
         jPlayerVillagesOnly.setText(trans.get("NurSpielerdoerferverwenden"));
-        jPlayerVillagesOnly.setToolTipText("Ignoriert alle Herkunftsdörfer die nicht dem Spieler gehören, für den das aktuelle Profil gilt.");
+        jPlayerVillagesOnly.setToolTipText(trans.get("Ignoriert_Herkunft"));
         jPlayerVillagesOnly.setIconTextGap(12);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
@@ -297,7 +297,7 @@ public class AttackSourceFilterPanel extends WizardPage {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jTroopFilterButton.setBackground(new java.awt.Color(255, 51, 51));
-        jTroopFilterButton.setText("Inaktiv (klicken)");
+        jTroopFilterButton.setText(trans.get("Inaktivklicken"));
         jTroopFilterButton.setMaximumSize(new java.awt.Dimension(120, 23));
         jTroopFilterButton.setMinimumSize(new java.awt.Dimension(120, 23));
         jTroopFilterButton.setPreferredSize(new java.awt.Dimension(120, 23));
@@ -314,6 +314,7 @@ public class AttackSourceFilterPanel extends WizardPage {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jTroopFilterButton, gridBagConstraints);
+        jTroopFilterButton.getAccessibleContext().setAccessibleName(trans.get("nichts"));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("FilternnachBauernhofplaetzen")));
         jPanel5.setLayout(new java.awt.GridBagLayout());
@@ -540,10 +541,10 @@ public class AttackSourceFilterPanel extends WizardPage {
     private void fireShowTroopFilterEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowTroopFilterEvent
         if (troopFilterDialog.showDialog()) {
             jTroopFilterButton.setBackground(Color.GREEN);
-            jTroopFilterButton.setText("Aktiv");
+            jTroopFilterButton.setText(trans.get("Aktiv"));
         } else {
             jTroopFilterButton.setBackground(Color.RED);
-            jTroopFilterButton.setText("Inaktiv (klicken)");
+            jTroopFilterButton.setText(trans.get("Inaktivklicken"));
         }
     }//GEN-LAST:event_fireShowTroopFilterEvent
 
@@ -738,7 +739,7 @@ public class AttackSourceFilterPanel extends WizardPage {
         }
 
         if (ignoreCount == getModel().getRowCount()) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
         } else {
             setProblem(null);
         }
@@ -808,7 +809,7 @@ public class AttackSourceFilterPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getFilteredElements().length == 0) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

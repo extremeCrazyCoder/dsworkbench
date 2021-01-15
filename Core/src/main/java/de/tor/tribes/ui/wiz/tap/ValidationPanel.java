@@ -57,12 +57,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
     @Override
     public void fireTimeFrameChangedEvent() {
     }
-    private static final String GENERAL_INFO = "In diesem Schritt kannst du noch einmal &uuml;berpr&uuml;fen, ob deine bisherigen Einstellungen "
-            + "&uuml;berhaupt zu einem Ergebnis f&uuml;hren k&ouml;nnen. Die obere Tabelle zeigt dir alle verwendeten Herkunftsd&ouml;rfer und "
-            + "die Prozentzahl der Zield&ouml;rfer, die vom jeweiligen Herkunftsdorf erreicht werden kann.<br/>"
-            + "Die untere Tabelle zeigt dir die Zield&ouml;rfer und die Prozentzahl der Herkunftsd&ouml;rfer, die dieses Zieldorf erreichen kann. "
-            + "Je kleiner die Prozentzahl ist, desto unwahrscheinlicher ist es, dass das jeweilige Dorf f&uuml;r einem Angriff verwendet wird. "
-            + "Die Erh&ouml;hung der Prozentzahl kann &uuml;ber eine Ver&auml;nderung der Zeiteinstellungen erreicht werden.</html>";
+    private static final String GENERAL_INFO = trans.get("Info_Ergebnis");
     private static ValidationPanel singleton = null;
     private VillageOverviewMapPanel sourceOverviewPanel = null;
     private VillageOverviewMapPanel targetOverviewPanel = null;
@@ -98,7 +93,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
     }
 
     public static String getDescription() {
-        return "Überprüfung";
+        return trans.get("Ueberpruefung");
     }
 
     public static String getStep() {
@@ -149,8 +144,8 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInfo"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -168,7 +163,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
         jSourceValidationPanel.setPreferredSize(new java.awt.Dimension(400, 200));
         jSourceValidationPanel.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Mögliche Verwendungen der Herkunftsdörfer"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("MoeglicheVerwendungen")));
 
         jXTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,7 +195,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
         jSourceValidationPanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskartevergroessern"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -228,7 +223,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
         jTargetValidationPanel.setPreferredSize(new java.awt.Dimension(400, 200));
         jTargetValidationPanel.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Mögliche Verwendungen der Zieldörfer"));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("MoeglicheZieldoerfer")));
 
         jXTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -260,7 +255,7 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
         jTargetValidationPanel.add(jPanel3, gridBagConstraints);
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton2.setToolTipText("Informationskarte vergrößern");
+        jToggleButton2.setToolTipText(trans.get("Informationskartevergroessern"));
         jToggleButton2.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton2.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton2.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -288,10 +283,10 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -430,8 +425,12 @@ public class ValidationPanel extends WizardPage implements SettingsChangedListen
 
 class VillageUsageTableModel extends AbstractTableModel {
 
+    private Translator trans = TranslationManager.getTranslator("ui.wiz.tap.ValidationPanel");
+    
     private String[] columnNames = new String[]{
-        "Spieler", "Dorf", "Verwendungen"
+        trans.get("Spieler"), 
+        trans.get("Dorf"), 
+        trans.get("Verwendungen")
     };
     private Class[] types = new Class[]{
         Tribe.class, Village.class, Float.class

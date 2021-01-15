@@ -88,7 +88,7 @@ public class AttackTargetFilterPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Filterung (Ziel)";
+        return trans.get("FilterungZiel");
     }
 
     public static String getStep() {
@@ -510,7 +510,7 @@ public class AttackTargetFilterPanel extends WizardPage {
         }
 
         if (ignoreCount == getModel().getRowCount()) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
         } else {
             setProblem(null);
         }

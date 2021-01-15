@@ -52,9 +52,9 @@ public class TacticsPlanerWizard extends WizardPanelProvider {
     private static JFrame parent = null;
 
     public TacticsPlanerWizard() {
-        super("DS Workbench - Taktikplaner",
+        super(trans.get("DSWorkbenchTaktikplaner"),
                 new String[]{TAPWelcomePanel.getStep()},
-                new String[]{"Willkommen"});
+                new String[]{trans.get("Willkommen")});
     }
 
     @Override
@@ -75,7 +75,7 @@ public class TacticsPlanerWizard extends WizardPanelProvider {
             return;
         }
         parent = new JFrame();
-        parent.setTitle("Taktikplaner");
+        parent.setTitle(trans.get("Taktikplaner"));
         Wizard wizard = new TacticsPlanerBranchController().createWizard();
         parent.getContentPane().setLayout(new BorderLayout());
         System.setProperty("WizardDisplayer.default", "de.tor.tribes.ui.wiz.AttackWizardDisplayerImpl");

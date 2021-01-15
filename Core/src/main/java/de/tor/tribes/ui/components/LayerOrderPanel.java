@@ -21,6 +21,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.interfaces.LayerOrderTooltipListener;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -51,6 +53,8 @@ import javax.imageio.ImageIO;
  */
 public class LayerOrderPanel extends javax.swing.JPanel {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.LayerOrderPanel");
+    
     int activeLayer = -1;
     int focusLayer = -1;
     private List<Layer> layers = new ArrayList<>();
@@ -78,9 +82,9 @@ public class LayerOrderPanel extends javax.swing.JPanel {
                 //layer sizes are equal, so set layers in stored order
                 int cnt = 0;
                 for (String layer : layers) {
-                    if (layer.equals("Formen")) {
+                    if (layer.equals(trans.get("Formen"))) {
                         //disable old forms id
-                        v.set(cnt, "Zeichnungen");
+                        v.set(cnt, trans.get("Zeichnungen"));
                     } else {
                         v.set(cnt, layer);
                     }
@@ -99,16 +103,16 @@ public class LayerOrderPanel extends javax.swing.JPanel {
         }
 
         try {
-            iconMap.put("Angriffe", ImageIO.read(LayerOrderPanel.class.getResource("/res/barracks.png")));
-            iconMap.put("Dorfsymbole", ImageIO.read(new File("graphics/icons/village_symbols.png")));
-            iconMap.put("Zeichnungen", ImageIO.read(LayerOrderPanel.class.getResource("/res/ui/draw_small.gif")));
-            iconMap.put("Notizmarkierungen", ImageIO.read(new File("graphics/icons/note.png")));
-            iconMap.put("Dörfer", ImageIO.read(new File("graphics/icons/village.png")));
-            iconMap.put("Unterstützungen", ImageIO.read(new File("graphics/icons/def.png")));
-            iconMap.put("Markierungen", ImageIO.read(new File("graphics/icons/mark.png")));
-            iconMap.put("Truppendichte", ImageIO.read(new File("graphics/icons/village_troops.png")));
-            iconMap.put("Kirchenradien", ImageIO.read(new File("graphics/icons/church_layer.png")));
-            iconMap.put("Wachturmradien", ImageIO.read(new File("graphics/icons/watchtower_layer.png")));
+            iconMap.put(trans.get("Angriffe"), ImageIO.read(LayerOrderPanel.class.getResource("/res/barracks.png")));
+            iconMap.put(trans.get("Dorfsymbole"), ImageIO.read(new File("graphics/icons/village_symbols.png")));
+            iconMap.put(trans.get("Zeichnungen"), ImageIO.read(LayerOrderPanel.class.getResource("/res/ui/draw_small.gif")));
+            iconMap.put(trans.get("Notizmarkierungen"), ImageIO.read(new File("graphics/icons/note.png")));
+            iconMap.put(trans.get("Doerfer"), ImageIO.read(new File("graphics/icons/village.png")));
+            iconMap.put(trans.get("Unterstuetzungen"), ImageIO.read(new File("graphics/icons/def.png")));
+            iconMap.put(trans.get("Markierungen"), ImageIO.read(new File("graphics/icons/mark.png")));
+            iconMap.put(trans.get("Truppendichte"), ImageIO.read(new File("graphics/icons/village_troops.png")));
+            iconMap.put(trans.get("Kirchenradien"), ImageIO.read(new File("graphics/icons/church_layer.png")));
+            iconMap.put(trans.get("Wachturmradien"), ImageIO.read(new File("graphics/icons/watchtower_layer.png")));
         } catch (Exception ignored) {
         }
 

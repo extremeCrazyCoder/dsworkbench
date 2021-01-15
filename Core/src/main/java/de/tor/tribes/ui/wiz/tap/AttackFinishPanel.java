@@ -54,18 +54,12 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  * @author Torridity
  */
 public class AttackFinishPanel extends WizardPage {
-    private static final String GENERAL_INFO = "<html>In diesem abschlie&szlig;enden Schritt werden alle Ergebnisse der Berechnung angezeigt. "
-            + "In der oberen Tabelle sind alle Ziele aufgelistet, sowie die prozentuale Angabe, wieviele der unter 'Ziele' angegebenen Anzahl von Angriffen auf "
-            + "dieses Dorf zugeteilt werden konnten. Die Einzelangriff kannst du dir anzeigen lassen, indem du eins oder mehrere Zeilen ausw&auml;hlst und auf den "
-            + "Button 'Details' klickst.<br/>"
-            + "Bist du mit dem Ergebnis zufrieden, hast du im unteren Bereich verschiedene M&ouml;glichkeiten, alle oder ausgew&auml;hlte Angriffe in einen neuen "
-            + "Angriffsplaner der Angriffs&uuml;bersicht zu &uuml;bertragen. Fahre mit der Maus &uuml;ber die einzelnen Buttons, um dir einen Tooltip mit der "
-            + "entsprechenden Erkl&auml;rung anzeigen zu lassen."
-            + "</html>";
+     private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackFinishPanel");
+    private static final String GENERAL_INFO = trans.get("Ergebniseberechnung");
     private static AttackFinishPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
     
-    private static Translator trans = TranslationManager.getTranslator("ui.wiz.tap.AttackFinishPanel");
+   
     
     private static Logger logger = LogManager.getLogger();
     
@@ -77,7 +71,7 @@ public class AttackFinishPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Fertig";
+        return trans.get("Fertig");
     }
 
     public static String getStep() {
@@ -215,7 +209,7 @@ public class AttackFinishPanel extends WizardPage {
 
         jInfoTextPane.setEditable(false);
         jInfoTextPane.setContentType("text/html"); // NOI18N
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Herkunft"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Angriffsdetails"));
@@ -233,6 +227,8 @@ public class AttackFinishPanel extends WizardPage {
         ));
         jScrollPane2.setViewportView(jXDetailsTable);
 
+        jScrollPane2.getAccessibleContext().setAccessibleName(trans.get("Angriffsdetails"));
+
         jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
         jSummaryPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -243,6 +239,7 @@ public class AttackFinishPanel extends WizardPage {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jLabel2, gridBagConstraints);
+        jLabel2.getAccessibleContext().setAccessibleName(trans.get("AngegriffeneZiele"));
 
         jAttackedTargets.setText("0");
         jAttackedTargets.setToolTipText("");
@@ -261,6 +258,7 @@ public class AttackFinishPanel extends WizardPage {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jLabel4, gridBagConstraints);
+        jLabel4.getAccessibleContext().setAccessibleName(trans.get("ZugeteilteAngriffe"));
 
         jOverallAttacks.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -278,6 +276,7 @@ public class AttackFinishPanel extends WizardPage {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jLabel6, gridBagConstraints);
+        jLabel6.getAccessibleContext().setAccessibleName(trans.get("VerwendeteHerkunftsdoerfer"));
 
         jUsedSourceVillages.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -295,6 +294,7 @@ public class AttackFinishPanel extends WizardPage {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jLabel3, gridBagConstraints);
+        jLabel3.getAccessibleContext().setAccessibleName(trans.get("VollbelegteZiele"));
 
         jPerfectTargets.setText("0");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -304,6 +304,8 @@ public class AttackFinishPanel extends WizardPage {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jPerfectTargets, gridBagConstraints);
+
+        jSummaryPanel.getAccessibleContext().setAccessibleName(trans.get("Zusammenfassung"));
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -607,15 +609,15 @@ public class AttackFinishPanel extends WizardPage {
 
         if (!targetsToRemove.isEmpty()) {
             if (AttackTargetPanel.getSingleton().removeTargets(targetsToRemove)) {
-                JOptionPaneHelper.showInformationBox(this, targetsToRemove.size() + " Ziel(e) wurden entfernt. Wechsle nun zum vorherigen Schritt\n"
-                        + "und führe die Berechnung erneut durch.", "Information");
+                JOptionPaneHelper.showInformationBox(this, targetsToRemove.size() + trans.get("Zielwurdenentfernt")
+                        + trans.get("Berechnungerneutdurch"), trans.get("Information"));
                 ValidationPanel.getSingleton().setup();
                 AttackSourceFilterPanel.getSingleton().setup();
             } else {
-                JOptionPaneHelper.showInformationBox(this, "Es wurden alle Ziele entfernt.\nBitte wähle neue Ziele oder verwende die bisherigen Erbgenisse.", "Information");
+                JOptionPaneHelper.showInformationBox(this, trans.get("EswurdenalleZieleentfernt"), trans.get("Information"));
             }
         } else {
-            JOptionPaneHelper.showInformationBox(this, "Keine entsprechenden Ziele gefunden.", "Information");
+            JOptionPaneHelper.showInformationBox(this, trans.get("KeineentsprechendenZielegefunden"), trans.get("Information"));
         }
     }//GEN-LAST:event_fireRecalculateEvent
 
@@ -693,16 +695,16 @@ public class AttackFinishPanel extends WizardPage {
     private void changeExpertView() {
         if (jExpertView.isSelected()) {
             jScrollPane1.setViewportView(jXDetailsTable);
-            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zieldetails"));
+            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zieldetails")));
         } else {
             jScrollPane1.setViewportView(jxResultsTable);
-            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Angegriffene Ziele"));
+            jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AngegriffeneZiele")));
         }
     }
 
     private void transferToAttackView(List<Attack> pToTransfer) {
         if (pToTransfer.isEmpty()) {
-            JOptionPaneHelper.showInformationBox(this, "Keine Angriffe gewählt", "Information");
+            JOptionPaneHelper.showInformationBox(this, trans.get("KeineAngriffegewaehlt"), trans.get("Information"));
             return;
         }
 

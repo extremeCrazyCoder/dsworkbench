@@ -24,6 +24,8 @@ import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.TagUtils;
 import de.tor.tribes.util.tag.TagManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -44,6 +46,8 @@ import org.apache.commons.collections4.CollectionUtils;
  */
 public class GroupSelectionList extends IconizedList implements GenericManagerListener {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.GroupSelectionList");
+    
     private Village[] relevantVillages = null;
     private boolean expertSelection = false;
     private GroupListCellRenderer renderer = new GroupListCellRenderer();
@@ -72,7 +76,7 @@ public class GroupSelectionList extends IconizedList implements GenericManagerLi
                 } else if (e.getKeyCode() == KeyEvent.VK_I) {
                     fireSetStateEvent(ListItem.RELATION_TYPE.DISABLED);
                 } else if (e.getKeyCode() == KeyEvent.VK_H) {
-                    JOptionPaneHelper.showInformationBox(GroupSelectionList.this, getRelationAsPlainText(), "Information");
+                    JOptionPaneHelper.showInformationBox(GroupSelectionList.this, getRelationAsPlainText(), trans.get("Information") );
                 }
             }
         });
@@ -374,49 +378,49 @@ public class GroupSelectionList extends IconizedList implements GenericManagerLi
     public String getRelationAsPlainText() {
         StringBuilder b = new StringBuilder();
         if (expertSelection) {
-            b.append("Alle Dörfer die ");
+            b.append(trans.get("AlleDoeferDie"));
             boolean isFirst = true;
             for (int i = 0; i < getElementCount(); i++) {
                 ListItem current = (ListItem) getElementAt(i);
                 switch (current.getState()) {
                     case NOT:
-                        b.append("NICHT in Gruppe '").append(current.getTag()).append("' ");
+                        b.append(trans.get("NICHTinGruppe")).append(current.getTag()).append("' ");
                         isFirst = false;
                         break;
                     case AND:
                         if (isFirst) {
-                            b.append("in Gruppe '").append(current.getTag()).append("' ");
+                            b.append(trans.get("inGruppe")).append(current.getTag()).append("' ");
                             isFirst = false;
                         } else {
-                            b.append("UND in Gruppe '").append(current.getTag()).append("' ");
+                            b.append(trans.get("UNDinGruppe")).append(current.getTag()).append("' ");
                         }
                         break;
                     case OR:
                         if (isFirst) {
                             isFirst = false;
-                            b.append("in Gruppe '").append(current.getTag()).append("' ");
+                            b.append(trans.get("inGruppe")).append(current.getTag()).append("' ");
                         } else {
-                            b.append("ODER in Gruppe '").append(current.getTag()).append("' ");
+                            b.append(trans.get("ODERinGruppe")).append(current.getTag()).append("' ");
                         }
                         break;
                 }
             }
-            b.append("sind");
+            b.append(trans.get("sind"));
         } else {
             Object[] values = getSelectedValues();
             if (values.length == 0) {
-                b.append("Keine Einträge gewählt");
+                b.append(trans.get("KeineEintraegegewaehlt"));
             } else {
                 List<Tag> selection = new LinkedList<>();
                 for (Object v : values) {
                     ListItem i = (ListItem) v;
                     selection.add(i.getTag());
                 }
-                b.append("Alle Dörfer in ");
-                b.append((selection.size() == 1) ? "der Gruppe " : "den Gruppen ");
+                b.append(trans.get("AlleDoerferin"));
+                b.append((selection.size() == 1) ? trans.get("derGruppe") : trans.get("denGruppen"));
                 b.append("'").append(selection.get(0)).append("'");
                 for (int i = 1; i < selection.size(); i++) {
-                    b.append(" UND ").append("'").append(selection.get(i)).append("'");
+                    b.append(trans.get("UND")).append("'").append(selection.get(i)).append("'");
                 }
             }
         }

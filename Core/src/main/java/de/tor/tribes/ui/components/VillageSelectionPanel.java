@@ -340,7 +340,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         setPreferredSize(new java.awt.Dimension(600, 350));
         setLayout(new java.awt.GridBagLayout());
 
-        jFromClipboard.setToolTipText("Sucht in der Zwischenablage nach Dörfern und fügt diese ein. ");
+        jFromClipboard.setToolTipText(trans.get("SuchtZwischenablage"));
         jFromClipboard.setMaximumSize(new java.awt.Dimension(90, 23));
         jFromClipboard.setMinimumSize(new java.awt.Dimension(90, 23));
         jFromClipboard.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -402,7 +402,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
 
         jLabelOverallInfo.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jLabelOverallInfo.setForeground(new java.awt.Color(153, 153, 153));
-        jLabelOverallInfo.setText("<html>Elemente der Reihe nach ausw&auml;hlen. F&uuml;r eine Suche nach Elementen in die entsprechende Liste klicken und den Elementnamen tippen oder per STRG+F die Suche &ouml;ffnen. Mehrere Elemente mit gedr&uuml;ckter STRG-Taste ausw&auml;hlen.</html>");
+        jLabelOverallInfo.setText(trans.get("ElementederReihe"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -413,7 +413,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
 
         jExpertHelpLabel.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jExpertHelpLabel.setForeground(new java.awt.Color(153, 153, 153));
-        jExpertHelpLabel.setText("<html>Gruppeneintrag doppelt klicken, um Art der Verkn&uuml;pfung zu &auml;ndern. Verwendung einer Gruppe &uuml;ber <b>ENTF</b> l&ouml;schen.</html>");
+        jExpertHelpLabel.setText(trans.get("Gruppeneintrag"));
         jExpertHelpLabel.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -429,8 +429,8 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(jSeparator1, gridBagConstraints);
 
-        jButtonUseSelection.setText("Auswahl verwenden");
-        jButtonUseSelection.setToolTipText("Fügt alle gewählten Dörfer ein.");
+        jButtonUseSelection.setText(trans.get("Auswahlverwenden"));
+        jButtonUseSelection.setToolTipText(trans.get("FuegtallegewaehltenDoerferein"));
         jButtonUseSelection.setMaximumSize(new java.awt.Dimension(90, 23));
         jButtonUseSelection.setMinimumSize(new java.awt.Dimension(90, 23));
         jButtonUseSelection.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -467,7 +467,8 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jFakeBox, gridBagConstraints);
 
-        jTextFieldSearchAlly.setPrompt("Name/Tag eingeben");
+        jTextFieldSearchAlly.setToolTipText(trans.get("NameTageingeben"));
+        jTextFieldSearchAlly.setPrompt(trans.get("NameTageingebenprompt"));
         jTextFieldSearchAlly.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 fireAllyNameTagChangedEvent(evt);
@@ -480,7 +481,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jTextFieldSearchAlly, gridBagConstraints);
 
-        jAmountLabel.setText("Anzahl");
+        jAmountLabel.setText(trans.get("Anzahl"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
@@ -496,8 +497,8 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jAmountField, gridBagConstraints);
 
-        jExpertSelection.setText("Expertenansicht");
-        jExpertSelection.setToolTipText("<html>Aktiviert die Expertenansicht. Hierbei können komplexe Verknüpfungen zwischen<br/>Gruppen erstellt werden, um Gruppen gezielt ein- und auszuschließen.</html>");
+        jExpertSelection.setText(trans.get("Expertenansicht"));
+        jExpertSelection.setToolTipText(trans.get("AktiviertdieExpertenansicht"));
         jExpertSelection.setMaximumSize(new java.awt.Dimension(70, 23));
         jExpertSelection.setMinimumSize(new java.awt.Dimension(70, 23));
         jExpertSelection.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -513,7 +514,7 @@ public class VillageSelectionPanel extends javax.swing.JPanel{
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         add(jExpertSelection, gridBagConstraints);
 
-        jTextFieldSearchTribe.setPrompt("Name eingeben");
+        jTextFieldSearchTribe.setPrompt(trans.get("Nameeingeben"));
         jTextFieldSearchTribe.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 fireTribeNameTagChangedEvent(evt);

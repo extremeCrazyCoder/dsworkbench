@@ -15,6 +15,8 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,8 @@ import java.awt.event.ActionListener;
  */
 public class CapabilityInfoPanel extends javax.swing.JPanel {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.CapabilityInfoPanel");
+    
     private boolean searchable = true;
     private boolean copyable = true;
     private boolean pastable = true;
@@ -66,7 +70,7 @@ public class CapabilityInfoPanel extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.LINE_AXIS));
 
         jCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_copy.png"))); // NOI18N
-        jCopy.setToolTipText("<html><b>Kopieren/Ausschneiden von Eintr&auml;gen per STRG+C bzw. STRG+X</b><br/>In einigen Ansichten werden Eintr&auml;ge so kopiert,<br/>dass sie in genau diese oder eine vergleichbare Ansicht wieder eingef&uuml;gt werden k&ouml;nnen.<br/>\nIn anderen Ansichten werden Dorfkoordinaten kopiert,<br/>die an verschiedenen anderen Stellen aus der Zwischenablage gelesen werden k&ouml;nnen</html>");
+        jCopy.setToolTipText(trans.get("KopierenAusschneiden"));
         jCopy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCopyAction(evt);
@@ -75,7 +79,7 @@ public class CapabilityInfoPanel extends javax.swing.JPanel {
         add(jCopy);
 
         jPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/clipboard_empty.png"))); // NOI18N
-        jPaste.setToolTipText("<html><b>Einf&uuml;gen von Eintr&auml;gen per STRG+V</b><br/>In eigenen Ansichten k&ouml;nnen nur spezielle Eintr&auml;ge eingef&uuml;gt werden,<br/>die vorher aus derselben Ansicht kopiert wurden.<br/>In anderen Ansichten k&ouml;nnen Dorfkoordinaten aus beliebigen Quellen eingef&uuml;gt werden</html>");
+        jPaste.setToolTipText(trans.get("Einfuegen"));
         jPaste.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 firePasteAction(evt);
@@ -84,7 +88,7 @@ public class CapabilityInfoPanel extends javax.swing.JPanel {
         add(jPaste);
 
         jBBSupport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/bb_to_clipboard.png"))); // NOI18N
-        jBBSupport.setToolTipText("<html><b>Kopieren von Eintr&auml;gen als BB-Codes per STRG+B</b><br/>In dieser Ansicht k&ouml;nnen Eintr&auml;ge als BB-Codes in die Zwischenablage kopiert werden.<br/>Von dort aus kann man sie dann per STRG+V im Spiel in Notizen, IGMs oder das Forum einf&uuml;gen.</html>");
+        jBBSupport.setToolTipText(trans.get("KopierenEintragen"));
         jBBSupport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireBBCopyAction(evt);
@@ -93,7 +97,7 @@ public class CapabilityInfoPanel extends javax.swing.JPanel {
         add(jBBSupport);
 
         jDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_delete.png"))); // NOI18N
-        jDelete.setToolTipText("<html><b>L&ouml;schen von Eintr&auml;gen per ENTF</b></html>");
+        jDelete.setToolTipText(trans.get("delete"));
         jDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireDeleteAction(evt);
@@ -102,7 +106,7 @@ public class CapabilityInfoPanel extends javax.swing.JPanel {
         add(jDelete);
 
         jFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_find.png"))); // NOI18N
-        jFind.setToolTipText("<html><b>Suchen nach Eintr&auml;gen per STRG+F</b></html>");
+        jFind.setToolTipText(trans.get("Suche"));
         jFind.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireFindAction(evt);

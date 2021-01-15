@@ -18,6 +18,8 @@ package de.tor.tribes.ui.components;
 import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.BrowserInterface;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.TexturePaint;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -33,6 +35,9 @@ import org.jdesktop.swingx.painter.MattePainter;
  */
 public class WelcomePanel extends JXPanel {
 
+    
+    private Translator trans = TranslationManager.getTranslator("ui.components.WelcomePanel");
+    
     private HashMap<JXLabel, String> welcomeTooltipMap = new HashMap<>();
     private BufferedImage back = null;
 
@@ -78,7 +83,7 @@ public class WelcomePanel extends JXPanel {
         jWelcomePane.setOpaque(false);
         jWelcomePane.setLayout(new java.awt.GridBagLayout());
 
-        jContentLabel.setText("<html>\n<h2 style=\"color:#953333\">Willkommen bei DS Workbench </h2>\n<p>Wenn du diese Seite siehst, dann hast du DS Workbench erfolgreich installiert und die ersten Schritte ebenso erfolgreich gemeistert. Eigentlich steht nun einer unbeschwerten Angriffsplanung und -durchf&uuml;hrung nichts mehr im Wege. \nErlaube mir trotzdem kurz auf einige Dinge hinzuweisen, die dir m&ouml;glicherweise beim <b>Umgang mit DS Workbench helfen</b> oder aber dir die M&ouml;glichkeit geben, einen wichtigen Teil zur <b>Weiterentwicklung und stetigen Verbesserung</b> dieses Programms beizutragen. \n Fahre einfach mit der Maus &uuml;ber eins der vier Symbole in den Ecken, um hilfreiche und interessante Informationen rund um DS Workbench zu erfahren. Klicke auf ein Symbol, um direkt zum entsprechenden Ziel zu gelangen. <br>\n<h3 style=\"color:#953333\"> Nun aber viel Spa&szlig; mit DS Workbench.</h3>\n</html>");
+        jContentLabel.setText(trans.get("WillkommenbeiDSWorkbench"));
         jContentLabel.setMinimumSize(new java.awt.Dimension(300, 300));
         jContentLabel.setPreferredSize(new java.awt.Dimension(300, 300));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -179,9 +184,9 @@ public class WelcomePanel extends JXPanel {
 
         jxCloseLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jxCloseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jxCloseLabel.setText("Danke, ich möchte DS Workbench nun verwenden.");
+        jxCloseLabel.setText(trans.get("DankeDSWorkbenchverwenden."));
         jxCloseLabel.setEnabled(false);
-        jxCloseLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jxCloseLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jxCloseLabel.setMaximumSize(new java.awt.Dimension(319, 40));
         jxCloseLabel.setMinimumSize(new java.awt.Dimension(319, 40));
         jxCloseLabel.setPreferredSize(new java.awt.Dimension(319, 40));

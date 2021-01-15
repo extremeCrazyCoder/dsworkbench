@@ -16,6 +16,8 @@
 package de.tor.tribes.ui.components;
 
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -33,10 +35,12 @@ import javax.swing.*;
  */
 public class DateTimeField extends javax.swing.JPanel {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.DateTimeField");
+    
     private DatePicker dp;
     private TimePicker tp;
     private JDialog dlg;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private SimpleDateFormat dateFormat = new SimpleDateFormat(trans.get("ddMMyyyy"));
     private SimpleDateFormat timeFormat;
     private boolean timeEnabled = true;
     private boolean dateEnabled = true;
@@ -47,9 +51,9 @@ public class DateTimeField extends javax.swing.JPanel {
      */
     public DateTimeField() {
         if(ServerSettings.getSingleton().isMillisArrival()) {
-            timeFormat = new SimpleDateFormat("HH:mm:ss:SSS");
+            timeFormat = new SimpleDateFormat(trans.get("HHmmssSSS"));
         } else {
-            timeFormat = new SimpleDateFormat("HH:mm:ss");
+            timeFormat = new SimpleDateFormat(trans.get("HHmmss"));
         }
         
         initComponents();
@@ -267,7 +271,7 @@ public class DateTimeField extends javax.swing.JPanel {
             Point point = jDateField.getLocationOnScreen();
             point.setLocation(point.getX(), (point.getY() - 1.0D) + jDateField.getSize().getHeight());
             dlg = new JDialog(new JFrame(), true);
-            dlg.setTitle("Datum auswählen");
+            dlg.setTitle(trans.get("Datumauswaehlen"));
             dlg.setLocation(point);
             //dlg.setResizable(false);
             //dlg.setUndecorated(true);
@@ -290,7 +294,7 @@ public class DateTimeField extends javax.swing.JPanel {
             dlg = new JDialog(new JFrame(), true);
             tp.setParent(dlg);
             dlg.setLocation(point);
-            dlg.setTitle("Zeit auswählen");
+            dlg.setTitle(trans.get("Zeitauswaehlen"));
             // dlg.setResizable(false);
             dlg.setUndecorated(false);
             JPanel p = new JPanel();

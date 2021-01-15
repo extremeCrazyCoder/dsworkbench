@@ -44,18 +44,7 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
         setProblem(null);
     }
     
-    private static final String GENERAL_INFO = "Die Zeiteinstellungen dienen dazu, die m&ouml;glichen Angriffe zeitlich einzuordnen. "
-            + "Die grobe Einordnung aller Angriffe geschieht &uuml;ber die beiden Felder 'Startdatum' und 'Enddatum'. DS Workbench "
-            + "wird keinen Angriff vor bzw. nach diesen Daten planen. Je gr&ouml;&szlig;er der Abstand zwischen diesen Zeitpunkten ist, "
-            + "desto l&auml;nger dauert die Berechnung.<br/>"
-            + "Eine genauere Festlegung von Abschick- und Ankunftzeiten geschieht anschlie&szlig;end &uuml;ber die Zeitrahmen."
-            + "Hier gibt es die folgenden M&ouml;glichkeiten:"
-            + "<ul><li>Immer: Zeitrahmen von diesem Typ gelten an jedem Tag zwischen den angegebenen Stunden</li> "
-            + "<li>Tag: Zeitrahmen von diesem Typ gelten nur an dem festgelegten Tag zwischen den angegebenen Stunden</li>"
-            + "<li>Zeitpunkt: Elemente von diesem Typ gelten an dem festgelegten Tag und zu der festgelegten Uhrzeit. Sie sind daher vorrangig f&uuml;r die Ankunft von Angriffen gedacht.</li>"
-            + "</ul>"
-            + "Eingestellte Zeitrahmen werden per Drag&amp;Drop in die Zeitrahmenliste gezogen und k&ouml;nnen mit ENTF wieder gel&ouml;scht werden."
-            + "Um eine Berechnung durchzuf&uuml;hren, wird mindestens ein Abschick- und ein Ankunftzeitrahmen ben&ouml;tigt.</html>";
+    private static final String GENERAL_INFO = trans.get("DieZeiteinstellung");
     private static TimeSettingsPanel singleton = null;
     private AttackTimePanel timePanel = null;
 
@@ -79,7 +68,7 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
     }
 
     public static String getDescription() {
-        return "Zeiteinstellungen";
+        return trans.get("Zeiteinstellungen");
     }
 
     public static String getStep() {
@@ -161,9 +150,9 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -177,8 +166,8 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInformationenEinAus"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -205,10 +194,10 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -226,7 +215,7 @@ public class TimeSettingsPanel extends WizardPage implements SettingsChangedList
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (!getTimeFrame().isValid()) {
-            setProblem("Zeiteinstellungen unvollständig");
+            setProblem(trans.get("Zeiteinstellungenunvollstaendig"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         ValidationPanel.getSingleton().setup();

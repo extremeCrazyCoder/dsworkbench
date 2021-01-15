@@ -28,6 +28,8 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.ImageManager;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.attack.StandardAttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -47,6 +49,9 @@ import org.jdom2.Element;
  */
 public class Attack extends ManageableType implements Serializable, Comparable<Attack>, BBSupport {
 
+    
+    private Translator trans = TranslationManager.getTranslator("types.Attack");
+    
     private static Logger logger = LogManager.getLogger("AttackTableModel");
 
     private final static String[] VARIABLES = new String[]{
@@ -389,12 +394,12 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
         SimpleDateFormat sdf;
         if(ServerSettings.getSingleton().isMillisArrival()) {
             if(pExtended) {
-                sdf = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.'[size=8]'SSS'[/size]'");
+                sdf = new SimpleDateFormat(trans.get("Time1"));
             } else {
-                sdf = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.SSS");
+                sdf = new SimpleDateFormat(trans.get("Time2"));
             }
         } else {
-            sdf = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss");
+            sdf = new SimpleDateFormat(trans.get("Time3"));
         }
         sendVal = sdf.format(sTime);
         arriveVal = sdf.format(aTime);
@@ -404,23 +409,23 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
         String typeVal = "";
         switch (type) {
             case Attack.CLEAN_TYPE: {
-                typeVal = "Angriff (Clean-Off)";
+                typeVal = trans.get("AngriffCleanOff");
                 break;
             }
             case Attack.FAKE_TYPE: {
-                typeVal = "Angriff (Fake)";
+                typeVal = trans.get("AngriffFake");
                 break;
             }
             case Attack.SNOB_TYPE: {
-                typeVal = "Angriff (AG)";
+                typeVal = trans.get("AngriffAG");
                 break;
             }
             case Attack.SUPPORT_TYPE: {
-                typeVal = "Unterstützung";
+                typeVal = trans.get("Unterstuetzung");
                 break;
             }
             default: {
-                typeVal = "Angriff";
+                typeVal = trans.get("Angriff");
             }
         }
         
@@ -520,7 +525,7 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
             typeVal, stdName, unitVal,
             attackerVal, sourceVal, attackerNoBBVal, sourceNoBBVal, attackerAllyVal, attackerAllyNoBBVal, attackerAllyNameVal,
             defenderVal, targetVal, defenderNoBBVal, targetNoBBVal, defenderAllyVal, defenderAllyNoBBVal, defenderAllyNameVal,
-            sendVal, arriveVal, runtimeVal, "[url=\"" + placeURL + "\"]Versammlungsplatz[/url]", placeURLVal};
+            sendVal, arriveVal, runtimeVal, "[url=\"" + placeURL + "\"]" + trans.get("Versammlungsplatz") + " [/url]", placeURLVal};
     }
     
     @Override

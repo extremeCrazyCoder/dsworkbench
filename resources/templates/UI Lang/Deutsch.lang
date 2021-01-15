@@ -1,3 +1,63 @@
+ui.compoents.ProfileQuickChangePanel.Standard=Standard
+ui.compoents.ProfileQuickChangePanel.ProfilSchnellauswahl=Profil-Schnellauswahl
+ui.compoents.ProfileQuickChangePanel.Schnellauswahl=Erlaubt die Schnellauswahl des Benutzerprofils mit dem Transporte in den Browser übertragen werden
+
+ui.compoents.LayerOrderPanel.Formen=Formen
+ui.compoents.LayerOrderPanel.Zeichnungen=Zeichnungen
+ui.compoents.LayerOrderPanel.Angriffe=Angriffe
+ui.compoents.LayerOrderPanel.Dorfsymbole=Dorfsymbole
+ui.compoents.LayerOrderPanel.Notizmarkierungen=Notizmarkierungen
+ui.compoents.LayerOrderPanel.Doerfer=D\u00f6rfer
+ui.compoents.LayerOrderPanel.Unterstuetzungen=Unterst\u00fctzungen
+ui.compoents.LayerOrderPanel.Markierungen=Markierungen
+ui.compoents.LayerOrderPanel.Truppendichte=Truppendichte
+ui.compoents.LayerOrderPanel.Kirchenradien=Kirchenradien
+ui.compoents.LayerOrderPanel.Wachturmradien=Wachturmradien
+
+ui.compoents.DateTimeField.ddMMyyyy=dd.MM.yyyy
+ui.compoents.DateTimeField.HHmmssSSS=HH:mm:ss:SSS
+ui.compoents.DateTimeField.HHmmss=HH:mm:ss
+ui.compoents.DateTimeField.Datumauswaehlen=Datum ausw\u00e4hlen
+ui.compoents.DateTimeField.Zeitauswaehlen=Zeit ausw\u00e4hlen
+
+ui.compoents.GroupSelectionList.Information=Information
+ui.compoents.GroupSelectionList.AlleDoeferDie=Alle D\u00f6rfer die
+ui.compoents.GroupSelectionList.NICHTinGruppe=NICHT in Gruppe '
+ui.compoents.GroupSelectionList.inGruppe=in Gruppe '
+ui.compoents.GroupSelectionList.UNDinGruppe=UND in Gruppe '
+ui.compoents.GroupSelectionList.ODERinGruppe=ODER in Gruppe '
+ui.compoents.GroupSelectionList.sind=sind
+ui.compoents.GroupSelectionList.KeineEintraegegewaehlt=Keine Eintr\u00e4ge gew\u00e4hlt
+ui.compoents.GroupSelectionList.AlleDoerferin=Alle D\u00f6rfer in
+ui.compoents.GroupSelectionList.derGruppe=der Gruppe
+ui.compoents.GroupSelectionList.denGruppen=den Gruppen
+ui.compoents.GroupSelectionList.UND=UND
+
+ui.compoents.FillingLabel.keine=keine
+
+ui.compoents.DatePicker.MMMMMyyyy=MMMMM yyyy
+ui.compoents.DatePicker.Mo=Mo
+ui.compoents.DatePicker.Di=Di
+ui.compoents.DatePicker.Mi=Mi
+ui.compoents.DatePicker.Do=Do
+ui.compoents.DatePicker.Fr=Fr
+ui.compoents.DatePicker.Sa=Sa
+ui.compoents.DatePicker.So=So
+ui.compoents.DatePicker.Juli=Juli 2018
+ui.compoents.DatePicker.Heute=Heute
+ui.compoents.DatePicker.OK=OK
+
+ui.compoents.CapabilityInfoPanel.KopierenAusschneiden=<html><b>Kopieren/Ausschneiden von Eintr\u00e4gen per STRG+C bzw. STRG+X</b><br/>In einigen Ansichten werden Eintr\u00e4ge so kopiert,<br/>dass sie in genau diese oder eine vergleichbare Ansicht wieder eingef\u00fcgt werden k\u00f6nnen.<br/>In anderen Ansichten werden Dorfkoordinaten kopiert,<br/>die an verschiedenen anderen Stellen aus der Zwischenablage gelesen werden k\u00f6nnen</html>
+ui.compoents.CapabilityInfoPanel.Einfuegen=<html><b>Einf\u00fcgen von Eintr\u00e4gen per STRG+V</b><br/>In eigenen Ansichten k\u00f6nnen nur spezielle Eintr\u00e4ge eingef\u00fcgt werden,<br/>die vorher aus derselben Ansicht kopiert wurden.<br/>In anderen Ansichten k\u00f6nnen Dorfkoordinaten aus beliebigen Quellen eingef\u00fcgt werden</html>
+ui.compoents.CapabilityInfoPanel.KopierenEintragen=<html><b>Kopieren von Eintr\u00e4gen als BB-Codes per STRG+B</b><br/>In dieser Ansicht k\u00f6nnen Eintr\u00e4ge als BB-Codes in die Zwischenablage kopiert werden.<br/>Von dort aus kann man sie dann per STRG+V im Spiel in Notizen, IGMs oder das Forum einf\u00fcgen.</html>
+ui.compoents.CapabilityInfoPanel.delete=<html><b>L\u00f6schen von Eintr\u00e4gen per ENTF</b></html>
+ui.compoents.CapabilityInfoPanel.Suche=<html><b>Suchen nach Eintr\u00e4gen per STRG+F</b></html>
+
+ui.compoents.ClickAccountPanel.Klickaufgeladen=Klick(s) aufgeladen
+ui.compoents.ClickAccountPanel.KlickKonto=Klick-Konto
+ui.compoents.ClickAccountPanel.Klick_Konto=Klick-Konto [%d]
+ui.compoents.ClickAccountPanel.KeineKlicks=0 Klick(s) aufgeladen
+
 ui.models.AttackTableModel.attacker=Angreifer
 ui.models.AttackTableModel.attacker_tribe=Stamm (Angreifer)
 ui.models.AttackTableModel.source=Herkunft
@@ -13,7 +73,6 @@ ui.models.AttackTableModel.remaining=Verbleibend
 ui.models.AttackTableModel.show_on_map=Einzeichnen
 ui.models.AttackTableModel.transfer=\u00DCbertragen
 ui.models.AttackTableModel.times=Mult
-
 
 ui.models.AttackTypeTableModel.Name=Name
 ui.models.AttackTypeTableModel.Symbol=Symbol
@@ -79,17 +138,6 @@ ui.models.FarmTableModel.UEbertragen=\u00DCbertragen
 ui.models.FarmTableModel.Erfolgsquote=Erfolgsquote
 ui.models.FarmTableModel.unbekannt=unbekannt
 ui.models.FarmTableModel.KeineTruppenunterwegs=Keine Truppen unterwegs
-
-ui.models.ConquerTableModel.Dorf=Dorf
-ui.models.ConquerTableModel.Dorfpunkte=Dorfpunkte
-ui.models.ConquerTableModel.Kontinent=Kontinent
-ui.models.ConquerTableModel.Geadeltam=Geadelt am
-ui.models.ConquerTableModel.Verlierer=Verlierer
-ui.models.ConquerTableModel.StammVerlierer=Stamm Verlierer
-ui.models.ConquerTableModel.Gewinner=Gewinner
-ui.models.ConquerTableModel.StammGewinner=Stamm Gewinner
-ui.models.ConquerTableModel.Zustimmung=Zustimmung
-ui.models.ConquerTableModel.Entfernung=Entfernung
 
 ui.models.FormTableModel.Name=Name
 ui.models.FormTableModel.Typ=Typ
@@ -256,10 +304,22 @@ ui.models.WatchtowerTableModel.Dorf=Dorf
 ui.models.WatchtowerTableModel.Stufe=Stufe
 ui.models.WatchtowerTableModel.Farbe=Farbe
 
-ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html>Du befindest dich in der Dorfauswahl. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, mit denen du angreifen m&ouml;chtest. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:<ul> <li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Gruppen der Gruppen&uuml;bersicht</li></ul></html>
-
+ui.wiz.tap.AttackSourcePanel.Help_attackmodus=<html>Du befindest dich in der Dorfauswahl. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, mit denen du angreifen m\u00f6chtest. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul> <li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Gruppen der Gruppen\u00fcbersicht</li></ul></html>
 ui.wiz.tap.AttackSourcePanel.InformationPanel=Informationen Einblenden
 ui.wiz.tap.AttackSourcePanel.VerwendeteDoerfer=Verwendete D\u00f6rfer
+ui.wiz.tap.AttackSourcePanel.DoerferindenenAGsvorhandensind=F\u00fcr D\u00f6rfer in denen AGs vorhanden sind die langsamste Einheit auf AG setzen
+ui.wiz.tap.AttackSourcePanel.GewaehlteDoerferduplizieren=Gew\u00e4hlte D\u00f6rfer duplizieren, indem sie nach Truppen gesplittet werden
+ui.wiz.tap.AttackSourcePanel.Dorfgewaehlt=Dorf/D\u00f6rfer gew\u00e4hlt
+ui.wiz.tap.AttackSourcePanel.Herkunft=Herkunft
+ui.wiz.tap.AttackSourcePanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.AttackSourcePanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.AttackSourcePanel.Einheitin=Einheit in
+ui.wiz.tap.AttackSourcePanel.DorfaufAGgeaendert=Dorf/D\u00f6rfern auf AG ge\u00e4ndert
+ui.wiz.tap.AttackSourcePanel.Dorfeingefuegt=Dorf/D\u00f6rfer eingef\u00fcgt
+ui.wiz.tap.AttackSourcePanel.Dorfentfernt=Dorf/D\u00f6rfer entfernt
+ui.wiz.tap.AttackSourcePanel.KeineDoerfergewaehlt=Keine D\u00f6rfer gew\u00e4hlt
+ui.wiz.tap.AttackSourcePanel.BlendetInformationen=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.AttackSourcePanel.Informationskartevergroessern=Informationskarte vergr\u00f6\u00dfern
 
 ui.wiz.tap.AttackFinishPanel.Zusammenfassunganzeigen=Zusammenfassung anzeigen
 ui.wiz.tap.AttackFinishPanel.AbschliessendeAktionen=Abschlie\u00dfende Aktion
@@ -272,10 +332,36 @@ ui.wiz.tap.AttackFinishPanel.AngegriffeneZiele=Angegriffene Ziele
 ui.wiz.tap.AttackFinishPanel.Informationeneinblenden=Informationen einblenden
 ui.wiz.tap.AttackFinishPanel.Informationenausblenden=Informationen ausblenden
 ui.wiz.tap.AttackFinishPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
-ui.wiz.tap.AttackFinishPanel.Zieleentfernenaufdieweniger=<html>Ziele entfernen, auf die weniger als die unten angezeigte Prozentzahl der max. Angriffe laufen.<br/>Durch die Entfernung werden ggf. Herkunftsd&ouml;rfer 'frei', die f\u00fcr andere Ziele verwendet werden k\u00f6nnen.</html>
+ui.wiz.tap.AttackFinishPanel.Zieleentfernenaufdieweniger=<html>Ziele entfernen, auf die weniger als die unten angezeigte Prozentzahl der max. Angriffe laufen.<br/>Durch die Entfernung werden ggf. Herkunftsd\u00f6rfer 'frei', die f\u00fcr andere Ziele verwendet werden k\u00f6nnen.</html>
 ui.wiz.tap.AttackFinishPanel.Expertenansicht=Expertenansicht
 ui.wiz.tap.AttackFinishPanel.Informationskartevergroessern=Informationskartevergr\u00f6\u00dfern
+ui.wiz.tap.AttackFinishPanel.Ergebniseberechnung=<html>In diesem abschlie\u00dfenden Schritt werden alle Ergebnisse der Berechnung angezeigt. In der oberen Tabelle sind alle Ziele aufgelistet, sowie die prozentuale Angabe, wieviele der unter 'Ziele' angegebenen Anzahl von Angriffen auf dieses Dorf zugeteilt werden konnten. Die Einzelangriff kannst du dir anzeigen lassen, indem du eins oder mehrere Zeilen ausw\u00e4hlst und auf den Button 'Details' klickst.<br/>Bist du mit dem Ergebnis zufrieden, hast du im unteren Bereich verschiedene M\u00f6glichkeiten, alle oder ausgew\u00e4hlte Angriffe in einen neuen Angriffsplaner der Angriffs\u00fcbersicht zu \u00fcbertragen. Fahre mit der Maus \u00fcber die einzelnen Buttons, um dir einen Tooltip mit der entsprechenden Erkl\u00e4rung anzeigen zu lassen.</html>
+ui.wiz.tap.AttackFinishPanel.Fertig=Fertig
+ui.wiz.tap.AttackFinishPanel.Zielwurdenentfernt=Ziel(e) wurden entfernt. Wechsle nun zum vorherigen Schritt\n
+ui.wiz.tap.AttackFinishPanel.Berechnungerneutdurch=und f\u00fchre die Berechnung erneut durch.
+ui.wiz.tap.AttackFinishPanel.Information=Information
+ui.wiz.tap.AttackFinishPanel.EswurdenalleZieleentfernt=Es wurden alle Ziele entfernt.\nBitte w\u00e4hle neue Ziele oder verwende die bisherigen Erbgenisse.
+ui.wiz.tap.AttackFinishPanel.KeineentsprechendenZielegefunden=Keine entsprechenden Ziele gefunden.
+ui.wiz.tap.AttackFinishPanel.Zieldetails=Ziel details
+ui.wiz.tap.AttackFinishPanel.KeineAngriffegewaehlt=Keine Angriffe gew\u00e4hlt
+ui.wiz.tap.AttackFinishPanel.Angriffsmodus_Herkunft=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
+ui.wiz.tap.AttackFinishPanel.Angriffsdetails=Angriffsdetails
+ui.wiz.tap.AttackFinishPanel.Zusammenfassung=Zusammenfassung
+ui.wiz.tap.AttackFinishPanel.VollbelegteZiele=Voll belegte Ziele
+ui.wiz.tap.AttackFinishPanel.VerwendeteHerkunftsdoerfer=Verwendete Herkunftsd\u00f6rfer
+ui.wiz.tap.AttackFinishPanel.ZugeteilteAngriffe=Zugeteilte Angriffe
 
+ui.wiz.tap.AttackCalculationPanel.Angriffsmodus_Text=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
+ui.wiz.tap.AttackCalculationPanel.ZuweisenFakes=<html>Erlaubt das Zuweisen von Fakes auf Off-Ziele, die nicht mit Offs belegt werden konnten.<br/>Aktiviere diese Option, falls keine Fakes zugewiesen werden konnten  oder zuviele Off-Ziele \u00fcbrig bleiben.</html>
+ui.wiz.tap.AttackCalculationPanel.Berechnung=Berechnung
+ui.wiz.tap.AttackCalculationPanel.VorherigeBerechnungverwerfen=Vorherige Berechnung verwerfen
+ui.wiz.tap.AttackCalculationPanel.Berechnungverwerfen=Berechnung verwerfen
+ui.wiz.tap.AttackCalculationPanel.Nein=Nein
+ui.wiz.tap.AttackCalculationPanel.Ja=Ja
+ui.wiz.tap.AttackCalculationPanel.BerechnungerzieltekeineErgebnisse=Berechnung erzielte keine Ergebnisse
+ui.wiz.tap.AttackCalculationPanel.Angriffeberechnen=Angriffe berechnen
+ui.wiz.tap.AttackCalculationPanel.NochkeineBerechnungdurchgefuehrt=Noch keine Berechnung durchgef\u00fchrt
+ui.wiz.tap.AttackCalculationPanel.BerechnungAngriffe="<html>Bist du hier angekommen, steht einer Berechnung der Angriffe nichts mehr im Wege. Im oberen Bereich werden noch einmal Informationen zu den bisherigen Einstellungen angezeigt, im mittleren Bereich k\u00f6nnen letzte Einstellungen vorgenommen werden, die im Normalfall jedoch nicht ver\u00e4ndert werden m\u00fcssen. Mit einem Klick auf 'Angriffe berechnen' startet die Berechnung.</html>
 ui.wiz.tap.AttackCalculationPanel.Informationeneinblenden=Informationen einblenden
 ui.wiz.tap.AttackCalculationPanel.Informationenausblenden=Informationen ausblenden
 ui.wiz.tap.AttackCalculationPanel.Abbrechen=Abbrechen
@@ -296,7 +382,8 @@ ui.wiz.tap.AttackCalculationPanel.Fakess=<html>&nbsp;&nbsp;&nbsp;Fakes</html>
 ui.wiz.tap.AttackCalculationPanel.Einstellungen=Einstellungen
 ui.wiz.tap.AttackCalculationPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
 
-ui.wiz.tap.AttackSourceFilterPanel.Filterauswahl=<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew\u00e4hlte Herkunftsd\u00f6rfer herausfiltern, wenn sie nicht bestimmten Kriterien entsprechen. M\u00f6gliche Filterkriterien sind:<ul> <li>D&ouml;rfer werden bereits in einem Angriffsplan verwendet</li> <li>D&ouml;rfer geh&ouml;ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D&ouml;rfer zu entfernen, die aufgrund ihrer Gruppenzugeh&ouml;rigkeit in die Auswahl gelangt sind, zu entfernen.</li> <li>Die Anzahl der belegten Bauernhofpl\u00e4tze in einem Dorf ist kleiner als ein bestimmter Wert</li> <li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li></ul>Nach einer \u00c4nderung der Filtereinstellungen muss die Filterung aktualisiert werden. Herausgefilterte D&ouml;rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D&ouml;rfer, die herausgefiltert wurden.</html>
+ui.wiz.tap.AttackSourceFilterPanel.Filterauswahl=<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew\u00e4hlte Herkunftsd\u00f6rfer herausfiltern, wenn sie nicht bestimmten Kriterien entsprechen. M\u00f6gliche Filterkriterien sind:<ul> <li>D\u00f6rfer werden bereits in einem Angriffsplan verwendet</li> <li>D\u00f6rfer geh\u00f6ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D\u00f6rfer zu entfernen, die aufgrund ihrer Gruppenzugeh\u00f6rigkeit in die Auswahl gelangt sind, zu entfernen.</li> <li>Die Anzahl der belegten Bauernhofpl\u00e4tze in einem Dorf ist kleiner als ein bestimmter Wert</li> <li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li></ul>Nach einer \u00c4nderung der Filtereinstellungen muss die Filterung aktualisiert werden. Herausgefilterte D\u00f6rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D\u00f6rfer, die herausgefiltert wurden.</html>
+ui.wiz.tap.AttackSourceFilterPanel.AngriffsmodusHerkunft=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
 ui.wiz.tap.AttackSourceFilterPanel.Informationeneinblenden=Informationen einblenden
 ui.wiz.tap.AttackSourceFilterPanel.Informationenausblenden=Informationen ausblenden
 ui.wiz.tap.AttackSourceFilterPanel.TruppenSonstiges=Truppen & Sonstiges
@@ -314,6 +401,14 @@ ui.wiz.tap.AttackSourceFilterPanel.GewaelteDoerferignorieren=Gew\u00e4hlte D\u00
 ui.wiz.tap.AttackSourceFilterPanel.GewaehlteDoerfernichtignorieren=Gew\u00e4hlte D\u00e4hrfer nicht ignorieren
 ui.wiz.tap.AttackSourceFilterPanel.GefilterteEintraegeloeschen=Gefilterte Eintr\u00e4ge l\u00e4schen
 ui.wiz.tap.AttackSourceFilterPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
+ui.wiz.tap.AttackSourceFilterPanel.AngriffsmodusHerkunft=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
+ui.wiz.tap.AttackSourceFilterPanel.Informationen=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.AttackSourceFilterPanel.Ignoriert_Herkunft=Ignoriert alle Herkunftsd\u00f6rfer die nicht dem Spieler geh\u00f6ren, f\u00fcr den das aktuelle Profil gilt.
+ui.wiz.tap.AttackSourceFilterPanel.Inaktivklicken=Inaktiv (klicken)
+ui.wiz.tap.AttackSourceFilterPanel.FilterungHerkunft=Filterung (Herkunft)
+ui.wiz.tap.AttackSourceFilterPanel.Aktiv=Aktiv
+ui.wiz.tap.AttackSourceFilterPanel.AlleDoerferwerdenignoriert=Alle D\u00f6rfer werden ignoriert
+ui.wiz.tap.AttackSourceFilterPanel.nichts=nichts
 
 ui.wiz.tap.AttackTargetFilterPanel.DubefindestdichinderFilterauswahl=<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew\u00e4hlte Herkunftsd\u00f6rfer herausfiltern, wenn sie nicht bestimmten Kriterien entsprechen. M\u00f6gliche Filterkriterien sind:<ul> <li>D\u00f6rfer werden bereits in einem Angriffsplan verwendet</li> <li>D\u00f6rfer geh\u00f6ren nicht dem momentan aktiven Spieler. Diese Option dient dazu, D\u00f6rfer zu entfernen, die aufgrund ihrer Gruppenzugeh\u00f6rigkeit in die Auswahl gelangt sind, zu entfernen.</li><li>Die Anzahl der belegten Bauernhofpl\u00e4tze in einem Dorf ist kleiner als ein bestimmter Wert</li><li>Die im Dorf stationierten Truppen entsprechen nicht bestimmten Vorgaben.</li></ul> Nach einer \u00c4nderung der Filtereinstellungen muss die Filterung aktualisiert werden. Herausgefilterte D\u00f6rfer sind dann in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D\u00f6rfer, die herausgefiltert wurden.</html>
 ui.wiz.tap.AttackTargetFilterPanel.Informationeneinblenden=Informationen einblenden
@@ -327,6 +422,8 @@ ui.wiz.tap.AttackTargetFilterPanel.GewaelteDoerferignorieren=Gew\u00e4hlte D\u00
 ui.wiz.tap.AttackTargetFilterPanel.GewaehlteDoerfernichtignorieren=Gew\u00e4hlte D\u00e4hrfer nicht ignorieren
 ui.wiz.tap.AttackTargetFilterPanel.GefilterteEintraegeloeschen=Gefilterte Eintr\u00e4ge l\u00e4schen
 ui.wiz.tap.AttackTargetFilterPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
+ui.wiz.tap.AttackTargetFilterPanel.FilterungZiel=Filterung (Ziel)
+ui.wiz.tap.AttackTargetFilterPanel.AlleDoerferwerdenignoriert=Alle D\u00f6rfer werden ignoriert
 
 ui.wiz.tap.AttackTargetPanel.ZielauswahlplanendenAngriffe=<html>Du befindest dich in der Zielauswahl f\u00fcr die zu planenden Angriffe. W\u00e4hle die D\u00f6rfer aus die du angreifen magst und f\u00fcge sie \u00fcber den entsprechenden Button ein. Du kannst DS Workbench per STRG+V auch dazu veranlassen, in der Zwischenablage nach Dorfkoordinaten zu suchen.<br/>Willst du mehrere Angriffe auf ein Dorf durchf\u00fchren, so f\u00fcge diese entsprechenden D\u00f6rfer einfach mehrmals ein.</html>
 ui.wiz.tap.AttackTargetPanel.Informationeneinblenden=Informationen einblenden
@@ -336,72 +433,58 @@ ui.wiz.tap.AttackTargetPanel.AnzugreifendeDoerfer=Anzugreifende D\u00f6rfer
 ui.wiz.tap.AttackTargetPanel.Informationskartevergroessern=Informationskarte vergr\u00e4\u00dfern
 ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufFakeZielesetzen=Gew\u00e4hltes Ziel Auf "Fake-Ziel" setzen
 ui.wiz.tap.AttackTargetPanel.GewaehlteZieleaufKeinFakeZielesetzen=Gew\u00e4hlte Ziele auf "Keine Fake-Ziele" setzen
+ui.wiz.tap.AttackTargetPanel.Ziele=Ziele
+ui.wiz.tap.AttackTargetPanel.Dorfgewaehlt=Dorf/D\u00f6rfer gew\u00e4hlt
+ui.wiz.tap.AttackTargetPanel.KeineZielegewaehlt=Keine Ziele gew\u00e4hlt
+ui.wiz.tap.AttackTargetPanel.Dorfeingefuegt=Dorf/D\u00f6rfer eingef\u00fcgt
+ui.wiz.tap.AttackTargetPanel.Dorfentfernt=Dorf/D\u00f6rfer entfernt
 
 ui.components.VillageSelectionPanel.AlsFakeeinfuegen=Als Fake einf\u00fcgen
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
-ui.components.VillageSelectionPanel.
+ui.components.VillageSelectionPanel.NameTageingeben=Name/Tag eingeben
+ui.components.VillageSelectionPanel.NameTageingebenprompt=Name/Tag eingeben
+ui.components.VillageSelectionPanel.Nameeingeben=Name eingeben
+ui.components.VillageSelectionPanel.AktiviertdieExpertenansicht=<html>Aktiviert die Expertenansicht. Hierbei k\u00f6nnen komplexe Verkn\u00fcpfungen zwischen<br/>Gruppen erstellt werden, um Gruppen gezielt ein- und auszuschließen.</html>
+ui.components.VillageSelectionPanel.Gruppeneintrag=<html>Gruppeneintrag doppelt klicken, um Art der Verkn\u00fcpfung zu \u00e4ndern. Verwendung einer Gruppe \u00fcber <b>ENTF</b> l\u00f6schen.</html>
+ui.components.VillageSelectionPanel.ElementederReihe=<html>Elemente der Reihe nach ausw\u00e4hlen. F\u00fcr eine Suche nach Elementen in die entsprechende Liste klicken und den Elementnamen tippen oder per STRG+F die Suche \u00f6ffnen. Mehrere Elemente mit gedr\u00fcckter STRG-Taste ausw\u00e4hlen.</html>
+ui.components.VillageSelectionPanel.Anzahl=Anzahl
+ui.components.VillageSelectionPanel.SuchtZwischenablage=Sucht in der Zwischenablage nach D\u00f6rfern und f\u00fcgt diese ein. 
+ui.components.VillageSelectionPanel.Auswahlverwenden=Auswahl verwenden
+ui.components.VillageSelectionPanel.FuegtallegewaehltenDoerferein=F\u00fcgt alle gew\u00e4hlten D\u00f6rfer ein.
+ui.components.VillageSelectionPanel.Expertenansicht=Expertenansicht
 
+ui.components.WelcomePanel.WillkommenbeiDSWorkbench=<html><h2 style="color:#953333">Willkommen bei DS Workbench </h2><p>Wenn du diese Seite siehst, dann hast du DS Workbench erfolgreich installiert und die ersten Schritte ebenso erfolgreich gemeistert. Eigentlich steht nun einer unbeschwerten Angriffsplanung und -durchf\u00fchrung nichts mehr im Wege. Erlaube mir trotzdem kurz auf einige Dinge hinzuweisen, die dir m\u00f6glicherweise beim <b>Umgang mit DS Workbench helfen</b> oder aber dir die M\u00f6glichkeit geben, einen wichtigen Teil zur <b>Weiterentwicklung und stetigen Verbesserung</b> dieses Programms beizutragen. Fahre einfach mit der Maus \u00fcber eins der vier Symbole in den Ecken, um hilfreiche und interessante Informationen rund um DS Workbench zu erfahren. Klicke auf ein Symbol, um direkt zum entsprechenden Ziel zu gelangen. <br><h3 style="color:#953333"> Nun aber viel Spa\u00df; mit DS Workbench.</h3></html>
+ui.components.WelcomePanel.DankeDSWorkbenchverwenden=Danke, ich m\u00f6chte DS Workbench nun verwenden.
 
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
-ui.wiz.tap.TAPWelcomePanel.
+ui.wiz.tap.TAPWelcomePanel.WillkommenbeimDSWorkbenchTaktikplaner=<html>Willkommen beim DS Workbench Taktikplaner.<br/>In den folgenden Schritten kannst du dir entweder einen Angriffs- oder einen Verteidigungsplan erstellen lassen. W\u00e4hle bitte zuerst aus, welche Art von Plan du erstellen m\u00f6chtest.</html>
+ui.wiz.tap.TAPWelcomePanel.Angriffsplann=<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/> Du hast die Angriffsplanung gew\u00e4hlt. Diese erlaubt es dir, Angriffe in gro\u00dfen Mengen zu erstellen. Dabei bietet er dir die M\u00f6glichkeit, Abschick- und Ankunftzeiten nach deinen W\u00fcnschen zu gestalten. Bitte beachte aber auch: Der automatische Angriffsplaner ist <b>NICHT</b> daf\u00fcr geeignet, die perfekten Angriffspl\u00e4ne inklusive Adelungen zu erstellen. F\u00fcr die Planung von Adelungen verwende bitte den manuellen Angriffsplaner.</html>
+ui.wiz.tap.TAPWelcomePanel.Verteidigungsplanung=<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/> Du hast die Verteigungsplanung gew\u00e4hlt. Diese erlaubt es dir, ausgehend von eingelesenen SOS-Anfragen, einen Verteidigungsplan f\u00fcr die angegriffenen D\u00f6rfer zu erstellen. Die Verteidigungsplanung arbeitet dabei eng mit dem SOS-Analyzer zusammen. SOS-Anfragen werden im SOS-Analyzer eingelesen, analysiert und k\u00f6nnen dann von dort in die Verteidigungsplanung eingef\u00fcgt werden. DS Workbench kann anschlie\u00dfend versuchen, mit den importierten Truppeninformationen einen Verteidigungsplan aufzustellen. Ergebnisse werden direkt in den SOS-Analyzer zur\u00fcck\u00fcbertragen und die Unterst\u00fctzungsbefehle k\u00f6nnen dann von dort abgeschickt werden. Ebenso k\u00f6nnen von dort aus Anfragen nach noch notwendigen Truppen gestellt werden.</html>
+ui.wiz.tap.TAPWelcomePanel.Unterstuezung=<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/> Du hast die Auff\u00fcllung von Unterst\u00fctzungen gew\u00e4hlt. Diese erlaubt es dir, die Unterst\u00fctzungen in deinen D\u00f6rfern wieder auf einen bestimmten Stand zu bringen. Daf\u00fcr ist es notwendig, dass du deine Truppen aus dem Spiel in DS Workbench importiert hast. W\u00e4hrend der Auff\u00fcllung wird versucht, ausge\u00e4hlte D\u00f6rfer mit freien Defensivtruppen zu bef\u00fcllen, bis sie wieder einen bestimmten Truppenbestand aufweisen.</html>
+ui.wiz.tap.TAPWelcomePanel.Retimer=<html><b>Willkommen beim DS Workbench Taktikplaner.</b><br/><br/> Der Retimer wird dazu verwendet, die Truppen von gegnerischen Angriffen bei der R\u00fcckkehr in ihr Heimatdorf zu<br/>vernichten. Mit DS Workbench kannst du f\u00fcr einen oder mehrere Angriffe Retimes berechnen. Voraussetzung daf\u00fcr ist, dass du deine Truppeninformationen<br/>aus dem Spiel importiert hast. DS Workbench berechnet dir f\u00fcr alle gew\u00fcnschten, eigenen D\u00f6rfer alle m\u00f6glichen Retimes. Am Ende musst du nur noch<br/>entscheiden, welche Retimes du wirklich abschicken m\u00f6chtest. Falls du z.B. zur Abschickzeit eines Ramme-Retimes nicht Online sein kannst, so kannst<br/>du den Retime mit Axtk\u00e4mpfern w\u00e4hlen, der zwar eine geringere Durschlagskraft, aber auch eine k\u00fcrzere Laufzeit hat.
+ui.wiz.tap.TAPWelcomePanel.Willkommen=Willkommen
+ui.wiz.tap.TAPWelcomePanel.DSWorkbenchTaktikplaner=DS Workbench - Taktikplaner
+ui.wiz.tap.TAPWelcomePanel.Taktikplaner=Taktikplaner
 
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
-ui.wiz.tap.TacticsPlanerWizard.
+ui.wiz.tap.TimeSettingsPanel.BlendetInformationenEinAus=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.TimeSettingsPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.TimeSettingsPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.TimeSettingsPanel.Zeiteinstellungenunvollstaendig=Zeiteinstellungen unvollst\u00e4ndig
+ui.wiz.tap.TimeSettingsPanel.Zeiteinstellungen=Zeiteinstellungen
+ui.wiz.tap.TimeSettingsPanel.DieZeiteinstellung=<html>Die Zeiteinstellungen dienen dazu, die m\u00f6glichen Angriffe zeitlich einzuordnen. Die grobe Einordnung aller Angriffe geschieht \u00fcber die beiden Felder 'Startdatum' und 'Enddatum'. DS Workbench wird keinen Angriff vor bzw. nach diesen Daten planen. Je gr\u00f6\u00dfer der Abstand zwischen diesen Zeitpunkten ist, desto l\u00e4nger dauert die Berechnung.<br/>Eine genauere Festlegung von Abschick- und Ankunftzeiten geschieht anschlie\u00dfend \u00fcber die Zeitrahmen.Hier gibt es die folgenden M\u00f6glichkeiten:<ul><li>Immer: Zeitrahmen von diesem Typ gelten an jedem Tag zwischen den angegebenen Stunden</li> <li>Tag: Zeitrahmen von diesem Typ gelten nur an dem festgelegten Tag zwischen den angegebenen Stunden</li><li>Zeitpunkt: Elemente von diesem Typ gelten an dem festgelegten Tag und zu der festgelegten Uhrzeit. Sie sind daher vorrangig f\u00fcr die Ankunft von Angriffen gedacht.</li></ul>Eingestellte Zeitrahmen werden per Drag und Drop in die Zeitrahmenliste gezogen und k\u00f6nnen mit ENTF wieder gel\u00f6scht werden.Um eine Berechnung durchzuf\u00fchren, wird mindestens ein Abschick- und ein Ankunftzeitrahmen ben\u00f6tigt.</html>
+ui.wiz.tap.TimeSettingsPanel.Angriffsmodus=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
 
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
-ui.wiz.tap.TimeSettingsPanel.
+ui.wiz.tap.TacticsPlanerWizard.Taktikplaner=Taktikplaner
+ui.wiz.tap.TacticsPlanerWizard.DSWorkbenchTaktikplaner=DS Workbench Taktikplaner
+ui.wiz.tap.TacticsPlanerWizard.Willkommen=Willkommen
 
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-ui.wiz.tap.ValidationPanel.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+types.Attack.AngriffCleanOff=Angriff (Clean-Off)
+types.Attack.AngriffFake=Angriff (Fake)
+types.Attack.AngriffAG=AngriffAG=Angriff (AG)
+types.Attack.Unterstuetzung=Unterst\u00fctzung
+types.Attack.Angriff=Angriff
+types.Attack.Versammlungsplatz=Versammlungsplatz
+types.Attack.Time1=dd.MM.yy 'um' HH:mm:ss.'[size=8]'SSS'[/size]'
+types.Attack.Time2=dd.MM.yy 'um' HH:mm:ss.SSS
+types.Attack.Time3=dd.MM.yy 'um' HH:mm:ss
 
 io.UnitHolder.spear=Speertr\u00E4ger
 io.UnitHolder.sword=Schwertk\u00E4mpfer
@@ -417,5 +500,19 @@ io.UnitHolder.knight=Paladin
 io.UnitHolder.snob=Adelsgeschlecht
 io.UnitHolder.militia=Miliz
 io.UnitHolder.unknown=Unbekannt
+
+ui.wiz.tap.ValidationPanel.Info_Ergebnis=In diesem Schritt kannst du noch einmal \u00fcberpr\u00fcfen, ob deine bisherigen Einstellungen \u00fcberhaupt zu einem Ergebnis f\u00fchren k\u00f6nnen. Die obere Tabelle zeigt dir alle verwendeten Herkunftsd\u00f6rfer und die Prozentzahl der Zield\u00f6rfer, die vom jeweiligen Herkunftsdorf erreicht werden kann.<br/>Die untere Tabelle zeigt dir die Zield\u00f6rfer und die Prozentzahl der Herkunftsd\u00f6rfer, die dieses Zieldorf erreichen kann. Je kleiner die Prozentzahl ist, desto unwahrscheinlicher ist es, dass das jeweilige Dorf f\u00fcr einem Angriff verwendet wird. Die Erh\u00f6hung der Prozentzahl kann \u00fcber eine Ver\u00e4nderung der Zeiteinstellungen erreicht werden.</html>
+ui.wiz.tap.ValidationPanel.Ueberpruefung=\u00fcberpr\u00fcfung
+ui.wiz.tap.ValidationPanel.Informationenausblenden=Informationen ausblenden
+ui.wiz.tap.ValidationPanel.Informationeneinblenden=Informationen einblenden
+ui.wiz.tap.ValidationPanel.Spieler=Spieler
+ui.wiz.tap.ValidationPanel.Dorf=Dorf
+ui.wiz.tap.ValidationPanel.Verwendungen=Verwendungen
+ui.wiz.tap.ValidationPanel.BlendetInfo=Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus
+ui.wiz.tap.ValidationPanel.MoeglicheVerwendungen=M\u00f6gliche Verwendungen der Herkunftsd\u00f6rfer
+ui.wiz.tap.ValidationPanel.Informationskartevergroessern=Informationskarte vergr\u00f6ßern
+ui.wiz.tap.ValidationPanel.MoeglicheZieldoerfer=M\u00f6gliche Verwendungen der Zield\u00f6rfer
+
+locale=de
 
 

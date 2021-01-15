@@ -16,13 +16,15 @@
 package de.tor.tribes.ui.components;
 
 import de.tor.tribes.types.FightReport;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 
 /**
  *
  * @author Torridity
  */
 public class ReportInfoPanel extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form ReportInfoPanel
      */

@@ -19,6 +19,8 @@ import de.tor.tribes.types.UserProfile;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ProfileManager;
 import de.tor.tribes.util.interfaces.ProfileManagerListener;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -27,6 +29,8 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class ProfileQuickChangePanel extends javax.swing.JPanel implements ProfileManagerListener {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.ProfileQuickChangePanel");
+    
     /** Creates new form ProfileQuickChangePanel */
     public ProfileQuickChangePanel() {
         initComponents();
@@ -38,7 +42,7 @@ public class ProfileQuickChangePanel extends javax.swing.JPanel implements Profi
     public void fireProfilesLoadedEvent() {
         UserProfile[] profiles = ProfileManager.getSingleton().getProfiles(GlobalOptions.getSelectedServer());
 
-        DefaultComboBoxModel model = new DefaultComboBoxModel(new Object[]{"Standard"});
+        DefaultComboBoxModel model = new DefaultComboBoxModel(new Object[]{trans.get("Standard")});
         if (profiles != null && profiles.length > 0) {
             for (UserProfile profile : profiles) {
                 model.addElement(profile);
@@ -63,7 +67,7 @@ public class ProfileQuickChangePanel extends javax.swing.JPanel implements Profi
         setLayout(new java.awt.GridBagLayout());
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Profil-Schnellauswahl");
+        jLabel11.setText(trans.get("ProfilSchnellauswahl"));
         jLabel11.setMaximumSize(new java.awt.Dimension(120, 14));
         jLabel11.setMinimumSize(new java.awt.Dimension(120, 14));
         jLabel11.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -75,7 +79,7 @@ public class ProfileQuickChangePanel extends javax.swing.JPanel implements Profi
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 2, 5);
         add(jLabel11, gridBagConstraints);
 
-        jProfileBox.setToolTipText("Erlaubt die Schnellauswahl des Benutzerprofils mit dem Transporte in den Browser übertragen werden");
+        jProfileBox.setToolTipText(trans.get("Schnellauswahl"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

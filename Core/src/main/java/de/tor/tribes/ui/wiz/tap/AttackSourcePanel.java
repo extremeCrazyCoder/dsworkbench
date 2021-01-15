@@ -126,7 +126,7 @@ public class AttackSourcePanel extends WizardPage {
             public void valueChanged(ListSelectionEvent e) {
                 int selectedRows = jVillageTable.getSelectedRowCount();
                 if (selectedRows != 0) {
-                    jStatusLabel.setText(selectedRows + " Dorf/Dörfer gewählt");
+                    jStatusLabel.setText(selectedRows + trans.get("Dorfgewaehlt"));
                 }
             }
         });
@@ -138,7 +138,7 @@ public class AttackSourcePanel extends WizardPage {
     }
     
     public static String getDescription() {
-        return "Herkunft";
+        return trans.get("Herkunft");
     }
     
     public static String getStep() {
@@ -213,7 +213,7 @@ public class AttackSourcePanel extends WizardPage {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(trans.get("InformationPanel"));
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setToolTipText(trans.get("BlendetInformationen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -291,7 +291,7 @@ public class AttackSourcePanel extends WizardPage {
         jVillageTablePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskartevergroessern"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -351,7 +351,7 @@ public class AttackSourcePanel extends WizardPage {
         jPanel3.add(jButton2, gridBagConstraints);
 
         jSetFake1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/snob.png"))); // NOI18N
-        jSetFake1.setToolTipText("Für Dörfer in denen AGs vorhanden sind die langsamste Einheit auf AG setzen");
+        jSetFake1.setToolTipText(trans.get("DoerferindenenAGsvorhandensind"));
         jSetFake1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeToSnobEvent(evt);
@@ -366,7 +366,7 @@ public class AttackSourcePanel extends WizardPage {
         jPanel3.add(jSetFake1, gridBagConstraints);
 
         jSetFake2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/def_fake.png"))); // NOI18N
-        jSetFake2.setToolTipText("Gewählte Dörfer duplizieren, indem sie nach Truppen gesplittet werden");
+        jSetFake2.setToolTipText(trans.get("GewaehlteDoerferduplizieren"));
         jSetFake2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireSplitSelectionEvent(evt);
@@ -399,10 +399,10 @@ public class AttackSourcePanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
     
@@ -451,7 +451,7 @@ public class AttackSourcePanel extends WizardPage {
             }
         }
         repaint();
-        jStatusLabel.setText("Einheit in " + changeCount + " Dorf/Dörfern auf AG geändert");
+        jStatusLabel.setText(trans.get("Einheitin") + changeCount + trans.get("DorfaufAGgeaendert"));
     }//GEN-LAST:event_fireChangeToSnobEvent
     
     private void fireSplitSelectionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireSplitSelectionEvent
@@ -500,7 +500,7 @@ public class AttackSourcePanel extends WizardPage {
         if (model.getRowCount() > 0) {
             setProblem(null);
         }
-        jStatusLabel.setText(pVillages.length + " Dorf/Dörfer eingefügt");
+        jStatusLabel.setText(pVillages.length + trans.get("Dorfeingefuegt"));
         updateOverview(false);
     }
     
@@ -526,10 +526,10 @@ public class AttackSourcePanel extends WizardPage {
             for (int i = rows.size() - 1; i >= 0; i--) {
                 getModel().removeRow(rows.get(i));
             }
-            jStatusLabel.setText(selection.length + " Dorf/Dörfer entfernt");
+            jStatusLabel.setText(selection.length + trans.get("Dorfentfernt"));
             updateOverview(true);
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Dörfer gewählt");
+                setProblem(trans.get("Dorfgewaehlt"));
             }
         }
     }
@@ -599,7 +599,7 @@ public class AttackSourcePanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getAllElements().length == 0) {
-            setProblem("Keine Dörfer gewählt");
+            setProblem(trans.get("KeineDoerfergewaehlt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         AttackSourceFilterPanel.getSingleton().setup();
