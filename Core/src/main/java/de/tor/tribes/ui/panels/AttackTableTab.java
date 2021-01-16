@@ -282,7 +282,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     }
 
     public void updateCountdown() {
-        TableColumnExt col = jxAttackTable.getColumnExt("Verbleibend");
+        TableColumnExt col = jxAttackTable.getColumnExt(trans.getRaw("ui.models.AttackTableModel.remaining"));
         if (col.isVisible()) {
             int startX = 0;
             for (int i = 0; i < jxAttackTable.getColumnCount(); i++) {
@@ -296,7 +296,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     }
 
     public void updateTime() {
-        TableColumnExt col = jxAttackTable.getColumnExt("Abschickzeit");
+        TableColumnExt col = jxAttackTable.getColumnExt(trans.getRaw("ui.models.AttackTableModel.send_time"));
         if (col.isVisible()) {
             int startX = 0;
             for (int i = 0; i < jxAttackTable.getColumnCount(); i++) {

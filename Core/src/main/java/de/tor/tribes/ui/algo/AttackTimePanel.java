@@ -23,6 +23,8 @@ import de.tor.tribes.ui.renderer.TimeFrameListCellRenderer;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.algo.types.TimeFrame;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -44,6 +46,8 @@ import org.apache.commons.lang3.time.DateUtils;
  */
 public class AttackTimePanel extends javax.swing.JPanel implements DragGestureListener, DropTargetListener, DragSourceListener {
 
+    private Translator trans = TranslationManager.getTranslator("ui.compoents.AttackTimePanel");
+    
     private DragSource dragSource = null;
     private SettingsChangedListener mListener;
 
@@ -142,7 +146,11 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
             }
         }
         if (!selection.isEmpty()) {
-            if (JOptionPaneHelper.showQuestionConfirmBox(this, "Gewählte Zeitrahmen entfernen?", "Entfernen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+            if (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                    trans.get("GewaehlteZeitrahmenentfernen"), 
+                    trans.get("Entfernen"), 
+                    trans.get("Nein"), 
+                    trans.get("Ja")) == JOptionPane.YES_OPTION) {
                 for (Object o : selection) {
                     ((DefaultListModel) jTimeFrameList.getModel()).removeElement(o);
                 }
@@ -186,7 +194,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
 
     public String validateSettings() {
         if (getTimeSpans().isEmpty()) {
-            return "Es muss mindestens ein Abschick- und ein Ankunftszeitrahmen angegeben werden.";
+            return trans.get("EsmussmindestenseinAbschick");
         }
         boolean haveStart = false;
         boolean haveArrive = false;
@@ -205,21 +213,21 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         }
 
         if (!haveStart) {
-            return "Es muss mindestens ein Abschickzeitrahmen angegeben werden.";
+            return trans.get("Abschickzeitrahmen");
         } else if (!haveArrive) {
-            return "Es muss mindestens ein Ankunftszeitrahmen angegeben werden.";
+            return trans.get("Abschickzeitrahmen");
         }
 
         TimeFrame currentFrame = getTimeFrame();
         if (minSendTimeField.getSelectedDate().getTime() > maxArriveTimeField.getSelectedDate().getTime()) {
-            return "Das Startdatum befindet sich nach dem Ankunftsdatum. Eine Berechnung ist nicht möglich.";
+            return trans.get("DasStartdatumbefindetsich");
         }
 
 
-        String warnings = "Warnungen:\n";
+        String warnings = trans.get("Warnungen");
         boolean gotWarning = false;
         if (currentFrame.getArriveRange().getMaximum() < System.currentTimeMillis()) {
-            warnings += "* Das Enddatum liegt in der Vergangenheit";
+            warnings += trans.get("DasEnddatum");
             gotWarning = true;
         }
 
@@ -227,7 +235,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
             if (gotWarning) {
                 warnings += "\n";
             }
-            warnings += "* Mindestens ein Ankunftszeitrahmen liegt im Nachtbonus";
+            warnings += trans.get("MindestensAnkunftszeitrahmenNachtbonus");
             gotWarning = true;
         }
         if (gotWarning) {
@@ -352,7 +360,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
      */
     protected void addTimeSpan(TimeSpan s) {
         if (s == null) {
-            JOptionPaneHelper.showWarningBox(this, "Der angegebene Zeitrahmen ist ungültig", "Warnung");
+            JOptionPaneHelper.showWarningBox(this, trans.get("DerangegebeneZeitrahmen"), trans.get("Warnung"));
             return;
         }
         //check if timeframe exists or intersects with other existing frame
@@ -393,8 +401,8 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
             }
             jTimeFrameList.setModel(model);
         } else {
-            JOptionPaneHelper.showWarningBox(this, "Das gewählte Zeitfenster überschneidet sich mit dem " + intersection + ". Eintrag.\n"
-                    + "Bitte wähle die Zeitfenster so, dass es zu keinen Überschneidungen kommt.", "Warnung");
+            JOptionPaneHelper.showWarningBox(this, trans.get("DasgewaehlteZeitfenster") + intersection + trans.get("Eintrag")
+                    + trans.get("BittewaehledieZeitfenster"), trans.get("Warnung"));
             return;
         }
         fireTimeFrameChangedEvent();
@@ -442,7 +450,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Enddatum");
+        jLabel2.setText(trans.get("Enddatum"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -468,7 +476,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(maxArriveTimeField, gridBagConstraints);
 
-        jLabel3.setText("Startdatum");
+        jLabel3.setText(trans.get("Startdatum"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -478,7 +486,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         jPanel2.add(jLabel3, gridBagConstraints);
 
         jArriveInPastLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/warning.png"))); // NOI18N
-        jArriveInPastLabel.setToolTipText("Die Ankunftzeit liegt in der Vergangenheit!");
+        jArriveInPastLabel.setToolTipText(trans.get("DieAnkunftzeitVergangenheit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         jPanel2.add(jArriveInPastLabel, gridBagConstraints);
@@ -491,11 +499,11 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jPanel2, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
 
-        jSendTimeFrame.setToolTipText("Zeitfenster des Zeitrahmens");
+        jSendTimeFrame.setToolTipText(trans.get("ZeitfensterdesZeitrahmens"));
 
-        dateTimeField.setToolTipText("Datum und Uhrzeit des Zeitrahmens");
+        dateTimeField.setToolTipText(trans.get("DatumundUhrzeitdesZeitrahmens"));
         dateTimeField.setEnabled(false);
         dateTimeField.setTimeEnabled(false);
 
@@ -503,7 +511,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
 
         buttonGroup1.add(jAlwaysButton);
         jAlwaysButton.setSelected(true);
-        jAlwaysButton.setText("Immer");
+        jAlwaysButton.setText(trans.get("Immer"));
         jAlwaysButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/att_remove.png"))); // NOI18N
         jAlwaysButton.setRolloverEnabled(false);
         jAlwaysButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/month.png"))); // NOI18N
@@ -521,7 +529,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         jPanel4.add(jAlwaysButton, gridBagConstraints);
 
         buttonGroup1.add(jDayButton);
-        jDayButton.setText("Tag");
+        jDayButton.setText(trans.get("Tag"));
         jDayButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/att_remove.png"))); // NOI18N
         jDayButton.setRolloverEnabled(false);
         jDayButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/day.png"))); // NOI18N
@@ -539,7 +547,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         jPanel4.add(jDayButton, gridBagConstraints);
 
         buttonGroup1.add(jExactTimeButton);
-        jExactTimeButton.setText("Zeitpunkt");
+        jExactTimeButton.setText(trans.get("Zeitpunkt"));
         jExactTimeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/att_remove.png"))); // NOI18N
         jExactTimeButton.setRolloverEnabled(false);
         jExactTimeButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/date-time.png"))); // NOI18N
@@ -567,9 +575,9 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         gridBagConstraints.weighty = 1.0;
         jPanel4.add(jSeparator1, gridBagConstraints);
 
-        jLabel8.setText("Datum/Zeit");
+        jLabel8.setText(trans.get("DatumZeit"));
 
-        jLabel9.setText("Zeitraum");
+        jLabel9.setText(trans.get("Zeitraum"));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -577,16 +585,16 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(dateTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                        .addComponent(dateTimeField, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jSendTimeFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)))
+                        .addGap(7, 7, 7)
+                        .addComponent(jSendTimeFrame, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -616,12 +624,12 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(jPanel3, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zeitrahmenvorschau"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zeitrahmenvorschau")));
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 204));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/move_out.png"))); // NOI18N
-        jLabel5.setText("Am 13.04.11, von 10 bis 24 Uhr (Alle)");
-        jLabel5.setToolTipText("Abschickzeitrahmen für die gewählten Einstellungen");
+        jLabel5.setText(trans.get("AmAlle"));
+        jLabel5.setToolTipText(trans.get("Abschickzeitrahmen_01"));
         jLabel5.setMaximumSize(new java.awt.Dimension(230, 16));
         jLabel5.setMinimumSize(new java.awt.Dimension(230, 16));
         jLabel5.setOpaque(true);
@@ -629,8 +637,8 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
 
         jLabel6.setBackground(new java.awt.Color(204, 204, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/move_in.png"))); // NOI18N
-        jLabel6.setText("Am 13.04.11, von 10 bis 24 Uhr (Alle)");
-        jLabel6.setToolTipText("Ankunftszeitrahmen für die gewählten Einstellungen");
+        jLabel6.setText(trans.get("AmAlle"));
+        jLabel6.setToolTipText(trans.get("Abschickzeitrahmen_01"));
         jLabel6.setMaximumSize(new java.awt.Dimension(230, 16));
         jLabel6.setMinimumSize(new java.awt.Dimension(230, 16));
         jLabel6.setOpaque(true);
@@ -638,7 +646,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 204));
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("(Passenden Zeitrahmen per Drag&Drop in die Zeitrahmenliste ziehen)");
+        jLabel7.setText(trans.get("PassendenZeitrahmenDraguDrop"));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -689,10 +697,10 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         jPanel5.add(jLabelWarningError, gridBagConstraints);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Verwendete Zeitrahmen"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("VerwendeteZeitrahmen")));
         jScrollPane1.setMinimumSize(new java.awt.Dimension(262, 60));
 
-        jTimeFrameList.setToolTipText("<html>Liste der verwendeten Zeitrahmen<br/>\nUm Zeitrahmen zu entfernen, markieren einen oder mehrere Zeitrahmen und drücke <i>Entf</i>\n</html>");
+        jTimeFrameList.setToolTipText(trans.get("verwendetenZeitrahmen"));
         jScrollPane1.setViewportView(jTimeFrameList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -707,7 +715,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         jPanel5.add(jScrollPane1, gridBagConstraints);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/red_x.png"))); // NOI18N
-        jButton1.setToolTipText("Die gewählten Zeitrahmen löschen");
+        jButton1.setToolTipText(trans.get("DiegewaehltenZeitrahmen"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireDeleteTimeFramesEvent(evt);
@@ -720,7 +728,7 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         jPanel5.add(jButton1, gridBagConstraints);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/refresh.png"))); // NOI18N
-        jButton2.setToolTipText("Alle Zeitrahmen löschen");
+        jButton2.setToolTipText(trans.get("AlleZeitrahmenloeschen"));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireResetTimeFramesEvent(evt);
