@@ -76,7 +76,7 @@ public class TranslationManager {
         Locale all[] = java.util.Locale.getAvailableLocales();
         boolean found = false;
         for(Locale cur : all) {
-            logger.debug("Running through locales {} / {}", cur.getLanguage());
+            logger.debug("Running through locales {}", cur.getLanguage());
             if(cur.getLanguage().equals(locale)) {
                 logger.debug("Found {}", cur);
                 java.util.Locale.setDefault(cur);

@@ -316,24 +316,26 @@ public class TimeSpan implements Comparable<TimeSpan> {
   @Override
   public String toString() {
     String result = null;
+    SimpleDateFormat fDate = new SimpleDateFormat(trans.get("dateFormat"));
+    SimpleDateFormat tDate = new SimpleDateFormat(trans.get("timeFormat"));
     
     if (isValidAtSpecificDay()) {
-      SimpleDateFormat fDate = new SimpleDateFormat(trans.get("ddMM_yy"));
-      int startHour =(int) DateUtils.getFragmentInHours(new Date(getSpan().getMinimum()), Calendar.DATE);
-      int endHour =(int) DateUtils.getFragmentInHours(new Date(getSpan().getMaximum() + 1), Calendar.DATE);
+      int startHour = (int) DateUtils.getFragmentInHours(new Date(getSpan().getMinimum()), Calendar.DATE);
+      int endHour = (int) DateUtils.getFragmentInHours(new Date(getSpan().getMaximum() + 1), Calendar.DATE);
       
-      result = String.format(trans.get("AmvonBis"), fDate.format(getDate()), startHour, endHour);
+      result = String.format(trans.get("specificDate"), fDate.format(getDate()), startHour, endHour);
     } else if (isValidAtEveryDay()) {
-      int startHour =(int) (getSpan().getMinimum() / DateUtils.MILLIS_PER_HOUR);
-      int endHour =(int) ((getSpan().getMaximum() + 1) / DateUtils.MILLIS_PER_HOUR);
+      int startHour = (int) (getSpan().getMinimum() / DateUtils.MILLIS_PER_HOUR);
+      int endHour = (int) ((getSpan().getMaximum() + 1) / DateUtils.MILLIS_PER_HOUR);
       
-      result = trans.get("taeglich") + startHour + trans.get("Uhrbis") + endHour + trans.get("Uhr");
+      result = String.format(trans.get("everyDate"), startHour, endHour);
     } else if (isValidAtExactTime()) {
-      SimpleDateFormat f = new SimpleDateFormat(trans.get("ddMMyy"));
-      result = trans.get("Am") + f.format(getSpan().getMinimum());
+      Long min = getSpan().getMinimum();
+      result = String.format(trans.get("exactTime"), fDate.format(min), tDate.format(min));
     } else if (isValidAtManualRange()) {
-      SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
-      result = trans.get("Von") + f.format(new Date(getSpan().getMinimum())) + trans.get("bis") + f.format(new Date(getSpan().getMaximum()));
+      Long min = getSpan().getMinimum();
+      Long max = getSpan().getMaximum();
+      result = String.format(trans.get("manualTime"), fDate.format(min), tDate.format(min), fDate.format(max), tDate.format(max));
     } else {
       result = "";
     }
