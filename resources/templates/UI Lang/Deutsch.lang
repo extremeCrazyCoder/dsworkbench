@@ -1,3 +1,14 @@
+types.TimeSpan.Abschick=Abschick
+types.TimeSpan.Ankunfts=Ankunfts
+types.TimeSpan.datuminderVergangenheit=datum in der Vergangenheit
+types.TimeSpan.zeitrahmeninderVergangenheit=zeitrahmen in der Vergangenheit
+types.TimeSpan.ddMM_yy=dd.MM.yy
+types.TimeSpan.taeglich=T\u00E4glich, von
+types.TimeSpan.AmvonBis=Am %s, von %d Uhr bis %d Uhr
+types.TimeSpan.ddMMyy=dd.MM.yy 'um' HH:mm:ss 'Uhr'
+types.TimeSpan.Von=Von
+types.TimeSpan.bis=bis
+
 ui.compoents.AttackTimePanel.GewaehlteZeitrahmenentfernen=Gew\u00e4hlte Zeitrahmen entfernen?
 ui.compoents.AttackTimePanel.Entfernen=Entfernen
 ui.compoents.AttackTimePanel.Nein=Nein
