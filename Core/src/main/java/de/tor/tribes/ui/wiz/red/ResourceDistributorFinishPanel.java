@@ -30,6 +30,8 @@ import de.tor.tribes.ui.wiz.red.types.ExtendedTransport;
 import de.tor.tribes.util.BrowserInterface;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -52,14 +54,10 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class ResourceDistributorFinishPanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorFinishPanel");
+    
     private static final Logger logger = LogManager.getLogger("ResourceDistributorFinishPanel");
-    private static final String GENERAL_INFO = "<html>Bist du bei diesem Schritt angekommen, hast du abschlie&szlig;end die M&ouml;glichkeit, "
-            + "die berechneten Rohstoffe in den Browser zu &uuml;bertragen und abzuschicken. Voraussetzung hierf&uuml;r ist, dass du das "
-            + "DS Workbench Userscript in deinem Browser (Firefox oder Opera) installiert hast. Markiere einfach in der unteren Tabelle die Transporte die du "
-            + "&uuml;bertragen m&ouml;chtest in der Tabelle, f&uuml;lle das Klickkonto mit der ben&ouml;tigten Anzahl Klicks auf und "
-            + "klicke auf den Button mit dem Firefox Symbol. Sind es zuviele Transporte um sie auf einmal abzuschicken, kannst du "
-            + "DS Workbench auch schlie&szlig;en, den Rohstoffverteiler sp&auml;ter erneut starten und die errechneten Transporte im ersten "
-            + "Schritt von deiner Festplatte laden.</html>";
+    private static final String GENERAL_INFO = trans.get("Schritteangekommen");
     private static ResourceDistributorFinishPanel singleton = null;
     private ClickAccountPanel clickPanel = null;
     private ProfileQuickChangePanel quickProfilePanel = null;
@@ -107,7 +105,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    showInfo(jTransportsTable.getSelectedRowCount() + " Transport(e) gewählt");
+                    showInfo(jTransportsTable.getSelectedRowCount() + trans.get("Transportgewaehlt"));
                 }
             }
         });
@@ -121,7 +119,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Fertig";
+        return trans.get("Fertig");
     }
 
     public static String getStep() {
@@ -202,8 +200,8 @@ public class ResourceDistributorFinishPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,10 +224,10 @@ public class ResourceDistributorFinishPanel extends WizardPage {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jFinalActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Abschließende Aktionen"));
+        jFinalActionPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AbschliessendeAktionen")));
         jFinalActionPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setToolTipText("Gewählte Transporte  in den Browser übertragen");
+        jButton1.setToolTipText(trans.get("GewaehlteTransporteindenBrowseruebertragen"));
         jButton1.setMaximumSize(new java.awt.Dimension(70, 70));
         jButton1.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -272,7 +270,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         jFinalActionPanel.add(jQuickProfilePanel, gridBagConstraints);
 
         jIgnoreSubmitted.setSelected(true);
-        jIgnoreSubmitted.setText("Übertragene Transporte ignorieren");
+        jIgnoreSubmitted.setText(trans.get("UebertrageneTransporteignorieren"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -291,7 +289,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
 
         jTransportsPanel.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Errechnete Transporte"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("ErrechneteTransporte")));
 
         jTransportsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -324,7 +322,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         jFinalDistributionPanel.setPreferredSize(new java.awt.Dimension(350, 100));
         jFinalDistributionPanel.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultierende Rohstoffverteilung"));
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("ResultierendeRohstoffverteilung")));
 
         jDistributionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -349,12 +347,12 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         gridBagConstraints.weighty = 0.3;
         jPanel1.add(jFinalDistributionPanel, gridBagConstraints);
 
-        jFinalStatusPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Sonstige Informationen"));
+        jFinalStatusPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("SonstigeInformationen")));
         jFinalStatusPanel.setMinimumSize(new java.awt.Dimension(220, 100));
         jFinalStatusPanel.setPreferredSize(new java.awt.Dimension(220, 100));
         jFinalStatusPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Errechnete Transporte");
+        jLabel2.setText(trans.get("ErrechneteTransporte"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFinalStatusPanel.add(jLabel2, gridBagConstraints);
@@ -366,7 +364,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFinalStatusPanel.add(jTransports, gridBagConstraints);
 
-        jLabel4.setText("Verwendete Händler");
+        jLabel4.setText(trans.get("VerwendeteHaendler"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -380,7 +378,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFinalStatusPanel.add(jUsedMerchants, gridBagConstraints);
 
-        jLabel6.setText("Transportiertes Holz");
+        jLabel6.setText(trans.get("TransportiertesHolz"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -394,7 +392,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFinalStatusPanel.add(jTransportedWood, gridBagConstraints);
 
-        jLabel8.setText("Transportierter Lehm");
+        jLabel8.setText(trans.get("TransportierterLehm"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -408,7 +406,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFinalStatusPanel.add(jTransportedClay, gridBagConstraints);
 
-        jLabel10.setText("Transportiertes Eisen");
+        jLabel10.setText(trans.get("TransportiertesEisen"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -443,10 +441,10 @@ public class ResourceDistributorFinishPanel extends WizardPage {
     private void fireShowHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireShowHideInfoEvent
 
@@ -498,7 +496,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
                 }
             }
         } else {
-            showInfo("Keine Transporte ausgewählt");
+            showInfo(trans.get("KeineTransporteausgewaehlt"));
         }
 
         if (transferred + ignored > 0 && transferred + ignored == selectedRows.length) {
@@ -510,11 +508,11 @@ public class ResourceDistributorFinishPanel extends WizardPage {
 
         saveTransports();
         if (outOfClicks) {
-            showInfo("Keine weiteren Klicks vorhanden.\n"
-                    + "Es wurde(n) " + transferred + " Transport(e) übertragen.");
+            showInfo(trans.get("KeineweiterenKlicksvorhanden")
+                    + trans.get("Eswurde") + transferred + trans.get("Transporteuebertragen"));
         }
         if (browserAccessFailed) {
-            showInfo("Einer oder mehrere Transporte konnten nicht im Browser geöffnet werden.");
+            showInfo(trans.get("EinermehrereTransporte"));
         }
     }
     
@@ -615,7 +613,7 @@ public class ResourceDistributorFinishPanel extends WizardPage {
                 getTransportsModel().removeRow(rows.get(i));
             }
             if (getTransportsModel().getRowCount() == 0) {
-                setProblem("Keine Dörfer vorhanden");
+                setProblem(trans.get("KeineDoerfervorhanden"));
             }
         }
     }

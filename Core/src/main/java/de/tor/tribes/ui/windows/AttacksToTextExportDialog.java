@@ -19,6 +19,8 @@ import de.tor.tribes.types.Attack;
 import de.tor.tribes.util.AttackToTextWriter;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -31,11 +33,13 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class AttacksToTextExportDialog extends javax.swing.JDialog {
-
+    
     private static Logger logger = LogManager.getLogger("AttacksToTextExportDialog");
     private boolean result = false;
     private Attack[] attacks = null;
 
+    private Translator trans = TranslationManager.getTranslator("ui.windows.AttacksToTextExportDialog");
+    
     /**
      * Creates new form AttacksToTextExportDialog
      */
@@ -66,10 +70,10 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Angriffe in Textdateien aufteilen");
+        setTitle(trans.get("AngriffeinTextdateienaufteilen"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jXLabel1.setText("Zielverzeichnis");
+        jXLabel1.setText(trans.get("Zielverzeichnis"));
         jXLabel1.setMaximumSize(new java.awt.Dimension(120, 14));
         jXLabel1.setMinimumSize(new java.awt.Dimension(120, 14));
         jXLabel1.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -98,7 +102,7 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         getContentPane().add(jButton1, gridBagConstraints);
 
-        jXLabel2.setText("Erweiterte BB-Codes");
+        jXLabel2.setText(trans.get("ErweiterteBBCodes"));
         jXLabel2.setMaximumSize(new java.awt.Dimension(120, 14));
         jXLabel2.setMinimumSize(new java.awt.Dimension(120, 14));
         jXLabel2.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -118,7 +122,7 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jUseExtendedBBCode, gridBagConstraints);
 
-        jXLabel3.setText("Einzeldateien packen");
+        jXLabel3.setText(trans.get("Einzeldateienpacken"));
         jXLabel3.setMaximumSize(new java.awt.Dimension(120, 14));
         jXLabel3.setMinimumSize(new java.awt.Dimension(120, 14));
         jXLabel3.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -138,7 +142,7 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jZipResult, gridBagConstraints);
 
-        jXLabel4.setText("Angriffe pro Datei");
+        jXLabel4.setText(trans.get("AngriffeproDatei"));
         jXLabel4.setMaximumSize(new java.awt.Dimension(120, 14));
         jXLabel4.setMinimumSize(new java.awt.Dimension(120, 14));
         jXLabel4.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -158,7 +162,7 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jAttacksPerFile, gridBagConstraints);
 
-        jOKButton.setText("Speichern");
+        jOKButton.setText(trans.get("Speichern"));
         jOKButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCloseEvent(evt);
@@ -170,7 +174,7 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 5, 5);
         getContentPane().add(jOKButton, gridBagConstraints);
 
-        jButton3.setText("Abbrechen");
+        jButton3.setText(trans.get("Abbrechen"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCloseEvent(evt);
@@ -208,11 +212,14 @@ public class AttacksToTextExportDialog extends javax.swing.JDialog {
         try {
             chooser = new JFileChooser(dir);
         } catch (Exception e) {
-            JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n" + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+            JOptionPaneHelper.showErrorBox(this, 
+                    trans.get("Dateiauswahldialog_Text") + 
+                    trans.get("Eigenschaften_Text"), 
+                    trans.get("Fehler"));
             return;
         }
 
-        chooser.setDialogTitle("Zielverzeichnis auswählen");
+        chooser.setDialogTitle(trans.get("Zielverzeichnisauswaehlen"));
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         chooser.setSelectedFile(new File(dir));

@@ -19,6 +19,8 @@ import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Component;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -36,6 +38,8 @@ import javax.swing.JLabel;
  */
 public class UnitOrderBuilder {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.UnitOrderBuilder");
+    
     private static JFrame frame = null;
     private static UnitHolder unit = null;
     private static String server = null;
@@ -50,7 +54,7 @@ public class UnitOrderBuilder {
             }
             unit = pUnit;
             frame = new JFrame();
-            frame.setTitle("Einheitenübersicht");
+            frame.setTitle(trans.get("Einheitenuebersicht"));
             frame.getContentPane().setLayout(new java.awt.GridLayout(DataHolder.getSingleton().getUnits().size() + 1, 0, 0, 3));
 
             UnitHolder[] units = DataHolder.getSingleton().getUnits().toArray(new UnitHolder[]{});
@@ -70,7 +74,7 @@ public class UnitOrderBuilder {
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(0);
             for (UnitHolder u : units) {
-                JLabel l = new JLabel(u.getName() + " (" + nf.format(u.getSpeed()) + " Minuten pro Feld) ");
+                JLabel l = new JLabel(u.getName() + " (" + nf.format(u.getSpeed()) + trans.get("MinuteproFeld"));
                 l.setIcon(ImageManager.getUnitIcon(u));
                 if ((unit != null) && (u.equals(unit))) {
                     l.setBackground(Constants.DS_BACK_LIGHT);
@@ -81,7 +85,7 @@ public class UnitOrderBuilder {
                 l.setIconTextGap(4);
                 frame.getContentPane().add(l);
             }
-            JButton close = new JButton("Schließen");
+            JButton close = new JButton(trans.get("Schliessen"));
             close.addMouseListener(new MouseListener() {
 
                 @Override

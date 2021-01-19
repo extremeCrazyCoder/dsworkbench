@@ -48,8 +48,12 @@
           <Font name="Tahoma" size="10" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Informationen einblenden"/>
-        <Property name="toolTipText" type="java.lang.String" value="Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Informationeneinblenden&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Datenquelle&quot;)" type="code"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true"/>
@@ -96,7 +100,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Bauernhof"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Bauernhof&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -116,7 +122,9 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="jEnableFarmSettingsBox">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Aktiviert"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Aktiviert&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireEnableFarmSettingsEvent"/>
@@ -129,7 +137,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lieferant ab"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Lieferantab&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[80, 14]"/>
@@ -163,7 +173,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="freien Pl&#xe4;tzen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;freienPlaetzen&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[80, 14]"/>
@@ -217,7 +229,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="freien Pl&#xe4;tzen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;freienPlaetzen&quot;)" type="code"/>
+                </Property>
                 <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[80, 14]"/>
@@ -239,7 +253,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Anwenden"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Anwenden&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 23]"/>
             </Property>
@@ -263,7 +279,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Gruppen"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Gruppen&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -283,7 +301,9 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="jEnableGroupSettingsBox">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Aktiviert"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Aktiviert&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireEnableGroupSettingsEvent"/>
@@ -379,7 +399,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Auswahl"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Auswahl&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -402,7 +424,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/trade_in.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Gew&#xe4;hlte D&#xf6;rfer als Empf&#xe4;nger kennzeichnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Empfaengerkennzeichnen&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[60, 33]"/>
                 </Property>
@@ -427,7 +451,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/trade_out.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Gew&#xe4;hlte D&#xf6;rfer als Lieferanten kennzeichnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Lieferantenkennzeichnen&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[60, 33]"/>
                 </Property>
@@ -452,7 +478,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/trade_both.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Gew&#xe4;hlte D&#xf6;rfer als Lieferant und Empf&#xe4;nger kennzeichnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;LieferantundEmpfaenger&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[60, 33]"/>
                 </Property>

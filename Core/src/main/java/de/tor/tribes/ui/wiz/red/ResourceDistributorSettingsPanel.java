@@ -26,6 +26,8 @@ import de.tor.tribes.ui.renderer.EnumImageCellRenderer;
 import de.tor.tribes.ui.renderer.NumberFormatCellRenderer;
 import de.tor.tribes.ui.renderer.StorageCellRenderer;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.LinkedList;
@@ -47,12 +49,9 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class ResourceDistributorSettingsPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>In diesem Schritt kannst du einstellen, welche der eingelesenen D&ouml;rfer Empf&auml;nger und "
-            + "welche D&ouml;rfer Lieferanten von Rohstoffen sind. Die Entscheidung kann entweder basierend auf dem F&uuml;llstand des Bauernhofes, "
-            + "der Zugeh&ouml;rigkeit zu bestimmten Gruppen oder durch die Auswahl einzelner D&ouml;rfer geschehen. In jedem Fall musst du nach der "
-            + "Einstellung der Auswahlkriterien den Button 'Anwenden' klicken, um die &Auml;nderungen durchzuf&uuml;hren. Es wird empfohlen, immer "
-            + "nur ein Kriterium zu verweden, da sich verschiedene Kriterien gegenseitig ausschlie&szlig;en k&ouml;nnen und das Endergebnis dadurch "
-            + "schwer nachzuvollziehen ist.</html>";
+     private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorSettingsPanel");
+    
+    private static final String GENERAL_INFO = "Info_Empfaenger";
     private static ResourceDistributorSettingsPanel singleton = null;
     private GroupSelectionList groupList = null;
 
@@ -101,7 +100,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    jStatusLabel.setText(jDataTable.getSelectedRowCount() + " Eintrag/Einträge gewählt");
+                    jStatusLabel.setText(jDataTable.getSelectedRowCount() + trans.get("Eintraggewaehlt"));
                 }
             }
         });
@@ -118,7 +117,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Transporte anpassen";
+        return trans.get("Transporteanpassen");
     }
 
     public static String getStep() {
@@ -193,8 +192,8 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -221,12 +220,12 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         jFilterPanel.setPreferredSize(new java.awt.Dimension(400, 200));
         jFilterPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bauernhof"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Bauernhof")));
         jPanel2.setMinimumSize(new java.awt.Dimension(108, 190));
         jPanel2.setPreferredSize(new java.awt.Dimension(571, 190));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jEnableFarmSettingsBox.setText("Aktiviert");
+        jEnableFarmSettingsBox.setText(trans.get("Aktiviert"));
         jEnableFarmSettingsBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireEnableFarmSettingsEvent(evt);
@@ -242,7 +241,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jEnableFarmSettingsBox, gridBagConstraints);
 
-        jLabel2.setText("Lieferant ab");
+        jLabel2.setText(trans.get("Lieferantab"));
         jLabel2.setEnabled(false);
         jLabel2.setMaximumSize(new java.awt.Dimension(80, 14));
         jLabel2.setMinimumSize(new java.awt.Dimension(80, 14));
@@ -266,7 +265,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jSenderFarmSpace, gridBagConstraints);
 
-        jLabel4.setText("freien Plätzen");
+        jLabel4.setText(trans.get("freienPlaetzen"));
         jLabel4.setEnabled(false);
         jLabel4.setMaximumSize(new java.awt.Dimension(80, 14));
         jLabel4.setMinimumSize(new java.awt.Dimension(80, 14));
@@ -302,7 +301,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jReceiverFarmSpace, gridBagConstraints);
 
-        jLabel7.setText("freien Plätzen");
+        jLabel7.setText(trans.get("freienPlaetzen"));
         jLabel7.setEnabled(false);
         jLabel7.setMaximumSize(new java.awt.Dimension(80, 14));
         jLabel7.setMinimumSize(new java.awt.Dimension(80, 14));
@@ -324,7 +323,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 2);
         jFilterPanel.add(jPanel2, gridBagConstraints);
 
-        jButton1.setText("Anwenden");
+        jButton1.setText(trans.get("Anwenden"));
         jButton1.setMaximumSize(new java.awt.Dimension(120, 23));
         jButton1.setMinimumSize(new java.awt.Dimension(120, 23));
         jButton1.setPreferredSize(new java.awt.Dimension(120, 23));
@@ -341,12 +340,12 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 2, 5, 5);
         jFilterPanel.add(jButton1, gridBagConstraints);
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Gruppen"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Gruppen")));
         jPanel5.setMinimumSize(new java.awt.Dimension(150, 50));
         jPanel5.setPreferredSize(new java.awt.Dimension(150, 50));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jEnableGroupSettingsBox.setText("Aktiviert");
+        jEnableGroupSettingsBox.setText(trans.get("Aktiviert"));
         jEnableGroupSettingsBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireEnableGroupSettingsEvent(evt);
@@ -423,13 +422,13 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jVillagePanel.add(jVillageTableScrollPane, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Auswahl"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Auswahl")));
         jPanel4.setMinimumSize(new java.awt.Dimension(80, 37));
         jPanel4.setPreferredSize(new java.awt.Dimension(80, 37));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jChangeToReceive.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/trade_in.png"))); // NOI18N
-        jChangeToReceive.setToolTipText("Gewählte Dörfer als Empfänger kennzeichnen");
+        jChangeToReceive.setToolTipText(trans.get("Empfaengerkennzeichnen"));
         jChangeToReceive.setMaximumSize(new java.awt.Dimension(60, 33));
         jChangeToReceive.setMinimumSize(new java.awt.Dimension(60, 33));
         jChangeToReceive.setPreferredSize(new java.awt.Dimension(60, 33));
@@ -446,7 +445,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         jPanel4.add(jChangeToReceive, gridBagConstraints);
 
         jChangeToSend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/trade_out.png"))); // NOI18N
-        jChangeToSend.setToolTipText("Gewählte Dörfer als Lieferanten kennzeichnen");
+        jChangeToSend.setToolTipText(trans.get("Lieferantenkennzeichnen"));
         jChangeToSend.setMaximumSize(new java.awt.Dimension(60, 33));
         jChangeToSend.setMinimumSize(new java.awt.Dimension(60, 33));
         jChangeToSend.setPreferredSize(new java.awt.Dimension(60, 33));
@@ -464,7 +463,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         jPanel4.add(jChangeToSend, gridBagConstraints);
 
         jChangeToBoth.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/trade_both.png"))); // NOI18N
-        jChangeToBoth.setToolTipText("Gewählte Dörfer als Lieferant und Empfänger kennzeichnen");
+        jChangeToBoth.setToolTipText(trans.get("LieferantundEmpfaenger"));
         jChangeToBoth.setMaximumSize(new java.awt.Dimension(60, 33));
         jChangeToBoth.setMinimumSize(new java.awt.Dimension(60, 33));
         jChangeToBoth.setPreferredSize(new java.awt.Dimension(60, 33));
@@ -523,10 +522,10 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
     private void fireShowHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireShowHideInfoEvent
 
@@ -565,7 +564,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         }
         setProblem(null);
         repaint();
-        jStatusLabel.setText(cnt + " Eintrag/Einträge angepasst");
+        jStatusLabel.setText(cnt + trans.get("Eintragangepasst"));
     }//GEN-LAST:event_fireChangeSelectionEvent
 
     private void removeSelection() {
@@ -575,7 +574,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
             cnt++;
         }
         repaint();
-        jStatusLabel.setText(cnt + " Eintrag/Einträge gelöscht");
+        jStatusLabel.setText(cnt + trans.get("Eintraggelöscht"));
     }
 
     private void applySettings() {
@@ -726,7 +725,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         boolean hasReceiver = false;
         boolean hasSender = false;
         if (getModel().getRowCount() == 0) {
-            setProblem("Keine Dörfer vorhanden");
+            setProblem(trans.get("KeineDoerfervorhanden"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         for (VillageMerchantInfo info : getAllElements()) {
@@ -744,12 +743,12 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         }
 
         if (!hasSender) {
-            setProblem("Keine Lieferanten angegeben");
+            setProblem(trans.get("KeineLieferantenangegeben"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 
         if (!hasReceiver) {
-            setProblem("Keine Empfänger angegeben");
+            setProblem(trans.get("KeineEmpfaengerangegeben"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         ResourceDistributorCalculationPanel.getSingleton().setup(ResourceDistributorWelcomePanel.FILL_DISTRIBUTION.equals(getWizardDataMap().get(ResourceDistributorWelcomePanel.TYPE)));

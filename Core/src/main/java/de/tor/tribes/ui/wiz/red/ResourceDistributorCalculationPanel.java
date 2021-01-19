@@ -28,6 +28,8 @@ import de.tor.tribes.util.algo.MerchantDistributor;
 import de.tor.tribes.util.algo.types.MerchantDestination;
 import de.tor.tribes.util.algo.types.MerchantSource;
 import de.tor.tribes.util.algo.types.Order;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -52,10 +54,9 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class ResourceDistributorCalculationPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "In diesem Schritt kannst du letztendlich die Berechnung durchführen. Abhängig von der Art der Berechnung "
-            + "hast du die Möglichkeit, letzte Einstellungen vorzunehmen. Weiterhin stehen 'Erweiterte Einstellungen' zur Verfügung, die du ebenfalls bei "
-            + "Bedarf anpassen kannst. Für den Anfang ist aber empfohlen, diese Einstellungen so zu lassen wie sie sind. Sind alle Einstellungen getroffen,"
-            + " kannst du die Berechnung über 'Transporte berechnen' starten.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.red.ResourceDistributorCalculationPanel");
+    
+    private static final String GENERAL_INFO = trans.get("InSchrittletztendlichBerechnung");
     private static ResourceDistributorCalculationPanel singleton = null;
     private MerchantDistributor calculator = null;
     private boolean transportsAlreadyTransferred = false;
@@ -82,7 +83,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Berechnung";
+        return trans.get("Berechnung");
     }
 
     public static String getStep() {
@@ -323,16 +324,16 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         jExpertSettingsPanel.setMinimumSize(new java.awt.Dimension(600, 240));
         jExpertSettingsPanel.setPreferredSize(new java.awt.Dimension(600, 240));
         jExpertSettingsPanel.setLayout(new java.awt.GridBagLayout());
 
-        jIgnoreTransportsButton.setText("Transporte mit weniger als");
+        jIgnoreTransportsButton.setText(trans.get("Transportemitwenigerals"));
         jIgnoreTransportsButton.setMaximumSize(new java.awt.Dimension(200, 25));
         jIgnoreTransportsButton.setMinimumSize(new java.awt.Dimension(200, 25));
         jIgnoreTransportsButton.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -357,7 +358,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jExpertSettingsPanel.add(jMinTransportAmount, gridBagConstraints);
 
-        jLabel14.setText("fach füllen. Achtung, kann zu Rohstoffverlust führen!");
+        jLabel14.setText(trans.get("Achtungfuellen"));
         jLabel14.setMaximumSize(new java.awt.Dimension(150, 25));
         jLabel14.setMinimumSize(new java.awt.Dimension(150, 25));
         jLabel14.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -370,7 +371,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 2, 5);
         jExpertSettingsPanel.add(jLabel14, gridBagConstraints);
 
-        jLabel15.setText("Felder ignorieren.");
+        jLabel15.setText(trans.get("Felderignorieren"));
         jLabel15.setMaximumSize(new java.awt.Dimension(150, 25));
         jLabel15.setMinimumSize(new java.awt.Dimension(150, 25));
         jLabel15.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -396,7 +397,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jExpertSettingsPanel.add(jMaxTransportDistance, gridBagConstraints);
 
-        jIgnoreTransportsByDistanceButton.setText("Transportentfernung über");
+        jIgnoreTransportsByDistanceButton.setText(trans.get("Transportentfernungueber"));
         jIgnoreTransportsByDistanceButton.setMaximumSize(new java.awt.Dimension(200, 25));
         jIgnoreTransportsByDistanceButton.setMinimumSize(new java.awt.Dimension(200, 25));
         jIgnoreTransportsByDistanceButton.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -408,7 +409,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jExpertSettingsPanel.add(jIgnoreTransportsByDistanceButton, gridBagConstraints);
 
-        jLabel3.setText("Berechnungsreihenfolge");
+        jLabel3.setText(trans.get("Berechnungsreihenfolge"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -422,7 +423,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jResource1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jResource1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jResource1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/holz.png"))); // NOI18N
-        jResource1.setToolTipText("Holz");
+        jResource1.setToolTipText(trans.get("Holz"));
         jResource1.setMaximumSize(new java.awt.Dimension(40, 14));
         jResource1.setMinimumSize(new java.awt.Dimension(40, 14));
         jResource1.setPreferredSize(new java.awt.Dimension(40, 14));
@@ -437,7 +438,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jResource2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jResource2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jResource2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lehm.png"))); // NOI18N
-        jResource2.setToolTipText("Lehm");
+        jResource2.setToolTipText(trans.get("Lehm"));
         jResource2.setMaximumSize(new java.awt.Dimension(40, 14));
         jResource2.setMinimumSize(new java.awt.Dimension(40, 14));
         jResource2.setPreferredSize(new java.awt.Dimension(40, 14));
@@ -452,7 +453,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jResource3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jResource3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jResource3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/eisen.png"))); // NOI18N
-        jResource3.setToolTipText("Eisen");
+        jResource3.setToolTipText(trans.get("Eisen"));
         jResource3.setMaximumSize(new java.awt.Dimension(40, 14));
         jResource3.setMinimumSize(new java.awt.Dimension(40, 14));
         jResource3.setPreferredSize(new java.awt.Dimension(40, 14));
@@ -489,7 +490,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jPanel4.add(jSwitch23Button, gridBagConstraints);
 
         jSwitch23Button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_empty.png"))); // NOI18N
-        jSwitch23Button1.setToolTipText("Verteilungsreihenfolge empfehlen");
+        jSwitch23Button1.setToolTipText(trans.get("Verteilungsreihenfolgeempfehlen"));
         jSwitch23Button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireAdviceOrderEvent(evt);
@@ -502,7 +503,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jPanel4.add(jSwitch23Button1, gridBagConstraints);
 
         jUseResource1.setSelected(true);
-        jUseResource1.setToolTipText("Transporte für diese Ressource berechnen");
+        jUseResource1.setToolTipText(trans.get("TransportedieseRessourceberechnen"));
         jUseResource1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_red.png"))); // NOI18N
         jUseResource1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_green.png"))); // NOI18N
         jUseResource1.addItemListener(new java.awt.event.ItemListener() {
@@ -516,7 +517,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jPanel4.add(jUseResource1, gridBagConstraints);
 
         jUseResource3.setSelected(true);
-        jUseResource3.setToolTipText("Transporte für diese Ressource berechnen");
+        jUseResource3.setToolTipText(trans.get("TransportedieseRessourceberechnen"));
         jUseResource3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_red.png"))); // NOI18N
         jUseResource3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_green.png"))); // NOI18N
         jUseResource3.addItemListener(new java.awt.event.ItemListener() {
@@ -530,7 +531,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jPanel4.add(jUseResource3, gridBagConstraints);
 
         jUseResource2.setSelected(true);
-        jUseResource2.setToolTipText("Transporte für diese Ressource berechnen");
+        jUseResource2.setToolTipText(trans.get("TransportedieseRessourceberechnen"));
         jUseResource2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_red.png"))); // NOI18N
         jUseResource2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/bullet_ball_green.png"))); // NOI18N
         jUseResource2.addItemListener(new java.awt.event.ItemListener() {
@@ -570,7 +571,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jExpertSettingsPanel.add(jFillSlider, gridBagConstraints);
 
-        jLabel13.setText("Max. Speicherfüllstand [%]");
+        jLabel13.setText(trans.get("MaxSpeicherfuellstand"));
         jLabel13.setMaximumSize(new java.awt.Dimension(200, 25));
         jLabel13.setMinimumSize(new java.awt.Dimension(200, 25));
         jLabel13.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -582,8 +583,8 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jExpertSettingsPanel.add(jLabel13, gridBagConstraints);
 
         jLimitMerchantAmount.setSelected(true);
-        jLimitMerchantAmount.setText("Händlerzahl pro Rohstoff beschränken");
-        jLimitMerchantAmount.setToolTipText("<html>Schränkt die Anzahl der Händler pro Rohstoff gleichmäßig ein.<br/>\nWerden alle 3 Rohstoffe gehandelt, wird jeder Rohstoff mit 33% der Händler verschickt.<br/>\nHandelt man nur 2 Rohstoffe, werden für jeden Rohstoff 50% der Händler verwendet.<br/>\nIst diese Option deaktiviert, werden die Händler nach der Reihenfolge des Handels verwendet.</html>");
+        jLimitMerchantAmount.setText(trans.get("HaendlerzahlproRohstoffbeschraenken"));
+        jLimitMerchantAmount.setToolTipText(trans.get("SchraenktdieAnzahlderHaendler"));
         jLimitMerchantAmount.setMaximumSize(new java.awt.Dimension(200, 25));
         jLimitMerchantAmount.setMinimumSize(new java.awt.Dimension(200, 25));
         jLimitMerchantAmount.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -595,8 +596,8 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         jExpertSettingsPanel.add(jLimitMerchantAmount, gridBagConstraints);
 
-        jAllowOverflow.setText("Überfüllung zulassen. Speicher");
-        jAllowOverflow.setToolTipText("<html>Hebt das Limit der Speichergröße auf.<br/>  Ist diese Option aktiviert, so werden Rohstoffsendungen bis zur x-fachen Speichergröße an die<br/> Dörfer zugeteilt (oder bis zum Max. Rohstoffe (Empfänger) Limit), je nachdem was kleiner ist. <br/>  Wird ein Speicher beim Beliefern überfüllt, so verfallen die gesendeten Rohstoffe. Ist diese <br/>  Option aktiviert, sollte daher unbedingt darauf geachtet werden empfangene Rohstoffe schnell<br/>  genug zu verarbeiten.<br/> Ist diese Option deaktiviert, so werden Lieferungen anhand des Speichers begrenzt (bis zum Max.<br/> Speicherfüllstand [%] oben). </html>");
+        jAllowOverflow.setText(trans.get("UeberfuellungzulassenSpeicher"));
+        jAllowOverflow.setToolTipText(trans.get("Limit"));
         jAllowOverflow.setMaximumSize(new java.awt.Dimension(200, 25));
         jAllowOverflow.setMinimumSize(new java.awt.Dimension(200, 25));
         jAllowOverflow.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -621,7 +622,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jExpertSettingsPanel.add(jFillFactor, gridBagConstraints);
 
-        jLabel16.setText("Rohstoffen ignorieren.");
+        jLabel16.setText(trans.get("Rohstoffenignorieren"));
         jLabel16.setMaximumSize(new java.awt.Dimension(150, 25));
         jLabel16.setMinimumSize(new java.awt.Dimension(150, 25));
         jLabel16.setPreferredSize(new java.awt.Dimension(150, 25));
@@ -638,8 +639,8 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("BlendetInformationen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -662,10 +663,10 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jSummaryPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Lieferanten");
+        jLabel2.setText(trans.get("Lieferanten"));
         jLabel2.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel2.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -691,7 +692,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jSummaryPanel.add(jSenders, gridBagConstraints);
 
-        jLabel4.setText("Verfügbare Händler");
+        jLabel4.setText(trans.get("VerfuegbareHaendler"));
         jLabel4.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel4.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel4.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -717,7 +718,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jSummaryPanel.add(jMerchants, gridBagConstraints);
 
-        jLabel6.setText("Verfügbares Holz");
+        jLabel6.setText(trans.get("VerfuegbaresHolz"));
         jLabel6.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel6.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -743,7 +744,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 2, 5);
         jSummaryPanel.add(jWood, gridBagConstraints);
 
-        jLabel10.setText("Empfänger");
+        jLabel10.setText(trans.get("Empfaenger"));
         jLabel10.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel10.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel10.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -769,7 +770,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jSummaryPanel.add(jReceivers, gridBagConstraints);
 
-        jLabel7.setText("Verfügbarer Lehm");
+        jLabel7.setText(trans.get("VerfuegbarerLehm"));
         jLabel7.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel7.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel7.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -795,7 +796,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 2, 5);
         jSummaryPanel.add(jClay, gridBagConstraints);
 
-        jLabel9.setText("Verfügbares Eisen");
+        jLabel9.setText(trans.get("VerfuegbaresEisen"));
         jLabel9.setMaximumSize(new java.awt.Dimension(200, 16));
         jLabel9.setMinimumSize(new java.awt.Dimension(200, 16));
         jLabel9.setPreferredSize(new java.awt.Dimension(200, 16));
@@ -830,11 +831,11 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jSummaryPanel, gridBagConstraints);
 
-        jSettingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jSettingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
         jSettingsPanel.setLayout(new java.awt.GridBagLayout());
 
         jToggleButton1.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        jToggleButton1.setText("Erweiterte Einstellungen");
+        jToggleButton1.setText(trans.get("ErweiterteEinstellungen"));
         jToggleButton1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireShowHideExpertSettingsEvent(evt);
@@ -860,7 +861,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jFillSettingsPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel11.setText("Max. Rohstoffe (Empfänger)");
+        jLabel11.setText(trans.get("MaxRohstoffeEmpfaenger"));
         jLabel11.setMaximumSize(new java.awt.Dimension(200, 25));
         jLabel11.setMinimumSize(new java.awt.Dimension(200, 25));
         jLabel11.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -873,7 +874,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jFillSettingsPanel.add(jLabel11, gridBagConstraints);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setText("Min. Rohstoffe (Lieferanten)");
+        jLabel8.setText(trans.get("MinRohstoffeLieferanten"));
         jLabel8.setMaximumSize(new java.awt.Dimension(200, 25));
         jLabel8.setMinimumSize(new java.awt.Dimension(200, 25));
         jLabel8.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -886,7 +887,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jFillSettingsPanel.add(jLabel8, gridBagConstraints);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/median.png"))); // NOI18N
-        jButton1.setToolTipText("Durchnittliche Ressourcen aller Dörfer verwenden");
+        jButton1.setToolTipText(trans.get("DurchnittlicheRessourcenallerverwenden"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireSetMinToMedianEvent(evt);
@@ -918,7 +919,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         jNoSettingsLabel.setBackground(new java.awt.Color(255, 255, 255));
         jNoSettingsLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jNoSettingsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jNoSettingsLabel.setText("Keine Einstellungen notwendig");
+        jNoSettingsLabel.setText(trans.get("KeineEinstellungennotwendig"));
         jNoSettingsLabel.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1029,7 +1030,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
 
         jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCalculateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jCalculateButton.setText("Transporte berechnen");
+        jCalculateButton.setText(trans.get("Transporteberechnen"));
         jCalculateButton.setMaximumSize(new java.awt.Dimension(190, 40));
         jCalculateButton.setMinimumSize(new java.awt.Dimension(190, 40));
         jCalculateButton.setPreferredSize(new java.awt.Dimension(190, 40));
@@ -1045,7 +1046,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jCalculateButton, gridBagConstraints);
 
-        jProgressBar1.setString("Bereit");
+        jProgressBar1.setString(trans.get("Bereit"));
         jProgressBar1.setStringPainted(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1067,10 +1068,10 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     private void fireShowHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireShowHideInfoEvent
 
@@ -1145,7 +1146,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
 
     private void fireUsageStateChangedEvent(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fireUsageStateChangedEvent
         if (!jUseResource1.isSelected() && !jUseResource2.isSelected() && !jUseResource3.isSelected()) {
-            setProblem("Es muss mindestens ein Rohstoff verwendet werden");
+            setProblem(trans.get("EsmussmindestensRohstoff"));
         } else {
             setProblem(null);
         }
@@ -1176,11 +1177,11 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     private String resourceIdToResourceName(int id) {
         switch (id) {
             case 0:
-                return "Holz";
+                return trans.get("Holz");
             case 1:
-                return "Lehm";
+                return trans.get("Lehm");
             default:
-                return "Eisen";
+                return trans.get("Eisen");
         }
     }
 
@@ -1196,13 +1197,12 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     }
 
     private int resourceNameToResourceId(String resource) {
-        switch (resource) {
-            case "Holz":
-                return 0;
-            case "Lehm":
-                return 1;
-            default:
-                return 2;
+        if(resource.equals(trans.get("Holz"))) {
+            return 0;
+        } else if(resource.equals(trans.get("Lehm"))) {
+            return 1;
+        } else {
+            return 2;
         }
     }
 
@@ -1311,10 +1311,14 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     private void doCalculate() {
         if (calculator != null) {
             if (calculator.isRunning()) {
-                setProblem("Berechnung läuft bereits...");
+                setProblem(trans.get("Berechnunglauftbereits"));
                 return;
             } else if (calculator.hasResult()) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Vorherige Berechnung verwerfen?", "Berechnung verwerfen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                        trans.get("VorherigeBerechnungverwerfen"), 
+                        trans.get("Berechnungverwerfen"), 
+                        trans.get("Nein"), 
+                        trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     //not recalculate
                     return;
                 } else {
@@ -1410,17 +1414,17 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
                 String resourceName;
                 switch (pResourceId) {
                     case 0:
-                        resourceName = "Holz";
+                        resourceName = trans.get("Holz");
                         break;
                     case 1:
-                        resourceName = "Lehm";
+                        resourceName = trans.get("Lehm");
                         break;
                     default:
-                        resourceName = "Eisen";
+                        resourceName = trans.get("Eisen");
                         break;
 
                 }
-                jProgressBar1.setString("Berechne Transporte für '" + resourceName + "'...");
+                jProgressBar1.setString(trans.get("BerechneTransporte") + resourceName + "'...");
             }
 
             @Override
@@ -1428,13 +1432,13 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
                 setBusy(false);
                 setProblem(null);
                 jProgressBar1.setIndeterminate(false);
-                jProgressBar1.setString("Berechnung abgeschlossen.");
+                jProgressBar1.setString(trans.get("Berechnungabgeschlossen"));
             }
         });
         setBusy(true);
         calculator.start();
         jProgressBar1.setIndeterminate(true);
-        jProgressBar1.setString("Berechne...");
+        jProgressBar1.setString(trans.get("Berechne"));
         try {//let thread start
             Thread.sleep(20);
         } catch (InterruptedException ignored) {
@@ -1622,11 +1626,11 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (calculator == null) {
-            setProblem("Noch keine Berechnung durchgeführt");
+            setProblem(trans.get("NochkeineBerechnungdurchgefuehrt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         if (calculator != null && calculator.isRunning()) {
-            setProblem("Berechnung läuft...");
+            setProblem(trans.get("Berechnunglauuft"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 
@@ -1642,7 +1646,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowBack(String string, Map map, Wizard wizard) {
         if (calculator != null && calculator.isRunning()) {
-            setProblem("Berechnung läuft...");
+            setProblem(trans.get("Berechnunglauuft"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         return WizardPanelNavResult.PROCEED;
@@ -1652,7 +1656,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowFinish(String string, Map map, Wizard wizard) {
         if (calculator != null && calculator.isRunning()) {
-            setProblem("Berechnung läuft...");
+            setProblem(trans.get("Berechnunglauuft"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

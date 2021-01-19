@@ -51,10 +51,10 @@ public class AboutDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jDebugButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About");
@@ -63,7 +63,7 @@ public class AboutDialog extends javax.swing.JDialog {
 
         jAppLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jAppLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jAppLabel.setText("DS-Workbench 0.92b");
+        jAppLabel.setText("DS-Workbench");
         jAppLabel.setMaximumSize(new java.awt.Dimension(250, 22));
         jAppLabel.setMinimumSize(new java.awt.Dimension(250, 22));
         jAppLabel.setPreferredSize(new java.awt.Dimension(250, 22));
@@ -94,7 +94,7 @@ public class AboutDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("dsworkbench@gmx.de");
+        jLabel4.setText("mr.pcs@web.de");
         jLabel4.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -105,7 +105,7 @@ public class AboutDialog extends javax.swing.JDialog {
         getContentPane().add(jLabel4, gridBagConstraints);
 
         jLabel5.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel5.setText("https://forum.die-staemme.de/index.php?threads/ds-workbench.80831/");
+        jLabel5.setText("https://github.com/extremeCrazyCoder");
         jLabel5.setToolTipText("");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,17 +119,6 @@ public class AboutDialog extends javax.swing.JDialog {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabel5, gridBagConstraints);
-
-        jLabel6.setText("<html>&copy; Torridity (2008-2018)</html>");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(jLabel6, gridBagConstraints);
 
         jDebugButton.setText("Debug");
         jDebugButton.setToolTipText("Schaltet den Debug-Modus an (nur nach Aufforderung benötigt)");
@@ -162,6 +151,18 @@ public class AboutDialog extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        jLabel7.setText("<html>&copy; Torridity (2008-2018) | &copy; extremeCrazyCoder (2017-2021) | &copy; Mecqq (2020-2021)</html>\n");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(jLabel7, gridBagConstraints);
+        jLabel7.getAccessibleContext().setAccessibleName("© Torridity (2008-2018)\n© Mecqq (2020-2021)");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,7 +217,7 @@ private void fireDebugOnEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

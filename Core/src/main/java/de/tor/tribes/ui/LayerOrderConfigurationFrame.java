@@ -17,6 +17,8 @@ package de.tor.tribes.ui;
 
 import de.tor.tribes.ui.components.LayerOrderPanel;
 import de.tor.tribes.util.interfaces.LayerOrderTooltipListener;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -29,6 +31,8 @@ import java.util.HashMap;
  */
 public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements LayerOrderTooltipListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.LayerOrderConfigurationFrame");
+    
     private static LayerOrderConfigurationFrame SINGLETON = null;
     private HashMap<String, String> tooltips = new HashMap<>();
     private String tooltipLayer = null;
@@ -156,13 +160,13 @@ public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 250));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Informationen")));
 
-        jTextPane1.setContentType("text/html");
+        jTextPane1.setContentType("text/html"); // NOI18N
         jTextPane1.setEditable(false);
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButton1.setText("Schließen");
+        jButton1.setText(trans.get("Schliessen"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCloseFrameEvent(evt);
@@ -175,7 +179,7 @@ public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements 
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(331, Short.MAX_VALUE)
+                .addContainerGap(309, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)

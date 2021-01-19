@@ -42,9 +42,11 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jTextPane1">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;Willkommen beim DS Workbench Rohstoffverteiler.&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&#xa;&#xa;&lt;/html&gt;"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Willkommen_Rohstoffverteiler&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

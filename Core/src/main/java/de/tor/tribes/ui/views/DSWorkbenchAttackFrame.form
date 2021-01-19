@@ -82,7 +82,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jButton12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Anwenden"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Anwenden&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireHideGlassPaneEvent"/>
@@ -95,12 +97,16 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel21">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Suchbegriff"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Suchbegriff&quot;)" type="code"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jFilterRows">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nur gefilterte Zeilen anzeigen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;NurgefilterteZeilenanzeigen&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fireUpdateFilterEvent"/>
@@ -108,7 +114,9 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jFilterCaseSensitive">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gro&#xdf;-/Kleinschreibung beachten"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;GrossKleinschreibung&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fireUpdateFilterEvent"/>
@@ -139,7 +147,9 @@
             </Container>
             <Component class="javax.swing.JLabel" name="jLabel22">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Spalten"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Spalten&quot;)" type="code"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -166,7 +176,9 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="Befehle"/>
+    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="trans.get(&quot;Befehle&quot;)" type="code"/>
+    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[700, 500]"/>
     </Property>
@@ -210,7 +222,9 @@
     </Container>
     <Component class="javax.swing.JCheckBox" name="jAttackFrameAlwaysOnTop">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Immer im Vordergrund"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;ImmerimVordergrund&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fireAttackFrameAlwaysOnTopEvent"/>

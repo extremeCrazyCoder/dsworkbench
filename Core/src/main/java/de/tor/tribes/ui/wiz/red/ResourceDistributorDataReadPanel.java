@@ -23,6 +23,8 @@ import de.tor.tribes.ui.renderer.EnumImageCellRenderer;
 import de.tor.tribes.ui.renderer.NumberFormatCellRenderer;
 import de.tor.tribes.ui.renderer.StorageCellRenderer;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
@@ -50,12 +52,9 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class ResourceDistributorDataReadPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>In diesem Schritt musst du die notwendigen Daten aus dem Spiel importieren. "
-            + "Wechsle daf&uml;r im Spiel in die Produktions&uuml;bersicht, markiere die komplette Seite per STRG+A und klicke anschlie&szlig;end "
-            + "auf den gro&szlig;en Button im oberen Bereich des Rohstoffverteilers, um die Daten aus der Zwischenablage zu lesen. Danach "
-            + "m&uuml;ssten alle gefunden Informationen in der Tabelle aufgelistet sein. Sollte das nicht funktionieren, versuche bitte "
-            + "vor dem Kopieren der Produktions&uuml;bersicht alle Scripte im Spiel zu deaktivieren, die Ver&auml;nderungen an dieser "
-            + "&Uuml;bersicht vornehmen. Warst du erfolgreich, kannst du auf 'Weiter' klicken.</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorDataReadPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Information_Import");
     private static ResourceDistributorDataReadPanel singleton = null;
 
     public static synchronized ResourceDistributorDataReadPanel getSingleton() {
@@ -105,7 +104,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Datenauswahl";
+        return trans.get("Datenauswahl");
     }
 
     public static String getStep() {
@@ -141,9 +140,9 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setPreferredSize(new java.awt.Dimension(520, 320));
@@ -151,8 +150,8 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -221,7 +220,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
 
         jButtonPanel.setLayout(new java.awt.GridBagLayout());
 
-        jAddAsBothButton.setToolTipText("In der Zwischenablage nach kopierter Produktionsübersicht suchen");
+        jAddAsBothButton.setToolTipText(trans.get("Zwischenablagenachkopierterproduktionsuebersicht"));
         jAddAsBothButton.setMaximumSize(new java.awt.Dimension(120, 60));
         jAddAsBothButton.setMinimumSize(new java.awt.Dimension(120, 60));
         jAddAsBothButton.setPreferredSize(new java.awt.Dimension(120, 60));
@@ -239,7 +238,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jButtonPanel.add(jAddAsBothButton, gridBagConstraints);
 
-        jAddAsSenderButton.setToolTipText("In der Zwischenablage nach kopierter Produktionsübersicht suchen und Dörfer als Lieferanten eintragen");
+        jAddAsSenderButton.setToolTipText(trans.get("InZwischenablageDoerferalsLieferanteneintragen"));
         jAddAsSenderButton.setMaximumSize(new java.awt.Dimension(120, 60));
         jAddAsSenderButton.setMinimumSize(new java.awt.Dimension(120, 60));
         jAddAsSenderButton.setPreferredSize(new java.awt.Dimension(120, 60));
@@ -257,7 +256,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jButtonPanel.add(jAddAsSenderButton, gridBagConstraints);
 
-        jAddAsReceiverButton.setToolTipText("In der Zwischenablage nach kopierter Produktionsübersicht suchen und Dörfer als Empfänger eintragen");
+        jAddAsReceiverButton.setToolTipText(trans.get("InZwischenablagenachkopierter"));
         jAddAsReceiverButton.setMaximumSize(new java.awt.Dimension(120, 60));
         jAddAsReceiverButton.setMinimumSize(new java.awt.Dimension(120, 60));
         jAddAsReceiverButton.setPreferredSize(new java.awt.Dimension(120, 60));
@@ -285,7 +284,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
 
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Rohstoffspalte sortieren nach");
+        jLabel2.setText(trans.get("Rohstoffspaltesortierennach"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -325,10 +324,10 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
     private void fireShowHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireShowHideInfoEvent
 
@@ -380,7 +379,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
             String data = (String) t.getTransferData(DataFlavor.stringFlavor);
             List<VillageMerchantInfo> infos = PluginManager.getSingleton().executeMerchantParser(data);
             if (infos.isEmpty()) {
-                setProblem("Keine Einträge in der Zwischenablage gefunden");
+                setProblem(trans.get("KeineEintraegeZwischenablagegefunden"));
                 return;
             }
 
@@ -400,25 +399,23 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
 
             switch (pDirection) {
                 case INCOMING:
-                    jStatusLabel.setText(infos.size() + " Empfänger eingefügt/aktualisiert");
+                    jStatusLabel.setText(infos.size() + trans.get("Empfaengereingefuegtaktualisiert"));
                     break;
                 case OUTGOING:
-                    jStatusLabel.setText(infos.size() + " Lieferanten eingefügt/aktualisiert");
+                    jStatusLabel.setText(infos.size() + trans.get("Lieferanteneingefuegtaktualisiert"));
                     break;
                 default:
-                    jStatusLabel.setText(infos.size() + " Einträge eingefügt/aktualisiert");
+                    jStatusLabel.setText(infos.size() + trans.get("Eintraegeeingefuegtaktualisiert"));
             }
             if (getModel().getRowCount() > 500) {
-                JOptionPaneHelper.showWarningBox(this, "Es wurden mehr als 500 Einträge eingefügt, die Berechnung der Transporte kann daher sehr lange dauern.\n"
-                        + "Während die Berechnung läuft wird DS Workbench nicht reagieren.\n"
-                        + "Es wird dringend empfohlen, die Berechnung in kleineren Einzelschritten durchzuführen.", "Warnung");
+                JOptionPaneHelper.showWarningBox(this, trans.get("FunfhundertEintraegeWarnung"), trans.get("Warnung"));
             }
 
             if (getModel().getRowCount() > 0) {
                 setProblem(null);
             }
         } catch (Exception e) {
-            setProblem("Fehler beim Lesen aus der Zwischenablage");
+            setProblem(trans.get("FehlerbeimLesenZwischenablage"));
         }
     }
 
@@ -434,7 +431,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
                 getModel().removeRow(rows.get(i));
             }
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Dörfer vorhanden");
+                setProblem(trans.get("KeineDoerfervorhanden"));
             }
         }
     }
@@ -469,7 +466,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getModel().getRowCount() == 0) {
-            setProblem("Keine Einträge vorhanden");
+            setProblem(trans.get("KeineEintraegevorhanden"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

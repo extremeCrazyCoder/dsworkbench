@@ -27,7 +27,9 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Vorschau"/>
+            <TitledBorder title="&lt;User Code&gt;">
+              <Connection PropertyName="titleX" code="trans.get(&quot;Vorschau&quot;)" type="code"/>
+            </TitledBorder>
           </Border>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -54,8 +56,12 @@
     </Container>
     <Component class="javax.swing.JButton" name="jApplyButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Schlie&#xdf;en"/>
-        <Property name="toolTipText" type="java.lang.String" value="Beendet den BB-Editor. &#xc4;nderungen werden w&#xe4;hrend dem Editiervorgang automatisch gespeichert."/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Schliessen&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;BBBeendet&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireApplyBBTemplatesEvent"/>
@@ -68,8 +74,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jStandardButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Standard wiederherstellen"/>
-        <Property name="toolTipText" type="java.lang.String" value="Stellt den Standardwert f&#xfc;r das gew&#xe4;hlte Template her"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Standardwiederherstellen&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Standard_Text&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireResetEvent"/>
@@ -130,7 +140,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Variablen"/>
+                    <TitledBorder title="&lt;User Code&gt;">
+                      <Connection PropertyName="titleX" code="trans.get(&quot;Variablen&quot;)" type="code"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -214,7 +226,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Export Template f&#xfc;r"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;ExportTemplate&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -227,7 +241,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/res/ui/information.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Verf&#xfc;gbare Platzhalter"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Platzhalter&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireShowTemplateVarsDialogEvent"/>

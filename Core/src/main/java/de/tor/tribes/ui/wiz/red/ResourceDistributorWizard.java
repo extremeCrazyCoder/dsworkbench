@@ -17,6 +17,8 @@ package de.tor.tribes.ui.wiz.red;
 
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -34,13 +36,15 @@ import org.netbeans.spi.wizard.WizardPanelProvider;
  */
 public class ResourceDistributorWizard extends WizardPanelProvider {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorWizard");
+    
     private static final String ID_WELCOME = ResourceDistributorWelcomePanel.getStep();
     private static JFrame parent = null;
 
     public ResourceDistributorWizard() {
-        super("DS Workbench - Rohstoffverteiler",
+        super(trans.get("welcome_Rohstoffverteiler"),
                 new String[]{ID_WELCOME},
-                new String[]{"Willkommen"});
+                new String[]{trans.get("Willkommen")});
     }
 
     @Override
@@ -78,7 +82,7 @@ public class ResourceDistributorWizard extends WizardPanelProvider {
         }
         parent = new JFrame();
 
-        parent.setTitle("Rohstoffverteiler");
+        parent.setTitle(trans.get("Rohstoffverteiler"));
         Wizard wizard = new ResourceDistributorBranchController().createWizard();
         parent.getContentPane().setLayout(new BorderLayout());
         WizardDisplayer.installInContainer(parent, BorderLayout.CENTER, wizard, null, null, new WizardResultReceiver() {

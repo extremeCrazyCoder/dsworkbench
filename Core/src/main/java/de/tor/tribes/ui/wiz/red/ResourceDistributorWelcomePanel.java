@@ -16,6 +16,8 @@
 package de.tor.tribes.ui.wiz.red;
 
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.event.ItemEvent;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -29,23 +31,11 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class ResourceDistributorWelcomePanel extends WizardPage {
     
-    private static final String EQUAL_DISTIBUTION_HELP = "<html><b>Willkommen beim DS Workbench Rohstoffverteiler.</b><br/><br/>"
-            + "Du hast die Gleichverteilung von Rohstoffen gew&auml;hlt. Dabei wird versucht, die vorhandenen Rohstoffe zwischen den D&ouml;rfern "
-            + "so zu verteilen, dass in allen D&ouml;rfer am Ende gleichviel Rohstoffe vorhanden sind, sofern dies die Ausbaustufen der Speicher zulassen. "
-            + "Bei der Gleichverteilung wird weder die Ausbaustufe der D&ouml;rfer noch der F&uuml;llstand des Bauernhofes ber&uuml;cksichtigt. "
-            + "Diese Berechnung bietet sich daher f&uuml;r gro&szlig;e Accounts an, wo ein Gro&szlig;teil der D&ouml;rfern voll ausgebaut ist, "
-            + "oder f&uuml;r kleine Accounts, wo alle D&ouml;rfer einen &auml;hnlichen Bedarf an Rohstoffen haben.</html>";
-    private static final String FILL_DISTIBUTION_HELP = "<html><b>Willkommen beim DS Workbench Rohstoffverteiler.</b><br/><br/>"
-            + "Du hast die Belieferung bestimmter D&ouml;rfer gew&auml;hlt. Dabei k&ouml;nnen die vorhandenen D&ouml;rfern in Lieferanten "
-            + " und Empf&auml;nger unterteilt werden, um Rohstoffe gezielt zu verteilen. So k&ouml;nnen etwa Dorfgruppen mit voll ausgebauten "
-            + "D&ouml;rfern als Liefernanten dienen, w&auml;hrend D&ouml;rfer im Aufbau nur Rohstoffe empfangen. "
-            + "Diese Berechnung eignet sich vorrangig f&uuml;r gro&szlig;e Accounts, wo viele Lieferanten vergleichsweise wenige Empf&auml;nger "
-            + "beliefern k&ouml;nnen. Bei kleinen Accounts, in denen nur wenige Liefernanten vorhanden sind, ist der Rohstoffbedarf oft gr&ouml;&szlig;er "
-            + "als die vorhandenen Rohstoffe. Daher sollte hier eher die Gleichverteilung bevorzugt werden.</html>";
-    private static final String LOAD_HELP = "<html><b>Willkommen beim DS Workbench Rohstoffverteiler.</b><br/><br/>"
-            + "Du hast das Laden vorher berechneter Transporte gew&auml;hlt. Sobald eine Berechnung erfolgreich durchgef&uuml;hrt wurde, "
-            + "werden alle notwendigen Transporte beim Beenden von DS Workbench gespeichert. So hast du die M&ouml;glichkeit Transporte nach und nach "
-            + "abzuschicken, falls du es zeitlich nicht schaffst, alle errechneten Transporte auf einmal auf den Weg zu bringen.</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorWelcomePanel");
+    
+    private static final String EQUAL_DISTIBUTION_HELP = trans.get("Welcome_Gleichverteilung");
+    private static final String FILL_DISTIBUTION_HELP = trans.get("Welcome_verteilung");
+    private static final String LOAD_HELP = trans.get("Welcome_vorherberechneterTransporte");
     private static ResourceDistributorWelcomePanel singleton = null;
     public static final String TYPE = "type";
     public final static Integer BALANCE_DISTRIBUTION = 0;
@@ -71,7 +61,7 @@ public class ResourceDistributorWelcomePanel extends WizardPage {
     }
     
     public static String getDescription() {
-        return "Willkommen";
+        return trans.get("Willkommen");
     }
     
     public static String getStep() {
@@ -99,9 +89,9 @@ public class ResourceDistributorWelcomePanel extends WizardPage {
         setPreferredSize(new java.awt.Dimension(600, 500));
         setLayout(new java.awt.BorderLayout());
 
-        jTextPane1.setContentType("text/html");
         jTextPane1.setEditable(false);
-        jTextPane1.setText("<html><b>Willkommen beim DS Workbench Rohstoffverteiler.</b><br/><br/>\n\n</html>");
+        jTextPane1.setContentType("text/html"); // NOI18N
+        jTextPane1.setText(trans.get("Willkommen_Rohstoffverteiler"));
         jScrollPane1.setViewportView(jTextPane1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -180,7 +170,7 @@ public class ResourceDistributorWelcomePanel extends WizardPage {
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (jLoadButton.isSelected()) {
             if (!ResourceDistributorFinishPanel.getSingleton().loadTransports()) {
-                JOptionPaneHelper.showWarningBox(ResourceDistributorWelcomePanel.this, "Keine gespeicherten Transporte gefunden.\nBitte starte eine neue Berechnung.", "Warnung");
+                JOptionPaneHelper.showWarningBox(ResourceDistributorWelcomePanel.this, trans.get("KeinegespeichertenTransporte"), trans.get("Warnung"));
                 return WizardPanelNavResult.REMAIN_ON_PAGE;
             }
         }

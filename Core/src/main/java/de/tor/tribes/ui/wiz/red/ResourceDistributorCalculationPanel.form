@@ -19,9 +19,11 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jInfoTextPane">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Du befindest dich im &lt;b&gt;Angriffsmodus&lt;/b&gt;. Hier kannst du die Herkunftsd&amp;ouml;rfer ausw&amp;auml;hlen, die f&amp;uuml;r Angriffe verwendet werden d&amp;uuml;rfen. Hierf&amp;uuml;r hast die folgenden M&amp;ouml;glichkeiten:&#xa;&lt;ul&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus der Gruppen&amp;uuml;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus dem SOS-Analyzer&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus Berichten&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen aus der Auswahl&#xfc;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Manuelle Eingabe&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;&#xa;"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Angriffsmodus&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -42,7 +44,9 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="jIgnoreTransportsButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transporte mit weniger als"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Transportemitwenigerals&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 25]"/>
             </Property>
@@ -81,7 +85,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
-            <Property name="text" type="java.lang.String" value="fach f&#xfc;llen. Achtung, kann zu Rohstoffverlust f&#xfc;hren!"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Achtungfuellen&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -100,7 +106,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Felder ignorieren."/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Felderignorieren&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -139,7 +147,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jIgnoreTransportsByDistanceButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transportentfernung &#xfc;ber"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Transportentfernungueber&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 25]"/>
             </Property>
@@ -158,7 +168,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Berechnungsreihenfolge"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Berechnungsreihenfolge&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -193,7 +205,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/holz.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Holz"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Holz&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[40, 14]"/>
                 </Property>
@@ -219,7 +233,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/lehm.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Lehm"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Lehm&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[40, 14]"/>
                 </Property>
@@ -245,7 +261,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/eisen.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Eisen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Eisen&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[40, 14]"/>
                 </Property>
@@ -297,7 +315,9 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/bullet_ball_empty.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Verteilungsreihenfolge empfehlen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Verteilungsreihenfolgeempfehlen&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireAdviceOrderEvent"/>
@@ -311,7 +331,9 @@
             <Component class="javax.swing.JCheckBox" name="jUseResource1">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="toolTipText" type="java.lang.String" value="Transporte f&#xfc;r diese Ressource berechnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;TransportedieseRessourceberechnen&quot;)" type="code"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/bullet_ball_red.png"/>
                 </Property>
@@ -331,7 +353,9 @@
             <Component class="javax.swing.JCheckBox" name="jUseResource3">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="toolTipText" type="java.lang.String" value="Transporte f&#xfc;r diese Ressource berechnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;TransportedieseRessourceberechnen&quot;)" type="code"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/bullet_ball_red.png"/>
                 </Property>
@@ -351,7 +375,9 @@
             <Component class="javax.swing.JCheckBox" name="jUseResource2">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="toolTipText" type="java.lang.String" value="Transporte f&#xfc;r diese Ressource berechnen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;TransportedieseRessourceberechnen&quot;)" type="code"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/res/ui/bullet_ball_red.png"/>
                 </Property>
@@ -400,7 +426,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Max. Speicherf&#xfc;llstand [%]"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;MaxSpeicherfuellstand&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 25]"/>
             </Property>
@@ -420,8 +448,12 @@
         <Component class="javax.swing.JCheckBox" name="jLimitMerchantAmount">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="H&#xe4;ndlerzahl pro Rohstoff beschr&#xe4;nken"/>
-            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Schr&#xe4;nkt die Anzahl der H&#xe4;ndler pro Rohstoff gleichm&#xe4;&#xdf;ig ein.&lt;br/&gt;&#xa;Werden alle 3 Rohstoffe gehandelt, wird jeder Rohstoff mit 33% der H&#xe4;ndler verschickt.&lt;br/&gt;&#xa;Handelt man nur 2 Rohstoffe, werden f&#xfc;r jeden Rohstoff 50% der H&#xe4;ndler verwendet.&lt;br/&gt;&#xa;Ist diese Option deaktiviert, werden die H&#xe4;ndler nach der Reihenfolge des Handels verwendet.&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;HaendlerzahlproRohstoffbeschraenken&quot;)" type="code"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;SchraenktdieAnzahlderHaendler&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 25]"/>
             </Property>
@@ -440,8 +472,12 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jAllowOverflow">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#xdc;berf&#xfc;llung zulassen. Speicher"/>
-            <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Hebt das Limit der Speichergr&#xf6;&#xdf;e auf.&lt;br/&gt;  Ist diese Option aktiviert, so werden Rohstoffsendungen bis zur x-fachen Speichergr&#xf6;&#xdf;e an die&lt;br/&gt; D&#xf6;rfer zugeteilt (oder bis zum Max. Rohstoffe (Empf&#xe4;nger) Limit), je nachdem was kleiner ist. &lt;br/&gt;  Wird ein Speicher beim Beliefern &#xfc;berf&#xfc;llt, so verfallen die gesendeten Rohstoffe. Ist diese &lt;br/&gt;  Option aktiviert, sollte daher unbedingt darauf geachtet werden empfangene Rohstoffe schnell&lt;br/&gt;  genug zu verarbeiten.&lt;br/&gt; Ist diese Option deaktiviert, so werden Lieferungen anhand des Speichers begrenzt (bis zum Max.&lt;br/&gt; Speicherf&#xfc;llstand [%] oben). &lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;UeberfuellungzulassenSpeicher&quot;)" type="code"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Limit&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 25]"/>
             </Property>
@@ -480,7 +516,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel16">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Rohstoffen ignorieren."/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Rohstoffenignorieren&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[150, 25]"/>
             </Property>
@@ -521,8 +559,12 @@
           <Font name="Tahoma" size="10" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Informationen einblenden"/>
-        <Property name="toolTipText" type="java.lang.String" value="Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Informationeneinblenden&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;BlendetInformationen&quot;)" type="code"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true"/>
@@ -561,7 +603,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Zusammenfassung"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Zusammenfassung&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -575,7 +619,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Lieferanten"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Lieferanten&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -613,7 +659,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Verf&#xfc;gbare H&#xe4;ndler"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;VerfuegbareHaendler&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -651,7 +699,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Verf&#xfc;gbares Holz"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;VerfuegbaresHolz&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -689,7 +739,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Empf&#xe4;nger"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Empfaenger&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -727,7 +779,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Verf&#xfc;gbarer Lehm"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;VerfuegbarerLehm&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -765,7 +819,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Verf&#xfc;gbares Eisen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;VerfuegbaresEisen&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 16]"/>
                 </Property>
@@ -807,7 +863,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Einstellungen"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
           </Properties>
@@ -824,7 +882,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="9" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Erweiterte Einstellungen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;ErweiterteEinstellungen&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireShowHideExpertSettingsEvent"/>
@@ -860,7 +920,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="Max. Rohstoffe (Empf&#xe4;nger)"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;MaxRohstoffeEmpfaenger&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 25]"/>
                     </Property>
@@ -880,7 +942,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="Min. Rohstoffe (Lieferanten)"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;MinRohstoffeLieferanten&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[200, 25]"/>
                     </Property>
@@ -902,7 +966,9 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/res/ui/median.png"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Durchnittliche Ressourcen aller D&#xf6;rfer verwenden"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;DurchnittlicheRessourcenallerverwenden&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireSetMinToMedianEvent"/>
@@ -958,7 +1024,9 @@
                       <Font name="Tahoma" size="12" style="1"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Keine Einstellungen notwendig"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;KeineEinstellungennotwendig&quot;)" type="code"/>
+                    </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Constraints>
@@ -1111,7 +1179,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/res/ui/select.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Transporte berechnen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Transporteberechnen&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[190, 40]"/>
             </Property>
@@ -1133,7 +1203,9 @@
         </Component>
         <Component class="javax.swing.JProgressBar" name="jProgressBar1">
           <Properties>
-            <Property name="string" type="java.lang.String" value="Bereit"/>
+            <Property name="string" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Bereit&quot;)" type="code"/>
+            </Property>
             <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
           <Constraints>

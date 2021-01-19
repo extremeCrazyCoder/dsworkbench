@@ -26,6 +26,8 @@ import de.tor.tribes.ui.windows.FormConfigFrame;
 import de.tor.tribes.ui.wiz.red.ResourceDistributorWizard;
 import de.tor.tribes.ui.wiz.tap.TacticsPlanerWizard;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -67,6 +69,8 @@ import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
 public class RibbonConfigurator {
     private static Logger logger = LogManager.getLogger("RibbonConfigurator");
 
+    private static Translator trans = TranslationManager.getTranslator("ui.RibbonConfigurator");
+    
     public static void addAppIcons(JRibbonFrame frame) {
         RibbonApplicationMenu appmen = new RibbonApplicationMenu();
 
@@ -91,7 +95,7 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>Export von erstellten Daten <ul><li>Angriffspläne</li> <li>Markierungen</li> <li>Berichte</li> <li>...</li></ul></html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("ExportDaten")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
@@ -100,7 +104,7 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>Import von vorher exportierten Daten <ul><li>Angriffspläne</li> <li>Markierungen</li> <li>Berichte</li> <li>...</li></ul></html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("ImportDaten")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
@@ -109,7 +113,7 @@ public class RibbonConfigurator {
         appmen.addMenuEntry(exportEntry);
         appmen.addMenuSeparator();
 
-        RibbonApplicationMenuEntryPrimary bbEditorEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/bbeditor.png"), "BB-Template Editor", new ActionListener() {
+        RibbonApplicationMenuEntryPrimary bbEditorEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/bbeditor.png"), trans.get("BBTemplate"), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BBCodeEditor.getSingleton().setVisible(true);
@@ -121,14 +125,14 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>BB-Template Editor zur eigenen Gestaltung aller Templates f&uuml;r den BB-Code Export</html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("BBEditor")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
 
         appmen.addMenuEntry(bbEditorEntry);
 
-        RibbonApplicationMenuEntryPrimary standardAttackFrame = new RibbonApplicationMenuEntryPrimary(getResizableIconFromResource("/res/ui/troop_info_add.png"), "Standardangriffe", new ActionListener() {
+        RibbonApplicationMenuEntryPrimary standardAttackFrame = new RibbonApplicationMenuEntryPrimary(getResizableIconFromResource("/res/ui/troop_info_add.png"), trans.get("Standardangriffe"), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TroopSetupConfigurationFrame.getSingleton().setVisible(true);
@@ -140,7 +144,7 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>Standardangriffe, z.B. f&uuml;r das &Uuml;bertragen von Angriffen in den Browser, festlegen</html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("Standardangriffe_Text")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
@@ -148,7 +152,7 @@ public class RibbonConfigurator {
         appmen.addMenuEntry(standardAttackFrame);
 
         if (!GlobalOptions.isMinimal()) {
-            RibbonApplicationMenuEntryPrimary layerEditor = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/24x24/layer_settings.gif"), "Ebeneneinstellungen", new ActionListener() {
+            RibbonApplicationMenuEntryPrimary layerEditor = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/24x24/layer_settings.gif"), trans.get("Ebeneneinstellungen"), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     LayerOrderConfigurationFrame.getSingleton().setAlwaysOnTop(true);
@@ -161,8 +165,7 @@ public class RibbonConfigurator {
                 public void menuEntryActivated(JPanel targetPanel) {
                     targetPanel.removeAll();
                     targetPanel.setLayout(new BorderLayout());
-                    targetPanel.add(new JLabel("<html>Mit den Ebneneinstellungen kann bestimmt werden, welche Elemente auf der Hauptkarte sichtbar sind. Dies kann z.B. hilfreich sein, wenn "
-                            + "DS Workbench langsam reagiert. In diesem Fall wird empfohlen, nicht ben&ouml;tigte Ebenen auszublenden.</html>"), BorderLayout.CENTER);
+                    targetPanel.add(new JLabel(trans.get("Ebenen_Text")), BorderLayout.CENTER);
                     targetPanel.revalidate();
                 }
             });
@@ -170,7 +173,7 @@ public class RibbonConfigurator {
             appmen.addMenuEntry(layerEditor);
         }
 
-        RibbonApplicationMenuEntryPrimary settingsEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/settings.png"), "Einstellungen", new ActionListener() {
+        RibbonApplicationMenuEntryPrimary settingsEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/settings.png"), trans.get("Einstellungen"), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GlobalOptions.storeViewStates();
@@ -183,7 +186,7 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>Einstellungen zu DS Workbench <ul><li>Datenaktualisierung</li> <li>Profile</li> <li>Netzwerkeinstellungen</li> <li>...</li></ul></html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("Einstellungen_Text")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
@@ -191,7 +194,7 @@ public class RibbonConfigurator {
         appmen.addMenuEntry(settingsEntry);
 
         appmen.addMenuSeparator();
-        RibbonApplicationMenuEntryPrimary exitEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/logout.png"), "Beenden", new ActionListener() {
+        RibbonApplicationMenuEntryPrimary exitEntry = new RibbonApplicationMenuEntryPrimary(getResizableIconFromFile("graphics/icons/logout.png"), trans.get("Beenden"), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DSWorkbenchMainFrame.getSingleton().doExit();
@@ -204,12 +207,12 @@ public class RibbonConfigurator {
             public void menuEntryActivated(JPanel targetPanel) {
                 targetPanel.removeAll();
                 targetPanel.setLayout(new BorderLayout());
-                targetPanel.add(new JLabel("<html>Beenden von DS Workbench</html>"), BorderLayout.CENTER);
+                targetPanel.add(new JLabel(trans.get("Beenden_Text")), BorderLayout.CENTER);
                 targetPanel.revalidate();
             }
         });
         appmen.addMenuEntry(exitEntry);
-        appmen.addFooterEntry(new RibbonApplicationMenuEntryFooter(getResizableIconFromFile("graphics/icons/logout.png"), "Beenden", new ActionListener() {
+        appmen.addFooterEntry(new RibbonApplicationMenuEntryFooter(getResizableIconFromFile("graphics/icons/logout.png"), trans.get("Beenden"), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DSWorkbenchMainFrame.getSingleton().doExit();
@@ -233,16 +236,14 @@ public class RibbonConfigurator {
     }
 
     public static void addGeneralToolsTask(JRibbonFrame frame) {
-        JRibbonBand attackToolsBand = new JRibbonBand("Angriff", getResizableIconFromFile("graphics/big/axe.png"));
-        JRibbonBand defendToolsBand = new JRibbonBand("Verteidigung", getResizableIconFromFile("graphics/big/def.png"));
-        JRibbonBand infoToolBand = new JRibbonBand("Information", getResizableIconFromFile("graphics/big/information.png"));
-        JRibbonBand miscToolsBand = new JRibbonBand("Sonstige", getResizableIconFromFile("graphics/big/box.png"));
+        JRibbonBand attackToolsBand = new JRibbonBand(trans.get("Angriff"), getResizableIconFromFile("graphics/big/axe.png"));
+        JRibbonBand defendToolsBand = new JRibbonBand(trans.get("Verteidigung"), getResizableIconFromFile("graphics/big/def.png"));
+        JRibbonBand infoToolBand = new JRibbonBand(trans.get("Information"), getResizableIconFromFile("graphics/big/information.png"));
+        JRibbonBand miscToolsBand = new JRibbonBand(trans.get("Sonstige"), getResizableIconFromFile("graphics/big/box.png"));
 
         // <editor-fold defaultstate="collapsed" desc="attackToolsBand setup">
-        JCommandButton attackPlanerToolButton = factoryButton("Taktikplaner", "graphics/big/att_auto.png", "Öffnet den Taktikplaner",
-                "Der Taktikplaner erlaubt es, innerhalb kürzester Zeit eine Vielzahl von Angriffen oder Verteidungen auf eine beliebige Menge von Zielen zu planen. "
-                + "Er ist dabei auf die grobe Planung unter Verwendung vieler Dörfern ausgelegt, gezielte AG-Angriffe oder Angriffe mit sehr wenigen Dörfern liefern "
-                + "in der Regeln weniger gute oder keine Ergebnisse.", true);
+        JCommandButton attackPlanerToolButton = factoryButton(trans.get("Taktikplaner"), "graphics/big/att_auto.png", trans.get("OeffnetdenTaktikplaner"),
+                trans.get("Taktikplaner_Text"), true);
         attackPlanerToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -255,7 +256,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton manualAttackPlanerToolButton = factoryButton("Angriffsplaner (manuell)", "graphics/big/att_manual.png", "Öffnet den manuellen Angriffsplaner", "Der manuelle Angriffsplaner erlaubt es, detailliert kleine bis mittlere Mengen an Angriffen zu planen. Er orientiert sich dabei im Wesentlichen an anderen, Online verfügbaren Angriffsplanern.", true);
+        JCommandButton manualAttackPlanerToolButton = factoryButton(trans.get("Angriffsplaner"), "graphics/big/att_manual.png", trans.get("open_angriffsplaner"), trans.get("angriffsplaner_text"), true);
         manualAttackPlanerToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -273,7 +274,7 @@ public class RibbonConfigurator {
         attackToolsBand.addCommandButton(manualAttackPlanerToolButton, RibbonElementPriority.TOP);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="defendToolsBand setup">
-        JCommandButton astarToolButton = factoryButton("A*Star", "graphics/big/astar.png", "Öffnet den Simulator", "A*Star ermöglicht es, Angriffssimulationen mit Hilfe des im Spiel verwendeten Kampfsystems durchzuführen. Zusätzliche Features erlauben es, die Anzahl von Offs zu bestimmen, die für die Vernichtung einer bestimmten Deff benötigt wird.", true);
+        JCommandButton astarToolButton = factoryButton(trans.get("AStar"), "graphics/big/astar.png", trans.get("Simulator"), trans.get("AStar_Text"), true);
         astarToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -287,7 +288,7 @@ public class RibbonConfigurator {
                                 DSWorkbenchSimulatorFrame.getSingleton().showIntegratedVersion(DSWorkbenchSettingsDialog.getSingleton().getWebProxy(), GlobalOptions.getSelectedServer());
                                 DSWorkbenchSimulatorFrame.getSingleton().requestFocus();
                             } else {
-                                JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), "A*Star ist im Offline-Modus leider nicht verfügbar.", "Information");
+                                JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), trans.get("AStarOfflineModus"), trans.get("Information"));
                             }
                         } catch (Exception e) {
                             logger.warn("Error while showing Simulator", e);
@@ -297,7 +298,7 @@ public class RibbonConfigurator {
 
             }
         });
-        JCommandButton sosAnalyzerToolButton = factoryButton("SOS Analyzer", "graphics/big/lifebelt.png", "Öffnet den SOS Analyzer", "Der SOS Analyzer dient der Analyse von SOS Anfragen, die man einfach aus dem Spiel in ein entsprechendes Textfeld kopiert. Dabei werden Ziele, Angreifer und Herkunftsdörfer ausgeschlüsselt, was einen schnellen Überblick über die Situation bietet. Weiterhin können diese Informationen in ein übersichtlicheres Format umformatiert und als BB-Code exportiert werden.", true);
+        JCommandButton sosAnalyzerToolButton = factoryButton(trans.get("SOSAnalyzer"), "graphics/big/lifebelt.png", trans.get("open_SOSAnalyzer"), trans.get("SOSAnalyzer_Text"), true);
         sosAnalyzerToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -328,7 +329,7 @@ public class RibbonConfigurator {
         // defendToolsBand.addCommandButton(retimeToolButton, RibbonElementPriority.MEDIUM);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="infoToolBand setup">
-        JCommandButton selectionToolButton = factoryButton("Auswahlübersicht", "graphics/icons/selection.png", "Öffnet die Auswahlübersicht", "Die Auswahlübersicht zeigt in Baum- oder Listenform alle aktuell ausgewählten Dörfer und erlaubt etwa, aus dieser Auswahl Dorflisten zu erstellen. Weiterhin können Dörfer aus der Auswahlübersicht per Drag&Drop beispielsweise in den automatisch Angriffsplaner als Herkunft- oder Zieldörfer eingefügt werden. Die Auswahl von Dörfern erfolgt über das entsprechende Kartenwerkzeug.", true);
+        JCommandButton selectionToolButton = factoryButton(trans.get("Auswahluebersicht"), "graphics/icons/selection.png", trans.get("open_Auswahluebersicht"), trans.get("DieAuswahluebersicht_text"), true);
         selectionToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -342,7 +343,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton searchToolButton = factoryButton("Suche", "graphics/big/find.png", "Öffnet die Suche", "Dieses Werkzeug erlaubt die schnelle Suche nach Spielern oder Stämmen", true);
+        JCommandButton searchToolButton = factoryButton(trans.get("Suche"), "graphics/big/find.png", trans.get("werkzeug_suche"), trans.get("Werkzeug_text"), true);
         searchToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -356,7 +357,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton distanceToolButton = factoryButton("Entfernungsberechnung", "graphics/icons/measure.png", "Öffnet die Entfernungsberechnung", "Dieses Werkzeug erlaubt die Berechnung von Entfernungen zwischen allen eigenen Dörfern und einer beliebigen Anzahl anderer Dörfer. Dörfer können einzeln per Drag&Drop von der Hauptkarte in diese Ansicht gezogen werden.", true);
+        JCommandButton distanceToolButton = factoryButton(trans.get("Entfernungsberechnung"), "graphics/icons/measure.png", trans.get("open_Entfernungsberechnung"), trans.get("Entfernungsberechnung_text"), true);
         distanceToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -375,7 +376,10 @@ public class RibbonConfigurator {
         infoToolBand.addCommandButton(distanceToolButton, RibbonElementPriority.LOW);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="miscToolsBand setup">
-        JCommandButton resourceDistributorToolButton = factoryButton("Rohstoffverteiler", "graphics/big/resource_distrib.png", "Öffnet den Rohstoffverteiler", "Der Rohstoffverteiler erlaubt, basierend auf kopierten Informationen aus der Produktionsübersicht, die Rohstoffe in den eingefügten Dörfern auszugleiche oder den Rohstoffbestand in bestimmten Dörfern auf eine gewünschte Menge zu bringen. Er berechnet die dafür notwendigen Transporte, die im Anschluss direkt in den Browser übertragen und von dort abgeschickt werden können.", true);
+        JCommandButton resourceDistributorToolButton = factoryButton(
+                trans.get("Rohstoffverteiler"), "graphics/big/resource_distrib.png", 
+                trans.get("Rohstoffverteiler_tool"), 
+                trans.get("Rohstoffverteiler_text"), true);
         resourceDistributorToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -389,7 +393,9 @@ public class RibbonConfigurator {
             }
         });
 
-        JCommandButton farmManagerButton = factoryButton("Farmmanager", "graphics/big/farm_tool.png", "Öffnet den Farmmanager", "Der Farmmanager erlaubt das einfache Farmen von Dörfern. Farmen können auf verschiedene Wege gesucht werden, der Farmmanager kümmert sich dann um deren Verwaltung. Zum eigentlichen Farmen muss man nur noch die entsprechenden Tabs im Browser öffnen lassen und den Farmangriff abschicken. Nach dem Farmlauf liest man den entsprechenden Bericht ein und verfügt sofort wieder über aktuelle Informationen.", true);
+        JCommandButton farmManagerButton = factoryButton(trans.get("Farmmanager"), "graphics/big/farm_tool.png", 
+                trans.get("Farmmanager_tool"), 
+                trans.get("Farmmanager_text"), true);
         farmManagerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -403,19 +409,24 @@ public class RibbonConfigurator {
                         }
                     });
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Der Farmmanager ist nicht auf No-Farm Welten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("Farmmanager_notactive"));
                 }
             }
         });
 
-        JCommandButton mapshotToolButton = factoryButton("Screenshot erstellen", "graphics/big/camera.png", "Erstellt einen Screenshot der Hauptkarte", "Dieses Werkzeug erlaubt es, einen Screenshot der aktuellen Ansicht der Hauptkarte zu erstellen. Screenshots können im Anschluss auf der Festplatte oder dem DS Workbench Server gespeichert werden, um sie anderen Spielern zugänglich zu machen. Die Speicherung auf dem DS Workbench Server ist allerdings nur bis zu einer bestimmten Bildgröße möglich, die resultierende Bildgröße hängt von der Fenstergröße und dem gewählten Grafikpaket ab.", true);
+        JCommandButton mapshotToolButton = factoryButton(trans.get("Screenshoterstellen"), 
+                "graphics/big/camera.png", 
+                trans.get("Screenshot_tool"), 
+                trans.get("Screenshot_text"), true);
         mapshotToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 DSWorkbenchMainFrame.getSingleton().planMapshot();
             }
         });
-        JCommandButton runtimeToolButton = factoryButton("Laufzeiten", "graphics/big/speed.png", "Zeigt die Laufzeitübersicht", "Eine einfache Liste, welche die Laufzeiten der auf dieser Welt verfügbaren Einheiten anzeigt.", true);
+        JCommandButton runtimeToolButton = factoryButton(trans.get("Laufzeiten"), "graphics/big/speed.png", 
+                trans.get("Laufzeiten_tool"), 
+                trans.get("Laufzeiten_text"), true);
         runtimeToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -429,7 +440,9 @@ public class RibbonConfigurator {
 
             }
         });
-        JCommandButton clockToolButton = factoryButton("Uhr", "graphics/big/clock.png", "Zeigt die Uhr", "Eine Uhr, welche deine aktuelle Systemzeit anzeigt. Sie kann das Timen von Angriffen erleichern, muss aber nicht zwingend mit der Zeit der DS-Server übereinstimmen.", true);
+        JCommandButton clockToolButton = factoryButton(trans.get("Uhr"), "graphics/big/clock.png", 
+                trans.get("Uhr_tool"), 
+                trans.get("Uhr_Text"), true);
         clockToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -468,20 +481,20 @@ public class RibbonConfigurator {
                 //new CoreRibbonResizePolicies.Mid2Low(miscToolsBand.getControlPanel()),
                 new IconRibbonBandResizePolicy(miscToolsBand.getControlPanel())));
 
-        RibbonTask task1 = new RibbonTask("Allgemeine Werkzeuge", attackToolsBand, defendToolsBand, infoToolBand, miscToolsBand);
+        RibbonTask task1 = new RibbonTask(trans.get("AllgemeineWerkzeuge"), attackToolsBand, defendToolsBand, infoToolBand, miscToolsBand);
         frame.getRibbon().addTask(task1);
     }
 
     public static void addMapToolsTask(JRibbonFrame frame) {
-        JRibbonBand baseToolsBand = new JRibbonBand("Allgemein", getResizableIconFromFile("graphics/cursors/default.png"));
-        JRibbonBand attackToolsBand = new JRibbonBand("Angriff", getResizableIconFromFile("graphics/big/axe.png"));
-        JRibbonBand defendToolsBand = new JRibbonBand("Verteidigung", getResizableIconFromFile("graphics/big/def.png"));
-        JRibbonBand infoToolBand = new JRibbonBand("Dörfer", getResizableIconFromFile("graphics/icons/map_tools.png"));
-        JRibbonBand drawToolsBand = new JRibbonBand("Zeichnen", getResizableIconFromFile("graphics/big/palette2.png"));
-        JRibbonBand minimapToolsBand = new JRibbonBand("Minimap", getResizableIconFromFile("graphics/icons/minimap.png"));
+        JRibbonBand baseToolsBand = new JRibbonBand(trans.get("Allgemein"), getResizableIconFromFile("graphics/cursors/default.png"));
+        JRibbonBand attackToolsBand = new JRibbonBand(trans.get("Angriff"), getResizableIconFromFile("graphics/big/axe.png"));
+        JRibbonBand defendToolsBand = new JRibbonBand(trans.get("Verteidigung"), getResizableIconFromFile("graphics/big/def.png"));
+        JRibbonBand infoToolBand = new JRibbonBand(trans.get("Doerfer"), getResizableIconFromFile("graphics/icons/map_tools.png"));
+        JRibbonBand drawToolsBand = new JRibbonBand(trans.get("Zeichnen"), getResizableIconFromFile("graphics/big/palette2.png"));
+        JRibbonBand minimapToolsBand = new JRibbonBand(trans.get("Minimap"), getResizableIconFromFile("graphics/icons/minimap.png"));
 
         // <editor-fold defaultstate="collapsed" desc="baseToolsBand setup">
-        JCommandButton noToolButton = factoryButton("Werkzeug abwählen", "graphics/cursors/default.png", "Deaktivierung des aktuellen Karten- und Minimapwerkzeugs", "Deaktiviert das aktuelle Karten- oder Minimapwerkzeug und erlaubt es die Hauptkarte wieder per Drag&Drop zu verschieben", true);
+        JCommandButton noToolButton = factoryButton(trans.get("Werkzeugabwaehlen"), "graphics/cursors/default.png", trans.get("Deaktiviert_Karte"), trans.get("Deaktiviert_Text"), true);
         noToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -492,49 +505,56 @@ public class RibbonConfigurator {
         baseToolsBand.addCommandButton(noToolButton, RibbonElementPriority.TOP);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="attackToolsBand setup">
-        JCommandButton attackRamToolButton = factoryButton(null, "graphics/big/ram.png", "Erstellt einen Einzelangriff mit Rammenlaufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackRamToolButton = factoryButton(null, "graphics/big/ram.png", trans.get("Erstellt_Ram"), 
+                trans.get("Erstellt_Ram_Text"), true);
         attackRamToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_RAM);
             }
         });
-        JCommandButton attackSnobToolButton = factoryButton(null, "graphics/big/snob.png", "Erstellt einen Einzelangriff mit AG-Laufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackSnobToolButton = factoryButton(null, "graphics/big/snob.png", trans.get("Erstellt_AG"), 
+                trans.get("Erstellt_AG_Text"), true);
         attackSnobToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_SNOB);
             }
         });
-        JCommandButton attackSpyToolButton = factoryButton(null, "graphics/big/spy.png", "Erstellt einen Einzelangriff mit Späherlaufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackSpyToolButton = factoryButton(null, "graphics/big/spy.png", trans.get("Erstellt_Spaeh"), 
+                trans.get("Erstellt_Spaeh_Text"), true);
         attackSpyToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_SPY);
             }
         });
-        JCommandButton attackAxeToolButton = factoryButton(null, "graphics/big/axe.png", "Erstellt einen Einzelangriff mit Axtlaufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackAxeToolButton = factoryButton(null, "graphics/big/axe.png", trans.get("Erstellt_Axtlaufzeit"), 
+                trans.get("Erstellt_Axtlaufzeit_Text"), true);
         attackAxeToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_AXE);
             }
         });
-        JCommandButton attackLightToolButton = factoryButton(null, "graphics/big/light.png", "Erstellt einen Einzelangriff mit LKav-Laufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackLightToolButton = factoryButton(null, "graphics/big/light.png", trans.get("Erstellt_LKav"), 
+                trans.get("Erstellt_LKav_Text"), true);
         attackLightToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_LIGHT);
             }
         });
-        JCommandButton attackHeavyToolButton = factoryButton(null, "graphics/big/heavy.png", "Erstellt einen Einzelangriff mit SKav-Laufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackHeavyToolButton = factoryButton(null, "graphics/big/heavy.png", trans.get("Erstellt_SKav"), 
+                trans.get("Erstellt_SKav_Text"), true);
         attackHeavyToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ATTACK_HEAVY);
             }
         });
-        JCommandButton attackSwordToolButton = factoryButton(null, "graphics/big/sword.png", "Erstellt einen Einzelangriff mit Schwertlaufzeit", "Mit gewähltem Werkzeug auf das Herkunftsdorf klicken und mit gedrückter linker Maustaste eine Linie zum Zieldorf ziehen", true);
+        JCommandButton attackSwordToolButton = factoryButton(null, "graphics/big/sword.png", trans.get("Erstellt_Schwert"), 
+                trans.get("Erstellt_Schwert_Text"), true);
         attackSwordToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -550,7 +570,9 @@ public class RibbonConfigurator {
         attackToolsBand.addCommandButton(attackSwordToolButton, RibbonElementPriority.LOW);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="defendToolsBand setup">
-        JCommandButton supportToolButton = factoryButton("Unterstützungen bestimmen", "graphics/big/support.png", "Öffnet das Unterstützungswerkzeug", "Mit gewähltem Werkzeug auf ein Dorf auf der Hauptkarte klicken, um das Unterstützungswerkzeug zu öffnen. Darin können Gruppen aus denen Unterstützungen geschickt werden sollen gewählt werden, um anschließend mögliche Unterstützungen zu einem wählbaren, maximalen Zeitpunkt zu bestimmen.", true);
+        JCommandButton supportToolButton = factoryButton(trans.get("Unterstuetzungenbestimmen"), "graphics/big/support.png", 
+                trans.get("Unterstuetzungenbestimmen_open"), 
+                trans.get("Unterstuetzungenbestimmen_text"), true);
         supportToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -560,42 +582,53 @@ public class RibbonConfigurator {
         defendToolsBand.addCommandButton(supportToolButton, RibbonElementPriority.LOW);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="infoToolBand setup">
-        JCommandButton selectToolButton = factoryButton("Dörfer wählen", "graphics/big/selection.png", "Dörfer auf der Hauptkarte auswählen", "Mit gewähltem Werkzeug und gedrückter linker Maustaste ein Auswahlrechteck auf der Hauptkarte aufziehen, um Dörfer in die Auswahlübersicht zu übertragen. Einzeldörfer oder unabhängige Bereiche können mit gedrückter Shift-Taste gewählt werden.", true);
+        JCommandButton selectToolButton = factoryButton(trans.get("Hauptkarte"), "graphics/big/selection.png", 
+                trans.get("Hauptkarte_open"), 
+                trans.get("Hauptkarte_text"), true);
         selectToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_SELECTION);
             }
         });
-        JCommandButton markToolButton = factoryButton("Spieler/Stämme markieren", "graphics/big/brush3.png", "Markiert Spieler/Stämme auf der Hauptkarte", "Mit gewähltem Werkzeug auf ein Dorf auf der Hauptkarte klicken, den Besitzer und/oder den Stamm des Besitzers eine Farbmarkierung auf der Hauptkarte zuzuweisen", true);
+        JCommandButton markToolButton = factoryButton(trans.get("Spielermarkieren"), "graphics/big/brush3.png", trans.get("SpielerHauptkarte"), 
+                trans.get("SpielerHauptkarte_text"), true);
         markToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_MARK);
             }
         });
-        JCommandButton noteToolButton = factoryButton("Notiz erstellen", "graphics/big/notebook_add.png", "Erstellt eine neue Notiz", "Mit gewähltem Werkzeug auf ein Dorf auf der Hauptkarte klicken, um für dieses Dorf eine neue Notiz im Notizblock zu erstellen", true);
+        JCommandButton noteToolButton = factoryButton(trans.get("Notizerstellen"), "graphics/big/notebook_add.png", 
+                trans.get("Notiz_open"), 
+                trans.get("Notiz_text"), true);
         noteToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_NOTE);
             }
         });
-        JCommandButton distanceToolButton = factoryButton("Laufzeit bestimmen", "graphics/big/tape_measure1.png", "Bestimmung der Laufzeiten zwischen zwei Dörfern", "Mit gewähltem Werkzeug auf ein Dorf auf der Hauptkarte klicken und mit gedrückter linker Maustaste eine Linie zu einem anderen Dorf ziehen. Bei aktiviertem Kartenpopup werden statt der Truppenstärke im Zieldorf die Laufzeiten der einzelnen Einheiten angezeigt.", true);
+        JCommandButton distanceToolButton = factoryButton(trans.get("Laufzeitbestimmen"), "graphics/big/tape_measure1.png", 
+                trans.get("Laufzeitbestimmen_open"), 
+                        trans.get("Laufzeitbestimmen_text"), true);
         distanceToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_MEASURE);
             }
         });
-        JCommandButton radarToolButton = factoryButton("Laufzeitradar", "graphics/icons/radar.png", "Zeigt Laufzeitradien um ein Dorf für die verschiedenen Einheiten an", "Mit gewähltem Werkzeug mit der Maus über ein Dorf fahren, um die Laufzeitradien zu sehen. Ein Linksklick auf das Dorf setzt die Laufzeitradien für das aktuelle Dorf fest und erlaubt, die Maus über ein weiteres Dorf zu bewegen. Ein Klick auf ein leeres Kartenfeld löscht die festgestellten Laufzeitradien.", true);
+        JCommandButton radarToolButton = factoryButton(trans.get("Laufzeitradar"), "graphics/icons/radar.png", 
+                trans.get("Laufzeitradar_open"), 
+                        trans.get("Laufzeitradar_text"), true);
         radarToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_RADAR);
             }
         });
-        JCommandButton tagToolButton = factoryButton("Gruppe zuweisen", "graphics/icons/tag.png", "Weist einem Dorf eine Gruppe zu", "Mit gewähltem Werkzeug auf ein Dorf auf der Hauptkarte klicken, um die Gruppenauswahl zu öffnen und dem Dorf eine vorhandene oder eine neue Gruppen zuzuweisen", true);
+        JCommandButton tagToolButton = factoryButton(trans.get("Gruppezuweisen"), "graphics/icons/tag.png", 
+                trans.get("Gruppezuweisen_open"), 
+                        trans.get("Gruppezuweisen_text"), true);
         tagToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -604,55 +637,55 @@ public class RibbonConfigurator {
         });
 
         // <editor-fold defaultstate="collapsed" desc="church button setup">
-        JCommandButton createChurchToolButton = factoryButton(null, "graphics/big/Church1.png", "Kirche in einem Dorf auf der Hauptkarte erstellen", "Dieses Werkzeug ist nur auf Kirchenwelten aktiv", true);
-        JCommandButton createChurch1ToolButton = factoryButton(null, "graphics/big/Church1.png", "Kirche Stufe 1 erstellen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um eine Kirche Stufe 1 im Dorf zu platzieren", true);
+        JCommandButton createChurchToolButton = factoryButton(null, "graphics/big/Church1.png", trans.get("KircheDorf"), trans.get("KircheDorfWerkzeug"), true);
+        JCommandButton createChurch1ToolButton = factoryButton(null, "graphics/big/Church1.png", trans.get("KircheStufeerstellen"), trans.get("KircheStufeerstellen_tool"), true);
         createChurch1ToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isChurch()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_CHURCH_1);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Kirchenwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("Kirchenwelten"));
                 }
             }
         });
-        JCommandButton createChurch2ToolButton = factoryButton(null, "graphics/big/Church2.png", "Kirche Stufe 2 erstellen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um eine Kirche Stufe 2 im Dorf zu platzieren", true);
+        JCommandButton createChurch2ToolButton = factoryButton(null, "graphics/big/Church2.png", trans.get("KircheStufeerstellenzwei_tool"), trans.get("KircheStufeerstellenzwei_Werkzeug"), true);
         createChurch2ToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isChurch()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_CHURCH_2);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Kirchenwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("Kirchenwelten"));
                 }
             }
         });
-        JCommandButton createChurch3ToolButton = factoryButton(null, "graphics/big/Church3.png", "Kirche Stufe 3 erstellen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um eine Kirche Stufe 3 im Dorf zu platzieren", true);
+        JCommandButton createChurch3ToolButton = factoryButton(null, "graphics/big/Church3.png", trans.get("KircheStufeerstellendrei_tool"), trans.get("KircheStufeerstellendrei_Werkzeug"), true);
         createChurch3ToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isChurch()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_CHURCH_3);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Kirchenwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("Kirchenwelten"));
                 }
             }
         });
-        JCommandButton removeChurchToolButton = factoryButton(null, "graphics/big/NoChurch.png", "Kirche löschen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um die dortige Kirche zu löschen", true);
+        JCommandButton removeChurchToolButton = factoryButton(null, "graphics/big/NoChurch.png", trans.get("Kircheloeschen"), trans.get("Kircheloeschen_text"), true);
         removeChurchToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isChurch()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_REMOVE_CHURCH);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Kirchenwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("Kirchenwelten"));
                 }
             }
         });
 
         JCommandButtonPanel cbpChurch = new JCommandButtonPanel(CommandButtonDisplayState.FIT_TO_ICON);
         cbpChurch.setLayoutKind(JCommandButtonPanel.LayoutKind.ROW_FILL);
-        cbpChurch.addButtonGroup("Stufe");
+        cbpChurch.addButtonGroup(trans.get("Stufe"));
         cbpChurch.addButtonToLastGroup(createChurch1ToolButton);
         cbpChurch.addButtonToLastGroup(createChurch2ToolButton);
         cbpChurch.addButtonToLastGroup(createChurch3ToolButton);
@@ -669,44 +702,44 @@ public class RibbonConfigurator {
         createChurchToolButton.setCommandButtonKind(JCommandButton.CommandButtonKind.POPUP_ONLY);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="watchtower button setup">
-        JCommandButton createWatchtowerToolButton = factoryButton(null, "graphics/big/Watchtower1.png", "Wachturm in einem Dorf auf der Hauptkarte erstellen", "Dieses Werkzeug ist nur auf Wachturmwelten aktiv", true);
-        JCommandButton createWatchtower1ToolButton = factoryButton(null, "graphics/big/Watchtower1.png", "Wachturm Stufe 1 erstellen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um einen Wachturm Stufe 1 im Dorf zu platzieren", true);
+        JCommandButton createWatchtowerToolButton = factoryButton(null, "graphics/big/Watchtower1.png", trans.get("WachturmDorfWerkzeug"), trans.get("Wachturmaktiv"), true);
+        JCommandButton createWatchtower1ToolButton = factoryButton(null, "graphics/big/Watchtower1.png", trans.get("WachturmStufeerstellen"), trans.get("WachturmStufeerstellen_tool"), true);
         createWatchtower1ToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isWatchtower()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_WATCHTOWER_1);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Wachturmwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("VerfuegbarWachturm"));
                 }
             }
         });
-        JCommandButton createWatchtowerInToolButton = factoryButton(null, "graphics/big/WatchtowerIn.png", "Wachturm erstellen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um einen Wachturm im Dorf zu platzieren. Die Stufe wird über ein Eingabefeld festgelegt", true);
+        JCommandButton createWatchtowerInToolButton = factoryButton(null, "graphics/big/WatchtowerIn.png", trans.get("Wachturmerstellen"), trans.get("Wachturm_text"), true);
         createWatchtowerInToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isWatchtower()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_WATCHTOWER_INPUT);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Wachturmwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("VerfuegbarWachturm"));
                 }
             }
         });
-        JCommandButton removeWatchtowerToolButton = factoryButton(null, "graphics/big/NoWatchtower.png", "Wachturm löschen", "Mit gewähltem Werkzeug auf ein Dorf der Hauptkarte klicken, um den dortigen Wachturm zu löschen", true);
+        JCommandButton removeWatchtowerToolButton = factoryButton(null, "graphics/big/NoWatchtower.png", trans.get("Wachturmlöschen"), trans.get("Wachturmlöschen_text"), true);
         removeWatchtowerToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ServerSettings.getSingleton().isWatchtower()) {
                     MapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_REMOVE_WATCHTOWER);
                 } else {
-                    DSWorkbenchMainFrame.getSingleton().showInfo("Dieses Werkzeug ist nur auf Wachturmwelten verfügbar");
+                    DSWorkbenchMainFrame.getSingleton().showInfo(trans.get("VerfuegbarWachturm"));
                 }
             }
         });
 
         JCommandButtonPanel wbp = new JCommandButtonPanel(CommandButtonDisplayState.FIT_TO_ICON);
         wbp.setLayoutKind(JCommandButtonPanel.LayoutKind.ROW_FILL);
-        wbp.addButtonGroup("Stufe");
+        wbp.addButtonGroup(trans.get("Stufe"));
         wbp.addButtonToLastGroup(createWatchtower1ToolButton);
         wbp.addButtonToLastGroup(createWatchtowerInToolButton);
         wbp.addButtonToLastGroup(removeWatchtowerToolButton);
@@ -733,7 +766,7 @@ public class RibbonConfigurator {
 
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="drawToolsBand setup">
-        JCommandButton drawRectToolButton = factoryButton("Rechteck zeichnen", "graphics/icons/draw_rect.png", "Werkzeug zum Zeichnen von Rechtecken auf der Hauptkarte", null, true);
+        JCommandButton drawRectToolButton = factoryButton(trans.get("Rechteckzeichnen"), "graphics/icons/draw_rect.png", trans.get("Rechteckzeichnen_text"), null, true);
         drawRectToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -748,7 +781,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton drawCircleToolButton = factoryButton("Kreis zeichnen", "graphics/icons/draw_circle.png", "Werkzeug zum Zeichnen von Kreisen auf der Hauptkarte", null, true);
+        JCommandButton drawCircleToolButton = factoryButton(trans.get("Kreiszeichnen"), "graphics/icons/draw_circle.png", trans.get("Kreiszeichnen_text"), null, true);
         drawCircleToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -763,7 +796,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton drawLineToolButton = factoryButton("Linie zeichnen", "graphics/icons/draw_line.png", "Werkzeug zum Zeichnen von Linien auf der Hauptkarte", null, true);
+        JCommandButton drawLineToolButton = factoryButton(trans.get("Liniezeichnen"), "graphics/icons/draw_line.png", trans.get("Liniezeichnen_text"), null, true);
         drawLineToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -778,7 +811,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton drawArrowToolButton = factoryButton("Pfeil zeichnen", "graphics/icons/draw_arrow.png", "Werkzeug zum Zeichnen von Pfeilen auf der Hauptkarte", null, true);
+        JCommandButton drawArrowToolButton = factoryButton(trans.get("Pfeilzeichnen"), "graphics/icons/draw_arrow.png", trans.get("Pfeilzeichnen_text"), null, true);
         drawArrowToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -793,7 +826,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton drawFreehandToolButton = factoryButton("Freihand zeichnen", "graphics/icons/draw_freeform.png", "Werkzeug zum Erstellen von Freihandzeichnungen auf der Hauptkarte", null, true);
+        JCommandButton drawFreehandToolButton = factoryButton(trans.get("Freihandzeichnen"), "graphics/icons/draw_freeform.png", trans.get("Freihandzeichnen_text"), null, true);
         drawFreehandToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -808,7 +841,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton drawTextToolButton = factoryButton("Text zeichnen", "graphics/icons/draw_text.png", "Werkzeug zum Zeichnen von Texten auf der Hauptkarte", null, true);
+        JCommandButton drawTextToolButton = factoryButton(trans.get("Textzeichnen"), "graphics/icons/draw_text.png", trans.get("Textzeichnen_text"), null, true);
         drawTextToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -831,21 +864,21 @@ public class RibbonConfigurator {
         drawToolsBand.addCommandButton(drawTextToolButton, RibbonElementPriority.LOW);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="minimapToolsBand setup">
-        JCommandButton minimapMoveToolButton = factoryButton("Ausschnitt bewegen", "graphics/icons/move.png", "Erlaubt es den sichtbaren Kartenausschnitt auf der Minimap zu verschieben", "Mit gewähltem Werkzeug und gedrückter linker Maustaste den Ausschnitt verschieben", true);
+        JCommandButton minimapMoveToolButton = factoryButton(trans.get("Ausschnittbewegen"), "graphics/icons/move.png", trans.get("Ausschnittbewegen_text"), trans.get("Ausschnittbewegen_tool"), true);
         minimapMoveToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MinimapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_MOVE);
             }
         });
-        JCommandButton minimapZoomToolButton = factoryButton("Minimap vergößern", "graphics/big/view.png", "Vergrößert einen Bereich von 300x300 Dörfer auf der Minimap", "Mit der Maus über die Minimap fahren, der Mauszeiger bildet die Mitte des gezeigten Ausschnitts", true);
+        JCommandButton minimapZoomToolButton = factoryButton(trans.get("Minimapvergoessern"), "graphics/big/view.png", trans.get("Minimapvergoessern_text"), trans.get("Minimapvergoessern_tool"), true);
         minimapZoomToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MinimapPanel.getSingleton().setCurrentCursor(ImageManager.CURSOR_ZOOM);
             }
         });
-        JCommandButton minimapShotToolButton = factoryButton("Screenshot erstellen", "graphics/big/camera.png", "Erstellt einen Screenshot eines wählbaren Bereiches der Minimap", "Mit gewähltem Werkzeug ein Rechteck auf der Minimap aufziehen, welches den gewünschten Bereich einrahmt", true);
+        JCommandButton minimapShotToolButton = factoryButton(trans.get("Screenshoterstellen"), "graphics/big/camera.png", trans.get("Screenshoterstellen_text"), trans.get("Screenshoterstellen_tool"), true);
         minimapShotToolButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -877,19 +910,18 @@ public class RibbonConfigurator {
                 new CoreRibbonResizePolicies.Mirror(infoToolBand.getControlPanel()),
                 new IconRibbonBandResizePolicy(infoToolBand.getControlPanel())));
 
-        RibbonTask task1 = new RibbonTask("Kartenwerkzeuge", baseToolsBand, attackToolsBand, defendToolsBand, infoToolBand, drawToolsBand, minimapToolsBand);
+        RibbonTask task1 = new RibbonTask(trans.get("Kartenwerkzeuge"), baseToolsBand, attackToolsBand, defendToolsBand, infoToolBand, drawToolsBand, minimapToolsBand);
         frame.getRibbon().addTask(task1);
     }
 
     public static void addViewTask(JRibbonFrame frame) {
-        JRibbonBand attackViewBand = new JRibbonBand("Angriff", getResizableIconFromFile("graphics/big/axe.png"));
-        JRibbonBand ingameInfoViewBand = new JRibbonBand("Importierte Daten", getResizableIconFromFile("graphics/big/clipboard_next.png"));
-        JRibbonBand infoViewBand = new JRibbonBand("Informationen", getResizableIconFromFile("graphics/big/information.png"));
+        JRibbonBand attackViewBand = new JRibbonBand(trans.get("Angriff"), getResizableIconFromFile("graphics/big/axe.png"));
+        JRibbonBand ingameInfoViewBand = new JRibbonBand(trans.get("ImportierteDaten"), getResizableIconFromFile("graphics/big/clipboard_next.png"));
+        JRibbonBand infoViewBand = new JRibbonBand(trans.get("Informationen"), getResizableIconFromFile("graphics/big/information.png"));
 
         // <editor-fold defaultstate="collapsed" desc="attackViewBand setup">
-        JCommandButton attackViewButton = factoryButton("Befehle", "graphics/big/axe_sword.png", "Öffnet die Befehlsübersicht",
-                "Die Befehlssübersicht erlaubt es, geplante Angriffe und Verteidigungen zu verwalten, zu modifizieren, zu exportieren (z.B. als BB-Codes) "
-                + "und in den Browser zu übertragen. Befehle müssen vorher durch eins der verfügbaren Werkzeuge automatisch oder manuell erstellt werden", true);
+        JCommandButton attackViewButton = factoryButton(trans.get("Befehle"), "graphics/big/axe_sword.png", trans.get("Befehle_open"),
+                trans.get("Befehle_text"), true);
         attackViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -904,7 +936,9 @@ public class RibbonConfigurator {
             }
         });
 
-        JCommandButton markerViewButton = factoryButton("Markierungen", "graphics/icons/mark.png", "Öffnet die Markierungsübersicht", "Die Markierungsübersicht erlaubt es, Spieler und Stammesmarkierungen zu verwalten und zu modifizieren. Markierungen müssen vorher über das entsprechende Kartenwerkzeug erstellt werden", true);
+        JCommandButton markerViewButton = factoryButton(trans.get("Markierungen"), "graphics/icons/mark.png", 
+                trans.get("Markierungen_open"), 
+                trans.get("Markierungen_text"), true);
         markerViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -918,7 +952,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton formsViewButton = factoryButton("Zeichnungen", "graphics/big/palette2.png", "Öffnet die Zeichnungsübersicht", "Die Zeichnungsübersicht zeigt alle auf der Hauptkarte eingetragenen Zeichnungen an und erlaubt es, diese nachträglich zu verändern.", true);
+        JCommandButton formsViewButton = factoryButton(trans.get("Zeichnungen"), "graphics/big/palette2.png", 
+                trans.get("Zeichnungen_open"), 
+                trans.get("Zeichnungen_text"), true);
         formsViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -932,7 +968,7 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton churchViewButton = factoryButton("Kirchen", "graphics/big/Church1.png", "Öffnet die Kirchenübersicht", "Die Kirchenübersicht zeigt alle in DS Workbench eingetragenen Kirchen an. Diese Ansicht ist nur auf Kirchenwelten verfügbar.", true);
+        JCommandButton churchViewButton = factoryButton(trans.get("Kirchen"), "graphics/big/Church1.png", trans.get("Kirchen_open"), trans.get("Kirchen_text"), true);
         churchViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -946,11 +982,11 @@ public class RibbonConfigurator {
                         }
                     });
                 } else {
-                    JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), "Kirchen sind auf dieser Welt nicht aktiv.", "Information");
+                    JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), trans.get("KirchennichtAktiv"), trans.get("Information"));
                 }
             }
         });
-        JCommandButton watchtowerViewButton = factoryButton("Wachtürme", "graphics/big/Watchtower1.png", "Öffnet die Wachturmübersicht", "Die Wachturmübersicht zeigt alle in DS Workbench eingetragenen Wachtürme an. Diese Ansicht ist nur auf Wachturmwelten verfügbar.", true);
+        JCommandButton watchtowerViewButton = factoryButton(trans.get("Wachtuerm"), "graphics/big/Watchtower1.png", trans.get("Wachtuerm_open"), trans.get("Wachtuerm_text"), true);
         watchtowerViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -964,11 +1000,13 @@ public class RibbonConfigurator {
                         }
                     });
                 } else {
-                    JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), "Wachtürme sind auf dieser Welt nicht aktiv.", "Information");
+                    JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), trans.get("Wachtuermnichtaktiv"), "Information");
                 }
             }
         });
-        JCommandButton villageViewButton = factoryButton("Dörfer", "graphics/big/village.png", "Öffnet die Dorfübersicht", "Die Dorfübersicht zeigt alle in DS Workbench eingetragenen Dörfer an (z.B. von Berichten oder dem Import der Gebäudeübersicht).", true);
+        JCommandButton villageViewButton = factoryButton(trans.get("Doerfer"), "graphics/big/village.png", 
+                trans.get("Doerfer_open"), 
+                trans.get("Doerfer_text"), true);
         villageViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -992,7 +1030,9 @@ public class RibbonConfigurator {
         attackViewBand.addCommandButton(villageViewButton, RibbonElementPriority.MEDIUM);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="ingameInfoViewBand setup">
-        JCommandButton tagsViewButton = factoryButton("Gruppen", "graphics/icons/tag.png", "Öffnet die Gruppenübersicht", "Die Gruppenübersicht erlaubt es, vorher aus dem Spiel importierte Gruppen zu verwalten und zu neuen Gruppen zu kombinieren. Weitere Informationen findest du in der Hilfe (F1) im Abschnitt 'Import von Spielinformationen'.", true);
+        JCommandButton tagsViewButton = factoryButton(trans.get("Gruppen"), "graphics/icons/tag.png", 
+                trans.get("Gruppen_open"), 
+                trans.get("Gruppen_text"), true);
         tagsViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1006,7 +1046,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton troopsViewButton = factoryButton("Truppen", "graphics/big/troops.png", "Öffnet die Truppenübersicht", "Die Truppenübersicht erlaubt es, vorher aus dem Spiel importierte Truppeninformationen zu verwalten. Weitere Informationen findest du in der Hilfe (F1) im Abschnitt 'Import von Spielinformationen'.", true);
+        JCommandButton troopsViewButton = factoryButton(trans.get("Truppen"), "graphics/big/troops.png", 
+                trans.get("Truppen_open"), 
+                trans.get("Truppen_text"), true);
         troopsViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1020,7 +1062,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton reportsViewButton = factoryButton("Berichte", "graphics/big/report.png", "Öffnet die Berichtdatenbank", "Die Berichtdatenbank erlaubt es, vorher aus dem Spiel importierte Berichte zu verwalten. Weitere Informationen findest du in der Hilfe (F1) im Abschnitt 'Import von Spielinformationen'.", true);
+        JCommandButton reportsViewButton = factoryButton(trans.get("Berichte"), "graphics/big/report.png", 
+                trans.get("Berichte_open"), 
+                trans.get("Berichte_text"), true);
         reportsViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1040,7 +1084,9 @@ public class RibbonConfigurator {
         ingameInfoViewBand.addCommandButton(reportsViewButton, RibbonElementPriority.MEDIUM);
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="infoViewBand setup">
-        JCommandButton notesViewButton = factoryButton("Notizblock", "graphics/big/notebook.png", "Öffnet den Notizblock", "Der Notizblock erlaubt es, Notizen zu einelnen oder mehreren Dörfern zu verwalten. Dabei stehen die gängigen BB-Codes zu Verfügung. Erstellte Notizen tauchen, sofern die Ebene 'Notizen' sichtbar ist, auf der Hauptkarte als Symbole und im Kartenpopup mit dem zugehörigen Notiztext auf. Das Erstellen von Notizen kann entweder über das entsprechende Kartenwerkzeug oder direkt im Notizblock geschehen.", true);
+        JCommandButton notesViewButton = factoryButton(trans.get("Notizblock"), "graphics/big/notebook.png", 
+                trans.get("Notizblock_open"), 
+                trans.get("Notizblock_text"), true);
         notesViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1054,7 +1100,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton conquerViewButton = factoryButton("Eroberungen", "graphics/big/snob.png", "Öffnet die Eroberungsübersicht", "Die Eroberungsübersicht zeigt alle kürzlich durchgeführten Eroberungen der aktuellen Welt an und erlaubt es, diese nach vielen Kriterien zu filtern. Eroberungen werden bei laufendem DS Workbench regelmäßig vom DS-Server gelesen, die aktuelle Zustimmung von eingelesenen Eroberungen wird entsprechend den Servereinstellungen ausgerechnet.", true);
+        JCommandButton conquerViewButton = factoryButton(trans.get("Eroberungen"), "graphics/big/snob.png", 
+                trans.get("Eroberungen_open"), 
+                trans.get("Eroberungen_text"), true);
         conquerViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1068,7 +1116,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton rankViewButton = factoryButton("Ranglisten", "graphics/big/medal.png", "Öffnet die Rangliste", "Zeigt Ranglisten von Spielern und Stämmen mit allen verfügbaren Informationen (Punkte, Dörfer, Kills usw.)", true);
+        JCommandButton rankViewButton = factoryButton(trans.get("Ranglisten"), "graphics/big/medal.png", 
+                trans.get("Ranglisten_open"), 
+                trans.get("Ranglisten_text"), true);
         rankViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1082,7 +1132,9 @@ public class RibbonConfigurator {
                 });
             }
         });
-        JCommandButton statsViewButton = factoryButton("Statistiken", "graphics/icons/ally_chart.png", "Öffnet die Statistikübersicht", "Die Statistikübersicht erlaubt es, Statistiken über Spieler und Stämme für beliebige Zeiträume zu führen. Um einen Spieler oder einen Stamm in die Statistiken aufzunehmen, klicke mit der rechten Maustaste auf ein Dorf auf der Hauptkarte und wähle im entsprechenden Untermenü des Kontextmenüs 'Spieler überwachen' oder 'Stamm überwachen'", true);
+        JCommandButton statsViewButton = factoryButton(trans.get("Statistiken"), "graphics/icons/ally_chart.png", 
+                trans.get("Statistiken_open"), 
+                trans.get("Statistiken_text"), true);
         statsViewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1116,38 +1168,46 @@ public class RibbonConfigurator {
                 new CoreRibbonResizePolicies.Mirror(infoViewBand.getControlPanel()),
                 // new CoreRibbonResizePolicies.Mid2Low(infoViewBand.getControlPanel()),
                 new IconRibbonBandResizePolicy(infoViewBand.getControlPanel())));
-        RibbonTask task2 = new RibbonTask("Ansicht", attackViewBand, ingameInfoViewBand, infoViewBand);
+        RibbonTask task2 = new RibbonTask(trans.get("Ansicht"), attackViewBand, ingameInfoViewBand, infoViewBand);
 
         //  frame.getRibbon().addTask(task1);
         frame.getRibbon().addTask(task2);
     }
 
     public static void addMiscTask(JRibbonFrame frame) {
-        JRibbonBand miscBand = new JRibbonBand("Sonstiges", getResizableIconFromResource("/res/128x128/help.png"));
+        JRibbonBand miscBand = new JRibbonBand(trans.get("Sonstiges"), getResizableIconFromResource("/res/128x128/help.png"));
 
         // <editor-fold defaultstate="collapsed" desc="miscBand setup">
-        JCommandButton helpButton = factoryButton("Hilfe", "/res/128x128/help.png", "Die integrierte Hilfe", "DS Workbench bietet eine sehr ausführliche Hilfe, die alle Funktionen detailiert beschreibt und so Einblicke in bisher vielleicht unentdeckte Features offenbart. Sie ist jederzeit über F1, diesen Button oder den Hilfebutton in der rechten oberen Ecke des Hauptfensters zu erreichen.", true);
+        JCommandButton helpButton = factoryButton(trans.get("Hilfe"), "/res/128x128/help.png", 
+                trans.get("Hilfe_open"), 
+                trans.get("Hilfe_text"), true);
         helpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GlobalOptions.getHelpBroker().setDisplayed(true);
             }
         });
-        JCommandButton facebookButton = factoryButton("Facebook", "/res/128x128/facebook.png", "DS Workbench @ Facebook", "Wie viele andere Personen und Produkte verfügt DS Workbench über eine eigene Facebook Seite. Wenn dir DS Workbench gefällt hast du so die Möglichkeit, jederzeit über neue Entwicklungen auf dem Laufenden zu sein.", true);
+        JCommandButton facebookButton = factoryButton(trans.get("Facebook"), "/res/128x128/facebook.png", 
+                trans.get("Facebook_open"), 
+                trans.get("Facebook_text"), true);
         facebookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BrowserInterface.openPage("http://www.facebook.com/pages/DS-Workbench/182068775185568");
             }
         });
-        JCommandButton donateButton = factoryButton("Spenden", "/res/ui/paypal.gif", "Für DS Workbench spenden", "Natürlich ist DS Workbench komplett kostenlos und wird das auch weiterhin bleiben. Dennoch sind kleine Spenden als Dank für die Arbeit die seit mehreren Jahren in DS Workbench fließt immer gern gesehen. Für alle Spenden möchte ich mich an dieser Stelle herzlich bedanken.", true);
+        JCommandButton donateButton = factoryButton(trans.get("Spenden"), "/res/ui/paypal.gif", 
+                trans.get("Spenden_open"), 
+                trans.get("Spenden_text"), true);
         donateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BrowserInterface.openPage("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4434173");
+                BrowserInterface.openPage("https://www.paypal.com/paypalme/mecqq");
             }
         });
-        JCommandButton aboutButton = factoryButton("About", "/res/ui/about.png", "Über DS Workbench", "Informationen über die Version von DS Workbench die ihr gerade verwendest.", true);
+        JCommandButton aboutButton = factoryButton(trans.get("About"), "/res/ui/about.png", 
+                trans.get("About_open"), 
+                trans.get("About_text"), true);
         aboutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1164,7 +1224,7 @@ public class RibbonConfigurator {
                 new CoreRibbonResizePolicies.None(miscBand.getControlPanel()),
                 new IconRibbonBandResizePolicy(miscBand.getControlPanel())
         ));
-        RibbonTask task1 = new RibbonTask("Sonstiges", miscBand);
+        RibbonTask task1 = new RibbonTask(trans.get("Sonstiges"), miscBand);
         frame.getRibbon().addTask(task1);
     }
 
@@ -1178,7 +1238,7 @@ public class RibbonConfigurator {
         }
 
         if (pTooltipText != null) {
-            RichTooltip rt = new RichTooltip((pLabel != null) ? pLabel : "Info", pTooltipText);
+            RichTooltip rt = new RichTooltip((pLabel != null) ? pLabel : trans.get("Info"), pTooltipText);
             if (pSecondaryTooltipText != null) {
                 rt.addDescriptionSection(pSecondaryTooltipText);
             }

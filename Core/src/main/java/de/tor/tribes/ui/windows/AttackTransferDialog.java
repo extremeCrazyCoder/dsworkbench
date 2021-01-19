@@ -18,6 +18,8 @@ package de.tor.tribes.ui.windows;
 import de.tor.tribes.types.Attack;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +31,8 @@ import javax.swing.*;
  */
 public class AttackTransferDialog extends javax.swing.JDialog {
 
+    private Translator trans = TranslationManager.getTranslator("ui.windows.AttackTransferDialog");
+    
     private List<Attack> attacks = null;
 
     /**
@@ -63,12 +67,12 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         jDoTransferButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Befehle übertragen");
+        setTitle(trans.get("Befehleuebertragen"));
         setMinimumSize(new java.awt.Dimension(290, 140));
         setPreferredSize(new java.awt.Dimension(290, 140));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel14.setText("Vorhandener Plan");
+        jLabel14.setText(trans.get("VorhandenerPlan"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -89,7 +93,7 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jExistingPlanBox, gridBagConstraints);
 
-        jLabel15.setText("Neuer Plan");
+        jLabel15.setText(trans.get("NeuerPlan"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -98,9 +102,10 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabel15, gridBagConstraints);
 
+        jNewPlanName.setToolTipText(trans.get("BeiBedarfNameeingeben"));
         jNewPlanName.setMinimumSize(new java.awt.Dimension(200, 25));
         jNewPlanName.setPreferredSize(new java.awt.Dimension(200, 25));
-        jNewPlanName.setPrompt("Bei Bedarf Name eingeben");
+        jNewPlanName.setPrompt(trans.get("BeiBedarfNameeingeben"));
         jNewPlanName.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jNewPlanNamefireNewResultTargetPlanChangedEvent(evt);
@@ -116,7 +121,7 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jNewPlanName, gridBagConstraints);
 
-        jCancelTransferButton.setText("Abbrechen");
+        jCancelTransferButton.setText(trans.get("Abbrechen"));
         jCancelTransferButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jCancelTransferButtonfireTransferResultsEvent(evt);
@@ -130,7 +135,7 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jCancelTransferButton, gridBagConstraints);
 
-        jDoTransferButton.setText("OK");
+        jDoTransferButton.setText(trans.get("OK"));
         jDoTransferButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jDoTransferButtonfireTransferResultsEvent(evt);
@@ -163,11 +168,11 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         } else {
             plan = jNewPlanName.getText();
             if (plan.length() == 0) {
-                JOptionPaneHelper.showWarningBox(this, "'" + plan + "' ist ein ungültiger Planname", "Fehler");
+                JOptionPaneHelper.showWarningBox(this, "'" + plan + trans.get("ungultigerPlanname"), trans.get("Fehler"));
                 return;
             }
             if (! JDomUtils.stringAllowed(plan)) {
-                JOptionPaneHelper.showWarningBox(this, "Der name '" + plan + "' enthält ungültige Sonderzeichen", "Fehler");
+                JOptionPaneHelper.showWarningBox(this, trans.get("DerName") + plan + trans.get("ungueltigeSonderzeichen"), trans.get("Fehler"));
                 return;
             }
 

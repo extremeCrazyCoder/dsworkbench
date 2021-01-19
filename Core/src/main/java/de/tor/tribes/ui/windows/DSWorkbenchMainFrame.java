@@ -49,6 +49,8 @@ import de.tor.tribes.util.roi.ROIManager;
 import de.tor.tribes.util.sos.SOSManager;
 import de.tor.tribes.util.stat.StatManager;
 import de.tor.tribes.util.tag.TagManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.village.KnownVillageManager;
 import de.tor.tribes.util.xml.JDomUtils;
@@ -97,6 +99,8 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
         DSWorkbenchFrameListener,
         MapShotListener {
 
+    private Translator trans = TranslationManager.getTranslator("ui.windows.DSWorkbenchMainFrame");
+    
   private static final Logger logger = LogManager.getLogger("MainApp");
   private double dCenterX = 500.0;
   private double dCenterY = 500.0;
@@ -137,16 +141,16 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
     jAddROIDialog.pack();
 
     JOutlookBar outlookBar = new JOutlookBar();
-    outlookBar.addBar("Navigation", jNavigationPanel);
-    outlookBar.addBar("Information", jInformationPanel);
-    outlookBar.addBar("Karte", jMapPanel);
-    outlookBar.addBar("ROI", jROIPanel);
+    outlookBar.addBar(trans.get("Navigation"), jNavigationPanel);
+    outlookBar.addBar(trans.get("Information"), jInformationPanel);
+    outlookBar.addBar(trans.get("Karte"), jMapPanel);
+    outlookBar.addBar(trans.get("ROI"), jROIPanel);
     outlookBar.setVisibleBar(1);
     jSettingsScrollPane.setViewportView(outlookBar);
 
     mAbout = new AboutDialog(this, true);
     mAbout.pack();
-    chooser.setDialogTitle("Speichern unter...");
+    chooser.setDialogTitle(trans.get("Speichernunter"));
     chooser.addChoosableFileFilter(new javax.swing.filechooser.FileFilter() {
 
       @Override
@@ -479,7 +483,7 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
         }
         jCurrentPlayerVillages.setModel(model);
       } catch (Exception e) {
-        jCurrentPlayerVillages.setModel(new DefaultComboBoxModel(new Object[]{"-keine Dörfer-"}));
+        jCurrentPlayerVillages.setModel(new DefaultComboBoxModel(new Object[]{trans.get("keineDoerfer")}));
       }
 // </editor-fold>
       //update maps
@@ -724,17 +728,15 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
       lastBackup = new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(new Date(backupFile.lastModified()));
     }
 
-    if (lastBackup != null) {
-      if (JOptionPaneHelper.showQuestionConfirmBox(this, "Offenbar wurde DS Workbench nicht korrekt beendet, daher kann es möglicherweise zu Datenverlust gekommen sein.\n"
-              + "Für das aktuelle Profil existiert ein Backup (Erstellt: " + lastBackup + "). Möchtest du dieses wiederherstellen?", "Absturz?", "Nein", "Ja") == JOptionPane.YES_OPTION) {
-        showInfo("Wiederherstellung läuft, bitte warten...");
-        if (performImport(backupFile, "backup").startsWith("Import erfolgreich beendet")) {
-          showSuccess("Wiederherstellung abgeschlossen.");
-          JOptionPaneHelper.showInformationBox(this, "Das Backup wurde erfolgreich eingespielt. Wiederhergestellte Pläne und Sets tragen die Erweiterung '_backup'.", "Backup wiederhergestellt");
+      if (lastBackup != null) {
+      if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Offenbarnichtkorrekt_text") + lastBackup + trans.get("Mochtestduwiederherstellen"), trans.get("Absturz"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
+        showInfo(trans.get("Wiederherstellung"));
+        if (performImport(backupFile, "backup").startsWith(trans.get("ImportErfolgreich"))) {
+          showSuccess(trans.get("Wiederherstellungabgeschlossen"));
+          JOptionPaneHelper.showInformationBox(this, trans.get("BackupWiederherstellt_info"), trans.get("Backupwiederhergestellt"));
         } else {
-          showInfo("Wiederherstellung abgeschlossen.");
-          JOptionPaneHelper.showInformationBox(this, "Bei der Wiederherstellung des Backups gab es Probleme. Möglicherweise sind einige Daten verloren."
-                  + " Wiederhergestellte Pläne und Sets tragen die Erweiterung '_backup'.", "Backup wiederhergestellt");
+          showInfo(trans.get("Wiederherstellungabgeschlossen"));
+          JOptionPaneHelper.showInformationBox(this, trans.get("WiederherstellungProbleme"), trans.get("Backupwiederhergestellt"));
         }
       }
     } else {
@@ -775,7 +777,7 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
 
   private void showReminder() {
     if (!GlobalOptions.isMinimal()) {
-      showInfo("Weltdaten aktuell? Truppen importiert? Gruppen importiert?");
+      showInfo(trans.get("Weltdatenaktuell"));
     }
   }
 
@@ -896,7 +898,6 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
 
         jExportDialog.setTitle("Export");
         jExportDialog.setMinimumSize(new java.awt.Dimension(560, 500));
-        jExportDialog.setPreferredSize(new java.awt.Dimension(560, 500));
         jExportDialog.setResizable(false);
         jExportDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -1821,12 +1822,12 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
 
         jCurrentPlayerVillages.setToolTipText("Aktives Dorf als Ausgangspunkt für InGame Aktionen");
         jCurrentPlayerVillages.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
                 fireCurrentPlayerVillagePopupEvent(evt);
             }
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
 
@@ -2172,7 +2173,7 @@ private void fireCreateMapShotEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
       if (target.exists()) {
         //ask if overwrite
 
-        if (JOptionPaneHelper.showQuestionConfirmBox(parent, "Existierende Datei überschreiben?", "Überschreiben", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+        if (JOptionPaneHelper.showQuestionConfirmBox(parent, trans.get("ExistierendeDateiueberschreiben"), trans.get("Ueberschreiben"), trans.get("Nein"), trans.get("Ja")) != JOptionPane.YES_OPTION) {
           return;
         }
       }
@@ -2255,7 +2256,7 @@ private void fireExportEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_
     needExport |= jExportStdAttacks.isSelected();
 
     if (!needExport) {
-      JOptionPaneHelper.showWarningBox(jExportDialog, "Keine Daten für den Export gewählt", "Export");
+      JOptionPaneHelper.showWarningBox(jExportDialog, trans.get("KeineDatenExport"), trans.get("Export"));
       return;
 
     }
@@ -2268,10 +2269,10 @@ private void fireExportEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_
     try {
       chooser = new JFileChooser(dir);
     } catch (Exception e) {
-      JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n" + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+      JOptionPaneHelper.showErrorBox(this, trans.get("KonnteDateiauswahldialognicht"), trans.get("Fehler"));
       return;
     }
-    chooser.setDialogTitle("Datei auswählen");
+    chooser.setDialogTitle(trans.get("Dateiauswaehlen"));
     chooser.setSelectedFile(new File("export.xml"));
     chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 
@@ -2297,7 +2298,7 @@ private void fireExportEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_
 
         File target = new File(file);
         if (target.exists()) {
-          if (JOptionPaneHelper.showQuestionConfirmBox(jExportDialog, "Bestehende Datei überschreiben?", "Export", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+          if (JOptionPaneHelper.showQuestionConfirmBox(jExportDialog, trans.get("BestehendeDatei"), trans.get("Export"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
             return;
           }
         }
@@ -2352,10 +2353,10 @@ private void fireExportEvent(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_
         logger.debug("Writing data to disk");
         JDomUtils.saveDocument(doc, file);
         logger.debug("Export finished successfully");
-        JOptionPaneHelper.showInformationBox(jExportDialog, "Export erfolgreich beendet.", "Export");
+        JOptionPaneHelper.showInformationBox(jExportDialog, trans.get("Exporterfolgreichbeendet"), trans.get("Export"));
       } catch (Exception e) {
         logger.error("Failed to export data", e);
-        JOptionPaneHelper.showErrorBox(this, "Export fehlgeschlagen.", "Export");
+        JOptionPaneHelper.showErrorBox(this, trans.get("Exportfehlgeschlagen"), trans.get("Export"));
       }
 
     } else {
@@ -2404,7 +2405,7 @@ private void fireAddROIDoneEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
       }
 
       if (ROIManager.getSingleton().containsROI(value)) {
-        JOptionPaneHelper.showWarningBox(this, "ROI '" + value + "' existiert bereits.", "ROI vorhanden");
+        JOptionPaneHelper.showWarningBox(this, "ROI '" + value + trans.get("Roiexistiertbereits"), trans.get("ROIvorhanden"));
         return;
 
       }
@@ -2447,7 +2448,7 @@ private void fireDSWorkbenchClosingEvent(java.awt.event.WindowEvent evt) {//GEN-
   }
   dispose();
   new Thread(MainShutdownHook.getSingleton()).run();
-  JOptionPaneHelper.showInformationBox(this, "Beende ...", "Beende ...");
+  JOptionPaneHelper.showInformationBox(this, trans.get("Beende"), trans.get("Beende"));
 }//GEN-LAST:event_fireDSWorkbenchClosingEvent
 
 private void fireGraphicPackChangedEvent(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fireGraphicPackChangedEvent
@@ -2456,7 +2457,7 @@ private void fireGraphicPackChangedEvent(java.awt.event.ItemEvent evt) {//GEN-FI
     GlobalOptions.loadSkin();
   } catch (Exception e) {
     logger.error("Failed to load skin '" + jGraphicPacks.getSelectedItem() + "'", e);
-    JOptionPaneHelper.showErrorBox(this, "Fehler beim laden des Grafikpaketes.", "Fehler");
+    JOptionPaneHelper.showErrorBox(this, trans.get("FehlerGrafikpaketes"), trans.get("Fehler"));
     //load default
     GlobalOptions.addProperty("default.skin", "default");
     try {
@@ -2602,10 +2603,10 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
     try {
       chooser = new JFileChooser(dir);
     } catch (Exception e) {
-      JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n" + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+      JOptionPaneHelper.showErrorBox(this, trans.get("KonnteDateiauswahldialognicht"), trans.get("Fehler"));
       return;
     }
-    chooser.setDialogTitle("Datei auswählen");
+    chooser.setDialogTitle(trans.get("Dateiauswaehlen"));
 
     chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 
@@ -2631,7 +2632,7 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
 
         File target = new File(file);
 
-        String extension = JOptionPane.showInputDialog(this, "Welche Kennzeichnung sollen importierte Pläne und Tags erhalten?\n" + "Lass das Eingabefeld leer oder drücke 'Abbrechen', um sie unverändert zu importieren.", "Kennzeichnung festlegen", JOptionPane.INFORMATION_MESSAGE);
+        String extension = JOptionPane.showInputDialog(this, trans.get("WelcheKennzeichnung"), trans.get("Kennzeichnungfestlegen"), JOptionPane.INFORMATION_MESSAGE);
         if (extension != null && extension.length() > 0) {
           logger.debug("Using import extension '" + extension + "'");
         } else {
@@ -2642,13 +2643,13 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
         if (target.exists()) {
           //do import
           String message = performImport(target, extension);
-          JOptionPaneHelper.showInformationBox(this, message, "Import");
+          JOptionPaneHelper.showInformationBox(this, message, trans.get("Import"));
         }
 
         GlobalOptions.addProperty("screen.dir", target.getParent());
       } catch (Exception e) {
         logger.error("Failed to import data", e);
-        JOptionPaneHelper.showErrorBox(this, "Import fehlgeschlagen.", "Import");
+        JOptionPaneHelper.showErrorBox(this, trans.get("Importfehlgeschlagen"), trans.get("Import"));
       }
     }
   }
@@ -2660,8 +2661,8 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
         Document doc = JDomUtils.getDocument(pSource);
         data = doc.getRootElement();
     } catch(Exception e) {
-        logger.error("Es ist ein Fehler aufgetreten", e);
-        return("Fehler " + e.getMessage());
+        logger.error(trans.get("Fehleraufgetreten"), e);
+        return(trans.get("Fehler") + e.getMessage());
     }
     importedNum[0] = AttackManager.getSingleton().importData(data, pExtension);
     importedNum[1] = StandardAttackManager.getSingleton().importData(data, pExtension);
@@ -2676,9 +2677,9 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
     importedNum[10] = KnownVillageManager.getSingleton().importData(data, pExtension);
     importedNum[11] = SplitSetHelper.importData(data, pExtension);
     
-    String names[] = new String[]{"Angriffe", "Standard-Angriffe", "Farmen",
-        "Formen", "Markierungen", "Notizen", "Berichte", "SOS-Infos", "Gruppen",
-        "Truppen", "Dorfinfos", "Splits"};
+    String names[] = new String[]{trans.get("Angriffe"), trans.get("StandardAngriffe"), trans.get("Farmen"),
+        trans.get("Formen"), trans.get("Markierungen"), trans.get("Notizen"), trans.get("Berichte"), trans.get("SOSInfos"), trans.get("Gruppen"),
+        trans.get("Truppen"), trans.get("Dorfinfos"), trans.get("Splits")};
     boolean allOk = true;
     for(int i = 0; i < names.length; i++) {
         if(importedNum[i] < 0) {
@@ -2687,15 +2688,15 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
     }
     
     StringBuilder message = new StringBuilder();
-    message.append("Import ").append(allOk?"erfolgreich ":"").append("beendet.\n");
+    message.append(trans.get("Import")).append(allOk? trans.get("erfolgreich"):"").append(trans.get("beendet"));
 
     for(int i = 0; i < names.length; i++) {
         int realNum = importedNum[i];
         if(realNum < 0) {
-           message.append("Trotz fehler ");
+           message.append(trans.get("Trotzfehler"));
            realNum = (-1) * realNum - 1;
         }
-        message.append(realNum).append(" ").append(names[i]).append(" erfolgreich eingelesen\n");
+        message.append(realNum).append(" ").append(names[i]).append(trans.get("erfolgreicheingelesen"));
     }
     return message.toString();
   }
@@ -2731,7 +2732,7 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
         if (target.exists()) {
           //ask if overwrite
 
-          if (JOptionPaneHelper.showQuestionConfirmBox(parent, "Existierende Datei überschreiben?", "Überschreiben", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+          if (JOptionPaneHelper.showQuestionConfirmBox(parent, trans.get("ExistierendeDateiueberschreiben"), trans.get("Ueberschreiben"), trans.get("Nein"), trans.get("Ja")) != JOptionPane.YES_OPTION) {
             return;
           }
         }
@@ -2880,7 +2881,10 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
     TagManager.getSingleton().invalidate();
     String[] groups = pParserResult.keySet().toArray(new String[]{});
     //NotifierFrame.doNotification("DS Workbench hat " + groups.length + ((groups.length == 1) ? " Dorfgruppe " : " Dorfgruppen ") + "in der Zwischenablage gefunden.", NotifierFrame.NOTIFY_INFO);
-    showSuccess("DS Workbench hat " + groups.length + ((groups.length == 1) ? " Dorfgruppe " : " Dorfgruppen ") + "in der Zwischenablage gefunden.");
+    showSuccess(trans.get("DSWorkbenchhat") + groups.length + ((groups.length == 1) ? 
+            trans.get("Dorfgruppe") : 
+            trans.get("Dorfgruppen")) + 
+            trans.get("inderZwischenablagegefunden"));
     if(groups.length!=1){ // Data from group import (all groups for given villages)
         //remove all tags
         for (String group : groups) {
@@ -2929,13 +2933,13 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
   @Override
   public void fireMapShotDoneEvent() {
     Component parent = this;
-    JOptionPaneHelper.showInformationBox(parent, "Kartengrafik erfolgreich gespeichert.", "Information");
+    JOptionPaneHelper.showInformationBox(parent, trans.get("Kartengrafikgespeichert"), trans.get("Information"));
     putOnline = false;
   }
 
   @Override
   public void fireMapShotFailedEvent() {
-    JOptionPaneHelper.showErrorBox(this, "Fehler beim Speichern der Kartengrafik.", "Fehler");
+    JOptionPaneHelper.showErrorBox(this, trans.get(trans.get("FehlerKartengrafikgespeichert")), trans.get("Fehler"));
   }
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="Generated Variables">

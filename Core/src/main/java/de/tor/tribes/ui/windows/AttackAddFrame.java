@@ -24,6 +24,8 @@ import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.ServerSettings;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -42,6 +44,8 @@ import javax.swing.JOptionPane;
  */
 public class AttackAddFrame extends javax.swing.JFrame {
 
+    private Translator trans = TranslationManager.getTranslator("ui.windows.AttackAddFrame");
+    
     private Village mSource;
     private boolean isMultiAttack = false;
     private Village[] mSources = null;
@@ -181,14 +185,14 @@ public class AttackAddFrame extends javax.swing.JFrame {
         }
 
         mTarget = pTarget;
-        jSourceVillage.setText(mSources.length + " gewählte Dörfer");
+        jSourceVillage.setText(mSources.length + trans.get("gewaehlteDoerfer"));
         if (pTarget.getTribe() != Barbarians.getSingleton()) {
             jTargetVillage.setText(pTarget.getTribe() + " (" + pTarget + ")");
         } else {
-            jTargetVillage.setText("Barbarendorf" + " (" + pTarget.getX() + "|" + pTarget.getY() + ")");
+            jTargetVillage.setText(trans.get("Barbarendorf") + " (" + pTarget.getX() + "|" + pTarget.getY() + ")");
         }
 
-        jDistance.setText("Unterschiedliche Entfernungen");
+        jDistance.setText(trans.get("UnterschiedlicheEntfernungen"));
 
         Iterator<String> plans = AttackManager.getSingleton().getGroupIterator();
         Object lastSelection = jAttackPlanBox.getSelectedItem();
@@ -245,7 +249,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         if (pTarget.getTribe() != Barbarians.getSingleton()) {
             jTargetVillage.setText(pTarget.getTribe() + " (" + pTarget + ")");
         } else {
-            jTargetVillage.setText("Barbarendorf" + " (" + pTarget.getX() + "|" + pTarget.getY() + ")");
+            jTargetVillage.setText(trans.get("Barbarendorf") + " (" + pTarget.getX() + "|" + pTarget.getY() + ")");
         }
         double d = DSCalculator.calculateDistance(mSource, mTarget);
 
@@ -307,11 +311,11 @@ public class AttackAddFrame extends javax.swing.JFrame {
         jAttackPlanBox = new javax.swing.JComboBox();
         dateTimeField1 = new de.tor.tribes.ui.components.DateTimeField();
 
-        setTitle("Angriff hinzufügen");
+        setTitle(trans.get("Angriffhinzufuegen"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jOKButton.setBackground(new java.awt.Color(239, 235, 223));
-        jOKButton.setText("Angriff erstellen");
+        jOKButton.setText(trans.get("Angrifferstellen"));
         jOKButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireAddAttackEvent(evt);
@@ -326,7 +330,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         getContentPane().add(jOKButton, gridBagConstraints);
 
         jCancelButton.setBackground(new java.awt.Color(239, 235, 223));
-        jCancelButton.setText("Abbrechen");
+        jCancelButton.setText(trans.get("Abbrechen"));
         jCancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireCancelAddAttackEvent(evt);
@@ -370,7 +374,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jSourceVillage, gridBagConstraints);
 
-        jSourceLabel.setText("Herkunft");
+        jSourceLabel.setText(trans.get("Herkunft"));
         jSourceLabel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -380,7 +384,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jSourceLabel, gridBagConstraints);
 
-        jTargetLabel.setText("Ziel");
+        jTargetLabel.setText(trans.get("Ziel"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -389,7 +393,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jTargetLabel, gridBagConstraints);
 
-        jUnitLabel.setText("Langsamste Einheit");
+        jUnitLabel.setText(trans.get("LangsamsteEinheit"));
         jUnitLabel.setMaximumSize(new java.awt.Dimension(120, 14));
         jUnitLabel.setMinimumSize(new java.awt.Dimension(120, 14));
         jUnitLabel.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -419,7 +423,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jUnitBox, gridBagConstraints);
 
-        jDistanceLabel.setText("Entfernung");
+        jDistanceLabel.setText(trans.get("Entfernung"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -444,7 +448,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jTargetVillage, gridBagConstraints);
 
-        jArriveTimeLabel.setText("Ankunftzeit");
+        jArriveTimeLabel.setText(trans.get("Ankunftzeit"));
         jArriveTimeLabel.setMaximumSize(new java.awt.Dimension(120, 14));
         jArriveTimeLabel.setMinimumSize(new java.awt.Dimension(120, 14));
         jArriveTimeLabel.setPreferredSize(new java.awt.Dimension(120, 14));
@@ -457,8 +461,8 @@ public class AttackAddFrame extends javax.swing.JFrame {
         getContentPane().add(jArriveTimeLabel, gridBagConstraints);
 
         jButton1.setBackground(new java.awt.Color(239, 235, 223));
-        jButton1.setText("Letzter Wert");
-        jButton1.setToolTipText("Setzt den zuletzt verwendeten Wert als Ankunftzeit");
+        jButton1.setText(trans.get("LetzterWert"));
+        jButton1.setToolTipText(trans.get("LetzterWert_Text"));
         jButton1.setMaximumSize(new java.awt.Dimension(93, 25));
         jButton1.setMinimumSize(new java.awt.Dimension(93, 25));
         jButton1.setPreferredSize(new java.awt.Dimension(93, 25));
@@ -475,7 +479,7 @@ public class AttackAddFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jButton1, gridBagConstraints);
 
-        jLabel1.setText("Angriffsplan");
+        jLabel1.setText(trans.get("Angriffsplan"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -546,13 +550,21 @@ private void fireAddAttackEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
     }
 
     if (!validateTime()) {
-        if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die angegebene Ankunftszeit kann für mindestens ein Ziel nicht eingehalten werden.\nTrotzdem fortfahren?", "Ankunftszeit", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+        if (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                trans.get("angegebeneAnkunfszeit"), 
+                trans.get("Ankunftszeit"), 
+                trans.get("Nein"), 
+                trans.get("Ja")) != JOptionPane.YES_OPTION) {
             return;
         }
     }
 
     if (!validateDistance()) {
-        if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die angegebene Entfernung kann von der gewählten Einheit für mindestens ein Ziel nicht zurückgelegt werden.\nTrotzdem fortfahren?", "Ankunftszeit", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+        if (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                trans.get("angegebeneEntfernung"), 
+                trans.get("Ankunftszeit"), 
+                trans.get("Nein"), 
+                trans.get("Ja")) != JOptionPane.YES_OPTION) {
             return;
         }
     }
@@ -575,7 +587,7 @@ private void fireSetLastArrivalEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST
     if (last != null) {
         dateTimeField1.setDate(last);
     } else {
-        JOptionPaneHelper.showWarningBox(this, "Noch kein Wert gespeichert", "Warnung");
+        JOptionPaneHelper.showWarningBox(this, trans.get("NochkeinWertgespeichert"), trans.get("Warnung"));
     }
 }//GEN-LAST:event_fireSetLastArrivalEvent
     // Variables declaration - do not modify//GEN-BEGIN:variables

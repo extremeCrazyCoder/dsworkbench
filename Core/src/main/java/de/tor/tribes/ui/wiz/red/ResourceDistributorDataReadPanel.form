@@ -19,9 +19,11 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jInfoTextPane">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Du befindest dich im &lt;b&gt;Angriffsmodus&lt;/b&gt;. Hier kannst du die Herkunftsd&amp;ouml;rfer ausw&amp;auml;hlen, die f&amp;uuml;r Angriffe verwendet werden d&amp;uuml;rfen. Hierf&amp;uuml;r hast die folgenden M&amp;ouml;glichkeiten:&#xa;&lt;ul&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus der Gruppen&amp;uuml;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus dem SOS-Analyzer&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus Berichten&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen aus der Auswahl&#xfc;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Manuelle Eingabe&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;&#xa;"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Angriffsmodus&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -53,8 +55,12 @@
           <Font name="Tahoma" size="10" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Informationen einblenden"/>
-        <Property name="toolTipText" type="java.lang.String" value="Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Informationeneinblenden&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Datenquelle&quot;)" type="code"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true"/>
@@ -157,7 +163,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="jAddAsBothButton">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="In der Zwischenablage nach kopierter Produktions&#xfc;bersicht suchen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Zwischenablagenachkopierterproduktionsuebersicht&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[120, 60]"/>
                 </Property>
@@ -179,7 +187,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jAddAsSenderButton">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="In der Zwischenablage nach kopierter Produktions&#xfc;bersicht suchen und D&#xf6;rfer als Lieferanten eintragen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;InZwischenablageDoerferalsLieferanteneintragen&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[120, 60]"/>
                 </Property>
@@ -201,7 +211,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jAddAsReceiverButton">
               <Properties>
-                <Property name="toolTipText" type="java.lang.String" value="In der Zwischenablage nach kopierter Produktions&#xfc;bersicht suchen und D&#xf6;rfer als Empf&#xe4;nger eintragen"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;InZwischenablagenachkopierter&quot;)" type="code"/>
+                </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[120, 60]"/>
                 </Property>
@@ -234,7 +246,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Rohstoffspalte sortieren nach"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;Rohstoffspaltesortierennach&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
