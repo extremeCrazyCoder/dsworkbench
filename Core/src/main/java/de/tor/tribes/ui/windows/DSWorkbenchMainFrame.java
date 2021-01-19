@@ -729,7 +729,7 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
     }
 
       if (lastBackup != null) {
-      if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Offenbarnichtkorrekt_text") + lastBackup + trans.get("Mochtestduwiederherstellen"), trans.get("Absturz"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
+      if (JOptionPaneHelper.showQuestionConfirmBox(this, String.format(trans.get("crashString"), lastBackup), trans.get("Absturz"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
         showInfo(trans.get("Wiederherstellung"));
         if (performImport(backupFile, "backup").startsWith(trans.get("ImportErfolgreich"))) {
           showSuccess(trans.get("Wiederherstellungabgeschlossen"));

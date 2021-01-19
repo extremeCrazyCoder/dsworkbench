@@ -1424,7 +1424,7 @@ public class ResourceDistributorCalculationPanel extends WizardPage {
                         break;
 
                 }
-                jProgressBar1.setString(trans.get("BerechneTransporte") + resourceName + "'...");
+                jProgressBar1.setString(String.format(trans.get("BerechneTransporte"), resourceName));
             }
 
             @Override

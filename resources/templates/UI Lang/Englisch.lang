@@ -575,7 +575,7 @@ ui.wiz.red.ResourceDistributorCalculationPanel.VorherigeBerechnungverwerfen=Disc
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechnungverwerfen=Discard calculation
 ui.wiz.red.ResourceDistributorCalculationPanel.Nein=No
 ui.wiz.red.ResourceDistributorCalculationPanel.Ja=Yes
-ui.wiz.red.ResourceDistributorCalculationPanel.BerechneTransporte=Calculate transports for '
+ui.wiz.red.ResourceDistributorCalculationPanel.BerechneTransporte=Calculate transports for '%s'...
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechnungabgeschlossen=Calculation completed.
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechne=Calculate...
 ui.wiz.red.ResourceDistributorCalculationPanel.NochkeineBerechnungdurchgefuehrt=No calculation performed yet
@@ -977,8 +977,7 @@ ui.windows.DSWorkbenchMainFrame.Karte=Map
 ui.windows.DSWorkbenchMainFrame.ROI=ROI
 ui.windows.DSWorkbenchMainFrame.Speichernunter=Save as...
 ui.windows.DSWorkbenchMainFrame.keineDoerfer=-no villages-
-ui.windows.DSWorkbenchMainFrame.Offenbarnichtkorrekt_text=Apparently DS Workbench was not terminated correctly, so data may have been lost. \ N A backup exists for the current profile (created:
-ui.windows.DSWorkbenchMainFrame.Mochtestduwiederherstellen=). Do you want to restore this?
+ui.windows.DSWorkbenchMainFrame.crashString=Apparently DS Workbench was not terminated correctly, so data may have been lost. \ N A backup exists for the current profile (created: %s). Do you want to restore this?
 ui.windows.DSWorkbenchMainFrame.Absturz=Crash?
 ui.windows.DSWorkbenchMainFrame.Nein=No
 ui.windows.DSWorkbenchMainFrame.Ja=Yes
@@ -1071,11 +1070,10 @@ ui.views.DSWorkbenchAttackFrame.EinenAlarm=Create an alarm for the selected comm
 ui.views.DSWorkbenchAttackFrame.NeuerPlan=New plan
 ui.views.DSWorkbenchAttackFrame.Fehler=Error
 ui.views.DSWorkbenchAttackFrame.TausendeBefehlsplaene=You have more than 1000 order plans. Please delete a few first before creating new ones.
-ui.views.DSWorkbenchAttackFrame.ungueltigerPlanname=' is an invalid plan name
-ui.views.DSWorkbenchAttackFrame.existiertbereits=A plan with the name already exists '
-ui.views.DSWorkbenchAttackFrame.ungueltigeSonderzeichen=' Contains invalid special characters
-ui.views.DSWorkbenchAttackFrame.Befehlsplan=Command plan '
-ui.views.DSWorkbenchAttackFrame.Befehlewirklichloeschen=' and really delete all commands contained therein?
+ui.views.DSWorkbenchAttackFrame.ungueltigerPlanname='%s' is an invalid plan name
+ui.views.DSWorkbenchAttackFrame.existiertbereits=A plan with the name already exists '%s'
+ui.views.DSWorkbenchAttackFrame.ungueltigeSonderzeichen=The name '%s' Contains invalid special characters
+ui.views.DSWorkbenchAttackFrame.Befehlewirklichloeschen=Command plan '%s' and really delete all commands contained therein?
 ui.views.DSWorkbenchAttackFrame.Loeschen=Delete
 ui.views.DSWorkbenchAttackFrame.Nein=No
 ui.views.DSWorkbenchAttackFrame.Ja=Yes
@@ -1088,4 +1086,9 @@ ui.views.DSWorkbenchAttackFrame.Spalten=columns
 ui.views.DSWorkbenchAttackFrame.Befehle=Commands
 ui.views.DSWorkbenchAttackFrame.ImmerimVordergrund=Always in the foreground
 
+ui.views.DSWorkbenchSettingsDialog.Language=Language
+ui.views.DSWorkbenchSettingsDialog.LanguageHelp=The language in wich workbench will be displayed
+
+
 locale=en
+

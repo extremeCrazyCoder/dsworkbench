@@ -462,8 +462,15 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         TranslationManager.setWorkbenchBoot(true);
         File runningIndicator = new File("runningFile");
         if (runningIndicator.exists()) {
+            try {
+                GlobalDefaults.initialize();
+                GlobalOptions.loadProperties(true);
+            } catch (Exception ex) {
+                java.util.logging.Logger.getLogger(DSWorkbenchSplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
             int answer = JOptionPaneHelper.showQuestionConfirmBox(null, trans.get("DSWorkbenchnochlaufenwuerde"), trans.get("Absturz"), trans.get("Nein"), trans.get("Ja"));
-            
+
             if(answer == JOptionPane.NO_OPTION) {
                 System.exit(0);
             }

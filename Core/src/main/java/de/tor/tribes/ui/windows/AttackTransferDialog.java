@@ -168,11 +168,11 @@ public class AttackTransferDialog extends javax.swing.JDialog {
         } else {
             plan = jNewPlanName.getText();
             if (plan.length() == 0) {
-                JOptionPaneHelper.showWarningBox(this, "'" + plan + trans.get("ungultigerPlanname"), trans.get("Fehler"));
+                JOptionPaneHelper.showWarningBox(this, String.format(trans.get("ungultigerPlanname"), plan), trans.get("Fehler"));
                 return;
             }
             if (! JDomUtils.stringAllowed(plan)) {
-                JOptionPaneHelper.showWarningBox(this, trans.get("DerName") + plan + trans.get("ungueltigeSonderzeichen"), trans.get("Fehler"));
+                JOptionPaneHelper.showWarningBox(this, String.format(trans.get("ungueltigeSonderzeichen"), plan), trans.get("Fehler"));
                 return;
             }
 

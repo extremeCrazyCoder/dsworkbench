@@ -96,7 +96,7 @@ public class GlobalOptions {
         logger.debug("Loading help system");
         loadHelpSystem();
         logger.debug("Loading properties");
-        loadProperties();
+        loadProperties(false);
         logger.debug("Loading graphic pack");
         loadSkin();
         logger.debug("Loading world.dat");
@@ -210,11 +210,15 @@ public class GlobalOptions {
     public static void setSelectedProfile(UserProfile pProfile) {
         mSelectedProfile = pProfile;
     }
-
+    
+    private static boolean propertiesLoaded = false;
     /**
      * Load the global properties
      */
-    private static void loadProperties() throws Exception {
+    public static void loadProperties(boolean preBoot) throws Exception {
+        if(propertiesLoaded) {
+            return;
+        }
         GLOBAL_PROPERTIES = new DSPropertiesConfiguration();
         if (new File("global.properties").exists()) {
             logger.debug("Loading existing properties file");
@@ -222,9 +226,14 @@ public class GlobalOptions {
                 GLOBAL_PROPERTIES.load(fin);
             }
         } else {
-            logger.debug("Creating empty properties file");
-            saveProperties();
+            if(!preBoot) {
+                logger.debug("Creating empty properties file");
+                saveProperties();
+            } else {
+                return;
+            }
         }
+        propertiesLoaded = true;
     }
 
     /**

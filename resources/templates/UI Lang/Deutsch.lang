@@ -575,7 +575,7 @@ ui.wiz.red.ResourceDistributorCalculationPanel.VorherigeBerechnungverwerfen=Vorh
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechnungverwerfen=Berechnung verwerfen
 ui.wiz.red.ResourceDistributorCalculationPanel.Nein=Nein
 ui.wiz.red.ResourceDistributorCalculationPanel.Ja=Ja
-ui.wiz.red.ResourceDistributorCalculationPanel.BerechneTransporte=Berechne Transporte f\u00fcr '
+ui.wiz.red.ResourceDistributorCalculationPanel.BerechneTransporte=Berechne Transporte f\u00fcr '%s'...
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechnungabgeschlossen=Berechnung abgeschlossen.
 ui.wiz.red.ResourceDistributorCalculationPanel.Berechne=Berechne...
 ui.wiz.red.ResourceDistributorCalculationPanel.NochkeineBerechnungdurchgefuehrt=Noch keine Berechnung durchgef\u00fchrt
@@ -891,7 +891,7 @@ ui.UnitOrderBuilder.Schliessen=Schlie\u00dfen
 ui.LayerOrderConfigurationFrame.Informationen=Informationen
 ui.LayerOrderConfigurationFrame.Schliessen=Schlie\u00dfen
 
-ui.windows.ClockFrame.istabgelaufen=' ist abgelaufen
+ui.windows.ClockFrame.istabgelaufen=Timer'%s' ist abgelaufen
 ui.windows.ClockFrame.zwischenzeitlichabgelaufen=Die folgenden Timer sind zwischenzeitlich abgelaufen:\n
 ui.windows.ClockFrame.AbgelaufeneTimer=Abgelaufene Timer
 ui.windows.ClockFrame.Timerentfernt=Timer entfernt
@@ -933,9 +933,8 @@ ui.windows.AttackAddFrame.LetzterWert=Letzter Wert
 ui.windows.AttackAddFrame.LetzterWert_Text=Setzt den zuletzt verwendeten Wert als Ankunftzeit
 ui.windows.AttackAddFrame.Angriffsplan=Angriffsplan
 
-ui.windows.AttackTransferDialog.ungultigerPlanname=' ist ein ung\u00fcltiger Planname
-ui.windows.AttackTransferDialog.DerName=Der name '
-ui.windows.AttackTransferDialog.ungueltigeSonderzeichen=' enth\u00e4lt ung\u00fcltige Sonderzeichen
+ui.windows.AttackTransferDialog.ungultigerPlanname='%s' ist ein ung\u00fcltiger Planname
+ui.windows.AttackTransferDialog.ungueltigeSonderzeichen=Der name '%s' enth\u00e4lt ung\u00fcltige Sonderzeichen
 ui.windows.AttackTransferDialog.Fehler=Fehler
 ui.windows.AttackTransferDialog.Befehleuebertragen=Befehle \u00fcbertragen
 ui.windows.AttackTransferDialog.VorhandenerPlan=Vorhandener Plan
@@ -977,8 +976,7 @@ ui.windows.DSWorkbenchMainFrame.Karte=Karte
 ui.windows.DSWorkbenchMainFrame.ROI=ROI
 ui.windows.DSWorkbenchMainFrame.Speichernunter=Speichern unter...
 ui.windows.DSWorkbenchMainFrame.keineDoerfer=-keine D\u00f6rfer-
-ui.windows.DSWorkbenchMainFrame.Offenbarnichtkorrekt_text=Offenbar wurde DS Workbench nicht korrekt beendet, daher kann es m\u00f6glicherweise zu Datenverlust gekommen sein.\n F\u00fcr das aktuelle Profil existiert ein Backup (Erstellt: 
-ui.windows.DSWorkbenchMainFrame.Mochtestduwiederherstellen=). M\u00f6chtest du dieses wiederherstellen?
+ui.windows.DSWorkbenchMainFrame.crashString=Offenbar wurde DS Workbench nicht korrekt beendet, daher kann es m\u00f6glicherweise zu Datenverlust gekommen sein.\n F\u00fcr das aktuelle Profil existiert ein Backup (Erstellt: %s). M\u00f6chtest du dieses wiederherstellen?
 ui.windows.DSWorkbenchMainFrame.Absturz=Absturz
 ui.windows.DSWorkbenchMainFrame.Nein=Nein
 ui.windows.DSWorkbenchMainFrame.Ja=Ja
@@ -1071,11 +1069,10 @@ ui.views.DSWorkbenchAttackFrame.EinenAlarm=Einen Alarm f\u00fcr den gew\u00e4hlt
 ui.views.DSWorkbenchAttackFrame.NeuerPlan=Neuer Plan
 ui.views.DSWorkbenchAttackFrame.Fehler=Fehler
 ui.views.DSWorkbenchAttackFrame.TausendeBefehlsplaene=Du hast mehr als 1000 Befehlspl\u00e4ne. Bitte l\u00f6sche zuerst ein paar bevor du Neue erstellst.
-ui.views.DSWorkbenchAttackFrame.ungueltigerPlanname=' ist ein ung\u00fcltiger Planname
-ui.views.DSWorkbenchAttackFrame.existiertbereits=Es existiert bereits ein Plan mit dem Namen '
-ui.views.DSWorkbenchAttackFrame.ungueltigeSonderzeichen=' enth\u00e4lt ung\u00fcltige Sonderzeichen
-ui.views.DSWorkbenchAttackFrame.Befehlsplan=Befehlsplan '
-ui.views.DSWorkbenchAttackFrame.Befehlewirklichloeschen=' und alle darin enthaltenen Befehle wirklich l\u00f6schen?
+ui.views.DSWorkbenchAttackFrame.ungueltigerPlanname='%s' ist ein ung\u00fcltiger Planname
+ui.views.DSWorkbenchAttackFrame.existiertbereits=Es existiert bereits ein Plan mit dem Namen '%s'
+ui.views.DSWorkbenchAttackFrame.ungueltigeSonderzeichen=Der name '%s' enth\u00e4lt ung\u00fcltige Sonderzeichen
+ui.views.DSWorkbenchAttackFrame.Befehlewirklichloeschen=Befehlsplan '%s' und alle darin enthaltenen Befehle wirklich l\u00f6schen?
 ui.views.DSWorkbenchAttackFrame.Loeschen=L\u00f6schen
 ui.views.DSWorkbenchAttackFrame.Nein=Nein
 ui.views.DSWorkbenchAttackFrame.Ja=Ja
@@ -1088,6 +1085,9 @@ ui.views.DSWorkbenchAttackFrame.Spalten=Spalten
 ui.views.DSWorkbenchAttackFrame.Befehle=Befehle
 ui.views.DSWorkbenchAttackFrame.ImmerimVordergrund=Immer im Vordergrund
 
-locale=de
+ui.views.DSWorkbenchSettingsDialog.Language=Sprache
+ui.views.DSWorkbenchSettingsDialog.LanguageHelp=Die Sprache in welcher Workbench angezeigt wird
 
+
+locale=de
 

@@ -19,8 +19,9 @@ package de.tor.tribes.util.translation;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.logging.Level;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
@@ -106,5 +107,27 @@ public class TranslationManager {
             throw new RuntimeException("'" + key + "' existiert nicht");
         }
         return obj.toString();
+    }
+
+    public static String[] getLanguages() {
+        List<String> languages = new ArrayList<>();
+        File parent = new File("./templates/UI Lang/");
+        for(String filename : parent.list()) {
+            if(filename.endsWith(".lang")) {
+                languages.add(filename.substring(0, filename.length() - 5));
+            }
+        }
+        return languages.toArray(new String[languages.size()]);
+    }
+
+    public static int findLanguageIndex(String targetLang) {
+        String[] langs = getLanguages();
+        
+        for(int i = 0; i < langs.length; i++) {
+            if(langs[i].equals(targetLang)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

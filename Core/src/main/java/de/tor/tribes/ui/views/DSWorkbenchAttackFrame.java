@@ -722,15 +722,15 @@ private void createNewAttackPlan() {
                     if(!newName.equals(tab.getAttackPlan())) {
                         newName = newName.trim();
                         if (newName.length() == 0) {
-                            JOptionPaneHelper.showWarningBox(jAttackTabPane, "'" + newName + "ungueltigerPlanname", trans.get("Fehler"));
+                            JOptionPaneHelper.showWarningBox(jAttackTabPane, String.format(trans.get("ungueltigerPlanname"), newName), trans.get("Fehler"));
                             return;
                         }
                         if (AttackManager.getSingleton().groupExists(newName)) {
-                            JOptionPaneHelper.showWarningBox(jAttackTabPane, trans.get("existiertbereits") + newName + "'", trans.get("Fehler"));                        
+                            JOptionPaneHelper.showWarningBox(jAttackTabPane, String.format(trans.get("existiertbereits"), newName), trans.get("Fehler"));                        
                             return;
                         }
                         if (! JDomUtils.stringAllowed(newName)) {
-                            JOptionPaneHelper.showWarningBox(jAttackTabPane, trans.get("Der name '") + newName + trans.get("ungueltigeSonderzeichen"), trans.get("Fehler"));
+                            JOptionPaneHelper.showWarningBox(jAttackTabPane, String.format(trans.get("ungueltigeSonderzeichen"), newName), trans.get("Fehler"));
                             return;
                         }
                         
@@ -744,8 +744,8 @@ private void createNewAttackPlan() {
                 public void event() {
                     int i = jAttackTabPane.indexOfTabComponent(component);
                     AttackTableTab tab = (AttackTableTab) jAttackTabPane.getComponentAt(i);
-                    if (JOptionPaneHelper.showQuestionConfirmBox(jAttackTabPane, trans.get("Befehlsplan") + tab.getAttackPlan() +
-                            trans.get("Befehlewirklichloeschen"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
+                    if (JOptionPaneHelper.showQuestionConfirmBox(jAttackTabPane, String.format(trans.get("Befehlewirklichloeschen"), tab.getAttackPlan())
+                            , trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                         AttackManager.getSingleton().removeGroup(tab.getAttackPlan());
                     }
                 }

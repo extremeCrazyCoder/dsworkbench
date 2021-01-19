@@ -36,6 +36,8 @@ import de.tor.tribes.ui.wiz.red.ResourceDistributorWizard;
 import de.tor.tribes.ui.wiz.tap.TacticsPlanerWizard;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.html.AttackPlanHTMLExporter;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,8 +59,9 @@ import org.apache.logging.log4j.Logger;
  */
 public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         DataHolderListener {
-
     private static Logger logger = LogManager.getLogger("SettingsDialog");
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchSettingsDialog");
+
     private static DSWorkbenchSettingsDialog SINGLETON = null;
     private Proxy webProxy;
     private boolean INITIALIZED = false;
@@ -82,6 +85,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         sosAttackerSelection.setupOffense(TroopSelectionPanel.alignType.VERTICAL, -1);
         sosDefenderSelection.setupDefense(TroopSelectionPanel.alignType.VERTICAL, -1);
 
+        jLanguageChooser.setModel(new javax.swing.DefaultComboBoxModel(TranslationManager.getLanguages()));
+        
         GlobalOptions.addDataHolderListener(DSWorkbenchSettingsDialog.this);
 
         // <editor-fold defaultstate="collapsed" desc=" General Layout ">
@@ -203,6 +208,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         
         jSliderCmdSleepTime.setValue(GlobalOptions.getProperties().getInt("command.sleep.time"));
         jSliderCmdSleepTimeStateChanged(null);
+        
+        jLanguageChooser.setSelectedIndex(TranslationManager.findLanguageIndex(GlobalOptions.getProperty("ui.language")));
     }
 
     private void setDefense(TroopAmountFixed pDefense) {
@@ -523,6 +530,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanelMenueSize = new javax.swing.JPanel();
         jLabelMenueSize = new javax.swing.JLabel();
         jMenueSize = new javax.swing.JSlider();
+        jLabelLanguage = new javax.swing.JLabel();
+        jLanguageChooser = new javax.swing.JComboBox();
         jPanel13 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jReportServerPort = new javax.swing.JTextField();
@@ -2161,6 +2170,31 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel6.add(jPanelMenueSize, gridBagConstraints);
 
+        jLabelLanguage.setText(trans.get("Language"));
+        jLabelLanguage.setMaximumSize(new java.awt.Dimension(138, 18));
+        jLabelLanguage.setMinimumSize(new java.awt.Dimension(138, 18));
+        jLabelLanguage.setPreferredSize(new java.awt.Dimension(138, 18));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel6.add(jLabelLanguage, gridBagConstraints);
+
+        jLanguageChooser.setToolTipText(trans.get("LanguageHelp"));
+        jLanguageChooser.setMaximumSize(new java.awt.Dimension(105, 18));
+        jLanguageChooser.setPreferredSize(new java.awt.Dimension(105, 18));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel6.add(jLanguageChooser, gridBagConstraints);
+
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder("Berichtserver"));
         jPanel13.setOpaque(false);
         jPanel13.setPreferredSize(new java.awt.Dimension(72, 50));
@@ -2227,7 +2261,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2269,7 +2303,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                         .addComponent(jCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -2481,7 +2515,6 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             GlobalOptions.addProperty("map.marker.transparency", Integer.toString(jMarkerTransparency.getValue()));
             GlobalOptions.addProperty("obst.server", jObstServer.getText());
             GlobalOptions.addProperty("command.sleep.time", Integer.toString(jSliderCmdSleepTime.getValue()));
-            GlobalOptions.saveProperties();
             if (!checkSettings()) {
                 logger.error("Failed to check server settings");
                 return;
@@ -2496,6 +2529,12 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 GlobalOptions.addProperty("ribbon.size", Double.toString(menueSizeFromSlider()));
                 JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, "Für die Größenänderung des Hauptmenüs ist ein Neustart von DS Workbench erforderlich.", "Neustart erforderlich");
             }
+            
+            if(! GlobalOptions.getProperty("ui.language").equals(jLanguageChooser.getSelectedItem().toString())) {
+                GlobalOptions.addProperty("ui.language", jLanguageChooser.getSelectedItem().toString());
+                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, "Für die Sprachenänderung ist ein Neustart von DS Workbench erforderlich.", "Neustart erforderlich");
+            }
+            GlobalOptions.saveProperties();
         } catch (Throwable t) {
             logger.error("Failed to close settings dialog", t);
         }
@@ -3189,8 +3228,10 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCmdSleepTime;
     private javax.swing.JLabel jLabelCmdSleepTimePreview;
+    private javax.swing.JLabel jLabelLanguage;
     private javax.swing.JLabel jLabelMenueSize;
     private javax.swing.JLabel jLabelServer;
+    private javax.swing.JComboBox jLanguageChooser;
     private javax.swing.JPanel jMapSettings;
     private javax.swing.JCheckBox jMarkOwnVillagesOnMinimap;
     private javax.swing.JLabel jMarkOwnVillagesOnMinimapLabel;

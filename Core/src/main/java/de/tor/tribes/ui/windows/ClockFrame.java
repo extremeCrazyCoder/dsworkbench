@@ -149,7 +149,7 @@ public class ClockFrame extends javax.swing.JFrame implements ActionListener {
 
         for (final TimerPanel p : timers.toArray(new TimerPanel[timers.size()])) {
             if (p.isExpired()) {
-                SystrayHelper.showInfoMessage("Timer  '" + p.getName() + trans.get("istabgelaufen"));
+                SystrayHelper.showInfoMessage(String.format(trans.get("istabgelaufen"), p.getName()));
                 //moved playing the sound to a new Thread because of graphic problems
                 new Thread(new Runnable() {
                     @Override
