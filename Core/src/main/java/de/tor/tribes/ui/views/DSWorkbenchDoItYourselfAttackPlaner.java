@@ -85,7 +85,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         if (e.getValueIsAdjusting()) {
             int selectionCount = jAttackTable.getSelectedRowCount();
             if (selectionCount != 0) {
-                showInfo(selectionCount + ((selectionCount == 1) ? " Angriff gewählt" : " Angriffe gewählt"));
+                showInfo(selectionCount + ((selectionCount == 1) ? trans.get("Angriffgewahlt") : trans.get("Angriffegewahlt")));
             }
         }
     }
@@ -346,11 +346,10 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
         capabilityInfoPanel1 = new de.tor.tribes.ui.components.CapabilityInfoPanel();
 
-        setTitle("Manueller Angriffsplaner");
+        setTitle(trans.get("ManuellerAngriffsplaner"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTopBox.setText("Immer im Vordergrund");
-        jAlwaysOnTopBox.setOpaque(false);
+        jAlwaysOnTopBox.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTopBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireAttackFrameOnTopEvent(evt);
@@ -365,12 +364,12 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Anpassen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Anpassen")));
         jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(350, 152));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel7.setText("Ankunftszeit");
+        jLabel7.setText(trans.get("Ankunftszeit"));
         jLabel7.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel7.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel7.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -383,7 +382,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jPanel3.add(jLabel7, gridBagConstraints);
 
         jAdeptTimeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jAdeptTimeButton.setToolTipText("Ankunftszeit für alle markierten Angriffe anpassen");
+        jAdeptTimeButton.setToolTipText(trans.get("Ankunfszeit_markierten"));
         jAdeptTimeButton.setMaximumSize(new java.awt.Dimension(25, 25));
         jAdeptTimeButton.setMinimumSize(new java.awt.Dimension(25, 25));
         jAdeptTimeButton.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -399,7 +398,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jAdeptTimeButton, gridBagConstraints);
 
-        jLabel8.setText("Einheit");
+        jLabel8.setText(trans.get("Einheit"));
         jLabel8.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel8.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel8.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -423,7 +422,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jPanel3.add(jUnitComboBox, gridBagConstraints);
 
         jAdeptUnitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jAdeptUnitButton.setToolTipText("Einheit für alle markierten Angriffe anpassen");
+        jAdeptUnitButton.setToolTipText(trans.get("Einheit_markierten"));
         jAdeptUnitButton.setMaximumSize(new java.awt.Dimension(25, 25));
         jAdeptUnitButton.setMinimumSize(new java.awt.Dimension(25, 25));
         jAdeptUnitButton.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -439,7 +438,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jAdeptUnitButton, gridBagConstraints);
 
-        jLabel9.setText("Angriffstyp");
+        jLabel9.setText(trans.get("Angriffstyp"));
         jLabel9.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel9.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel9.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -463,7 +462,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jPanel3.add(jAttackTypeComboBox, gridBagConstraints);
 
         jAdeptTypeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jAdeptTypeButton.setToolTipText("Angriffstyp für alle markierten Angriffe anpassen");
+        jAdeptTypeButton.setToolTipText(trans.get("Angriffstyp_markierten"));
         jAdeptTypeButton.setMaximumSize(new java.awt.Dimension(25, 25));
         jAdeptTypeButton.setMinimumSize(new java.awt.Dimension(25, 25));
         jAdeptTypeButton.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -499,11 +498,11 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel4.add(jPanel3, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Neuer Angriff"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("NeuerAngriff")));
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Herkunft");
+        jLabel1.setText(trans.get("Herkunft"));
         jLabel1.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel1.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel1.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -515,7 +514,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("Ziel");
+        jLabel2.setText(trans.get("Ziel"));
         jLabel2.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel2.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel2.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -527,7 +526,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        jLabel3.setText("Einheit");
+        jLabel3.setText(trans.get("Einheit"));
         jLabel3.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel3.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel3.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -539,7 +538,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("Ankunft");
+        jLabel4.setText(trans.get("Ankunft"));
         jLabel4.setMaximumSize(new java.awt.Dimension(80, 25));
         jLabel4.setMinimumSize(new java.awt.Dimension(80, 25));
         jLabel4.setPreferredSize(new java.awt.Dimension(80, 25));
@@ -551,7 +550,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel4, gridBagConstraints);
 
-        jUnitBox.setToolTipText("Langsamste Einheit");
+        jUnitBox.setToolTipText(trans.get("LangsamsteEinheit"));
         jUnitBox.setMinimumSize(new java.awt.Dimension(23, 25));
         jUnitBox.setPreferredSize(new java.awt.Dimension(28, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -564,7 +563,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jPanel2.add(jUnitBox, gridBagConstraints);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/add.gif"))); // NOI18N
-        jButton1.setText("Hinzufügen");
+        jButton1.setText(trans.get("Add"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireAddAttackEvent(evt);
@@ -635,7 +634,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXLabel1.setText("Keine Meldung");
+        jXLabel1.setText(trans.get("KeineMeldung"));
         jXLabel1.setOpaque(true);
         jXLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -682,19 +681,19 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
     private void fireAddAttackEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireAddAttackEvent
         Village source = jSourceVillage.getVillage();
         if (source == null) {
-            showError("Kein gültiges Herkunftsdorf gewählt");
+            showError(trans.get("KeingueltigesHerkunftsdorf"));
             return;
         }
 
         Village target = jTargetVillage.getVillage();
         if (target == null) {
-            showError("Kein gültiges Zieldorf gewählt");
+            showError(trans.get("KeingueltigesZieldorf"));
             return;
         }
 
         Date arrive = jArriveTime.getSelectedDate();
         if (arrive.getTime() < System.currentTimeMillis()) {
-            showError("Ankunftszeit darf nicht in der Vergangenheit liegen");
+            showError(trans.get("AnkunftszeitVergangenheit"));
             return;
         }
         UnitHolder unit = (UnitHolder) jUnitBox.getSelectedItem();
@@ -705,19 +704,19 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
             type = Attack.CLEAN_TYPE;
         }
         AttackManager.getSingleton().addAttack(source, target, unit, arrive, AttackManager.MANUAL_ATTACK_PLAN);
-        showSuccess("Angriff hinzugefügt");
+        showSuccess(trans.get("AngriffHinzufuegen"));
     }//GEN-LAST:event_fireAddAttackEvent
 
     private void fireAdeptEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireAdeptEvent
         int[] rows = jAttackTable.getSelectedRows();
         if (rows == null || rows.length == 0) {
-            showInfo("Keine Angriffe ausgewählt");
+            showInfo(trans.get("KeineAngriffegewaehlt"));
             return;
         }
         if (evt.getSource() == jAdeptTimeButton) {
             Date newArrive = jNewArriveSpinner.getSelectedDate();
             if (newArrive.getTime() < System.currentTimeMillis()) {
-                showError("Ankunftszeit darf nicht in der Vergangenheit liegen");
+                showError(trans.get("AnkunftzeitdarfnichtVergangenheit"));
                 return;
             }
             for (int r = rows.length - 1; r >= 0; r--) {
@@ -729,7 +728,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         } else if (evt.getSource() == jAdeptUnitButton) {
             UnitHolder newUnit = (UnitHolder) jUnitComboBox.getSelectedItem();
             if (newUnit == null) {
-                showError("Keine Einheit ausgewählt");
+                showError(trans.get("keineeinheit"));
                 return;
             }
 
@@ -741,7 +740,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         } else if (evt.getSource() == jAdeptTypeButton) {
             StandardAttack newType = (StandardAttack) jAttackTypeComboBox.getSelectedItem();
             if (newType == null) {
-                showError("Kein Angriffstyp ausgewählt");
+                showError(trans.get("KeinAngriffstyp"));
                 return;
             }
 
@@ -784,8 +783,8 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         List<Attack> selectedAttacks = getSelectedAttacks();
 
         if (pAsk) {
-            String message = ((selectedAttacks.size() == 1) ? "Angriff " : (selectedAttacks.size() + " Angriffe ")) + "wirklich löschen?";
-            if (selectedAttacks.isEmpty() || JOptionPaneHelper.showQuestionConfirmBox(this, message, "Angriffe löschen", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+            String message = ((selectedAttacks.size() == 1) ? trans.get("Angriff") : (selectedAttacks.size() + trans.get("Angriffe"))) + trans.get("wirklichloeschen");
+            if (selectedAttacks.isEmpty() || JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("Angriffeloeschen"), trans.get("Nein"), trans.get("Ja")) != JOptionPane.YES_OPTION) {
                 return false;
             }
         }
@@ -793,7 +792,7 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jAttackTable.editingCanceled(new ChangeEvent(this));
         AttackManager.getSingleton().removeElements(AttackManager.MANUAL_ATTACK_PLAN, selectedAttacks);
         ((DoItYourselfAttackTableModel) jAttackTable.getModel()).fireTableDataChanged();
-        showSuccess(selectedAttacks.size() + " Angriff(e) gelöscht");
+        showSuccess(selectedAttacks.size() + trans.get("Angriffegeloescht"));
         return true;
     }
 
@@ -807,10 +806,10 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         }
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
-            showSuccess(cnt + ((cnt == 1) ? " Angriff kopiert" : " Angriffe kopiert"));
+            showSuccess(cnt + ((cnt == 1) ? trans.get("Angriffkopiert") : trans.get("Angriffekopiert")));
             return true;
         } catch (HeadlessException hex) {
-            showError("Fehler beim Kopieren der Angriffe");
+            showError(trans.get("Error_copie"));
             return false;
         }
     }
@@ -818,9 +817,9 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
     private void cutToInternalClipboard() {
         int size = getSelectedAttacks().size();
         if (copyToInternalClipboard() && deleteSelection(false)) {
-            showSuccess(size + ((size == 1) ? " Angriff ausgeschnitten" : " Angriffe ausgeschnitten"));
+            showSuccess(size + ((size == 1) ? trans.get("Angriffausgeschnitten") : trans.get("Angriffeausgeschnitten")));
         } else {
-            showError("Fehler beim Ausschneiden der Angriffe");
+            showError(trans.get("Error_cut_attack"));
         }
     }
 
@@ -838,10 +837,10 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
                     cnt++;
                 }
             }
-            showSuccess(cnt + ((cnt == 1) ? " Angriff eingefügt" : " Angriffe eingefügt"));
+            showSuccess(cnt + ((cnt == 1) ? trans.get("Angriffeingefuegt") : trans.get("Angriffeeingefuegt")));
         } catch (UnsupportedFlavorException | IOException ufe) {
             logger.error("Failed to copy attacks from internal clipboard", ufe);
-            showError("Fehler beim Einfügen der Angriffe");
+            showError(trans.get("Error_paste_attack"));
         }
         ((DoItYourselfAttackTableModel) jAttackTable.getModel()).fireTableDataChanged();
         AttackManager.getSingleton().revalidate();
@@ -851,27 +850,25 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         try {
             List<Attack> attacks = getSelectedAttacks();
             if (attacks.isEmpty()) {
-                showInfo("Keine Befehle ausgewählt");
+                showInfo("no_reports_insert");
                 return;
             }
             
-            String b = AttackListFormatter.AttackListToBBCodes(this, attacks, "Angriffsplan");
+            String b = AttackListFormatter.AttackListToBBCodes(this, attacks, trans.get("Angriffsplan"));
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die ausgewählten Befehle benötigen mehr als 1000 BB-Codes\n"
-                        + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\n"
-                        + "Trotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("BB_report_tausend"), trans.get("tomutch_BBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            String result = "Daten in Zwischenablage kopiert.";
+            String result = trans.get("Daten_Zwischenablage");
             showSuccess(result);
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            String result = "Fehler beim Kopieren in die Zwischenablage.";
+            String result = trans.get("Error_copy");
             showError(result);
         }
     }

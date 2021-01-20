@@ -56,7 +56,9 @@
               <SubComponents>
                 <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Keine Meldung"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;KeineMeldung&quot;)" type="code"/>
+                    </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
                   <Events>
@@ -77,7 +79,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="9" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Einstellungen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireShowHideSettingsEvent"/>
@@ -160,7 +164,9 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="9" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;= 123 Einheiten verwenden&lt;/td&gt;&lt;/tr&gt;&#xa;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;= Einheit nicht verwenden&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;HTML_Troops&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -174,7 +180,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Einstellungen"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -194,7 +202,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMIN&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -220,7 +230,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Max. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMAX&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -246,7 +258,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Beute"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;MinBEUTE&quot;)" type="code"/>
+                        </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[92, 14]"/>
                         </Property>
@@ -281,7 +295,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jSendRamsA">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Rammen bei Bedarf mitschicken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;RAM_send&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -329,7 +345,9 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="9" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;= 123 Einheiten verwenden&lt;/td&gt;&lt;/tr&gt;&#xa;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;= Einheit nicht verwenden&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;HTML_Troops&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -343,7 +361,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Einstellungen"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -363,7 +383,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel8">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMIN&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -389,7 +411,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Max. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMAX&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -415,7 +439,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel10">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Beute"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;MinBEUTE&quot;)" type="code"/>
+                        </Property>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[92, 14]"/>
                         </Property>
@@ -450,7 +476,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jSendRamsB">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Rammen bei Bedarf mitschicken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;RAM_send&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -498,7 +526,9 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="9" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;= 123 Einheiten verwenden&lt;/td&gt;&lt;/tr&gt;&#xa;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;= Einheit nicht verwenden&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;HTML_Troops&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -512,7 +542,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Einstellungen"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -532,7 +564,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMIN&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -558,7 +592,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel18">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Max. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMAX&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -584,7 +620,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel19">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Kata-Ziel:"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;Cata_Target&quot;)" type="code"/>
+                        </Property>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[92, 14]"/>
@@ -604,7 +642,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jSendRamsK">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Rammen bei Bedarf mitschicken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;RAM_send&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -676,7 +716,9 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="9" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;= Min. 123 Einheiten verwenden, wenn allein&lt;/td&gt;&lt;/tr&gt;&#xa;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;= Einheit nicht verwenden&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;HTML_Troops&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -690,7 +732,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Einstellungen"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="trans.get(&quot;Einstellungen&quot;)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -710,7 +754,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Min. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMIN&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -736,7 +782,9 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel12">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Max. Laufzeit [min]"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;LaufzeitMAX&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -762,7 +810,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jNotAllowPartlyFarming">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Nur angreifen, wenn Farm komplett geleert werden kann"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;Farm_Complet_delete&quot;)" type="code"/>
+                        </Property>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[100, 23]"/>
                         </Property>
@@ -778,7 +828,9 @@
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="jSendRamsC">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Rammen bei Bedarf mitschicken"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="trans.get(&quot;RAM_send&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -812,7 +864,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="9" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;table&gt;&lt;tr&gt;&lt;td&gt;123&lt;/td&gt;&lt;td&gt;= 123 Einheiten zur&amp;uuml;ckhalten&lt;/td&gt;&lt;/tr&gt;&#xa;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;= Alle Einheiten verwenden&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/html&gt;"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;HTML_Troops&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -828,7 +882,9 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jFarmFromBarbarianSelectionDialog">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Barbarend&#xf6;rfer suchen..."/>
+        <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Barb_searching&quot;)" type="code"/>
+        </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
 
@@ -836,7 +892,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Radius [Felder]"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Radius&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -859,7 +917,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Um das Dorfzentrum"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Dorfzentrum&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireSelectionByCenterChangedEvent"/>
@@ -875,7 +935,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Um eine Koordinate"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Koordinate&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireSelectionByCenterChangedEvent"/>
@@ -892,7 +954,9 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Um jedes Dorf"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;UmjedesDorf&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fireSelectionByCenterChangedEvent"/>
@@ -905,7 +969,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Abbrechen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Abbrechen&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireCloseFarmSearchEvent"/>
@@ -918,7 +984,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jSearchButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Suchen..."/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Suchen_button&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireCloseFarmSearchEvent"/>
@@ -934,7 +1002,9 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Um das aktuelle Dorf"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;AktuelleDorf&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -948,7 +1018,9 @@
     </Component>
     <Container class="javax.swing.JDialog" name="jFarmFromReportSelectionDialog">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Berichte durchsuchen..."/>
+        <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Berichtedurchsuchen&quot;)" type="code"/>
+        </Property>
         <Property name="modal" type="boolean" value="true"/>
       </Properties>
 
@@ -956,7 +1028,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Berichtset"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Berichtset&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -981,7 +1055,9 @@
         <Component class="javax.swing.JCheckBox" name="jAllowAloneTribes">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Angriffe auf stammlose Spieler ber&#xfc;cksichtigen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;AngriffestammloseSpieler&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -992,7 +1068,9 @@
         <Component class="javax.swing.JCheckBox" name="jAllowAllyTribes">
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
-            <Property name="text" type="java.lang.String" value="Angriffe auf Spieler in St&#xe4;mmen ber&#xfc;cksichtigen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;AngriffeSpielerinStaemmen&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1002,7 +1080,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jAllowTribesInOwnAlly">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Angriffe auf Spieler im eigenen Stamm ber&#xfc;cksichtigen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;AngriffeSpielereigenenStamm&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1012,7 +1092,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jCancelFindInReportsButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Abbrechen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Abbrechen&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireFindFarmsInReportsEvent"/>
@@ -1025,7 +1107,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jFindInReportsButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Suchen..."/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Suchen_button&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireFindFarmsInReportsEvent"/>
@@ -1044,7 +1128,9 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Farmlimit [Produktion in min]"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;FarmlimitMIN&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1077,7 +1163,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Gruppe w&#xe4;hlen:"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Gruppewaehlen&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1098,7 +1186,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jUseFarmLimit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Farmlimit aktivieren"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Farmlimit_active&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1108,7 +1198,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jBlockFarmWithWall">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Farmen mit Wall ignorieren"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Farmen_Wall_ignore&quot;)" type="code"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -1118,7 +1210,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jAdvancedSettingsCloseButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="OK"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;OK&quot;)" type="code"/>
+            </Property>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[0, 30, 0, 30]"/>
             </Property>
@@ -1134,7 +1228,9 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="jConsiderSucessRateC">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Erfolgsquote ber&#xfc;cksichtigen"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Erfolgsquote&quot;)" type="code"/>
+            </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 23]"/>
             </Property>
@@ -1152,7 +1248,9 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="Farmmanager"/>
+    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="trans.get(&quot;Farmmanager&quot;)" type="code"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -1202,7 +1300,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jAlwaysOnTop">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Immer im Vordergrund"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Vordergrund&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jAlwaysOnTopfireChurchFrameOnTopEvent"/>

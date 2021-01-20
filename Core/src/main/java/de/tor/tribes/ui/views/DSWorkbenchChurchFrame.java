@@ -184,7 +184,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXLabel1.setText("Keine Meldung");
+        jXLabel1.setText(trans.get("KeineMeldung"));
         jXLabel1.setOpaque(true);
         jXLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -210,7 +210,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
 
         jXPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        setTitle("Kirchen");
+        setTitle(trans.get("Kirchen"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jChurchPanel.setBackground(new java.awt.Color(239, 235, 223));
@@ -225,8 +225,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jChurchPanel, gridBagConstraints);
 
-        jChurchFrameAlwaysOnTop.setText("Immer im Vordergrund");
-        jChurchFrameAlwaysOnTop.setOpaque(false);
+        jChurchFrameAlwaysOnTop.setText(trans.get("ImmerimVordergrund"));
         jChurchFrameAlwaysOnTop.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireChurchFrameOnTopEvent(evt);
@@ -262,9 +261,9 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
 
     private void buildMenu() {
         JXTaskPane transferPane = new JXTaskPane();
-        transferPane.setTitle("Übertragen");
+        transferPane.setTitle(trans.get("Uebertragen"));
         JXButton transferVillageList = new JXButton(new ImageIcon(DSWorkbenchChurchFrame.class.getResource("/res/ui/center_ingame.png")));
-        transferVillageList.setToolTipText("Zentriert das Kirchendorf im Spiel");
+        transferVillageList.setToolTipText(trans.get("ZentriertdasKirchendorfimSpiel"));
         transferVillageList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -275,7 +274,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
 
         if (!GlobalOptions.isMinimal()) {
             JXButton button = new JXButton(new ImageIcon(DSWorkbenchChurchFrame.class.getResource("/res/center_24x24.png")));
-            button.setToolTipText("Zentriert das Kirchendorf auf der Hauptkarte");
+            button.setToolTipText(trans.get("ZentriertdasKirchendorfHauptkarte"));
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -304,7 +303,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         if (v != null) {
             DSWorkbenchMainFrame.getSingleton().centerVillage(v.getVillage());
         } else {
-            showInfo("Keine Kirche gewählt");
+            showInfo(trans.get("KeineKirchegewaehlt"));
         }
     }
 
@@ -313,7 +312,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         if (v != null) {
             BrowserInterface.centerVillage(v.getVillage());
         } else {
-            showInfo("Keine Kirche gewählt");
+            showInfo(trans.get("KeineKirchegewaehlt"));
         }
     }
 
@@ -322,7 +321,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         if (e.getValueIsAdjusting()) {
             int selectionCount = jChurchTable.getSelectedRowCount();
             if (selectionCount != 0) {
-                showInfo(selectionCount + ((selectionCount == 1) ? " Kirche gewählt" : " Kirchen gewählt"));
+                showInfo(selectionCount + ((selectionCount == 1) ? trans.get("Kirchegewaehlt") : trans.get("Kirchegewaehlt")));
             }
         }
     }
@@ -353,8 +352,8 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
         if (rows.length == 0) {
             return;
         }
-        String message = ((rows.length == 1) ? "Kirchendorf " : (rows.length + " Kirchendörfer ")) + "wirklich löschen?";
-        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+        String message = ((rows.length == 1) ? trans.get("Kirchendorf") : (rows.length + trans.get("Kirchendoerfer"))) + trans.get("wirklichloeschen");
+        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
             //get markers to remove
             List<Village> toRemove = new LinkedList<>();
             jChurchTable.invalidate();
@@ -368,7 +367,7 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
             jChurchTable.revalidate();
             //remove all selected markers and update the view once
             KnownVillageManager.getSingleton().removeChurches(toRemove.toArray(new Village[]{}), true);
-            showSuccess(toRemove.size() + ((toRemove.size() == 1) ? " Kirche gelöscht" : " Kirchen gelöscht"));
+            showSuccess(toRemove.size() + ((toRemove.size() == 1) ? trans.get("Kirchegeloescht") : trans.get("Kirchengeloescht")));
         }
     }
 
@@ -379,17 +378,17 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
                 return;
             }
 
-            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterterBBCodeverwendet"), trans.get("ErweiterterBBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
             StringBuilder buffer = new StringBuilder();
             if (extended) {
-                buffer.append("[u][size=12]Kirchendörfer[/size][/u]\n\n");
+                buffer.append(trans.get("BBKirchendoerfer"));
             } else {
-                buffer.append("[u]Kirchendörfer[/u]\n\n");
+                buffer.append(trans.get("BBKirche"));
             }
 
             buffer.append("[table]\n");
-            buffer.append("[**]Spieler[||]Dorf[||]Radius[/**]\n");
+            buffer.append(trans.get("BBPlayerVilRadi"));
 
 
             for (int row1 : rows) {
@@ -409,14 +408,14 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
             buffer.append("[/table]");
 
             if (extended) {
-                buffer.append("\n[size=8]Erstellt am ");
+                buffer.append(trans.get("Erstelltamsize"));
                 buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
-                buffer.append("\nErstellt am ");
+                buffer.append(trans.get("Erstelltam"));
                 buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }
 
@@ -424,19 +423,17 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die ausgewählten Kirchen benötigen mehr als 1000 BB-Codes\n"
-                        + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\n"
-                        + "Trotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("tausendeBBCode"), trans.get("ZuvieleBBCodes"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            String result = "Daten in Zwischenablage kopiert.";
+            String result = trans.get("DatenZwischenablage");
             showSuccess(result);
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            String result = "Fehler beim Kopieren in die Zwischenablage.";
+            String result = trans.get("FehlerbeimKopieren");
             showError(result);
         }
     }

@@ -183,7 +183,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
 
     private void buildMenu() {
         JXTaskPane editPane = new JXTaskPane();
-        editPane.setTitle("Bereichsfärbung");
+        editPane.setTitle(trans.get("Bereichsfaerbung"));
         slider = new com.visutools.nav.bislider.BiSlider();
         slider.setBackground(getBackground());
         slider.setSegmentSize(10);
@@ -206,13 +206,13 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         editPane.getContentPane().add(slider);
 
         JXTaskPane unitPane = new JXTaskPane();
-        unitPane.setTitle("Einheitsauswahl");
+        unitPane.setTitle(trans.get("Einheitsauswahl"));
         unitPane.getContentPane().add(unitBox);
 
         JXTaskPane transferTaskPane = new JXTaskPane();
-        transferTaskPane.setTitle("Übertragen");
+        transferTaskPane.setTitle(trans.get("Uebertragen"));
         JXButton centerVillageInGame = new JXButton(new ImageIcon(DSWorkbenchDistanceFrame.class.getResource("/res/ui/center_ingame.png")));
-        centerVillageInGame.setToolTipText("Zentriert das gewählte Dorf im Spiel");
+        centerVillageInGame.setToolTipText(trans.get("ZentriertdasDorfimSpiel"));
         centerVillageInGame.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -222,7 +222,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         });
         transferTaskPane.getContentPane().add(centerVillageInGame);
         JXButton openPlace = new JXButton(new ImageIcon(DSWorkbenchDistanceFrame.class.getResource("/res/ui/place.png")));
-        openPlace.setToolTipText("Öffnet den Versammlungsplatz des gewählten Dorfes im Spiel");
+        openPlace.setToolTipText(trans.get("OeffnetVersammlungsplatz"));
         openPlace.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -237,7 +237,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         transferTaskPane.getContentPane().add(openPlace);
 
         JXButton centerVillage = new JXButton(new ImageIcon(DSWorkbenchDistanceFrame.class.getResource("/res/center_24x24.png")));
-        centerVillage.setToolTipText("Zentriert das gewählte Dorf auf der Hauptkarte");
+        centerVillage.setToolTipText(trans.get("ZentriertdasDorfHauptkarte"));
         centerVillage.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -254,7 +254,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
     public void valueChanged(ListSelectionEvent e) {
         int selectionCount = jDistanceTable.getColumnModel().getSelectedColumns().length;
         if (selectionCount != 0) {
-            showInfo(selectionCount + ((selectionCount == 1) ? " Spalte gewählt" : " Spalten gewählt"));
+            showInfo(selectionCount + ((selectionCount == 1) ? trans.get("Spaltegewaehlt") : trans.get("Spaltegewaehlt")));
         }
     }
 
@@ -315,42 +315,42 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
     private void centerSelectionInGame() {
         int row = jDistanceTable.getSelectedRow();
         if (row < 0) {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
             return;
         }
         Village v = getSelectedOwnVillage();
         if (v != null) {
             BrowserInterface.centerVillage(v);
         } else {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
         }
     }
 
     private void openPlaceOfSelectionInGame() {
         int row = jDistanceTable.getSelectedRow();
         if (row < 0) {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
             return;
         }
         Village v = getSelectedOwnVillage();
         if (v != null) {
             BrowserInterface.openPlaceTroopsView(v);
         } else {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
         }
     }
 
     private void centerSelectionOnMap() {
         int row = jDistanceTable.getSelectedRow();
         if (row < 0) {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
             return;
         }
         Village v = getSelectedOwnVillage();
         if (v != null) {
             DSWorkbenchMainFrame.getSingleton().centerVillage(v);
         } else {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
         }
     }
 
@@ -370,7 +370,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         DistanceManager.getSingleton().removeVillages(realCols);
         ((DistanceTableModel) jDistanceTable.getModel()).fireTableStructureChanged();
         resetView(false);
-        showSuccess(colsToRemove.size() + ((colsToRemove.size() == 1) ? " Spalte " : " Spalten ") + "gelöscht");
+        showSuccess(colsToRemove.size() + ((colsToRemove.size() == 1) ? trans.get("Spalte") : trans.get("Spalten") + trans.get("geloescht")));
     }
 
     private void pasteFromClipboard() {
@@ -378,7 +378,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
             Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
             List<Village> villages = PluginManager.getSingleton().executeVillageParser((String) t.getTransferData(DataFlavor.stringFlavor));//VillageParser.parse((String) t.getTransferData(DataFlavor.stringFlavor));
             if (villages == null || villages.isEmpty()) {
-                showError("Es konnten keine Dorfkoodinaten in der Zwischenablage gefunden werden.");
+                showError(trans.get("Dorfkoodinaten"));
                 return;
             } else {
                 //jDistanceTable.invalidate();
@@ -388,10 +388,10 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
                 ((DistanceTableModel) jDistanceTable.getModel()).fireTableStructureChanged();
                 resetView(false);
             }
-            showSuccess(villages.size() + ((villages.size() == 1) ? " Dorf " : " Dörfer ") + "aus der Zwischenablage eingefügt");
+            showSuccess(villages.size() + ((villages.size() == 1) ? trans.get("Dorf") : trans.get("Doerfer")) + trans.get("ausderZwischenablageeingefuegt"));
         } catch (Exception e) {
             logger.error("Failed to paste villages from clipboard", e);
-            showError("Fehler beim Einfügen aus der Zwischenablage");
+            showError(trans.get("FehlerbeimEinfuegen"));
         }
     }
 
@@ -464,7 +464,7 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXLabel1.setText("Keine Meldung");
+        jXLabel1.setText(trans.get("KeineMeldung"));
         jXLabel1.setOpaque(true);
         jXLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -475,11 +475,11 @@ public class DSWorkbenchDistanceFrame extends AbstractDSWorkbenchFrame implement
 
         jPanel2.add(infoPanel, java.awt.BorderLayout.SOUTH);
 
-        setTitle("Entfernungsübersicht");
+        setTitle(trans.get("Entfernungsuebersicht"));
         setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTop.setText("Immer im Vordergrund");
+        jAlwaysOnTop.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTop.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireDistanceFrameAlwaysOnTopEvent(evt);
