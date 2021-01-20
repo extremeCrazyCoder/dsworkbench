@@ -104,29 +104,29 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
     private final static String[] TargetID = { "main", "barracks", "stable", "garage", "smith", "market", "none" };
     private static int SelectedCataTarget = 6;
     private static String SelectedFarmGroup = trans.get("Alle");
+    private final DefaultComboBoxModel<String> JCataTargetModel;
       
     private void setSelectedCataTarget() {
-        DSWorkbenchFarmManager.SelectedCataTarget = (int) JCataTarget.getSelectedIndex();
+        SelectedCataTarget = (int) JCataTarget.getSelectedIndex();
     }
     
     private void setSelectedFarmGroup() {
         if(jFarmGroup.getSelectedItem() != null)
-            DSWorkbenchFarmManager.SelectedFarmGroup = (String) jFarmGroup.getSelectedItem();
+            SelectedFarmGroup = (String) jFarmGroup.getSelectedItem();
     }
     
     public static String getSelectedCataTarget() {        
-        return DSWorkbenchFarmManager.TargetID[DSWorkbenchFarmManager.SelectedCataTarget];
+        return TargetID[SelectedCataTarget];
     }
     
     public static Village[] getSelectedFarmGroup() {
         List<Village> pactiveFarmGroup = new ArrayList<>();
-        String tag = DSWorkbenchFarmManager.SelectedFarmGroup;
-
+        String tag = SelectedFarmGroup;
+        
         if (tag.equals(trans.get("Alle"))) {
             Collections.addAll(pactiveFarmGroup, GlobalOptions.getSelectedProfile().getTribe().getVillageList());
         } else {
             for (Integer id : TagManager.getSingleton().getTagByName(tag).getVillageIDs()) {
-
                 pactiveFarmGroup.add(DataHolder.getSingleton().getVillagesById().get(id));
             }
         }
@@ -145,6 +145,12 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
      * Creates new form DSWorkbenchFarmManager
      */
     DSWorkbenchFarmManager() {
+        List<String> modelTrans = new ArrayList<>();
+        for(String s : TargetID) {
+            modelTrans.add(trans.get(s));
+        }
+        JCataTargetModel = new javax.swing.DefaultComboBoxModel<>(modelTrans.toArray(new String[modelTrans.size()]));
+        
         initComponents();
         centerPanel = new GenericTestPanel();
         jCenterPanel.add(centerPanel, BorderLayout.CENTER);
@@ -245,7 +251,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                showInfo(jFarmTable.getSelectedRowCount() + trans.get("Farmen_gewahlt"));
+                showInfo(jFarmTable.getSelectedRowCount() + " " + trans.get("Farmen_gewahlt"));
             }
         });
 
@@ -609,14 +615,8 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
-                model.addElement(trans.get("Alle"));
-                for (String g : TagManager.getSingleton().getAllTagNames()) {
-                    model.addElement(g);
-                }
-
-                jFarmGroup.setModel(model);
-                jFarmGroup.setSelectedItem(DSWorkbenchFarmManager.SelectedFarmGroup);
+                buildJFarmGroupModel();
+                jFarmGroup.setSelectedItem(SelectedFarmGroup);
                 
                 jAdvancedSettingsDialog.pack();
                 jAdvancedSettingsDialog.setLocationRelativeTo(DSWorkbenchFarmManager.getSingleton());
@@ -686,31 +686,31 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         int overall = hauledWood + hauledClay + hauledIron;
         StringBuilder b = new StringBuilder();
         b.append("<html>");
-        b.append(nf.format(farmCount));
+        b.append(nf.format(farmCount)).append(" ");
         b.append(trans.get("Farmen_HTML"));
         b.append(trans.get("Resources_HTML"));
         b.append("<ul>");
         b.append("<li>");
-        b.append(trans.get("Wood")).append(nf.format(woodPerHour)).append("</li>");
+        b.append(trans.get("Wood")).append(" ").append(nf.format(woodPerHour)).append("</li>");
         b.append("<li>");
-        b.append(trans.get("Clay")).append(nf.format(clayPerHour)).append("</li>");
+        b.append(trans.get("Clay")).append(" ").append(nf.format(clayPerHour)).append("</li>");
         b.append("<li>");
-        b.append(trans.get("Iron")).append(nf.format(ironPerHour)).append("</li>");
+        b.append(trans.get("Iron")).append(" ").append(nf.format(ironPerHour)).append("</li>");
         b.append("</ul>");
-        b.append(nf.format(attacks));
+        b.append(nf.format(attacks)).append(" ");
         b.append(trans.get("Attacks_HTML"));
-        b.append(nf.format(hauledWood + hauledClay + hauledIron));
-        b.append(trans.get("checked_Resources")).append(nf.format(overall / attacks)).append(")<br>");
+        b.append(nf.format(hauledWood + hauledClay + hauledIron)).append(" ");
+        b.append(trans.get("checked_Resources")).append(attacks == 0 ? "---" : nf.format(overall / attacks)).append(")<br>");
         b.append("<ul>");
         b.append("<li>");
-        b.append(nf.format(hauledWood));
-        b.append(trans.get("Wood_HTML")).append(nf.format(hauledWood / attacks)).append(")</li>");
+        b.append(nf.format(hauledWood)).append(" ");
+        b.append(trans.get("Wood_HTML")).append(attacks == 0 ? "---" : nf.format(hauledWood / attacks)).append(")</li>");
         b.append("<li>");
-        b.append(nf.format(hauledClay));
-        b.append(trans.get("Clay_HTML")).append(nf.format(hauledClay / attacks)).append(")</li>");
+        b.append(nf.format(hauledClay)).append(" ");
+        b.append(trans.get("Clay_HTML")).append(attacks == 0 ? "---" : nf.format(hauledClay / attacks)).append(")</li>");
         b.append("<li>");
-        b.append(nf.format(hauledIron));
-        b.append(trans.get("Iron_HTML")).append(nf.format(hauledIron / attacks)).append(")</li>");
+        b.append(nf.format(hauledIron)).append(" ");
+        b.append(trans.get("Iron_HTML")).append(attacks == 0 ? "---" : nf.format(hauledIron / attacks)).append(")</li>");
         b.append("</ul></html>");
         JOptionPaneHelper.showInformationBox(this, b.toString(), trans.get("Status"));
     }
@@ -726,7 +726,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         }
 
         if (JOptionPaneHelper.showQuestionConfirmBox(this,
-                rows.length + trans.get("Farm_Information_delete"), trans.get("Delete"), trans.get("No"),
+                rows.length + " " + trans.get("Farm_Information_delete"), trans.get("Delete"), trans.get("No"),
                 trans.get("Yes")) != JOptionPane.YES_OPTION) {
             return;
         }
@@ -788,7 +788,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
                 deactivateCnt++;
             }
         }
-        showInfo(activateCnt + trans.get("Farm_active") + deactivateCnt + trans.get("Farm_deactive"));
+        showInfo(activateCnt + " " + trans.get("Farm_active") + deactivateCnt + trans.get("Farm_deactive"));
     }
 
     /**
@@ -913,7 +913,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
 
             final HashMap<Village, Double> SingleFarmDistance = new HashMap<>();
 
-            for (Village v : DSWorkbenchFarmManager.getSelectedFarmGroup()) {
+            for (Village v : getSelectedFarmGroup()) {
                 SingleFarmDistance.put(v, DSCalculator.calculateDistance(v, farm.getVillage()));
 
             }
@@ -979,13 +979,13 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
 
             if (f.getSiegeStatus().equals(FarmInformation.SIEGE_STATUS.BOTH_ON_WAY)
                     || (f.getSiegeStatus().equals(FarmInformation.SIEGE_STATUS.CATA_ON_WAY)
-                        && pConfig.equals(DSWorkbenchFarmManager.FARM_CONFIGURATION.K))
+                        && pConfig.equals(FARM_CONFIGURATION.K))
                     || (f.getSiegeStatus().equals(FarmInformation.SIEGE_STATUS.RAM_ON_WAY))
-                        && !pConfig.equals(DSWorkbenchFarmManager.FARM_CONFIGURATION.K)) {
+                        && !pConfig.equals(FARM_CONFIGURATION.K)) {
                 //type is currently on its way
                 siegeOnWay++;
             } else if (f.getSiegeStatus().equals(FarmInformation.SIEGE_STATUS.FINAL_FARM)
-                    && pConfig.equals(DSWorkbenchFarmManager.FARM_CONFIGURATION.K)) {
+                    && pConfig.equals(FARM_CONFIGURATION.K)) {
                 //farm already finished
                 farmFinal++;
             } else if (!this.isUseRams(pConfig) && isBlockFarmWithWall() && f.getWallLevel() > 1) {
@@ -993,7 +993,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
                 wallTooHigh++;
             } else if ((!f.getStatus().equals(FarmInformation.FARM_STATUS.FARMING)
                     && !f.getStatus().equals(FarmInformation.FARM_STATUS.REPORT_EXPECTED))
-                    || pConfig.equals(DSWorkbenchFarmManager.FARM_CONFIGURATION.K)) {
+                    || pConfig.equals(FARM_CONFIGURATION.K)) {
                 
                 //just use click if more than one row is selected
                 boolean clickUsed = rows.length == 1 || clickAccount.useClick();
@@ -1049,18 +1049,18 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         if (miscMessage != null) {
             message.append(trans.get("Error")).append(miscMessage).append("'\n");
         }
-        message.append(trans.get("open_Tabs")).append(opened).append("/").append(rows.length).append("\n");
-        message.append(" - ").append(impossible).append(trans.get("No_selected_Vil"));
-        message.append(" - ").append(farmInactive).append(trans.get("Farmen_deactivated"));
+        message.append(trans.get("open_Tabs")).append(" ").append(opened).append("/").append(rows.length).append("\n");
+        message.append(" - ").append(impossible).append(" ").append(trans.get("No_selected_Vil")).append("\n");
+        message.append(" - ").append(farmInactive).append(" ").append(trans.get("Farmen_deactivated")).append("\n");
         
-        if (!pConfig.equals(DSWorkbenchFarmManager.FARM_CONFIGURATION.K)) {
-            message.append(" - ").append(alreadyFarming).append(trans.get("Troops_reports_wait"));
-            message.append(" - ").append(wallTooHigh).append(trans.get("Wall"));
+        if (!pConfig.equals(FARM_CONFIGURATION.K)) {
+            message.append(" - ").append(alreadyFarming).append(" ").append(trans.get("Troops_reports_wait")).append("\n");
+            message.append(" - ").append(wallTooHigh).append(" ").append(trans.get("Wall"));
         } else {
-            message.append(" - ").append(siegeOnWay).append(trans.get("Catapulte_run"));
-            message.append(" - ").append(farmFinal).append(trans.get("No_Catapulte"));
-            message.append(" - ").append(bigFarm).append(trans.get("to_big_Catapulte"));
-            message.append(" - ").append(wallTooHigh).append(trans.get("Wall"));
+            message.append(" - ").append(siegeOnWay).append(" ").append(trans.get("Catapulte_run")).append("\n");
+            message.append(" - ").append(farmFinal).append(" ").append(trans.get("No_Catapulte")).append("\n");
+            message.append(" - ").append(bigFarm).append(" ").append(trans.get("to_big_Catapulte")).append("\n");
+            message.append(" - ").append(wallTooHigh).append(" ").append(trans.get("Wall"));
         }
         showInfo(message.toString());
     }
@@ -1553,7 +1553,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFarmKSettings.add(jSendRamsK, gridBagConstraints);
 
-        JCataTarget.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hauptgebäude", "Kaserne", "Stall", "Werkstatt", "Schmiede", "Marktplatz", "Kein Ziel" }));
+        JCataTarget.setModel(JCataTargetModel);
         JCataTarget.setSelectedIndex(DSWorkbenchFarmManager.SelectedCataTarget);
         JCataTarget.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1802,7 +1802,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFarmFromReportSelectionDialog.getContentPane().add(jLabel15, gridBagConstraints);
 
-        jReportSetBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alle" }));
+        jReportSetBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { trans.get("Alle") }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
@@ -1876,7 +1876,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         jAdvancedSettingsDialog.getContentPane().add(jLabel13, gridBagConstraints);
 
         jFarmGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jFarmGroup.setSelectedItem(DSWorkbenchFarmManager.SelectedFarmGroup);
+        jFarmGroup.setSelectedItem(SelectedFarmGroup);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -2018,7 +2018,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
             if (added == 0) {
                 showInfo(trans.get("No_new_farm"));
             } else {
-                showInfo(added + trans.get("Add_Farm"));
+                showInfo(added + " " + trans.get("Add_Farm"));
             }
         }
         jFarmFromBarbarianSelectionDialog.setVisible(false);
@@ -2041,7 +2041,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
             if (found == 0) {
                 showInfo(trans.get("No_new_farm"));
             } else {
-                showInfo(found + trans.get("Add_farmen"));
+                showInfo(found + " " + trans.get("Add_farmen"));
             }
         }
 
@@ -2186,8 +2186,8 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         pConfig.setProperty(getPropertyPrefix() + ".use.success.rate", isConsiderSuccessRate());
         pConfig.setProperty(getPropertyPrefix() + ".block.farm.wall", isBlockFarmWithWall());
         pConfig.setProperty(getPropertyPrefix() + ".use.farm.limit", isUseFarmLimit());
-        pConfig.setProperty(getPropertyPrefix() + ".farm.group", DSWorkbenchFarmManager.SelectedFarmGroup);
-        pConfig.setProperty(getPropertyPrefix() + ".Cata.Target", DSWorkbenchFarmManager.SelectedCataTarget);
+        pConfig.setProperty(getPropertyPrefix() + ".farm.group", SelectedFarmGroup);
+        pConfig.setProperty(getPropertyPrefix() + ".Cata.Target", SelectedCataTarget);
         PropertyHelper.storeTableProperties(jFarmTable, pConfig, getPropertyPrefix());
     }
 
@@ -2220,8 +2220,11 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
         }
         
         try {
-            if(pConfig.getString(getPropertyPrefix() + ".farm.group") != null)
-                DSWorkbenchFarmManager.SelectedFarmGroup = pConfig.getString(getPropertyPrefix() + ".farm.group");
+            buildJFarmGroupModel();
+            if(pConfig.getString(getPropertyPrefix() + ".farm.group") != null) {
+                jFarmGroup.setSelectedItem(pConfig.getString(getPropertyPrefix() + ".farm.group"));
+                SelectedFarmGroup = jFarmGroup.getSelectedItem().toString();
+            }
         } catch (Exception ignored) {
         }
         
@@ -2267,6 +2270,16 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
             rTroops.setAmounts(new TroopAmountDynamic(0).loadFromProperty(farmR));
         }
         PropertyHelper.restoreTableProperties(jFarmTable, pConfig, getPropertyPrefix());
+    }
+
+    private void buildJFarmGroupModel() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        model.addElement(trans.get("Alle"));
+        for (String g : TagManager.getSingleton().getAllTagNames()) {
+            model.addElement(g);
+        }
+
+        jFarmGroup.setModel(model);
     }
 
     @Override

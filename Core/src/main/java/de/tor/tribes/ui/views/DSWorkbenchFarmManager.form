@@ -654,16 +654,8 @@
                     </Component>
                     <Component class="javax.swing.JComboBox" name="JCataTarget">
                       <Properties>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
-                            <StringItem index="0" value="Hauptgeb&#xe4;ude"/>
-                            <StringItem index="1" value="Kaserne"/>
-                            <StringItem index="2" value="Stall"/>
-                            <StringItem index="3" value="Werkstatt"/>
-                            <StringItem index="4" value="Schmiede"/>
-                            <StringItem index="5" value="Marktplatz"/>
-                            <StringItem index="6" value="Kein Ziel"/>
-                          </StringArray>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="JCataTargetModel" type="code"/>
                         </Property>
                         <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="DSWorkbenchFarmManager.SelectedCataTarget" type="code"/>
@@ -1040,10 +1032,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="jReportSetBox">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Alle"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { trans.get(&quot;Alle&quot;) })" type="code"/>
             </Property>
           </Properties>
           <Constraints>
@@ -1149,7 +1139,7 @@
               </StringArray>
             </Property>
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="DSWorkbenchFarmManager.SelectedFarmGroup" type="code"/>
+              <Connection code="SelectedFarmGroup" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
