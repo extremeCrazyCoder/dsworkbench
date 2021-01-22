@@ -45,7 +45,9 @@ import org.apache.logging.log4j.Logger;
 
 public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.swing.JPanel
         implements GenericManagerListener, DataHolderListener {
+    private Translator trans = TranslationManager.getTranslator("ui.panels.TroopSelectionPanel");
     private Logger logger = LogManager.getLogger("TroopSelectionPanel");
+    
     private HashMap<String, Point> unitCoordinates = new HashMap<>();
     private JTextField[][] unitFields = new JTextField[20][20];
     private JLabel[][] unitIconFields = new JLabel[20][20];
@@ -72,8 +74,6 @@ public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.s
             setupFromInternal();
         }
     }
-
-    private static Translator trans = TranslationManager.getTranslator("ui.panels.TroopSelectionPanel");
     
     /**
      * Creates new form TroopSelectionPanel
@@ -288,7 +288,7 @@ public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.s
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Standardangriffe");
+        jLabel1.setText(trans.get("Standardangriffe"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jLabel1, gridBagConstraints);
@@ -301,7 +301,7 @@ public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.s
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jStandardAttackBox, gridBagConstraints);
 
-        jButton3.setText("Verwenden");
+        jButton3.setText(trans.get("Verwenden"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireUseStandardAttackEvent(evt);
