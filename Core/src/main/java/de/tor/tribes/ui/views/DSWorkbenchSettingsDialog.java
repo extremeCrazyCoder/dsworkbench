@@ -240,7 +240,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         DefaultTableModel model = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Einheit", "Farbe"
+                    trans.get("Einheit"), trans.get("Farbe")
                 }) {
 
             Class[] types = new Class[]{
@@ -323,12 +323,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         checkConnectivity();
         if (!updateServerList()) {
             //remote update failed and no local servers found
-            String message = "Serverliste konnte nicht geladen werden.\n"
-                    + "Mögliche Ursachen sind fehlerhafte Netzwerkeinstellungen, keine Verbindung zum Internet\n"
-                    + "oder die Stämme Server sind nicht verfügbar.\n"
-                    + "Da noch kein Datenabgleich mit dem Server stattgefunden hat\n"
-                    + "korrigiere bitte deine Netzwerkeinstellungen oder versuche es später noch einmal.";
-            JOptionPaneHelper.showWarningBox(this, message, "Warnung");
+            String message = trans.get("Serverliste_text");
+            JOptionPaneHelper.showWarningBox(this, message, trans.get("Warnung"));
             return false;
         }
 
@@ -541,11 +537,11 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jOKButton = new javax.swing.JButton();
         jCancelButton = new javax.swing.JButton();
 
-        jTroopDensitySelectionDialog.setTitle("Deff-Anzahl angeben");
+        jTroopDensitySelectionDialog.setTitle(trans.get("deffanzahl"));
         jTroopDensitySelectionDialog.setModal(true);
         jTroopDensitySelectionDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jDeffStrengthOKButton.setText("OK");
+        jDeffStrengthOKButton.setText(trans.get("OK"));
         jDeffStrengthOKButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireAcceptDeffStrengthEvent(evt);
@@ -558,7 +554,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jTroopDensitySelectionDialog.getContentPane().add(jDeffStrengthOKButton, gridBagConstraints);
 
-        jButton12.setText("Abbrechen");
+        jButton12.setText(trans.get("Abbrechen"));
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireAcceptDeffStrengthEvent(evt);
@@ -574,7 +570,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.gridwidth = 2;
         jTroopDensitySelectionDialog.getContentPane().add(troopDensitySelection, gridBagConstraints);
 
-        setTitle("Einstellungen");
+        setTitle(trans.get("Einstellungen"));
         setModal(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -588,28 +584,28 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPlayerServerSettings.setBackground(new java.awt.Color(239, 235, 223));
         jPlayerServerSettings.setPreferredSize(new java.awt.Dimension(620, 400));
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Server"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Server")));
         jPanel9.setOpaque(false);
 
         jDownloadLiveDataButton.setBackground(new java.awt.Color(239, 235, 223));
         jDownloadLiveDataButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/download_tw.png"))); // NOI18N
-        jDownloadLiveDataButton.setToolTipText("Daten des markierten Servers direkt von den DS Servern laden");
+        jDownloadLiveDataButton.setToolTipText(trans.get("Datenmarkierten"));
         jDownloadLiveDataButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fireDownloadLiveDataEvent(evt);
             }
         });
 
-        jCheckForUpdatesBox.setText("Beim Start auf Updates prüfen");
-        jCheckForUpdatesBox.setToolTipText("Prüft bei jedem Start von DS Workbench auf aktuelle Weltdaten");
+        jCheckForUpdatesBox.setText(trans.get("StartUpdate"));
+        jCheckForUpdatesBox.setToolTipText(trans.get("StartUpdate_Text"));
         jCheckForUpdatesBox.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireCheckForUpdatesEvent(evt);
             }
         });
 
-        jLabelServer.setText("de");
-        jLabelServer.setToolTipText("Gewählter Server");
+        jLabelServer.setText(trans.get("de"));
+        jLabelServer.setToolTipText(trans.get("gewaehlterserver"));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -638,7 +634,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Profil"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Profil")));
         jPanel10.setOpaque(false);
 
         jProfileBox.setMinimumSize(new java.awt.Dimension(23, 25));
@@ -651,7 +647,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jNewProfileButton.setBackground(new java.awt.Color(239, 235, 223));
         jNewProfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/id_card_new.png"))); // NOI18N
-        jNewProfileButton.setToolTipText("Neues Profil erstellen");
+        jNewProfileButton.setToolTipText(trans.get("new_profile"));
         jNewProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireProfileActionEvent(evt);
@@ -660,7 +656,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jModifyProfileButton.setBackground(new java.awt.Color(239, 235, 223));
         jModifyProfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/id_card_edit.png"))); // NOI18N
-        jModifyProfileButton.setToolTipText("Gewähltes Profil bearbeiten");
+        jModifyProfileButton.setToolTipText(trans.get("gewaehltes_profil"));
         jModifyProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireProfileActionEvent(evt);
@@ -669,7 +665,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jDeleteProfileButton.setBackground(new java.awt.Color(239, 235, 223));
         jDeleteProfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/id_card_delete.png"))); // NOI18N
-        jDeleteProfileButton.setToolTipText("Gewähltes Profil löschen");
+        jDeleteProfileButton.setToolTipText(trans.get("gewaehltes_profil_delete"));
         jDeleteProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireProfileActionEvent(evt);
@@ -683,7 +679,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jProfileBox, 0, 287, Short.MAX_VALUE)
+                    .addComponent(jProfileBox, 0, 439, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jNewProfileButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -705,7 +701,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen"));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Informationen")));
         jPanel11.setOpaque(false);
 
         jStatusArea.setEditable(false);
@@ -725,7 +721,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -755,13 +751,13 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap())
         );
 
-        jSettingsTabbedPane.addTab("Spieler/Server", new javax.swing.ImageIcon(getClass().getResource("/res/face.png")), jPlayerServerSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("SpielerServer_titel"), new javax.swing.ImageIcon(getClass().getResource("/res/face.png")), jPlayerServerSettings); // NOI18N
 
         jMapSettings.setBackground(new java.awt.Color(239, 235, 223));
         jMapSettings.setPreferredSize(new java.awt.Dimension(620, 400));
         jMapSettings.setLayout(new java.awt.GridBagLayout());
 
-        jShowContinents.setToolTipText("Anzeiger der Kontinente auf der Minimap");
+        jShowContinents.setToolTipText(trans.get("Anzeiger_Minimap"));
         jShowContinents.setContentAreaFilled(false);
         jShowContinents.setMaximumSize(new java.awt.Dimension(25, 25));
         jShowContinents.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -776,7 +772,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.gridy = 0;
         jMapSettings.add(jShowContinents, gridBagConstraints);
 
-        jShowSectors.setToolTipText("Sektoren in Hauptkarte einzeichnen");
+        jShowSectors.setToolTipText(trans.get("Sektoren_Hauptkarte"));
         jShowSectors.setMaximumSize(new java.awt.Dimension(25, 25));
         jShowSectors.setMinimumSize(new java.awt.Dimension(25, 25));
         jShowSectors.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -792,7 +788,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 0.5;
         jMapSettings.add(jShowSectors, gridBagConstraints);
 
-        jMarkOwnVillagesOnMinimap.setToolTipText("Markiert die Dörfer des aktuellen Spielers auf der Minimap");
+        jMarkOwnVillagesOnMinimap.setToolTipText(trans.get("Markierte_Doerfer_Minimap"));
         jMarkOwnVillagesOnMinimap.setMaximumSize(new java.awt.Dimension(25, 25));
         jMarkOwnVillagesOnMinimap.setMinimumSize(new java.awt.Dimension(25, 25));
         jMarkOwnVillagesOnMinimap.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -808,7 +804,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 0.5;
         jMapSettings.add(jMarkOwnVillagesOnMinimap, gridBagConstraints);
 
-        jShowBarbarian.setToolTipText("Anzeige von Barbarendörfern auf der Karte");
+        jShowBarbarian.setToolTipText(trans.get("Anzeige_Barbarendoerfer"));
         jShowBarbarian.setMaximumSize(new java.awt.Dimension(25, 25));
         jShowBarbarian.setMinimumSize(new java.awt.Dimension(25, 25));
         jShowBarbarian.setPreferredSize(new java.awt.Dimension(25, 25));
@@ -837,7 +833,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 0.5;
         jMapSettings.add(jMarkerTransparency, gridBagConstraints);
 
-        jShowContinentsLabel.setText("Kontinente anzeigen");
+        jShowContinentsLabel.setText(trans.get("Kontinenteanzeigen"));
         jShowContinentsLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jShowContinentsLabel.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowContinentsLabel.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -847,7 +843,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jMapSettings.add(jShowContinentsLabel, gridBagConstraints);
 
-        jShowSectorsLabel.setText("Sektoren anzeigen");
+        jShowSectorsLabel.setText(trans.get("Sektorenanzeigen"));
         jShowSectorsLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jShowSectorsLabel.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowSectorsLabel.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -857,7 +853,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jMapSettings.add(jShowSectorsLabel, gridBagConstraints);
 
-        jMarkOwnVillagesOnMinimapLabel.setText("Eigene Dörfer auf Minimap");
+        jMarkOwnVillagesOnMinimapLabel.setText(trans.get("EigeneDoerfer_Minimap"));
         jMarkOwnVillagesOnMinimapLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jMarkOwnVillagesOnMinimapLabel.setMinimumSize(new java.awt.Dimension(250, 25));
         jMarkOwnVillagesOnMinimapLabel.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -867,7 +863,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jMapSettings.add(jMarkOwnVillagesOnMinimapLabel, gridBagConstraints);
 
-        jShowBarbarianLabel.setText("Barbarendörfer anzeigen");
+        jShowBarbarianLabel.setText(trans.get("Barbarendoerferanzeigen"));
         jShowBarbarianLabel.setToolTipText("");
         jShowBarbarianLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jShowBarbarianLabel.setMinimumSize(new java.awt.Dimension(250, 25));
@@ -878,7 +874,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jMapSettings.add(jShowBarbarianLabel, gridBagConstraints);
 
-        jMarkerTransparencyLabel.setText("Deckkraft von Markierungen [%]");
+        jMarkerTransparencyLabel.setText(trans.get("Deckkraft"));
         jMarkerTransparencyLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jMarkerTransparencyLabel.setMinimumSize(new java.awt.Dimension(250, 25));
         jMarkerTransparencyLabel.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -888,7 +884,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jMapSettings.add(jMarkerTransparencyLabel, gridBagConstraints);
 
-        jDefaultMarkLabel.setText("Standardmarkierung");
+        jDefaultMarkLabel.setText(trans.get("Standardmarkierung"));
         jDefaultMarkLabel.setMaximumSize(new java.awt.Dimension(250, 25));
         jDefaultMarkLabel.setMinimumSize(new java.awt.Dimension(250, 25));
         jDefaultMarkLabel.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -899,7 +895,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jMapSettings.add(jDefaultMarkLabel, gridBagConstraints);
 
         jDefaultMark.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DS 6.0", "Rot", "Weiß" }));
-        jDefaultMark.setToolTipText("Standardfarbe von Dorfmarkierungen");
+        jDefaultMark.setToolTipText(trans.get("StandardfarbeDorfmarkierungen"));
         jDefaultMark.setMinimumSize(new java.awt.Dimension(52, 25));
         jDefaultMark.setPreferredSize(new java.awt.Dimension(57, 25));
         jDefaultMark.addItemListener(new java.awt.event.ItemListener() {
@@ -914,11 +910,11 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 0.5;
         jMapSettings.add(jDefaultMark, gridBagConstraints);
 
-        jPanelPopupinfos.setBorder(javax.swing.BorderFactory.createTitledBorder("Popup Infos"));
+        jPanelPopupinfos.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("PopupInfos")));
         jPanelPopupinfos.setLayout(new java.awt.GridBagLayout());
 
         jMaxFarmSpace.setText("20000");
-        jMaxFarmSpace.setToolTipText("Anzahl der durch Truppen belegten Bauernhofplätze, bei der ein Dorf zu 100% gefüllt ist");
+        jMaxFarmSpace.setToolTipText(trans.get("AnzahlTruppen"));
         jMaxFarmSpace.setMinimumSize(new java.awt.Dimension(50, 25));
         jMaxFarmSpace.setPreferredSize(new java.awt.Dimension(100, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -928,8 +924,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         jPanelPopupinfos.add(jMaxFarmSpace, gridBagConstraints);
 
-        jShowPopupConquers.setText("Besiegte Gegner anzeigen");
-        jShowPopupConquers.setToolTipText("Besiegte Gegner des Spielers im Angriff und der Verteididung anzeigen");
+        jShowPopupConquers.setText(trans.get("BesiegteGegneranzeigen"));
+        jShowPopupConquers.setToolTipText(trans.get("BesiegteGegneranzeigen_text"));
         jShowPopupConquers.setMaximumSize(new java.awt.Dimension(193, 25));
         jShowPopupConquers.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowPopupConquers.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -942,8 +938,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 1.0;
         jPanelPopupinfos.add(jShowPopupConquers, gridBagConstraints);
 
-        jShowPopupFarmSpace.setText("Bauernhof Füllstand anzeigen");
-        jShowPopupFarmSpace.setToolTipText("Füllstand des Bauernhofes eines Dorfes anzeigen");
+        jShowPopupFarmSpace.setText(trans.get("Bauernhof"));
+        jShowPopupFarmSpace.setToolTipText(trans.get("Bauernhof_text"));
         jShowPopupFarmSpace.setMaximumSize(new java.awt.Dimension(193, 25));
         jShowPopupFarmSpace.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowPopupFarmSpace.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -960,8 +956,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 1.0;
         jPanelPopupinfos.add(jShowPopupFarmSpace, gridBagConstraints);
 
-        jShowPopupMoral.setText("Moral anzeigen");
-        jShowPopupMoral.setToolTipText("Moral anzeigen");
+        jShowPopupMoral.setText(trans.get("Moralanzeigen"));
+        jShowPopupMoral.setToolTipText(trans.get("Moralanzeigen"));
         jShowPopupMoral.setMaximumSize(new java.awt.Dimension(193, 25));
         jShowPopupMoral.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowPopupMoral.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -980,7 +976,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanelPopupinfos.add(jShowPopupMoral, gridBagConstraints);
 
         jMaxFarmSpacelabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jMaxFarmSpacelabel.setText("Max. Bauernhofplätze");
+        jMaxFarmSpacelabel.setText(trans.get("Max_Bauerhofplaetze"));
         jMaxFarmSpacelabel.setMinimumSize(new java.awt.Dimension(180, 25));
         jMaxFarmSpacelabel.setPreferredSize(new java.awt.Dimension(180, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -992,8 +988,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 1.0;
         jPanelPopupinfos.add(jMaxFarmSpacelabel, gridBagConstraints);
 
-        jShowPopupRanks.setText("Erweiterte Informationen anzeigen");
-        jShowPopupRanks.setToolTipText("Anzeige von Gesamtpunkten und Platzierungen für Spieler und Stamm");
+        jShowPopupRanks.setText(trans.get("ErweiterteInformation"));
+        jShowPopupRanks.setToolTipText(trans.get("ErweiterteInformation_text"));
         jShowPopupRanks.setMaximumSize(new java.awt.Dimension(193, 25));
         jShowPopupRanks.setMinimumSize(new java.awt.Dimension(250, 25));
         jShowPopupRanks.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -1006,8 +1002,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weightx = 1.0;
         jPanelPopupinfos.add(jShowPopupRanks, gridBagConstraints);
 
-        jPopupFarmUseRealValues.setText("Echte Werte benutzen");
-        jPopupFarmUseRealValues.setToolTipText("Benutzt die eingelesenen Gebäudeinfos um die freien Bauernhofplätze zu bestimmen");
+        jPopupFarmUseRealValues.setText(trans.get("EchteWertebenutzen"));
+        jPopupFarmUseRealValues.setToolTipText(trans.get("EchteWertebenutzen_text"));
         jPopupFarmUseRealValues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPopupFarmActionPerformed(evt);
@@ -1028,7 +1024,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.weighty = 1.0;
         jMapSettings.add(jPanelPopupinfos, gridBagConstraints);
 
-        jSettingsTabbedPane.addTab("Karten", new javax.swing.ImageIcon(getClass().getResource("/res/ui/map.gif")), jMapSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Karten"), new javax.swing.ImageIcon(getClass().getResource("/res/ui/map.gif")), jMapSettings); // NOI18N
 
         jAttackSettings.setBackground(new java.awt.Color(239, 235, 223));
         jAttackSettings.setPreferredSize(new java.awt.Dimension(620, 400));
@@ -1038,7 +1034,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel12.setPreferredSize(new java.awt.Dimension(500, 300));
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
-        jAttackMovementLabel.setText("Truppenbewegung anzeigen");
+        jAttackMovementLabel.setText(trans.get("Truppenbewegunganzeigen"));
         jAttackMovementLabel.setMaximumSize(new java.awt.Dimension(260, 25));
         jAttackMovementLabel.setMinimumSize(new java.awt.Dimension(260, 25));
         jAttackMovementLabel.setPreferredSize(new java.awt.Dimension(260, 25));
@@ -1050,7 +1046,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jAttackMovementLabel, gridBagConstraints);
 
-        jShowAttackMovementBox.setToolTipText("Anzeige der Truppenbewegungen von Befehlen auf der Karte");
+        jShowAttackMovementBox.setToolTipText(trans.get("AnzeigeTruppenbewegungen"));
         jShowAttackMovementBox.setMaximumSize(new java.awt.Dimension(21, 25));
         jShowAttackMovementBox.setMinimumSize(new java.awt.Dimension(21, 25));
         jShowAttackMovementBox.setPreferredSize(new java.awt.Dimension(21, 25));
@@ -1093,7 +1089,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jScrollPane2, gridBagConstraints);
 
-        jAttackMovementLabel3.setText("Färbung der Befehlsvektoren");
+        jAttackMovementLabel3.setText(trans.get("FaerbungderBefehlverktoren"));
         jAttackMovementLabel3.setMaximumSize(new java.awt.Dimension(260, 25));
         jAttackMovementLabel3.setMinimumSize(new java.awt.Dimension(260, 25));
         jAttackMovementLabel3.setPreferredSize(new java.awt.Dimension(260, 25));
@@ -1105,7 +1101,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jAttackMovementLabel3, gridBagConstraints);
 
-        jLabel9.setText("Neue Befehle auf der Karte einzeichnen");
+        jLabel9.setText(trans.get("NeueBefehle"));
         jLabel9.setMaximumSize(new java.awt.Dimension(280, 25));
         jLabel9.setMinimumSize(new java.awt.Dimension(280, 25));
         jLabel9.setPreferredSize(new java.awt.Dimension(280, 25));
@@ -1117,7 +1113,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jLabel9, gridBagConstraints);
 
-        jDrawAttacksByDefaultBox.setToolTipText("Neue erstellte Befehle sofort auf der Karte einzeichnen");
+        jDrawAttacksByDefaultBox.setToolTipText(trans.get("NeueerstellenBefehle"));
         jDrawAttacksByDefaultBox.setMaximumSize(new java.awt.Dimension(21, 25));
         jDrawAttacksByDefaultBox.setMinimumSize(new java.awt.Dimension(21, 25));
         jDrawAttacksByDefaultBox.setPreferredSize(new java.awt.Dimension(21, 25));
@@ -1134,7 +1130,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jDrawAttacksByDefaultBox, gridBagConstraints);
 
-        jLabel21.setText("Countdown in der Befehlsübersicht anzeigen");
+        jLabel21.setText(trans.get("Countdown"));
         jLabel21.setMaximumSize(new java.awt.Dimension(260, 25));
         jLabel21.setMinimumSize(new java.awt.Dimension(260, 25));
         jLabel21.setPreferredSize(new java.awt.Dimension(260, 25));
@@ -1146,7 +1142,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jLabel21, gridBagConstraints);
 
-        jShowLiveCountdown.setToolTipText("<html>Zeigt den Live-Countdown in der Befehlssübersicht an oder blendet ihn aus.<BR/>Deaktiviere diese Option wenn es mit der Performance Probleme gibt</html>");
+        jShowLiveCountdown.setToolTipText(trans.get("HTML_Countdown"));
         jShowLiveCountdown.setMaximumSize(new java.awt.Dimension(21, 25));
         jShowLiveCountdown.setMinimumSize(new java.awt.Dimension(21, 25));
         jShowLiveCountdown.setPreferredSize(new java.awt.Dimension(21, 25));
@@ -1157,7 +1153,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jShowLiveCountdown, gridBagConstraints);
 
-        jLabel23.setText("Laufrichtung für eingezeichnete Befehle anzeigen");
+        jLabel23.setText(trans.get("Laufrichtung"));
         jLabel23.setMaximumSize(new java.awt.Dimension(260, 25));
         jLabel23.setMinimumSize(new java.awt.Dimension(260, 25));
         jLabel23.setPreferredSize(new java.awt.Dimension(260, 25));
@@ -1169,7 +1165,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel12.add(jLabel23, gridBagConstraints);
 
-        jExtendedAttackLineDrawing.setToolTipText("<html>Zeigt die Laufrichtung der Truppen vom Herkunftsdorf zum Ziel an.<BR/>Diese Option sollte deaktiviert sein wenn du viele Befehle einzeichnen möchtest, da sie starken Einfluss auf die Performance hat</html>");
+        jExtendedAttackLineDrawing.setToolTipText(trans.get("ZeigeLaufrichtung_Text"));
         jExtendedAttackLineDrawing.setMaximumSize(new java.awt.Dimension(21, 25));
         jExtendedAttackLineDrawing.setMinimumSize(new java.awt.Dimension(21, 25));
         jExtendedAttackLineDrawing.setPreferredSize(new java.awt.Dimension(21, 25));
@@ -1194,20 +1190,20 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             jAttackSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jAttackSettingsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jSettingsTabbedPane.addTab("Angriffe", new javax.swing.ImageIcon(getClass().getResource("/res/barracks.png")), jAttackSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Angriffe"), new javax.swing.ImageIcon(getClass().getResource("/res/barracks.png")), jAttackSettings); // NOI18N
 
         jDefenseSettings.setBackground(new java.awt.Color(239, 235, 223));
         jDefenseSettings.setLayout(new java.awt.GridBagLayout());
 
-        jSingleSupportPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Einzelunterstützung im Verteidigungsplaner"));
+        jSingleSupportPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einzelunterstuetzung")));
         jSingleSupportPanel.setOpaque(false);
         jSingleSupportPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton4.setText("Übernehmen");
+        jButton4.setText(trans.get("uebernehmen"));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeDefEvent(evt);
@@ -1236,11 +1232,11 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jDefenseSettings.add(jSingleSupportPanel, gridBagConstraints);
 
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Sonstige Einstellungen"));
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("SonstigeEinstellungen")));
         jPanel15.setOpaque(false);
         jPanel15.setLayout(new java.awt.GridBagLayout());
 
-        jLabel25.setText("Max. Simulationsrunden");
+        jLabel25.setText(trans.get("Max_Simulationsrunden"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1249,7 +1245,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel15.add(jLabel25, gridBagConstraints);
 
         jMaxSimRounds.setText("500");
-        jMaxSimRounds.setToolTipText("Die maximale Anzahl an Simulationsrunden, bevor die Simulation abgebrochen wird");
+        jMaxSimRounds.setToolTipText(trans.get("Simulationsrunden_text"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1259,7 +1255,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel15.add(jMaxSimRounds, gridBagConstraints);
 
-        jLabel26.setText("Max. Verlustrate");
+        jLabel26.setText(trans.get("Max_Verlustrate"));
         jLabel26.setMaximumSize(new java.awt.Dimension(114, 14));
         jLabel26.setMinimumSize(new java.awt.Dimension(114, 14));
         jLabel26.setPreferredSize(new java.awt.Dimension(114, 14));
@@ -1271,7 +1267,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel15.add(jLabel26, gridBagConstraints);
 
         jMaxLossRatio.setText("50");
-        jMaxLossRatio.setToolTipText("Die maximale Verlustrate der Verteidiger, die man akzeptieren möchte");
+        jMaxLossRatio.setToolTipText(trans.get("Verlustrate_text"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1288,7 +1284,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
         jPanel15.add(jLabel27, gridBagConstraints);
 
-        jLabel28.setText("Toleranz für Einzelunterstützungen");
+        jLabel28.setText(trans.get("Toleranz"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1297,7 +1293,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel15.add(jLabel28, gridBagConstraints);
 
         jTolerance.setText("10");
-        jTolerance.setToolTipText("Toleranz in Prozent, um welche eine Einzelunterstützung abweichen darf");
+        jTolerance.setToolTipText(trans.get("Toleranz_text"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -1325,11 +1321,11 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jDefenseSettings.add(jPanel15, gridBagConstraints);
 
-        jStandardAttackerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Angreifer im Verteidigungsplaner"));
+        jStandardAttackerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AngreiferimVerteidigungsplaner")));
         jStandardAttackerPanel.setOpaque(false);
         jStandardAttackerPanel.setLayout(new java.awt.GridBagLayout());
 
-        jButton3.setText("Übernehmen");
+        jButton3.setText(trans.get("uebernehmen"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeOffEvent(evt);
@@ -1358,12 +1354,12 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jDefenseSettings.add(jStandardAttackerPanel, gridBagConstraints);
 
-        jSettingsTabbedPane.addTab("Verteidigung", new javax.swing.ImageIcon(getClass().getResource("/res/ally.png")), jDefenseSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Verteidigung"), new javax.swing.ImageIcon(getClass().getResource("/res/ally.png")), jDefenseSettings); // NOI18N
 
         jNetworkSettings.setBackground(new java.awt.Color(239, 235, 223));
         jNetworkSettings.setPreferredSize(new java.awt.Dimension(620, 400));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Browser"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Browser")));
         jPanel4.setMaximumSize(new java.awt.Dimension(400, 126));
         jPanel4.setMinimumSize(new java.awt.Dimension(400, 126));
         jPanel4.setOpaque(false);
@@ -1371,8 +1367,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jUseStandardBrowser.setSelected(true);
-        jUseStandardBrowser.setText("Standardbrowser verwenden (Bei Problemen bitte Browser als 'Alternativen Browser' angeben)");
-        jUseStandardBrowser.setToolTipText("<html>DS Workbench versucht den Standardbrowser deines Systems zu verwenden.<br/>\nIn manchen F&auml;llen kann es hierbei zu Problemen kommen. Gib dann bitte deinen bevorzugten Browser unter \"Alternativer Browser\" an.</html>");
+        jUseStandardBrowser.setText(trans.get("Standardbrowser"));
+        jUseStandardBrowser.setToolTipText(trans.get("Standardbrowser_text"));
         jUseStandardBrowser.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireChangeDefaultBrowserEvent(evt);
@@ -1387,7 +1383,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel4.add(jUseStandardBrowser, gridBagConstraints);
 
-        jLabel5.setText("Alternativer Browser");
+        jLabel5.setText(trans.get("AlternativerBrowser"));
         jLabel5.setEnabled(false);
         jLabel5.setMaximumSize(new java.awt.Dimension(120, 23));
         jLabel5.setMinimumSize(new java.awt.Dimension(120, 23));
@@ -1431,7 +1427,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel4.add(jButton1, gridBagConstraints);
 
         jXLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jXLabel3.setText("Solltest du einen alternativen Browser verwenden wollen, achte unbedingt darauf, dass der Browser gestartet ist wenn du die Einstellungen testest. Ansonsten kann es dazu kommen, dass DS Workbench nicht mehr reagiert.");
+        jXLabel3.setText(trans.get("AlternativerBrowser_text"));
         jXLabel3.setToolTipText("");
         jXLabel3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jXLabel3.setLineWrap(true);
@@ -1483,7 +1479,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(0, 16, 0, 0);
         jPanel1.add(jLabelCmdSleepTimePreview, gridBagConstraints);
 
-        jLabelCmdSleepTime.setText("Wartezeit zwischen den Tabs");
+        jLabelCmdSleepTime.setText(trans.get("WartezeitzwischendenTabs"));
         jLabelCmdSleepTime.setMaximumSize(new java.awt.Dimension(400, 18));
         jLabelCmdSleepTime.setMinimumSize(new java.awt.Dimension(220, 18));
         jLabelCmdSleepTime.setPreferredSize(new java.awt.Dimension(220, 18));
@@ -1509,7 +1505,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         connectionTypeGroup.add(jDirectConnectOption);
         jDirectConnectOption.setSelected(true);
-        jDirectConnectOption.setText("Ich bin direkt mit dem Internet verbunden");
+        jDirectConnectOption.setText(trans.get("Internetverbunden"));
         jDirectConnectOption.setMaximumSize(new java.awt.Dimension(259, 23));
         jDirectConnectOption.setMinimumSize(new java.awt.Dimension(259, 23));
         jDirectConnectOption.setPreferredSize(new java.awt.Dimension(259, 23));
@@ -1529,7 +1525,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel8.add(jDirectConnectOption, gridBagConstraints);
 
         connectionTypeGroup.add(jProxyConnectOption);
-        jProxyConnectOption.setText("Ich benutze einen Proxy für den Internetzugang");
+        jProxyConnectOption.setText(trans.get("Proxy_internet"));
         jProxyConnectOption.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireChangeConnectTypeEvent(evt);
@@ -1545,7 +1541,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyConnectOption, gridBagConstraints);
 
-        jProxyAdressLabel.setText("Proxy Adresse");
+        jProxyAdressLabel.setText(trans.get("ProxyAdresse"));
         jProxyAdressLabel.setMaximumSize(new java.awt.Dimension(100, 23));
         jProxyAdressLabel.setMinimumSize(new java.awt.Dimension(100, 23));
         jProxyAdressLabel.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -1557,7 +1553,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyAdressLabel, gridBagConstraints);
 
-        jProxyHost.setToolTipText("Adresse des Proxy Servers");
+        jProxyHost.setToolTipText(trans.get("AdressedesProxyServers"));
         jProxyHost.setEnabled(false);
         jProxyHost.setMinimumSize(new java.awt.Dimension(6, 23));
         jProxyHost.setPreferredSize(new java.awt.Dimension(6, 23));
@@ -1570,7 +1566,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyHost, gridBagConstraints);
 
-        jProxyPortLabel.setText("Proxy Port");
+        jProxyPortLabel.setText(trans.get("ProxyPort"));
         jProxyPortLabel.setMaximumSize(new java.awt.Dimension(70, 23));
         jProxyPortLabel.setMinimumSize(new java.awt.Dimension(70, 23));
         jProxyPortLabel.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -1582,7 +1578,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyPortLabel, gridBagConstraints);
 
-        jProxyPort.setToolTipText("Port des Proxy Servers");
+        jProxyPort.setToolTipText(trans.get("PortdesProxyServers"));
         jProxyPort.setEnabled(false);
         jProxyPort.setMaximumSize(new java.awt.Dimension(40, 23));
         jProxyPort.setMinimumSize(new java.awt.Dimension(40, 23));
@@ -1597,8 +1593,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel8.add(jProxyPort, gridBagConstraints);
 
         jRefeshNetworkButton.setBackground(new java.awt.Color(239, 235, 223));
-        jRefeshNetworkButton.setText("Aktualisieren");
-        jRefeshNetworkButton.setToolTipText("Netzwerkeinstellungen aktualisieren und prüfen");
+        jRefeshNetworkButton.setText(trans.get("Aktualisieren"));
+        jRefeshNetworkButton.setToolTipText(trans.get("Aktualisieren_text"));
         jRefeshNetworkButton.setMaximumSize(new java.awt.Dimension(120, 23));
         jRefeshNetworkButton.setMinimumSize(new java.awt.Dimension(120, 23));
         jRefeshNetworkButton.setPreferredSize(new java.awt.Dimension(120, 23));
@@ -1614,7 +1610,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jRefeshNetworkButton, gridBagConstraints);
 
-        jLabel10.setText("Proxy Typ");
+        jLabel10.setText(trans.get("ProxyTyp"));
         jLabel10.setMaximumSize(new java.awt.Dimension(100, 23));
         jLabel10.setMinimumSize(new java.awt.Dimension(100, 23));
         jLabel10.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -1627,7 +1623,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel8.add(jLabel10, gridBagConstraints);
 
         jProxyTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "HTTP", "SOCKS" }));
-        jProxyTypeChooser.setToolTipText("Art des Proxy Servers");
+        jProxyTypeChooser.setToolTipText(trans.get("ArtdesProxyServers"));
         jProxyTypeChooser.setEnabled(false);
         jProxyTypeChooser.setMinimumSize(new java.awt.Dimension(100, 23));
         jProxyTypeChooser.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -1638,7 +1634,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyTypeChooser, gridBagConstraints);
 
-        jLabel11.setText("Benutzername");
+        jLabel11.setText(trans.get("Benutzername"));
         jLabel11.setMaximumSize(new java.awt.Dimension(100, 23));
         jLabel11.setMinimumSize(new java.awt.Dimension(100, 23));
         jLabel11.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -1649,7 +1645,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jLabel11, gridBagConstraints);
 
-        jProxyUser.setToolTipText("Benutzername zur Authentifizierung beim Proxy Server");
+        jProxyUser.setToolTipText(trans.get("Benutzername_text"));
         jProxyUser.setEnabled(false);
         jProxyUser.setMaximumSize(new java.awt.Dimension(150, 23));
         jProxyUser.setMinimumSize(new java.awt.Dimension(150, 23));
@@ -1663,7 +1659,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jProxyUser, gridBagConstraints);
 
-        jLabel12.setText("Passwort");
+        jLabel12.setText(trans.get("Passwort"));
         jLabel12.setMaximumSize(new java.awt.Dimension(100, 23));
         jLabel12.setMinimumSize(new java.awt.Dimension(100, 23));
         jLabel12.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -1674,7 +1670,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel8.add(jLabel12, gridBagConstraints);
 
-        jProxyPassword.setToolTipText("Passwort zur Authentifizierung beim Proxy Server");
+        jProxyPassword.setToolTipText(trans.get("PasswortAuthentifizierungProxyServer"));
         jProxyPassword.setEnabled(false);
         jProxyPassword.setMaximumSize(new java.awt.Dimension(150, 23));
         jProxyPassword.setMinimumSize(new java.awt.Dimension(150, 23));
@@ -1709,12 +1705,12 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap())
         );
 
-        jSettingsTabbedPane.addTab("Netzwerk", new javax.swing.ImageIcon(getClass().getResource("/res/proxy.png")), jNetworkSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Netzwerk"), new javax.swing.ImageIcon(getClass().getResource("/res/proxy.png")), jNetworkSettings); // NOI18N
 
         jTemplateSettings.setBackground(new java.awt.Color(239, 235, 223));
         jTemplateSettings.setPreferredSize(new java.awt.Dimension(620, 400));
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("HTML Templates (Angriffsexport)"));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("HTMLTemplates")));
         jPanel7.setOpaque(false);
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
@@ -1727,7 +1723,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel7.add(jLabel6, gridBagConstraints);
 
-        jLabel18.setText("Angriffsblock");
+        jLabel18.setText(trans.get("Angriffsblock"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1736,7 +1732,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel7.add(jLabel18, gridBagConstraints);
 
-        jLabel19.setText("Footer");
+        jLabel19.setText(trans.get("Footer"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1776,7 +1772,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jSelectHeaderButton.setBackground(new java.awt.Color(239, 235, 223));
         jSelectHeaderButton.setText("...");
-        jSelectHeaderButton.setToolTipText("Template wählen");
+        jSelectHeaderButton.setToolTipText(trans.get("Templatewaehlen"));
         jSelectHeaderButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jSelectHeaderButton.setMinimumSize(new java.awt.Dimension(25, 23));
         jSelectHeaderButton.setPreferredSize(new java.awt.Dimension(25, 23));
@@ -1794,7 +1790,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jSelectBlockButton.setBackground(new java.awt.Color(239, 235, 223));
         jSelectBlockButton.setText("...");
-        jSelectBlockButton.setToolTipText("Template wählen");
+        jSelectBlockButton.setToolTipText(trans.get("Templatewaehlen"));
         jSelectBlockButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jSelectBlockButton.setMinimumSize(new java.awt.Dimension(25, 23));
         jSelectBlockButton.setPreferredSize(new java.awt.Dimension(25, 23));
@@ -1812,7 +1808,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jSelectFooterButton.setBackground(new java.awt.Color(239, 235, 223));
         jSelectFooterButton.setText("...");
-        jSelectFooterButton.setToolTipText("Template wählen");
+        jSelectFooterButton.setToolTipText(trans.get("Templatewaehlen"));
         jSelectFooterButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jSelectFooterButton.setMinimumSize(new java.awt.Dimension(25, 23));
         jSelectFooterButton.setPreferredSize(new java.awt.Dimension(25, 23));
@@ -1830,7 +1826,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jRestoreHeaderButton.setBackground(new java.awt.Color(239, 235, 223));
         jRestoreHeaderButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/refresh.png"))); // NOI18N
-        jRestoreHeaderButton.setToolTipText("Standard wiederherstellen");
+        jRestoreHeaderButton.setToolTipText(trans.get("Standardwiederherstellen"));
         jRestoreHeaderButton.setAlignmentY(0.0F);
         jRestoreHeaderButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jRestoreHeaderButton.setMinimumSize(new java.awt.Dimension(25, 23));
@@ -1849,7 +1845,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jRestoreBlockButton.setBackground(new java.awt.Color(239, 235, 223));
         jRestoreBlockButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/refresh.png"))); // NOI18N
-        jRestoreBlockButton.setToolTipText("Standard wiederherstellen");
+        jRestoreBlockButton.setToolTipText(trans.get("Standardwiederherstellen"));
         jRestoreBlockButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jRestoreBlockButton.setMinimumSize(new java.awt.Dimension(25, 23));
         jRestoreBlockButton.setPreferredSize(new java.awt.Dimension(25, 23));
@@ -1867,7 +1863,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         jRestoreFooterButton.setBackground(new java.awt.Color(239, 235, 223));
         jRestoreFooterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/refresh.png"))); // NOI18N
-        jRestoreFooterButton.setToolTipText("Standard wiederherstellen");
+        jRestoreFooterButton.setToolTipText(trans.get("Standardwiederherstellen"));
         jRestoreFooterButton.setMaximumSize(new java.awt.Dimension(25, 23));
         jRestoreFooterButton.setMinimumSize(new java.awt.Dimension(25, 23));
         jRestoreFooterButton.setPreferredSize(new java.awt.Dimension(25, 23));
@@ -1897,10 +1893,10 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             .addGroup(jTemplateSettingsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
 
-        jSettingsTabbedPane.addTab("Templates", new javax.swing.ImageIcon(getClass().getResource("/res/ui/component.png")), jTemplateSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Templates"), new javax.swing.ImageIcon(getClass().getResource("/res/ui/component.png")), jTemplateSettings); // NOI18N
 
         jMiscSettings.setBackground(new java.awt.Color(239, 235, 223));
         jMiscSettings.setPreferredSize(new java.awt.Dimension(620, 400));
@@ -2261,15 +2257,15 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jSettingsTabbedPane.addTab("Sonstiges", new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png")), jMiscSettings); // NOI18N
+        jSettingsTabbedPane.addTab(trans.get("Sonstiges"), new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png")), jMiscSettings); // NOI18N
 
         jOKButton.setBackground(new java.awt.Color(239, 235, 223));
-        jOKButton.setText("OK");
-        jOKButton.setToolTipText("Einstellungen übernehmen und speichern");
+        jOKButton.setText(trans.get("OK"));
+        jOKButton.setToolTipText(trans.get("Einstellungenubernehmen"));
         jOKButton.setMaximumSize(new java.awt.Dimension(90, 25));
         jOKButton.setMinimumSize(new java.awt.Dimension(90, 25));
         jOKButton.setPreferredSize(new java.awt.Dimension(90, 25));
@@ -2280,8 +2276,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         });
 
         jCancelButton.setBackground(new java.awt.Color(239, 235, 223));
-        jCancelButton.setText("Abbrechen");
-        jCancelButton.setToolTipText("Einstellungen verwerfen");
+        jCancelButton.setText(trans.get("Abbrechen"));
+        jCancelButton.setToolTipText(trans.get("Einstellungenverwerfen"));
         jCancelButton.setMaximumSize(new java.awt.Dimension(100, 25));
         jCancelButton.setMinimumSize(new java.awt.Dimension(100, 25));
         jCancelButton.setPreferredSize(new java.awt.Dimension(100, 25));
@@ -2303,7 +2299,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                         .addComponent(jCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, Short.MAX_VALUE))
+                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -2317,6 +2313,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                     .addComponent(jOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jSettingsTabbedPane.getAccessibleContext().setAccessibleName("Karten");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2372,30 +2370,22 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
 
         if (!updateServerList()) {
             //fully failed --> remote update failed and no local servers found
-            String message = "Serverliste konnte nicht geladen werden.\n"
-                    + "Mögliche Ursachen sind fehlerhafte Netzwerkeinstellungen, keine Verbindung zum Internet\n"
-                    + "oder 'google.com' ist nicht verfügbar.\n"
-                    + "Da noch kein Datenabgleich mit dem Server stattgefunden hat "
-                    + "korrigiere bitte deine Netzwerkeinstellungen um diesen einmalig durchzuführen.";
-            JOptionPaneHelper.showWarningBox(this, message, "Warnung");
+            String message = trans.get("Serverliste_text_google");
+            JOptionPaneHelper.showWarningBox(this, message, trans.get("Warnung"));
         } else {
             String message = null;
-            String title = "Fehler";
+            String title = trans.get("Fehler");
             int type = JOptionPane.ERROR_MESSAGE;
             if (offlineBefore) {
                 //was offline before checking serverlist
-                message = "Die Prüfung der Verbindung zum Internet ist fehlgeschlagen.\n"
-                        + "Da du bereits Serverdaten besitzt werden diese verwendet. Für ein Update\n"
-                        + "prüfe bitte erneut deine Verbindung zum Internet und deine Netzwerkeinstellungen.";
+                message = trans.get("Verbindung_text");
             } else if (GlobalOptions.isOfflineMode()) {
                 //get offline while checking serverlist
-                message = "Die Prüfung der Verbindung zum Internet war erfolgreich,\n"
-                        + "es konnte dennoch keine aktuelle Serverliste heruntergeladen werden.\n"
-                        + "Bitte versuch es später noch einmal.";
+                message = trans.get("Pruefung_Verbindung_text");
             } else {
                 //success
-                message = "Verbindung erfolgreich hergestellt.";
-                title = "Information";
+                message = trans.get("VerbindungErfolgreich");
+                title = trans.get("Information");
                 type = JOptionPane.INFORMATION_MESSAGE;
             }
 
@@ -2453,7 +2443,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                     return;
                 }
                 if (selectedProfile.getTribe().equals(InvalidTribe.getSingleton())) {
-                    JOptionPaneHelper.showWarningBox(this, "Der Spieler des gewählten Profils existiert nicht mehr.\nBitte ein anderes Profil wählen. ", "Warnung");
+                    JOptionPaneHelper.showWarningBox(this, trans.get("Spieler_existiert_nicht"), trans.get("Warnung"));
                     return;
                 }
 
@@ -2476,7 +2466,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                     GlobalOptions.setSelectedProfile(selectedProfile);
                 }
             } else if (GlobalOptions.getSelectedProfile() == null) {
-                JOptionPaneHelper.showWarningBox(DSWorkbenchSettingsDialog.this, "Du musst ein Profil auswählen um fortzufahren", "Warnung");
+                JOptionPaneHelper.showWarningBox(DSWorkbenchSettingsDialog.this, trans.get("Profil_auswahl"), trans.get("Warnung"));
                 return;
             }
 
@@ -2527,12 +2517,12 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             
             if(Math.abs(GlobalOptions.getProperties().getDouble("ribbon.size") - menueSizeFromSlider()) > 0.1) {
                 GlobalOptions.addProperty("ribbon.size", Double.toString(menueSizeFromSlider()));
-                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, "Für die Größenänderung des Hauptmenüs ist ein Neustart von DS Workbench erforderlich.", "Neustart erforderlich");
+                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, trans.get("Groessenaenderung_Hauptmenues"), trans.get("Neustarterforderlich"));
             }
             
             if(! GlobalOptions.getProperty("ui.language").equals(jLanguageChooser.getSelectedItem().toString())) {
                 GlobalOptions.addProperty("ui.language", jLanguageChooser.getSelectedItem().toString());
-                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, "Für die Sprachenänderung ist ein Neustart von DS Workbench erforderlich.", "Neustart erforderlich");
+                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, trans.get("Sprachaenderung"), trans.get("Neustarterforderlich"));
             }
             GlobalOptions.saveProperties();
         } catch (Throwable t) {
@@ -2596,7 +2586,7 @@ private void fireAcceptDeffStrengthEvent(java.awt.event.MouseEvent evt) {//GEN-F
             GlobalOptions.addProperty("max.density.troops", result);
             jMaxTroopDensity.setText(result);
         } catch (Exception e) {
-            JOptionPaneHelper.showErrorBox(jTroopDensitySelectionDialog, "Bitte überprüfe deine Eingaben.", "Fehler");
+            JOptionPaneHelper.showErrorBox(jTroopDensitySelectionDialog, trans.get("ueberpruefeEingabe"), trans.get("Fehler"));
             return;
         }
     }
@@ -2619,11 +2609,10 @@ private void fireSelectBrowserEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
     try {
         chooser = new JFileChooser(dir);
     } catch (Exception e) {
-        JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n"
-                + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+        JOptionPaneHelper.showErrorBox(this, trans.get("Dateiauswahldialog"), trans.get("Fehler"));
         return;
     }
-    chooser.setDialogTitle("Browser auswählen...");
+    chooser.setDialogTitle(trans.get("Browserauswaehlen"));
 
     chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 
@@ -2648,13 +2637,13 @@ private void fireSelectBrowserEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
                 jBrowserPath.setText(f.getPath());
             }
             GlobalOptions.addProperty("default.browser", jBrowserPath.getText());
-            if (JOptionPaneHelper.showQuestionConfirmBox(this, "Aktiver Browser geändert.\nWillst du die Einstellungen jetzt testen?", "Erfolg", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+            if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("AktivierBrowser"), trans.get("Erfolg"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                 if (!BrowserInterface.openPage("http://www.google.com")) {
-                    JOptionPaneHelper.showErrorBox(this, "Browser konnte nicht geöffnet werden. Bitte überprüfe deine Einstellungen.", "Fehler");
+                    JOptionPaneHelper.showErrorBox(this, trans.get("Browser_no_open"), trans.get("Fehler"));
                 }
             }
         } else {
-            JOptionPaneHelper.showErrorBox(this, "Die ausgewählte Datei scheint kein gültiges Programm zu sein.", "Fehler");
+            JOptionPaneHelper.showErrorBox(this, trans.get("no_programm"), trans.get("Fehler"));
         }
     }
 
@@ -2693,11 +2682,10 @@ private void fireSelectTemplateEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST
     try {
         chooser = new JFileChooser(dir);
     } catch (Exception e) {
-        JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n"
-                + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+        JOptionPaneHelper.showErrorBox(this, trans.get("Dateiauswahldialog"), trans.get("Fehler"));
         return;
     }
-    chooser.setDialogTitle("Template auswählen...");
+    chooser.setDialogTitle(trans.get("Templateauswaehlen"));
 
     chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 
@@ -2733,7 +2721,7 @@ private void fireSelectTemplateEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST
                 }
             }
         } else {
-            JOptionPaneHelper.showErrorBox(this, "Die ausgewählte Datei scheint keine gültige Datei zu sein.", "Fehler");
+            JOptionPaneHelper.showErrorBox(this, trans.get("Dateinichtgueltig"), trans.get("Fehler"));
         }
         AttackPlanHTMLExporter.loadCustomTemplate();
     }
@@ -2742,13 +2730,13 @@ private void fireSelectTemplateEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST
 private void fireRestoreTemplateEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireRestoreTemplateEvent
 
     if (evt.getSource() == jRestoreHeaderButton) {
-        jHeaderPath.setText("<Standard>");
+        jHeaderPath.setText(trans.get("Standard"));
         GlobalOptions.removeProperty("attack.template.header");
     } else if (evt.getSource() == jRestoreBlockButton) {
-        jBlockPath.setText("<Standard>");
+        jBlockPath.setText(trans.get("Standard"));
         GlobalOptions.removeProperty("attack.template.block");
     } else if (evt.getSource() == jRestoreFooterButton) {
-        jFooterPath.setText("<Standard>");
+        jFooterPath.setText(trans.get("Standard"));
         GlobalOptions.removeProperty("attack.template.footer");
     }
     AttackPlanHTMLExporter.loadCustomTemplate();
@@ -2761,9 +2749,8 @@ private void fireDownloadLiveDataEvent(java.awt.event.ActionEvent evt) {//GEN-FI
     // <editor-fold defaultstate="collapsed" desc=" Offline Mode ? ">
 
     if (GlobalOptions.isOfflineMode()) {
-        JOptionPaneHelper.showWarningBox(this, "Du befindest dich im Offline-Modus."
-                + "\nBitte korrigiere deine Netzwerkeinstellungen um den Download durchzuführen.",
-                "Warnung");
+        JOptionPaneHelper.showWarningBox(this, trans.get("Offline_Modus"),
+                trans.get("Warnung"));
         return;
     }
 
@@ -2820,10 +2807,10 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
     } else if (evt.getSource() == jDeleteProfileButton) {
         UserProfile profile = (UserProfile) jProfileBox.getSelectedItem();
         boolean success = false;
-        if (JOptionPaneHelper.showWarningConfirmBox(this, "Mit dem Profil werden alle Angriffe, Markierungen usw. gelöscht.\nSoll das Profil " + profile + " wirklich gelöscht werden?", "Warnung", "Nein", "Ja") == JOptionPane.OK_OPTION) {
+        if (JOptionPaneHelper.showWarningConfirmBox(this, trans.get("Profil_attack") + profile + trans.get("wirklichloeschen"), trans.get("Warnung"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.OK_OPTION) {
             success = profile.delete();
             if (!success) {
-                JOptionPaneHelper.showWarningBox(this, "Das Profil konnte nicht gelöscht werden.\nVersuch es bitte später oder nach einem Neustart von DS Workbench noch einmal.", "Löschen fehlgeschlagen");
+                JOptionPaneHelper.showWarningBox(this, trans.get("Profil_canot_delete"), trans.get("loeschenfehlgeschlagen"));
             }
         } else {
             //delete canceled
@@ -2862,15 +2849,14 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
             ReportServer.getSingleton().stop();
             try {
                 ReportServer.getSingleton().start(port);
-                JOptionPaneHelper.showInformationBox(this, "Der Berichtserver läuft nun auf Port " + port, "Information");
+                JOptionPaneHelper.showInformationBox(this, trans.get("DerBerichtserver") + port, trans.get("Information"));
             } catch (BindException be) {
-                JOptionPaneHelper.showErrorBox(this, "Port " + port + " wird bereits verwendet.\nFalls der Berichtsserver vorher auf diesem Port lief,\n"
-                        + "starte DS Workbench neu um den Port wiederverwenden zu können.", "Fehler");
+                JOptionPaneHelper.showErrorBox(this, trans.get("Port") + port + trans.get("wirdbereitsverwendet"), trans.get("Fehler"));
             } catch (Exception e) {
-                JOptionPaneHelper.showErrorBox(this, "Fehler beim Starten des Berichtservers auf Port " + port, "Fehler");
+                JOptionPaneHelper.showErrorBox(this, trans.get("error_port") + port, trans.get("Fehler"));
             }
         } else {
-            JOptionPaneHelper.showInformationBox(this, "Der Berichtserver läuft bereits auf Port " + port, "Information");
+            JOptionPaneHelper.showInformationBox(this, trans.get("report_port") + port, trans.get("Information"));
         }
     }//GEN-LAST:event_fireRestartReportServerEvent
 
@@ -2879,16 +2865,15 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
         if (jShowPopupMoral.isSelected()
                 && (ServerSettings.getSingleton().getMoralType() == ServerSettings.TIMEBASED_MORAL
                 || ServerSettings.getSingleton().getMoralType() == ServerSettings.TIME_LIMITED_POINTBASED_MORAL)) {
-            String warning = "Achtung: Auf Welten mit ";
+            String warning = trans.get("aufWelten");
             if (ServerSettings.getSingleton().getMoralType() == ServerSettings.TIMEBASED_MORAL) {
-                warning += "Zeitbasierter";
+                warning += trans.get("Zeitbasierter");
             } else if (ServerSettings.getSingleton().getMoralType() == ServerSettings.TIME_LIMITED_POINTBASED_MORAL) {
-                warning += "zeitlich begrenzter punktebasierter Moral";
+                warning += trans.get("zeitlichMoral");
             }
-            warning += " wird die Moral mit der falschen Formel berechnet\n"
-                    + "Trotzdem die Moralanzeige einschalten?";
-            if (JOptionPaneHelper.showWarningConfirmBox(this, warning, "Warnung", "Nein",
-                    "Ja") != JOptionPane.OK_OPTION) {
+            warning += trans.get("zeitlichMoral_text");
+            if (JOptionPaneHelper.showWarningConfirmBox(this, warning, trans.get("Warnung"), trans.get("Nein"),
+                    trans.get("Ja")) != JOptionPane.OK_OPTION) {
                 jShowPopupMoral.setSelected(false);
             }
         }
@@ -3006,8 +2991,8 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
 
         if (servers.length < 1) {
             logger.error("Failed to get server list and no locally stored server found");
-            jProfileBox.setModel(new DefaultComboBoxModel(new Object[]{"Keine Server gefunden"}));
-            jLabelServer.setText("kein Server");
+            jProfileBox.setModel(new DefaultComboBoxModel(new Object[]{trans.get("no_server_found")}));
+            jLabelServer.setText("no_server");
             return false;
         }
         updateProfileList();
@@ -3021,7 +3006,7 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
         if (profiles != null && profiles.length > 0) {
             model = new DefaultComboBoxModel(profiles);
         } else {
-            model = new DefaultComboBoxModel(new Object[]{"Kein Profil vorhanden"});
+            model = new DefaultComboBoxModel(new Object[]{trans.get("no_profil")});
             logger.fatal("no Profile");
         }
 
@@ -3077,11 +3062,11 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
      */
     private boolean checkTribesAccountSettings() {
         if (!checkServerPlayerSettings()) {
-            String message = "Bitte überprüfe die Spieler-/Servereinstellungen und schließe die Einstellungen mit OK.\n";
-            message += "Möglicherweise wurde noch kein Server oder kein Spieler ausgewählt.\n";
-            message += "Diese Einstellungen sind für einen korrekten Ablauf zwingend notwendig.";
+            String message = trans.get("Serversettings_check");
+            message += trans.get("no_server_noPlayer");
+            message += trans.get("Settings");
 
-            if (JOptionPaneHelper.showQuestionConfirmBox(this, message, "Warnung", "Beenden", "Korrigieren") == JOptionPane.NO_OPTION) {
+            if (JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("Warnung"), trans.get("Beenden"), trans.get("Korrigieren")) == JOptionPane.NO_OPTION) {
                 logger.error("Player/Server settings incorrect. User requested application to terminate");
                 System.exit(1);
             }
@@ -3093,7 +3078,7 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
 
     @Override
     public void fireDataHolderEvent(String eventMessage) {
-        SimpleDateFormat f = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat f = new SimpleDateFormat(trans.get("dateFormat"));
         jStatusArea.insert("(" + f.format(new Date(System.currentTimeMillis())) + ") " + eventMessage + "\n", jStatusArea.getText().length());
         UIHelper.applyCorrectViewPosition(jStatusArea, jScrollPane1);
     }
@@ -3139,10 +3124,10 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
                         GlobalOptions.setSelectedProfile(profiles[0]);
                     }
                 } else {
-                    model = new DefaultComboBoxModel(new Object[]{"Kein Profil vorhanden"});
+                    model = new DefaultComboBoxModel(new Object[]{trans.get("no_profil")});
                     jProfileBox.setModel(model);
                     GlobalOptions.setSelectedProfile(null);
-                    jLabelServer.setText("kein Server");
+                    jLabelServer.setText(trans.get("no_server"));
                 }
                 
                 if (GlobalOptions.isStarted()) {

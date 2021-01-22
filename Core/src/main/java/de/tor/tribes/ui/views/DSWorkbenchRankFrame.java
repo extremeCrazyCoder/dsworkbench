@@ -55,7 +55,7 @@ import org.jdesktop.swingx.table.TableColumnExt;
  * @author Charon
  */
 public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements ActionListener {
-    
+     
     @Override
     public void actionPerformed(ActionEvent e) {
         RankTableTab activeTab = getActiveTab();
@@ -183,9 +183,9 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
     
     private void buildMenu() {
         JXTaskPane statsTaskPane = new JXTaskPane();
-        statsTaskPane.setTitle("Statistiken");
+        statsTaskPane.setTitle(trans.get("Statistiken"));
         JXButton openDSRealButton = new JXButton(new ImageIcon(DSWorkbenchRankFrame.class.getResource("/res/ui/dsreal.png")));
-        openDSRealButton.setToolTipText("DS Real Seite im Browser öffnen");
+        openDSRealButton.setToolTipText(trans.get("DSReal_Browser"));
         openDSRealButton.addMouseListener(new MouseAdapter() {
             
             @Override
@@ -198,7 +198,7 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
         });
         statsTaskPane.getContentPane().add(openDSRealButton);
         JXButton dsRealStatsButton = new JXButton(new ImageIcon(DSWorkbenchRankFrame.class.getResource("/res/ui/chart.png")));
-        dsRealStatsButton.setToolTipText("DS Real Verlaufsgrafik anzeigen");
+        dsRealStatsButton.setToolTipText(trans.get("DSReal_Verlauf"));
         dsRealStatsButton.addMouseListener(new MouseAdapter() {
             
             @Override
@@ -241,13 +241,13 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
         }
         
         RankTableTab tribeTab = new RankTableTab(RankTableTab.RANK_TYPE.TRIBE, this);
-        jRankTabPane.addTab("Spieler", tribeTab);
+        jRankTabPane.addTab(trans.get("Spieler"), tribeTab);
         RankTableTab allyTab = new RankTableTab(RankTableTab.RANK_TYPE.ALLY, this);
-        jRankTabPane.addTab("Stämme", allyTab);
+        jRankTabPane.addTab(trans.get("Staemme"), allyTab);
         RankTableTab tribeBashTab = new RankTableTab(RankTableTab.RANK_TYPE.TRIBE_BASH, this);
-        jRankTabPane.addTab("Spieler (Bash)", tribeBashTab);
+        jRankTabPane.addTab(trans.get("Player_Bash"), tribeBashTab);
         RankTableTab allyBashTab = new RankTableTab(RankTableTab.RANK_TYPE.ALLY_BASH, this);
-        jRankTabPane.addTab("Stämme (Bash)", allyBashTab);
+        jRankTabPane.addTab(trans.get("Steamme_Bash"), allyBashTab);
         jRankTabPane.revalidate();
         RankTableTab tab = getActiveTab();
         if (tab != null) {
@@ -290,7 +290,7 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
         jXPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jXPanel2.setInheritAlpha(false);
 
-        jButton12.setText("Anwenden");
+        jButton12.setText(trans.get("Anwenden"));
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton12fireHideGlassPaneEvent(evt);
@@ -303,16 +303,16 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
             }
         });
 
-        jLabel21.setText("Suchbegriff");
+        jLabel21.setText(trans.get("Suchbegriff"));
 
-        jFilterRows.setText("Nur gefilterte Zeilen anzeigen");
+        jFilterRows.setText(trans.get("gefilterte"));
         jFilterRows.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterRowsfireUpdateFilterEvent(evt);
             }
         });
 
-        jFilterCaseSensitive.setText("Groß-/Kleinschreibung beachten");
+        jFilterCaseSensitive.setText(trans.get("GrossKleinschreibung"));
         jFilterCaseSensitive.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterCaseSensitivefireUpdateFilterEvent(evt);
@@ -327,7 +327,7 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
         jXColumnList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jXColumnList);
 
-        jLabel22.setText("Spalten");
+        jLabel22.setText(trans.get("Spalten"));
 
         javax.swing.GroupLayout jXPanel2Layout = new javax.swing.GroupLayout(jXPanel2);
         jXPanel2.setLayout(jXPanel2Layout);
@@ -374,10 +374,10 @@ public class DSWorkbenchRankFrame extends AbstractDSWorkbenchFrame implements Ac
 
         jxSearchPane.add(jXPanel2, new java.awt.GridBagConstraints());
 
-        setTitle("Rangliste");
+        setTitle(trans.get("Rangliste"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTop.setText("Immer im Vordergrund");
+        jAlwaysOnTop.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTop.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireRankFrameAlwaysOnTopEvent(evt);

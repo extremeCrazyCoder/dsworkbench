@@ -21,7 +21,9 @@
           <SubComponents>
             <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Keine Meldung"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;KeineMeldung&quot;)" type="code"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -95,7 +97,9 @@
     </Container>
   </NonVisualComponents>
   <Properties>
-    <Property name="title" type="java.lang.String" value="D&#xf6;rfer"/>
+    <Property name="title" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="trans.get(&quot;Doerfer&quot;)" type="code"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -132,7 +136,9 @@
     </Container>
     <Component class="javax.swing.JCheckBox" name="jKnownVillageFrameAlwaysOnTop">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Immer im Vordergrund"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;ImmerimVordergrund&quot;)" type="code"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fireKnownVillageFrameOnTopEvent"/>

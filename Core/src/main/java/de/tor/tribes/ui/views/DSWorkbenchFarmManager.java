@@ -418,7 +418,7 @@ public class DSWorkbenchFarmManager extends AbstractDSWorkbenchFrame implements 
 
         JXButton searchBarbsFromClipboard = new JXButton(
                 new ImageIcon(DSWorkbenchFarmManager.class.getResource("/res/ui/farms_from_clipboard.png")));
-        searchBarbsFromClipboard.setToolTipText("Barb_Clipboard");
+        searchBarbsFromClipboard.setToolTipText(trans.get("Barb_Clipboard"));
         searchBarbsFromClipboard.addActionListener(new ActionListener() {
 
             @Override

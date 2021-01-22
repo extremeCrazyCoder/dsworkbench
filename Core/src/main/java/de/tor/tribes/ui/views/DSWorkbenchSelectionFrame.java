@@ -41,6 +41,8 @@ import de.tor.tribes.util.UIHelper;
 import de.tor.tribes.util.bb.VillageListFormatter;
 import de.tor.tribes.util.html.SelectionHTMLExporter;
 import de.tor.tribes.util.tag.TagManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -83,11 +85,13 @@ import org.jdesktop.swingx.painter.MattePainter;
  */
 public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implements ActionListener, TreeSelectionListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchSearchFrame");
+    
     @Override
     public void valueChanged(TreeSelectionEvent e) {
         List<Village> selection = getSelectedElements();
         if (selection != null && !selection.isEmpty()) {
-            showInfo(((selection.size() == 1) ? "Ein Dorf" : selection.size() + " Dörfer") + " ausgewählt");
+            showInfo(((selection.size() == 1) ? trans.get("EinDorf") : selection.size() + trans.get("Doerfer")) + trans.get("ausgewaehlt"));
         }
     }
 
@@ -204,7 +208,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             }
         }
         jSelectionTree.requestFocus();
-        showInfo(((selected == 1) ? "Ein Dorf" : selected + " Dörfer") + " ausgewählt");
+        showInfo(((selected == 1) ? trans.get("EinDorf") : selected + trans.get("Doerfer")) + trans.get("ausgewaehlt"));
     }
 
     public TreePath findByName(JTree tree, Village node) {
@@ -245,7 +249,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
     }
 
     private void buildTree() {
-        mRoot = new SelectionTreeRootNode("Auswahl");
+        mRoot = new SelectionTreeRootNode(trans.get("Auswahl"));
         if (treeMode) {
             //tree view
             //add all villages
@@ -316,9 +320,9 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
     private void buildMenu() {
         JXTaskPane editPane = new JXTaskPane();
-        editPane.setTitle("Bearbeiten");
+        editPane.setTitle(trans.get("Bearbeiten"));
         JXButton filter3k = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/3k.png")));
-        filter3k.setToolTipText("Wählt alle Dörfer mit weniger als 3000 Punkten");
+        filter3k.setToolTipText(trans.get("dreitausend"));
         filter3k.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -331,7 +335,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
         JXButton filter5k = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/5k.png")));
 
-        filter5k.setToolTipText("Wählt alle Dörfer mit weniger als 5000 Punkten");
+        filter5k.setToolTipText(trans.get("fuenftausend"));
         filter5k.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -343,7 +347,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         editPane.getContentPane().add(filter5k);
         JXButton filter7k = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/7k.png")));
 
-        filter7k.setToolTipText("Wählt alle Dörfer mit weniger als 7000 Punkten");
+        filter7k.setToolTipText(trans.get("siebentausend"));
         filter7k.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -356,7 +360,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
         JXButton filter9k = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/9k.png")));
 
-        filter9k.setToolTipText("Wählt alle Dörfer mit weniger als 9000 Punkten");
+        filter9k.setToolTipText(trans.get("neuntausend"));
         filter9k.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -382,10 +386,10 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         editPane.getContentPane().add(jCustomPointsPanel);
 
         JXTaskPane transferPane = new JXTaskPane();
-        transferPane.setTitle("Übertragen");
+        transferPane.setTitle(trans.get("Uebertragen"));
         JXButton toHtml = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/att_HTML.png")));
 
-        toHtml.setToolTipText("Gewählte Dörfer als HTML Datei exportieren");
+        toHtml.setToolTipText(trans.get("HTMLDateiExportieren"));
         toHtml.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -396,10 +400,10 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         transferPane.getContentPane().add(toHtml);
 
         JXTaskPane miscPane = new JXTaskPane();
-        miscPane.setTitle("Sonstiges");
+        miscPane.setTitle(trans.get("Sonstiges"));
         JXButton structure = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/branch.png")));
 
-        structure.setToolTipText("Wechsel zwischen Baumstruktur und Liste");
+        structure.setToolTipText(trans.get("Baumstruktur"));
         structure.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -410,7 +414,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         miscPane.getContentPane().add(structure);
         JXButton region = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/region_select.png")));
 
-        region.setToolTipText("Auswahl aller Dörfer innerhalb bestimmter Koordinaten");
+        region.setToolTipText(trans.get("AuswahlKoordinaten"));
         region.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -422,7 +426,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
         JXButton substract = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/branch_remove.png")));
 
-        substract.setToolTipText("Abziehen aller Dörfer aus der Zwischenablage von der Liste der ausgewählten Dörfer");
+        substract.setToolTipText(trans.get("AbziehenZwischenablage"));
         substract.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -460,7 +464,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
     private boolean copySelectionToInternalClipboard() {
         List<Village> selection = getSelectedElements();
         if (selection.isEmpty()) {
-            showInfo("Kein Dorf ausgewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
             return false;
         }
 
@@ -472,9 +476,9 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
         } catch (HeadlessException he) {
             logger.error("Failed to copy data to clipboard", he);
-            showError("Fehler beim Kopieren in die Zwischenablage");
+            showError(trans.get("error_clipboard"));
         }
-        showSuccess(((selection.size() == 1) ? "Dorf" : selection.size() + " Dörfer") + " in kopiert");
+        showSuccess(((selection.size() == 1) ? trans.get("Dorf") : selection.size() + trans.get("Dörfer")) + trans.get("inkopiert"));
         return true;
     }
 
@@ -482,7 +486,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         List<Village> selection = getSelectedElements();
         if (copySelectionToInternalClipboard()) {
             removeSelection(false);
-            showSuccess(((selection.size() == 1) ? "Dorf" : selection.size() + " Dörfer") + " ausgeschnitten");
+            showSuccess(((selection.size() == 1) ? trans.get("Dorf") : selection.size() + trans.get("Doerfer")) + trans.get("ausgeschnitten"));
         }
     }
 
@@ -493,14 +497,14 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             villages = PluginManager.getSingleton().executeVillageParser((String) t.getTransferData(DataFlavor.stringFlavor));
         } catch (Exception e) {
             logger.error("Failed to read village data from clipboard", e);
-            showError("Fehler beim Lesen aus der Zwischenablage");
+            showError(trans.get("error_clipboard_Lesen"));
         }
 
         if (villages == null || villages.isEmpty()) {
-            showInfo("Keine Dörfer in der Zwischenablage gefunden");
+            showInfo(trans.get("KeinDoerfZwischenablage"));
         } else {
             updateSelection(villages);
-            showSuccess(((villages.size() == 1) ? "Dorf" : villages.size() + " Dörfer") + " eingefügt");
+            showSuccess(((villages.size() == 1) ? trans.get("Dorf") : villages.size() + trans.get("Doerfer")) + trans.get("eingefuegt"));
         }
     }
 
@@ -508,28 +512,28 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         try {
             List<Village> selection = getSelectedElements();
             if (selection.isEmpty()) {
-                showInfo("Keine Elemente ausgewählt");
+                showInfo(trans.get("KeineElemente"));
                 return;
             }
-            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterteBBCodes"), trans.get("ErweiterterBBCode_Text"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
             StringBuilder buffer = new StringBuilder();
             if (extended) {
-                buffer.append("[u][size=12]Dorfliste[/size][/u]\n\n");
+                buffer.append(trans.get("Dorflistesize"));
             } else {
-                buffer.append("[u]Dorfliste[/u]\n\n");
+                buffer.append(trans.get("DorflisteBB"));
             }
             buffer.append(new VillageListFormatter().formatElements(selection, extended));
 
             if (extended) {
-                buffer.append("\n[size=8]Erstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("sizeErstelltam"));
+                buffer.append(new SimpleDateFormat(trans.get("date_format_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
-                buffer.append("\nErstellt am ");
+                buffer.append(trans.get("Erstelltam"));
                 buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }
 
@@ -537,16 +541,16 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die ausgewählten Dörfer benötigen mehr als 1000 BB-Codes\n" + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\nTrotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("AusgewaehlteDoerfertausend"), trans.get("zuvieleBBCodes"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            showSuccess("Daten in Zwischenablage kopiert");
+            showSuccess(trans.get("DatenZwischenablage"));
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            showError("Fehler beim Kopieren in die Zwischenablage");
+            showError(trans.get("Failed_clipboard"));
         }
     }
 
@@ -555,7 +559,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
     }
 
     private void removeSelection(boolean pAsk) {
-        if (pAsk && JOptionPaneHelper.showQuestionConfirmBox(this, "Alle markierten Einträge und ihre untergeordneten Einträge löschen?", "Löschen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+        if (pAsk && JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Allemarkiertenloeschen"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
             return;
         }
         int cnt = 0;
@@ -564,13 +568,13 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             cnt++;
         }
         buildTree();
-        showSuccess(((cnt == 1) ? "Dorf" : cnt + " Dörfer") + " gelöscht");
+        showSuccess(((cnt == 1) ? trans.get("Dorf") : cnt + trans.get("Doerfer")) + trans.get("geloescht"));
     }
 
     private void exportAsHTML() {
         List<Village> selection = getSelectedElements();
         if (selection.isEmpty()) {
-            showInfo("Keine Dörfer ausgewählt");
+            showInfo(trans.get("KeineDoerferausgewaehlt"));
             return;
         }
         //do HTML export
@@ -581,11 +585,11 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             //handle vista problem
             chooser = new JFileChooser(dir);
         } catch (Exception e) {
-            JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n" + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+            JOptionPaneHelper.showErrorBox(this, trans.get("KonnteDateiauswahldialognicht"), trans.get("Fehler"));
             return;
         }
 
-        chooser.setDialogTitle("Datei auswählen");
+        chooser.setDialogTitle(trans.get("Dateiauswaehlen"));
         chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
 
             @Override
@@ -613,7 +617,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
                 //check overwrite
                 File target = new File(file);
                 if (target.exists()) {
-                    if (JOptionPaneHelper.showQuestionConfirmBox(this, "Bestehende Datei überschreiben?", "Überschreiben", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                    if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("BestehendeDatei"), trans.get("Ueberschreiben"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                         //do not overwrite
                         return;
                     }
@@ -621,13 +625,13 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
                 //do export
                 SelectionHTMLExporter.doExport(target, selection);
                 GlobalOptions.addProperty("screen.dir", target.getParent());
-                showSuccess("Auswahl erfolgreich gespeichert");
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Willst du die erstellte Datei jetzt im Browser betrachten?", "Information", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+                showSuccess(trans.get("Auswahlerfolgreich"));
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Browser"), trans.get("Information"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                     BrowserInterface.openPage(target.toURI().toURL().toString());
                 }
             } catch (Exception inner) {
                 logger.error("Failed to write selection to HTML", inner);
-                showError("Fehler beim Speichern");
+                showError(trans.get("error_save"));
             }
         }
     }
@@ -645,14 +649,14 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             villages = PluginManager.getSingleton().executeVillageParser((String) t.getTransferData(DataFlavor.stringFlavor));
         } catch (Exception e) {
             logger.error("Failed to read village data from clipboard", e);
-            showError("Fehler beim Lesen aus der Zwischenablage");
+            showError(trans.get("error_clipboard_Lesen"));
         }
 
         if (villages == null || villages.isEmpty()) {
-            showInfo("Keine Dörfer in der Zwischenablage gefunden");
+            showInfo(trans.get("KeinDoerfZwischenablage"));
         } else {
             substractVillages(villages);
-            showSuccess(((villages.size() == 1) ? "Dorf" : villages.size() + " Dörfer") + " entfernt");
+            showSuccess(((villages.size() == 1) ? trans.get("Dorf") : villages.size() + trans.get("Doerfer")) + trans.get("entfernt"));
         }
     }
 
@@ -698,7 +702,7 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXInfoLabel.setText("Keine Meldung");
+        jXInfoLabel.setText(trans.get("KeineMeldung"));
         jXInfoLabel.setOpaque(true);
         jXInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -709,18 +713,18 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
         jSelectionTreePanel.add(infoPanel, java.awt.BorderLayout.SOUTH);
 
-        jLabel1.setText("Start");
+        jLabel1.setText(trans.get("Start"));
 
-        jLabel7.setText("Ende");
+        jLabel7.setText(trans.get("Ende"));
 
-        jPerformSelection.setText("Auswählen");
+        jPerformSelection.setText(trans.get("Auswaehlen"));
         jPerformSelection.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 firePerformRegionSelectionEvent(evt);
             }
         });
 
-        jButton3.setText("Abbrechen");
+        jButton3.setText(trans.get("Abbrechen"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 firePerformRegionSelectionEvent(evt);
@@ -803,26 +807,25 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
         jCustomPointsPanel.setPreferredSize(new java.awt.Dimension(100, 50));
         jCustomPointsPanel.setLayout(new java.awt.BorderLayout());
 
-        jCustomPointsField.setToolTipText("Punktezahl manuell angeben");
+        jCustomPointsField.setToolTipText(trans.get("Punktezahl"));
         jCustomPointsField.setMaximumSize(new java.awt.Dimension(30, 30));
         jCustomPointsField.setMinimumSize(new java.awt.Dimension(30, 30));
         jCustomPointsField.setPreferredSize(new java.awt.Dimension(30, 30));
         jCustomPointsField.setPrompt("Punkte");
         jCustomPointsPanel.add(jCustomPointsField, java.awt.BorderLayout.CENTER);
 
-        jApplyCustomFilter.setText("Auswählen");
-        jApplyCustomFilter.setToolTipText("Dörfer mit weniger als den angegebenen Punkte wählen");
+        jApplyCustomFilter.setText(trans.get("Auswaehlen"));
+        jApplyCustomFilter.setToolTipText(trans.get("Doerfermitweniger"));
         jApplyCustomFilter.setMaximumSize(new java.awt.Dimension(30, 20));
         jApplyCustomFilter.setMinimumSize(new java.awt.Dimension(30, 20));
         jApplyCustomFilter.setPreferredSize(new java.awt.Dimension(30, 20));
         jCustomPointsPanel.add(jApplyCustomFilter, java.awt.BorderLayout.PAGE_END);
 
-        setTitle("Auswahl");
+        setTitle(trans.get("Auswahl"));
         setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTopBox.setText("Immer im Vordergrund");
-        jAlwaysOnTopBox.setOpaque(false);
+        jAlwaysOnTopBox.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTopBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireAlwaysOnTopChangedEvent(evt);
@@ -875,10 +878,9 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
             
             if (start.x < mapDim.getMinX() || start.x > mapDim.getMaxX() || start.y < mapDim.getMinY() || start.y > mapDim.getMaxY()
                     || end.x < mapDim.getMinX() || end.x > mapDim.getMaxX() || end.y < mapDim.getMinY() || end.y > mapDim.getMaxY()) {
-                showError("Ungültiger Start- oder Endpunkt");
+                showError(trans.get("UngueltigerStartEndpunkt"));
             } else if ((Math.abs(end.x - start.x) * (end.y - start.y)) > 30000) {
-                showError("<html>Die angegebene Auswahl k&ouml;nnte mehr als 10.000 D&ouml;rfer umfassen.<br/>"
-                        + "Die Auswahl k&ouml;nnte so sehr lange dauern. Bitte verkleinere den gew&auml;hlten Bereich.");
+                showError(trans.get("Auswahltzehntausend"));
             } else {
                 List<Village> selection = DataHolder.getSingleton().getVillagesInRegion(start, end);
                 updateSelection(selection);

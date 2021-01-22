@@ -28,6 +28,8 @@ import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.*;
 import de.tor.tribes.util.bb.KnownVillageListFormatter;
 import de.tor.tribes.util.mark.MarkerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.village.KnownVillage;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.awt.*;
@@ -57,6 +59,8 @@ import org.jdesktop.swingx.painter.MattePainter;
  */
 public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame implements GenericManagerListener, ListSelectionListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchKnownVillageFrame");
+    
     @Override
     public void dataChangedEvent() {
         dataChangedEvent(null);
@@ -176,7 +180,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXLabel1.setText("Keine Meldung");
+        jXLabel1.setText(trans.get("KeineMeldung"));
         jXLabel1.setOpaque(true);
         jXLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -202,7 +206,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
 
         jXPanel1.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        setTitle("Dörfer");
+        setTitle(trans.get("Doerfer"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jKnownVillagePanel.setBackground(new java.awt.Color(239, 235, 223));
@@ -217,7 +221,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jKnownVillagePanel, gridBagConstraints);
 
-        jKnownVillageFrameAlwaysOnTop.setText("Immer im Vordergrund");
+        jKnownVillageFrameAlwaysOnTop.setText(trans.get("ImmerimVordergrund"));
         jKnownVillageFrameAlwaysOnTop.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireKnownVillageFrameOnTopEvent(evt);
@@ -253,9 +257,9 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
 
     private void buildMenu() {
         JXTaskPane transferPane = new JXTaskPane();
-        transferPane.setTitle("Übertragen");
+        transferPane.setTitle(trans.get("Uebertragen"));
         JXButton transferVillageList = new JXButton(new ImageIcon(DSWorkbenchKnownVillageFrame.class.getResource("/res/ui/center_ingame.png")));
-        transferVillageList.setToolTipText("Zentriert das Dorf im Spiel");
+        transferVillageList.setToolTipText(trans.get("ZentriertDorf"));
         transferVillageList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -266,7 +270,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
 
         if (!GlobalOptions.isMinimal()) {
             JXButton button = new JXButton(new ImageIcon(DSWorkbenchKnownVillageFrame.class.getResource("/res/center_24x24.png")));
-            button.setToolTipText("Zentriert das Dorf auf der Hauptkarte");
+            button.setToolTipText(trans.get("ZentriertdasDorfHauptkarte"));
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -295,7 +299,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         if (v != null) {
             DSWorkbenchMainFrame.getSingleton().centerVillage(v.getVillage());
         } else {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
         }
     }
 
@@ -304,7 +308,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         if (v != null) {
             BrowserInterface.centerVillage(v.getVillage());
         } else {
-            showInfo("Kein Dorf gewählt");
+            showInfo(trans.get("KeinDorfgewaehlt"));
         }
     }
 
@@ -313,7 +317,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         if (e.getValueIsAdjusting()) {
             int selectionCount = jKnownVillageTable.getSelectedRowCount();
             if (selectionCount != 0) {
-                showInfo(selectionCount + ((selectionCount == 1) ? " Dorf gewählt" : " Dörfer gewählt"));
+                showInfo(selectionCount + ((selectionCount == 1) ? trans.get("Dorfgewaehlt") : trans.get("Doerfergewahlt")));
             }
         }
     }
@@ -344,8 +348,8 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
         if (rows.length == 0) {
             return;
         }
-        String message = ((rows.length == 1) ? "Dorf " : (rows.length + " Dörfer ")) + "wirklich löschen?";
-        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+        String message = ((rows.length == 1) ? trans.get("Dorf") : (rows.length + trans.get("Doerfer"))) + trans.get("wirklichloeschen");
+        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
             //get markers to remove
             List<Village> toRemove = new ArrayList<>();
             jKnownVillageTable.invalidate();
@@ -359,7 +363,7 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
             jKnownVillageTable.revalidate();
             //remove all selected markers and update the view once
             KnownVillageManager.getSingleton().removeVillages(toRemove.toArray(new Village[]{}));
-            showSuccess(toRemove.size() + ((toRemove.size() == 1) ? " Dorf gelöscht" : " Dörfer gelöscht"));
+            showSuccess(toRemove.size() + ((toRemove.size() == 1) ? trans.get("Dorfgeloescht") : trans.get("Doerfergeloescht")));
         }
     }
 
@@ -370,25 +374,25 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
                 return;
             }
 
-            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterterBBCode"), trans.get("ErweiterteBBCodes"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
             StringBuilder buffer = new StringBuilder();
             if (extended) {
-                buffer.append("[u][size=12]Dörfer[/size][/u]\n\n");
+                buffer.append(trans.get("BBDoerfersize"));
             } else {
-                buffer.append("[u]Dörfer[/u]\n\n");
+                buffer.append(trans.get("BBDoerfer"));
             }
             buffer.append(new KnownVillageListFormatter().formatElements(selVill, extended));
 
             if (extended) {
-                buffer.append("\n[size=8]Erstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("BBErstelltam"));
+                buffer.append(new SimpleDateFormat(trans.get("date_format")).format(Calendar.getInstance().getTime()));
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
-                buffer.append("\nErstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("Erstelltam"));
+                buffer.append(new SimpleDateFormat(trans.get("date_format")).format(Calendar.getInstance().getTime()));
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }
 
@@ -396,19 +400,17 @@ public class DSWorkbenchKnownVillageFrame extends AbstractDSWorkbenchFrame imple
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die ausgewählten Wachtürme benötigen mehr als 1000 BB-Codes\n"
-                        + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\n"
-                        + "Trotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("tausendeBBCode"), trans.get("tomutch_BBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            String result = "Daten in Zwischenablage kopiert.";
+            String result = trans.get("Daten_Zwischenablage");
             showSuccess(result);
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            String result = "Fehler beim Kopieren in die Zwischenablage.";
+            String result = trans.get("Error_copy");
             showError(result);
         }
     }

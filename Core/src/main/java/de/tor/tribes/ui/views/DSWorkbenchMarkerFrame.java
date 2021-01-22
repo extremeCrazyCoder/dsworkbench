@@ -25,6 +25,8 @@ import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.PropertyHelper;
 import de.tor.tribes.util.mark.MarkerManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -46,6 +48,8 @@ import org.jdesktop.swingx.JXTaskPane;
  */
 public class DSWorkbenchMarkerFrame extends AbstractDSWorkbenchFrame implements GenericManagerListener, ActionListener {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchMarkerFrame");
+    
     private static Logger logger = LogManager.getLogger("MarkerView");
     private static DSWorkbenchMarkerFrame SINGLETON = null;
     private GenericTestPanel centerPanel = null;
@@ -125,10 +129,10 @@ public class DSWorkbenchMarkerFrame extends AbstractDSWorkbenchFrame implements 
 
     private void buildMenu() {
         JXTaskPane editPane = new JXTaskPane();
-        editPane.setTitle("Bearbeiten");
+        editPane.setTitle(trans.get("Bearbeiten"));
         JXButton showButton = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/eye_large.png")));
 
-        showButton.setToolTipText("Blendet gewählten Markierungen auf der Hauptkarte und der Minimap ein");
+        showButton.setToolTipText(trans.get("BlendetHauptkarteein"));
         showButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -142,7 +146,7 @@ public class DSWorkbenchMarkerFrame extends AbstractDSWorkbenchFrame implements 
         editPane.getContentPane().add(showButton);
         JXButton hideButton = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/eye_forbidden_large.png")));
 
-        hideButton.setToolTipText("Blendet gewählten Markierungen auf der Hauptkarte und der Minimap aus");
+        hideButton.setToolTipText(trans.get("BlendetHauptkarteaus"));
         hideButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -274,7 +278,7 @@ public class DSWorkbenchMarkerFrame extends AbstractDSWorkbenchFrame implements 
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_new_24x24.png"))); // NOI18N
-        jLabel3.setToolTipText("Leeres Markierungsset erstellen");
+        jLabel3.setToolTipText(trans.get("LeeresMarkierungsseterstellen"));
         jLabel3.setEnabled(false);
         jLabel3.setMaximumSize(new java.awt.Dimension(40, 40));
         jLabel3.setMinimumSize(new java.awt.Dimension(40, 40));
@@ -292,11 +296,11 @@ public class DSWorkbenchMarkerFrame extends AbstractDSWorkbenchFrame implements 
         });
         jNewPlanPanel.add(jLabel3, java.awt.BorderLayout.CENTER);
 
-        setTitle("Markierungen");
+        setTitle(trans.get("Markierungen"));
         setMinimumSize(new java.awt.Dimension(400, 300));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jMarkerFrameAlwaysOnTop.setText("Immer im Vordergrund");
+        jMarkerFrameAlwaysOnTop.setText(trans.get("ImmerimVordergrund"));
         jMarkerFrameAlwaysOnTop.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireMarkerFrameOnTopEvent(evt);
@@ -345,13 +349,13 @@ private void fireMouseExitEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
 private void fireCreateMarkerSetEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireCreateMarkerSetEvent
     int unusedId = 1;
     while (unusedId < 1000) {
-        if (MarkerManager.getSingleton().addGroup("Neues Set " + unusedId)) {
+        if (MarkerManager.getSingleton().addGroup(trans.get("NeuesSet") + unusedId)) {
             break;
         }
         unusedId++;
     }
     if (unusedId == 1000) {
-        JOptionPaneHelper.showErrorBox(DSWorkbenchMarkerFrame.this, "Du hast mehr als 1000 Markierungssets. Bitte lösche zuerst ein paar bevor du Neue erstellst.", "Fehler");
+        JOptionPaneHelper.showErrorBox(DSWorkbenchMarkerFrame.this, trans.get("tausendeMarkierungssets"), trans.get("Fehler"));
     }
 }//GEN-LAST:event_fireCreateMarkerSetEvent
 

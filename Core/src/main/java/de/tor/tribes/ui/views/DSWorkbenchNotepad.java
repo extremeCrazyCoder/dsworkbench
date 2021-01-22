@@ -29,6 +29,8 @@ import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.PropertyHelper;
 import de.tor.tribes.util.note.NoteManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -56,6 +58,8 @@ import org.jdesktop.swingx.painter.MattePainter;
  * @author Charon
  */
 public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements GenericManagerListener, ActionListener {
+    
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchNotepad");
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -191,10 +195,10 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
     
     private void buildMenu() {
         JXTaskPane editTaskPane = new JXTaskPane();
-        editTaskPane.setTitle("Bearbeiten");
+        editTaskPane.setTitle(trans.get("Bearbeiten"));
         
         JXButton newNote = new JXButton(new ImageIcon(DSWorkbenchNotepad.class.getResource("/res/ui/document_new_24x24.png")));
-        newNote.setToolTipText("Erstellt eine leere Notiz");
+        newNote.setToolTipText(trans.get("ErstellteineleereNotiz"));
         newNote.addMouseListener(new MouseAdapter() {
             
             @Override
@@ -209,9 +213,9 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
         
         
         JXTaskPane transferTaskPane = new JXTaskPane();
-        transferTaskPane.setTitle("Übertragen");
+        transferTaskPane.setTitle(trans.get("Uebertragen"));
         JXButton transferVillageList = new JXButton(new ImageIcon(DSWorkbenchNotepad.class.getResource("/res/ui/center_ingame.png")));
-        transferVillageList.setToolTipText("Zentriert das gewählte Notizdorf im Spiel");
+        transferVillageList.setToolTipText(trans.get("ZentriertNotizdorf"));
         transferVillageList.addMouseListener(new MouseAdapter() {
             
             @Override
@@ -226,7 +230,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
         
         if (!GlobalOptions.isMinimal()) {
             JXButton centerVillage = new JXButton(new ImageIcon(DSWorkbenchNotepad.class.getResource("/res/center_24x24.png")));
-            centerVillage.setToolTipText("Zentriert das gewählte Notizdorf auf der Hauptkarte");
+            centerVillage.setToolTipText(trans.get("ZentriertNotizdorfHauptdorf"));
             centerVillage.setSize(transferVillageList.getSize());
             centerVillage.setMinimumSize(transferVillageList.getMinimumSize());
             centerVillage.setMaximumSize(transferVillageList.getMaximumSize());
@@ -297,15 +301,15 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
                     if(!newName.equals(tab.getNoteSet())) {
                         newName = newName.trim();
                         if (newName.length() == 0) {
-                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, "'" + newName + "' ist ein ungültiger Notizenset name", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, "'" + newName + trans.get("ungueltigerNotizenset"), trans.get("Fehler"));
                             return;
                         }
                         if (NoteManager.getSingleton().groupExists(newName)) {
-                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, "Es existiert bereits ein Notizenset mit dem Namen '" + newName + "'", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, trans.get("Esexistiertbereits") + newName + "'", trans.get("Fehler"));
                             return;
                         }
                         if (! JDomUtils.stringAllowed(newName)) {
-                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, "Der name '" + newName + "' enthält ungültige Sonderzeichen", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jNoteTabbedPane, trans.get("Dername") + newName + trans.get("enthaeltSonderzeichen"), trans.get("Fehler"));
                             return;
                         }
                         
@@ -319,8 +323,8 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
                 public void event() {
                     int i = jNoteTabbedPane.indexOfTabComponent(component);
                     NoteTableTab tab = (NoteTableTab) jNoteTabbedPane.getComponentAt(i);
-                    if (JOptionPaneHelper.showQuestionConfirmBox(jNoteTabbedPane, "Notizset '" + tab.getNoteSet()+
-                            "' und alle darin enthaltenen Notizen wirklich löschen? ", "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+                    if (JOptionPaneHelper.showQuestionConfirmBox(jNoteTabbedPane, trans.get("Notizset") + tab.getNoteSet()+
+                            trans.get("Notzienwirklichloeschen"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                         NoteManager.getSingleton().removeGroup(tab.getNoteSet());
                     }
                 }
@@ -335,7 +339,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
         }
         
         jNoteTabbedPane.addTab("", new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_new_24x24.png")),
-                new JPanel(), "neues Notizset erstellen");
+                new JPanel(), trans.get("NeuesNotizset"));
         jNoteTabbedPane.setSelectedIndex(0);
         
         generatingTabs = false;
@@ -359,7 +363,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
             
             Note n = new Note();
             n.addVillage(pVillage);
-            n.setNoteText("(kein Text)");
+            n.setNoteText(trans.get("keinText"));
             n.setMapMarker(0);
             NoteManager.getSingleton().addManagedElement(set, n);
         }
@@ -374,7 +378,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
             for (Village v : pVillages) {
                 n.addVillage(v);
             }
-            n.setNoteText("(kein Text)");
+            n.setNoteText(trans.get("keinText"));
             n.setMapMarker(0);
             NoteManager.getSingleton().addManagedElement(set, n);
         }
@@ -427,7 +431,7 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
         jXPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jXPanel3.setInheritAlpha(false);
 
-        jButton16.setText("Anwenden");
+        jButton16.setText(trans.get("Anwenden"));
         jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton16fireHideGlassPaneEvent(evt);
@@ -440,16 +444,16 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
             }
         });
 
-        jLabel21.setText("Suchbegriff");
+        jLabel21.setText(trans.get("Suchbegriff"));
 
-        jFilterRows.setText("Nur gefilterte Zeilen anzeigen");
+        jFilterRows.setText(trans.get("NurgefilterteZeilenanzeigen"));
         jFilterRows.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterRowsfireUpdateFilterEvent(evt);
             }
         });
 
-        jFilterCaseSensitive.setText("Groß-/Kleinschreibung beachten");
+        jFilterCaseSensitive.setText(trans.get("GrossKleinschreibung"));
         jFilterCaseSensitive.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterCaseSensitivefireUpdateFilterEvent(evt);
@@ -495,17 +499,17 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nicht gruppieren", "Gruppieren nach Dörfern", "Gruppieren nach Notizsymbolen" }));
 
-        jLabel5.setText("Gruppierung");
+        jLabel5.setText(trans.get("Gruppierung"));
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Vorschau"));
 
-        jTextPane1.setContentType("text/html"); // NOI18N
         jTextPane1.setEditable(false);
+        jTextPane1.setContentType("text/html"); // NOI18N
         jScrollPane4.setViewportView(jTextPane1);
 
-        jButton4.setText("Übernehmen");
+        jButton4.setText(trans.get("uebernehmen"));
 
-        jButton5.setText("Abbrechen");
+        jButton5.setText(trans.get("Abbrechen"));
 
         javax.swing.GroupLayout jExportFormatDialogLayout = new javax.swing.GroupLayout(jExportFormatDialog.getContentPane());
         jExportFormatDialog.getContentPane().setLayout(jExportFormatDialogLayout);
@@ -548,11 +552,11 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setTitle("Notizen");
+        setTitle(trans.get("Notizen"));
         setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTopBox.setText("Immer im Vordergrund");
+        jAlwaysOnTopBox.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTopBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireAlwaysOnTopChangedEvent(evt);
@@ -623,13 +627,13 @@ public class DSWorkbenchNotepad extends AbstractDSWorkbenchFrame implements Gene
     private void createNewNoteSet() {
         int unusedId = 1;
         while (unusedId < 1000) {
-            if (NoteManager.getSingleton().addGroup("Neues Set " + unusedId)) {
+            if (NoteManager.getSingleton().addGroup(trans.get("NeuesSet") + unusedId)) {
                 break;
             }
             unusedId++;
         }
         if (unusedId == 1000) {
-            JOptionPaneHelper.showErrorBox(DSWorkbenchNotepad.this, "Du hast mehr als 1000 Notizsets. Bitte lösche zuerst ein paar bevor du Neue erstellst.", "Fehler");
+            JOptionPaneHelper.showErrorBox(DSWorkbenchNotepad.this, trans.get("tausendeNotizsets"), trans.get("Fehler"));
         }
     }
     

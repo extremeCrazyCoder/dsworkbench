@@ -63,7 +63,7 @@ import org.jdesktop.swingx.table.TableColumnExt;
  * @author Torridity
  */
 public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements GenericManagerListener, ActionListener {
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         ReportTableTab activeTab = getActiveTab();
@@ -250,9 +250,9 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
     private void buildMenu() {
         // <editor-fold defaultstate="collapsed" desc="view task pane">
         JXTaskPane viewTaskPane = new JXTaskPane();
-        viewTaskPane.setTitle("Anzeigen");
+        viewTaskPane.setTitle(trans.get("Anzeigen"));
         
-        viewTaskPane.getContentPane().add(factoryButton("/res/ui/view_report.png", "Die gew&auml;hlten Berichte öffnen", new MouseAdapter() {
+        viewTaskPane.getContentPane().add(factoryButton("/res/ui/view_report.png", trans.get("Berichte_open"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 ReportTableTab tab = getActiveTab();
@@ -264,9 +264,9 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="transfer task pane">
         JXTaskPane transferTaskPane = new JXTaskPane();
-        transferTaskPane.setTitle("Übertragen");
+        transferTaskPane.setTitle(trans.get("Uebertragen"));
 
-        transferTaskPane.getContentPane().add(factoryButton("/res/ui/troop_info_add.png", "&Uuml;bertr&auml;gt die &uuml;berlebenden Truppen des Verteidigers", new MouseAdapter() {
+        transferTaskPane.getContentPane().add(factoryButton("/res/ui/troop_info_add.png", trans.get("ueberlebendeTruppenVerteidigers"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 ReportTableTab tab = getActiveTab();
@@ -276,7 +276,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             }
         }));
 
-        transferTaskPane.getContentPane().add(factoryButton("/res/ui/report_toAStar.png", "&Uuml;bertr&auml;gt den gew&auml;hlten Berichte nach A*Star", new MouseAdapter() {
+        transferTaskPane.getContentPane().add(factoryButton("/res/ui/report_toAStar.png", trans.get("AStar_reports"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 ReportTableTab tab = getActiveTab();
@@ -288,16 +288,16 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="misc task pane">
         JXTaskPane miscPane = new JXTaskPane();
-        miscPane.setTitle("Sonstiges");
+        miscPane.setTitle(trans.get("Sonstiges"));
         
-        miscPane.getContentPane().add(factoryButton("/res/ui/document_new_24x24.png", "Neuen Plan erstellen", new MouseAdapter() {
+        miscPane.getContentPane().add(factoryButton("/res/ui/document_new_24x24.png", trans.get("new_plan"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 createNewReportSet();
             }
         }));
         
-        miscPane.getContentPane().add(factoryButton("/res/ui/medal.png", "Statistiken zu den gew&auml;hlten Berichten erstellen", new MouseAdapter() {
+        miscPane.getContentPane().add(factoryButton("/res/ui/medal.png", trans.get("Statistiken_reports"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 ReportTableTab tab = getActiveTab();
@@ -315,14 +315,14 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             }
         }));
 
-        miscPane.getContentPane().add(factoryButton("/res/ui/report_cleanup.png", "Veraltete und doppelte Berichte im gewählten Berichtset l&ouml;schen", new MouseAdapter() {
+        miscPane.getContentPane().add(factoryButton("/res/ui/report_cleanup.png", trans.get("old_reports"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 cleanupReports();
             }
         }));
 
-        miscPane.getContentPane().add(factoryButton("/res/ui/index_edit.png", "Definierte Regeln bearbeiten oder neu erstellen", new MouseAdapter() {
+        miscPane.getContentPane().add(factoryButton("/res/ui/index_edit.png", trans.get("Regelnbearbeiten"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 rulesDialog.rebuildRuleList();
@@ -331,7 +331,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             }
         }));
 
-        miscPane.getContentPane().add(factoryButton("/res/ui/index_refresh.png", "Definierte Regeln jetzt auf das gew&auml;hlte Berichtset anwenden", new MouseAdapter() {
+        miscPane.getContentPane().add(factoryButton("/res/ui/index_refresh.png", trans.get("Regelauswaehlen"), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 ReportTableTab tab = getActiveTab();
@@ -339,7 +339,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
                     int changed = ReportManager.getSingleton().filterNow(tab.getReportSet());
                     tab = getActiveTab();
                     if (tab != null) {
-                        tab.showInfo(changed + " Berichte neu eingeordnet");
+                        tab.showInfo(changed + trans.get("Berichteneueingeordnet"));
                     }
                 }
             }
@@ -396,12 +396,12 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         }
 
         if (!old.isEmpty()) {
-            if (JOptionPaneHelper.showQuestionConfirmBox(this, old.size() + " veraltete Berichte gefunden. Jetzt löschen?", "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+            if (JOptionPaneHelper.showQuestionConfirmBox(this, old.size() + trans.get("Old_reports_delete"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                 ReportManager.getSingleton().removeElements(set, old);
             }
-            tab.showInfo(old.size() + " Berichte gelöscht");
+            tab.showInfo(old.size() + trans.get("Reportdelete"));
         } else {
-            tab.showInfo("Keine alten Berichte gefunden");
+            tab.showInfo(trans.get("no_old_reports_found"));
         }
     }
 
@@ -455,15 +455,15 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
                     if(!newName.equals(tab.getReportSet())) {
                         newName = newName.trim();
                         if (newName.length() == 0) {
-                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, "'" + newName + "' ist ein ungültiger Setname", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, "'" + newName + trans.get("ungueltigerSetname"), trans.get("Fehler"));
                             return;
                         }
                         if (ReportManager.getSingleton().groupExists(newName)) {
-                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, "Es existiert bereits ein Berichtset mit dem Namen '" + newName + "'", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, trans.get("existiert_Berichtset") + newName + "'", trans.get("Fehler"));
                             return;
                         }
                         if (! JDomUtils.stringAllowed(newName)) {
-                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, "Der name '" + newName + "' enthält ungültige Sonderzeichen", "Fehler");
+                            JOptionPaneHelper.showWarningBox(jReportsTabbedPane, trans.get("Dername") + newName + trans.get("enthaeltSonderzeichen"), trans.get("Fehler"));
                             return;
                         }
                         
@@ -477,8 +477,8 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
                 public void event() {
                     int i = jReportsTabbedPane.indexOfTabComponent(component);
                     ReportTableTab tab = (ReportTableTab) jReportsTabbedPane.getComponentAt(i);
-                    if (JOptionPaneHelper.showQuestionConfirmBox(jReportsTabbedPane, "Berichtset '" + tab.getReportSet() +
-                            "' und alle darin enthaltenen Berichte wirklich löschen? ", "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+                    if (JOptionPaneHelper.showQuestionConfirmBox(jReportsTabbedPane, trans.get("Berichtset") + tab.getReportSet() +
+                            trans.get("all_reports_delete"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                         ReportManager.getSingleton().removeGroup(tab.getReportSet());
                     }
                 }
@@ -493,7 +493,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         }
         
         jReportsTabbedPane.addTab("", new javax.swing.ImageIcon(getClass().getResource("/res/ui/document_new_24x24.png")),
-                new JPanel(), "neues Berichtset erstellen");
+                new JPanel(), trans.get("New_Berichtsset"));
         
         generatingTabs = false;
         
@@ -568,18 +568,18 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jReportsPanel = new javax.swing.JPanel();
         capabilityInfoPanel1 = new de.tor.tribes.ui.components.CapabilityInfoPanel();
 
-        jCreateStatsFrame.setTitle("Kampfstatistiken");
+        jCreateStatsFrame.setTitle(trans.get("Kampfstatistiken"));
 
         jPanel2.setBackground(new java.awt.Color(239, 235, 223));
 
-        jLabel6.setText("Verwendete Berichtsets");
+        jLabel6.setText(trans.get("VerwendeteBerichtsets"));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(258, 100));
 
         jScrollPane2.setViewportView(jReportSetsForStatsList);
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jButton10.setText("Auswerten");
+        jButton10.setText(trans.get("Auswerten"));
         jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireDoCreateStatsEvent(evt);
@@ -589,7 +589,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ergebnisse"));
         jPanel3.setOpaque(false);
 
-        jLabel7.setText("Angezeigte Stämme");
+        jLabel7.setText(trans.get("AngezeigteStaemme"));
 
         jScrollPane3.setMaximumSize(new java.awt.Dimension(140, 130));
         jScrollPane3.setMinimumSize(new java.awt.Dimension(140, 130));
@@ -602,8 +602,8 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jOverallStatsArea.setContentType("text/html"); // NOI18N
         jOverallStatsArea.setEditable(false);
+        jOverallStatsArea.setContentType("text/html"); // NOI18N
         jScrollPane1.setViewportView(jOverallStatsArea);
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
@@ -613,8 +613,8 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jPanel5.setBackground(new java.awt.Color(239, 235, 223));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jAllyStatsArea.setContentType("text/html"); // NOI18N
         jAllyStatsArea.setEditable(false);
+        jAllyStatsArea.setContentType("text/html"); // NOI18N
         jScrollPane5.setViewportView(jAllyStatsArea);
 
         jPanel5.add(jScrollPane5, java.awt.BorderLayout.CENTER);
@@ -728,7 +728,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jXPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jXPanel2.setInheritAlpha(false);
 
-        jButton15.setText("Anwenden");
+        jButton15.setText(trans.get("Anwenden"));
         jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton15fireHideGlassPaneEvent(evt);
@@ -741,16 +741,16 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             }
         });
 
-        jLabel21.setText("Suchbegriff");
+        jLabel21.setText(trans.get("Suchbegriff"));
 
-        jFilterRows.setText("Nur gefilterte Zeilen anzeigen");
+        jFilterRows.setText(trans.get("gefilterteZeilen"));
         jFilterRows.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterRowsfireUpdateFilterEvent(evt);
             }
         });
 
-        jFilterCaseSensitive.setText("Groß-/Kleinschreibung beachten");
+        jFilterCaseSensitive.setText(trans.get("GrossKleinschreibung"));
         jFilterCaseSensitive.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jFilterCaseSensitivefireUpdateFilterEvent(evt);
@@ -765,7 +765,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jXColumnList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane8.setViewportView(jXColumnList);
 
-        jLabel22.setText("Spalten");
+        jLabel22.setText(trans.get("Spalten"));
 
         javax.swing.GroupLayout jXPanel2Layout = new javax.swing.GroupLayout(jXPanel2);
         jXPanel2.setLayout(jXPanel2Layout);
@@ -816,7 +816,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         jPanel7.setOpaque(false);
 
         jGuessUnknownLosses.setSelected(true);
-        jGuessUnknownLosses.setText("Gegnerische Verluste schätzen, falls unbekannt");
+        jGuessUnknownLosses.setText(trans.get("VerlusteGegnerische"));
         jGuessUnknownLosses.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireStatOptionsChangedEvent(evt);
@@ -824,7 +824,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         });
 
         jUseSilentKillsBox.setSelected(true);
-        jUseSilentKillsBox.setText("Auswärtige Einheiten bei Adelung als Verlust werten");
+        jUseSilentKillsBox.setText(trans.get("AdelVerlust"));
         jUseSilentKillsBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireStatOptionsChangedEvent(evt);
@@ -832,14 +832,14 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         });
 
         jCheckBox3.setSelected(true);
-        jCheckBox3.setText("Verluste pro Angreifer/Verteidiger anzeigen");
+        jCheckBox3.setText(trans.get("AngreiferVerteidigerVerlust"));
         jCheckBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireStatOptionsChangedEvent(evt);
             }
         });
 
-        jShowPercentsBox.setText("Prozentuale Anteile anzeigen");
+        jShowPercentsBox.setText(trans.get("ProzentualeAnteile"));
         jShowPercentsBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireStatOptionsChangedEvent(evt);
@@ -872,10 +872,10 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        setTitle("Berichtsdatenbank");
+        setTitle(trans.get("Berichtsdatenbank"));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jAlwaysOnTopBox.setText("Immer im Vordergrund");
+        jAlwaysOnTopBox.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTopBox.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireAlwaysOnTopEvent(evt);
@@ -918,7 +918,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
     private void fireDoCreateStatsEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireDoCreateStatsEvent
         List selection = jReportSetsForStatsList.getSelectedValuesList();
         if (selection == null || selection.isEmpty()) {
-            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, "Kein Berichtset ausgewählt", "Information");
+            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, trans.get("No_Reportset"), trans.get("Information"));
             return;
         }
 
@@ -974,22 +974,22 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
     private void createNewReportSet() {
       int unusedId = 1;
         while (unusedId < 1000) {
-            if (ReportManager.getSingleton().addGroup("Neues Set " + unusedId)) {
+            if (ReportManager.getSingleton().addGroup(trans.get("NeuesSet") + unusedId)) {
                 break;
             }
             unusedId++;
         }
         if (unusedId == 1000) {
-            JOptionPaneHelper.showErrorBox(DSWorkbenchReportFrame.this, "Du hast mehr als 1000 Berichtsets. Bitte lösche zuerst ein paar bevor du Neue erstellst.", "Fehler");
+            JOptionPaneHelper.showErrorBox(DSWorkbenchReportFrame.this, trans.get("tausendeReportssets"), trans.get("Fehler"));
         }
     }
     
     private void fireRebuildStatsEvent() {
         List selection = jList1.getSelectedValuesList();
         if (selection == null || selection.isEmpty()) {
-            jOverallStatsArea.setText("<html>Kein Stamm ausgewählt</html>");
-            jAllyStatsArea.setText("<html>Kein Stamm ausgewählt</html>");
-            jTribeStatsArea.setText("<html>Kein Stamm ausgewählt</html>");
+            jOverallStatsArea.setText(trans.get("HTML_Stamm"));
+            jAllyStatsArea.setText(trans.get("HTML_Stamm"));
+            jTribeStatsArea.setText(trans.get("HTML_Stamm"));
             return;
         }
         int overallDefAllies = lastStats.getDefendingAllies().length;
@@ -1042,7 +1042,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             jOverallStatsArea.setText("<html><head>" + BBCodeFormatter.getStyles() + "</head><body>" + BBCodeFormatter.toHtml(overallResultCodes) + "</body></html>");
         } catch (Exception e) {
             overallResultCodes = null;
-            jOverallStatsArea.setText("<html>Fehler bei der Darstellung der Auswertung</html>");
+            jOverallStatsArea.setText(trans.get("Failed_HTML"));
             logger.error("Failed to render overall BB representation", e);
         }
         try {
@@ -1052,7 +1052,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             jAllyStatsArea.setText("<html><head>" + BBCodeFormatter.getStyles() + "</head><body>" + BBCodeFormatter.toHtml(allyResultCodes) + "</body></html>");
         } catch (Exception e) {
             allyResultCodes = null;
-            jAllyStatsArea.setText("<html>Fehler bei der Darstellung der Auswertung</html>");
+            jAllyStatsArea.setText(trans.get("Failed_HTML"));
             logger.error("Failed to render BB representation for allies", e);
         }
 
@@ -1065,7 +1065,7 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
             jTribeStatsArea.setText("<html><head>" + BBCodeFormatter.getStyles() + "</head><body>" + BBCodeFormatter.toHtml(tribeResultCodes) + "</body></html>");
         } catch (Exception e) {
             tribeResultCodes = null;
-            jTribeStatsArea.setText("<html>Fehler bei der Darstellung der Auswertung</html>");
+            jTribeStatsArea.setText(trans.get("Failed_HTML"));
             logger.error("Failed to render BB representation for tribes", e);
         }
         jResultTabbedPane.setSelectedIndex(0);
@@ -1077,27 +1077,27 @@ public class DSWorkbenchReportFrame extends AbstractDSWorkbenchFrame implements 
         switch (jResultTabbedPane.getSelectedIndex()) {
             case 0:
                 toCopy = new StringSelection(overallResultCodes);
-                dataName = "Gesamtübersicht";
+                dataName = trans.get("Gesamtuebersicht");
                 break;
             case 1:
                 toCopy = new StringSelection(allyResultCodes);
-                dataName = "Stämme";
+                dataName = trans.get("Staemme");
                 break;
             case 2:
                 toCopy = new StringSelection(tribeResultCodes);
-                dataName = "Spieler";
+                dataName = trans.get("Spieler");
                 break;
         }
         if (toCopy == null) {
-            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, "Bitte zuerst einen Tab mit einer Auswertung wählen.", "Information");
+            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, trans.get("Auswertung_Tab"), trans.get("Information"));
             return;
         }
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(toCopy, null);
-            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, "Auswertung '" + dataName + "' in Zwischenablage kopiert.", "Information");
+            JOptionPaneHelper.showInformationBox(jCreateStatsFrame, trans.get("Auswertung") + dataName + trans.get("' in Zwischenablage kopiert."), trans.get("Information"));
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            JOptionPaneHelper.showErrorBox(jCreateStatsFrame, "Fehler beim Kopieren in die Zwischenablage.", "Fehler");
+            JOptionPaneHelper.showErrorBox(jCreateStatsFrame, trans.get("Failed_clipboard"), trans.get("Fehler"));
         }
     }
 

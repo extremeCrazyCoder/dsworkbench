@@ -197,9 +197,9 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
     private void buildMenu() {
         JXTaskPane viewPane = new JXTaskPane();
-        viewPane.setTitle("Ansicht");
+        viewPane.setTitle(trans.get("Ansicht"));
         JXButton toSosView = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/axe24.png")));
-        toSosView.setToolTipText("Eingelesene SOS-Anfragen anzeigen");
+        toSosView.setToolTipText(trans.get("EingeleseneSOS"));
         toSosView.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -210,7 +210,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         viewPane.getContentPane().add(toSosView);
 
         JXButton toSupportView = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/sword24.png")));
-        toSupportView.setToolTipText("Errechnete Unterstützungen anzeigen");
+        toSupportView.setToolTipText(trans.get("ErrechneteUnterstuetzungen"));
         toSupportView.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -222,9 +222,9 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         viewPane.getContentPane().add(toSupportView);
 
         JXTaskPane transferPane = new JXTaskPane();
-        transferPane.setTitle("Übertragen");
+        transferPane.setTitle(trans.get("Uebertragen"));
         JXButton toSupport = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/support_tool.png")));
-        toSupport.setToolTipText("Überträgt den ersten Angriff der gewählten SOS-Anfrage in das Unterstützungswerkzeug");
+        toSupport.setToolTipText(trans.get("UnterstuetzungWerkzeug"));
         toSupport.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -236,7 +236,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         transferPane.getContentPane().add(toSupport);
 
         JXButton toRetime = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/re-time.png")));
-        toRetime.setToolTipText("Überträgt den gewählten Angriff in den ReTimer. Anschließend muss dort noch die vermutete Einheit gewählt werden!");
+        toRetime.setToolTipText(trans.get("Retimer"));
         toRetime.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -248,7 +248,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         transferPane.getContentPane().add(toRetime);
 
         JXButton toBrowser = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/att_browser.png")));
-        toBrowser.setToolTipText("Überträgt die gewählten Unterstützungen in den Browser");
+        toBrowser.setToolTipText(trans.get("Browser"));
         toBrowser.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -264,8 +264,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             @Override
             public Object getValue(String key) {
                 if (key.equals(Action.SHORT_DESCRIPTION)) {
-                    return "Unterstützungsanfragen für die gewählten, unvollständigen Verteidigungen erstellen"
-                            + " und in die Zwischenablage kopieren";
+                    return trans.get("UnterstuetzungText");
                 }
                 return super.getValue(key);
             }
@@ -278,9 +277,9 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
 
         JXTaskPane miscPane = new JXTaskPane();
-        miscPane.setTitle("Sonstiges");
+        miscPane.setTitle(trans.get("Sonstiges"));
         JXButton reAnalyzeButton = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/reanalyze.png")));
-        reAnalyzeButton.setToolTipText("Analysiert die eingelesenen Angriffe erneut, z.B. wenn man die Truppenzahlen in den Einstellungen geändert hat.");
+        reAnalyzeButton.setToolTipText(trans.get("Analysiert"));
         reAnalyzeButton.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -290,7 +289,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         });
         miscPane.getContentPane().add(reAnalyzeButton);
         JXButton setSelectionSecured = new JXButton(new ImageIcon(DSWorkbenchTagFrame.class.getResource("/res/ui/save.png")));
-        setSelectionSecured.setToolTipText("Die gewählten Einträge manuell auf 'Sicher' setzen, z.B. weil man sie ignorieren möchte oder bereits genügend Unterstützungen laufen.");
+        setSelectionSecured.setToolTipText(trans.get("Manuell_Entrys"));
         setSelectionSecured.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -352,12 +351,12 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
     private void transferToBrowser() {
         if (!jScrollPane6.getViewport().getView().equals(jSupportsTable)) {
-            showInfo("Du musst dich in der Ansicht 'Unterstützungen' befinden um diese Funktion zu verwenden.");
+            showInfo(trans.get("UnterstuetzungFunktion"));
             return;
         }
         int[] rows = jSupportsTable.getSelectedRows();
         if (rows == null || rows.length == 0) {
-            showInfo("Keine Unterstützungen gewählt");
+            showInfo(trans.get("KeineUnterstuezung"));
             return;
         }
         SupportsModel model = TableHelper.getTableModel(jSupportsTable);
@@ -370,13 +369,13 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
                     Village target = defense.getTarget();
                     TroopAmountFixed units = DSWorkbenchSettingsDialog.getSingleton().getDefense();
                     if (units == null || !units.hasUnits()) {
-                        showError("Fehlerhafte Einstellungen für die unterstützenden Einheiten");
+                        showError(trans.get("FehlerhafteEinstellungen"));
                         break;
                     }
                     if (!BrowserInterface.sendTroops(source, target, units, profileQuickchangePanel.getSelectedProfile())) {
                         if (rows.length > 1) {
                             clickAccount.giveClickBack();
-                            showError("Fehler beim Öffnen des Browsers");
+                            showError(trans.get("Browsers"));
                             break;
                         }
                     } else {
@@ -384,7 +383,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
                         defense.setTransferredToBrowser(true);
                     }
                 } else {
-                    showInfo("Das Klick-Konto ist leer");
+                    showInfo(trans.get("Click_Konto"));
                     break;
                 }
             } else {//already transferred
@@ -397,14 +396,14 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         List<DefenseInformation> selection = getSelectedRows();
 
         if (selection.isEmpty()) {
-            showInfo("Keine Einträge gewählt");
+            showInfo(trans.get("KeineEintraege"));
             return;
         }
-        boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+        boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterterBBCode_Text"), trans.get("ErweiterterBBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat(trans.get("dateFormat"));
         StringBuilder b = new StringBuilder();
-        b.append("Ich benötige die aufgelisteten oder vergleichbare Unterstützungen in den folgenden Dörfern:\n\n");
+        b.append(trans.get("vergleichbareUnterstutzungen"));
 
         for (DefenseInformation defense : selection) {
             if (!defense.isSave()) {
@@ -421,8 +420,8 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
                     b.append("[table]\n");
                     b.append("[**]").append(target.toBBCode()).append("[|]");
                     b.append("[img]").append(UnitTableInterface.createDefenderUnitTableLink(need)).append("[/img][/**]\n");
-                    b.append("[*]Angriffe/Fakes[|]").append(defense.getAttackCount()).append("/").append(defense.getFakeCount()).append("\n");
-                    b.append("[*]Zeitraum[|]").append(df.format(defense.getFirstAttack())).append(" bis ").append(df.format(defense.getLastAttack())).append("\n");
+                    b.append(trans.get("AngriffeFakes")).append(defense.getAttackCount()).append("/").append(defense.getFakeCount()).append("\n");
+                    b.append(trans.get("Zeitraum")).append(df.format(defense.getFirstAttack())).append(trans.get("bis")).append(df.format(defense.getLastAttack())).append("\n");
                     b.append("[/table]\n");
                 } else {
                     b.append(buildSimpleRequestTable(target, need, defense));
@@ -431,15 +430,15 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         }
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
-            showSuccess("Unterstützungsanfragen in die Zwischenablage kopiert");
+            showSuccess(trans.get("Unterstuetunganfrage"));
         } catch (HeadlessException hex) {
-            showError("Fehler beim Kopieren in die Zwischenablage");
+            showError(trans.get("Failed_clipboard"));
         }
     }
 
     private String buildSimpleRequestTable(Village pTarget, TroopAmountFixed pNeed, DefenseInformation pDefense) {
         StringBuilder b = new StringBuilder();
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat(trans.get("dateFormat"));
         b.append("[table]\n");
         b.append("[**]").append(pTarget.toBBCode());
         int colCount = 0;
@@ -464,12 +463,12 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             }
         }
 
-        b.append("[*][b]Angriffe/Fakes:[/b] ").append(pDefense.getAttackCount()).append("/").append(pDefense.getFakeCount());
+        b.append(trans.get("BBAngriffeFakes")).append(pDefense.getAttackCount()).append("/").append(pDefense.getFakeCount());
         for (int i = 0; i < colCount; i++) {
             b.append("[|]");
         }
         b.append("\n");
-        b.append("[*][b]Zeitraum:[/b] ").append(df.format(pDefense.getFirstAttack())).append(" bis ").append(df.format(pDefense.getLastAttack()));
+        b.append(trans.get("BBZeitraum")).append(df.format(pDefense.getFirstAttack())).append(trans.get("bis")).append(df.format(pDefense.getLastAttack()));
         for (int i = 0; i < colCount; i++) {
             b.append("[|]");
         }
@@ -494,13 +493,13 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
         b.append(PluginManager.getSingleton().getVariableValue("sos.source")).append(" ").
                 append(attacks.get(0).getTargetInformation().getFirstTimedAttack().getSource().toString()).append("\n");
-        b.append("Ziel: ").append(attacks.get(0).getTarget().toString()).append("\n");
+        b.append(trans.get("Ziel")).append(attacks.get(0).getTarget().toString()).append("\n");
         b.append(PluginManager.getSingleton().getVariableValue("attack.arrive.time")).append(" ").
                 append(f.format(attacks.get(0).getFirstAttack())).append("\n");
         if (RetimerDataPanel.getSingleton().readAttackFromString(b.toString())) {
             TacticsPlanerWizard.show();
         } else {
-            showError("Fehler beim Übertragen in den Retimer");
+            showError("Retimer_Error");
         }
     }
 
@@ -517,7 +516,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         HashMap<Tribe, SOSRequest> selectedRequests = new HashMap<>();
         List<DefenseInformation> selection = getSelectedRows();
         if (selection.isEmpty()) {
-            showInfo("Keine SOS Anfragen eingelesen");
+            showInfo(trans.get("No_SOS"));
             return;
         }
 
@@ -533,13 +532,13 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         }
 
         try {
-            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+            boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterterBBCode_Text"), trans.get("ErweiterterBBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
             StringBuilder buffer = new StringBuilder();
             if (extended) {
-                buffer.append("[u][size=12]SOS Anfragen[/size][/u]\n\n");
+                buffer.append(trans.get("BB_SOS_Anfrage"));
             } else {
-                buffer.append("[u]SOS Anfragen[/u]\n\n");
+                buffer.append(trans.get("SOSAnfrageBB"));
             }
 
             List<SOSRequest> requests = new LinkedList<>();
@@ -548,14 +547,14 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
                     extended));
 
             if (extended) {
-                buffer.append("\n[size=8]Erstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("Erstelltamsize"));
+                buffer.append(new SimpleDateFormat(trans.get("DateFormat_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
-                buffer.append("\nErstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
-                buffer.append(" mit DS Workbench ");
+                buffer.append(trans.get("Erstelltam"));
+                buffer.append(new SimpleDateFormat(trans.get("DateFormat_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }
 
@@ -563,17 +562,16 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die momentan vorhandenen Anfragen benötigen mehr als 1000 BB-Codes\n"
-                        + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\nTrotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Anfrage_Text"), trans.get("mutch_BB"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            showSuccess("Daten in Zwischenablage kopiert");
+            showSuccess(trans.get("Zwischenablagekopiert"));
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            showError("Fehler beim Kopieren in die Zwischenablage");
+            showError(trans.get("failed_copy_clipboard"));
         }
 
     }
@@ -581,11 +579,11 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
     private void removeSelection(boolean pAsk) {
         int[] selectedRows = jAttacksTable.getSelectedRows();
         if (selectedRows == null || selectedRows.length < 1) {
-            showInfo("Keine Angriffe ausgewählt");
+            showInfo(trans.get("no_attacks"));
             return;
         }
 
-        if (!pAsk || JOptionPaneHelper.showQuestionConfirmBox(this, "Willst du " + ((selectedRows.length == 1) ? "den gewählten Angriff " : "die gewählten Angriffe ") + "wirklich löschen?", "Löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+        if (!pAsk || JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("WillstDu") + ((selectedRows.length == 1) ? trans.get("gewaehltenAngriff") : trans.get("gewaehlteAngriffe")) + trans.get("really_delete"), trans.get("Loeschen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
 
             DefenseToolModel model = TableHelper.getTableModel(jAttacksTable);
             int numRows = selectedRows.length;
@@ -608,18 +606,18 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             }
 
             model.fireTableDataChanged();
-            showSuccess(((numRows == 1) ? "Angriff" : numRows + " Angriffe") + " gelöscht");
+            showSuccess(((numRows == 1) ? trans.get("Angriff") : numRows + trans.get("Angriffe")) + trans.get("geloescht"));
         }
     }
 
     private List<DefenseInformation> getSelectedRows() {
         List<DefenseInformation> infos = new LinkedList<>();
         if (getModel().getRowCount() == 0) {
-            showInfo("Keine SOS Anfragen vorhanden");
+            showInfo(trans.get("noSOS"));
         } else {
             int[] rows = jAttacksTable.getSelectedRows();
             if (rows == null || rows.length == 0) {
-                showInfo("Kein Angriff gewählt");
+                showInfo(trans.get("noattack"));
                 return infos;
             } else {
                 for (int row : rows) {
@@ -690,7 +688,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         infoPanel.setCollapsed(true);
         infoPanel.setInheritAlpha(false);
 
-        jXInfoLabel.setText("Keine Meldung");
+        jXInfoLabel.setText(trans.get("KeineMeldung"));
         jXInfoLabel.setOpaque(true);
         jXInfoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -735,7 +733,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
             }
         ));
 
-        setTitle("SOS Analyzer");
+        setTitle(trans.get("SOSAnalyzer"));
         setMinimumSize(new java.awt.Dimension(500, 400));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -762,8 +760,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(capabilityInfoPanel1, gridBagConstraints);
 
-        jAlwaysOnTopBox.setText("Immer im Vordergrund");
-        jAlwaysOnTopBox.setOpaque(false);
+        jAlwaysOnTopBox.setText(trans.get("ImmerimVordergrund"));
         jAlwaysOnTopBox.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 fireAlwaysOnTopEvent(evt);
@@ -825,17 +822,15 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
                 }
                 findFakes();
                 if (!ServerSettings.getSingleton().isMillisArrival()) {
-                    showInfo("Der aktuelle Server unterstützt keine Millisekunden.\n"
-                            + "Daher werden bereits eingelesene Angriffe nicht herausgefiltert.\n"
-                            + "Es wird empfohlen, vor dem Einlesen vorhandene Einträge zu löschen und eine neue Berechnung zu starten.");
+                    showInfo(trans.get("aktuelleServer_Text"));
                 }
             } else {
-                showInfo("Keine gültigen SOS Anfrage gefunden");
+                showInfo(trans.get("noSOS_found"));
             }
             updateView();
             analyzeData();
         } catch (HeadlessException | IOException | UnsupportedFlavorException he) {
-            showInfo("Fehler beim Lesen aus der Zwischenablage");
+            showInfo(trans.get("error_clipboard"));
         }
     }
 
@@ -846,14 +841,14 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
     private void analyzeData(boolean pReAnalyze) {
         if (a == null || !a.isRunning()) {
             jProgressBar1.setValue(0);
-            jProgressBar1.setString("Analysiere Daten...");
+            jProgressBar1.setString(trans.get("Analysiere"));
             jButton1.setEnabled(false);
             
             TroopAmountFixed stdOffense = DSWorkbenchSettingsDialog.getSingleton().getOffense();
             TroopAmountFixed stdDefense = DSWorkbenchSettingsDialog.getSingleton().getDefense();
             if(stdOffense.getTroopPopCount() == 0 || stdDefense.getTroopPopCount() == 0) {
-                showInfo("kann die daten nicht analysieren, weil standard Off / Unterstützung nicht gesetzt sind (in den Einstellungen)");
-                jProgressBar1.setString("Bereit");
+                showInfo(trans.get("no_analysieren"));
+                jProgressBar1.setString(trans.get("Bereit"));
                 jButton1.setEnabled(true);
                 updateSupportTable();
                 return;
@@ -873,7 +868,7 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
                 @Override
                 public void fireFinishedEvent() {
                     jButton1.setEnabled(true);
-                    jProgressBar1.setString("Bereit");
+                    jProgressBar1.setString(trans.get("Bereit"));
                     updateSupportTable();
                 }
             }, stdOffense, stdDefense,
@@ -1058,8 +1053,8 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
     }
 
     public void updateTime() {
-        TableColumnExt firstCol = jSupportsTable.getColumnExt("Früheste Abschickzeit");
-        TableColumnExt lastCol = jSupportsTable.getColumnExt("Späteste Abschickzeit");
+        TableColumnExt firstCol = jSupportsTable.getColumnExt(trans.get("FruehesteAbschickzeit"));
+        TableColumnExt lastCol = jSupportsTable.getColumnExt(trans.get("SpaetesteAbschickzeit"));
         if (firstCol.isVisible() && lastCol.isVisible()) {
             int startX = 0;
             for (int i = 0; i < jSupportsTable.getColumnCount(); i++) {
