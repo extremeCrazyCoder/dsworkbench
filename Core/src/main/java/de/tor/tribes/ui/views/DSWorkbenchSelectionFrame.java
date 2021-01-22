@@ -85,7 +85,7 @@ import org.jdesktop.swingx.painter.MattePainter;
  */
 public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implements ActionListener, TreeSelectionListener {
 
-    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchSearchFrame");
+    private static Translator trans = TranslationManager.getTranslator("ui.views.DSWorkbenchSelectionFrame");
     
     @Override
     public void valueChanged(TreeSelectionEvent e) {

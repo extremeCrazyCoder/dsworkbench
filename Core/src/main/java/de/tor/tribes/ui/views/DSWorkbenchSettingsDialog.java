@@ -1926,7 +1926,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jVillageSortTypeChooser, gridBagConstraints);
 
-        jLabel13.setText("Dorfsortierung");
+        jLabel13.setText(trans.get("Dorfsortierung"));
         jLabel13.setMaximumSize(new java.awt.Dimension(138, 18));
         jLabel13.setMinimumSize(new java.awt.Dimension(138, 18));
         jLabel13.setPreferredSize(new java.awt.Dimension(138, 18));
@@ -1938,7 +1938,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jLabel13, gridBagConstraints);
 
-        jLabel14.setText("Anzeigedauer von Hinweisen");
+        jLabel14.setText(trans.get("Anzeigedauer_hinweisen"));
         jLabel14.setMaximumSize(new java.awt.Dimension(138, 18));
         jLabel14.setMinimumSize(new java.awt.Dimension(138, 18));
         jLabel14.setPreferredSize(new java.awt.Dimension(138, 18));
@@ -1951,7 +1951,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jLabel14, gridBagConstraints);
 
         jNotifyDurationBox.setModel(jNotifyDurationBoxModel);
-        jNotifyDurationBox.setToolTipText("Zeitdauer nach der Hinweise in der rechten unteren Bildschirmecke automatisch ausgeblendet werden");
+        jNotifyDurationBox.setToolTipText(trans.get("Zeitdauer_hinweis"));
         jNotifyDurationBox.setMaximumSize(new java.awt.Dimension(105, 18));
         jNotifyDurationBox.setMinimumSize(new java.awt.Dimension(105, 18));
         jNotifyDurationBox.setPreferredSize(new java.awt.Dimension(105, 18));
@@ -1966,7 +1966,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jNotifyDurationBox, gridBagConstraints);
 
         jInformOnUpdates.setSelected(true);
-        jInformOnUpdates.setToolTipText("Prüfung auf DS Workbench Updates bei jedem Programmstart\\n");
+        jInformOnUpdates.setToolTipText(trans.get("Pruefungauf_DSWorkbench"));
         jInformOnUpdates.setMaximumSize(new java.awt.Dimension(105, 18));
         jInformOnUpdates.setMinimumSize(new java.awt.Dimension(105, 18));
         jInformOnUpdates.setPreferredSize(new java.awt.Dimension(105, 18));
@@ -1980,7 +1980,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jInformOnUpdates, gridBagConstraints);
 
-        jLabel15.setText("Über Updates  informieren");
+        jLabel15.setText(trans.get("Updatesinformieren"));
         jLabel15.setMaximumSize(new java.awt.Dimension(138, 18));
         jLabel15.setMinimumSize(new java.awt.Dimension(138, 18));
         jLabel15.setPreferredSize(new java.awt.Dimension(138, 18));
@@ -1992,7 +1992,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jLabel15, gridBagConstraints);
 
-        jLabel16.setText("<HTML>Max. Deff-Anzahl für die<BR/>Berechnung der Truppendichte</HTML>");
+        jLabel16.setText(trans.get("BerechnungTruppendichte"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -2013,8 +2013,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jMaxTroopDensity, gridBagConstraints);
 
         jButton8.setBackground(new java.awt.Color(239, 235, 223));
-        jButton8.setText("Auswählen");
-        jButton8.setToolTipText("Setzt die Truppenstärke anhand angegebener Deff-Werte");
+        jButton8.setText(trans.get("Auswaehlen"));
+        jButton8.setToolTipText(trans.get("Truppenstaerke_text"));
         jButton8.setMaximumSize(new java.awt.Dimension(90, 23));
         jButton8.setMinimumSize(new java.awt.Dimension(90, 23));
         jButton8.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -2031,7 +2031,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jButton8, gridBagConstraints);
 
-        jLabel2.setText("Hauptmenü größe");
+        jLabel2.setText(trans.get("Hauptmenuegroesse"));
         jLabel2.setMaximumSize(new java.awt.Dimension(34, 18));
         jLabel2.setMinimumSize(new java.awt.Dimension(34, 18));
         jLabel2.setPreferredSize(new java.awt.Dimension(34, 18));
@@ -2043,7 +2043,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jLabel2, gridBagConstraints);
 
-        jLabel8.setText("Hinweis bei gelesenen Clipboard-Daten");
+        jLabel8.setText(trans.get("Clipboard_Hinweis"));
         jLabel8.setMaximumSize(new java.awt.Dimension(34, 18));
         jLabel8.setMinimumSize(new java.awt.Dimension(34, 18));
         jLabel8.setPreferredSize(new java.awt.Dimension(34, 18));
@@ -2056,7 +2056,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jLabel8, gridBagConstraints);
 
         jClipboardSound.setSelected(true);
-        jClipboardSound.setToolTipText("Spielt einen Ton ab, wenn Spieldaten (Berichte, Übersichten...) aus der Zwischenablage importiert wurden");
+        jClipboardSound.setToolTipText(trans.get("SpielteinenTon"));
         jClipboardSound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fireEnableClipboardNotificationEvent(evt);
@@ -2072,7 +2072,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jClipboardSound, gridBagConstraints);
 
-        jLabel20.setText("Farmberichte beim Beenden löschen");
+        jLabel20.setText(trans.get("Farmberichte"));
         jLabel20.setMaximumSize(new java.awt.Dimension(34, 18));
         jLabel20.setMinimumSize(new java.awt.Dimension(34, 18));
         jLabel20.setPreferredSize(new java.awt.Dimension(34, 18));
@@ -2085,7 +2085,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jLabel20, gridBagConstraints);
 
         jDeleteFarmReportsOnExit.setSelected(true);
-        jDeleteFarmReportsOnExit.setToolTipText("Farmberichte werden beim Beenden von DS Workbench automatisch gelöscht (empfohlen)");
+        jDeleteFarmReportsOnExit.setToolTipText(trans.get("Farmberichte_Beenden"));
         jDeleteFarmReportsOnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fireDeleteFarmReportsOnExitEvent(evt);
@@ -2101,7 +2101,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jDeleteFarmReportsOnExit, gridBagConstraints);
 
-        jLabel24.setText("Systray Benachrichtigungen aktivieren");
+        jLabel24.setText(trans.get("Systray"));
         jLabel24.setMaximumSize(new java.awt.Dimension(34, 18));
         jLabel24.setMinimumSize(new java.awt.Dimension(34, 18));
         jLabel24.setPreferredSize(new java.awt.Dimension(34, 18));
@@ -2114,7 +2114,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.add(jLabel24, gridBagConstraints);
 
         jEnableSystray.setSelected(true);
-        jEnableSystray.setToolTipText("Öffnet eine Nachricht im Systray (sofern unterstützt) wenn Spieldaten (Berichte, Übersichten...) aus der Zwischenablage gelesen wurden");
+        jEnableSystray.setToolTipText(trans.get("Systray_open"));
         jEnableSystray.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fireEnableSystrayEvent(evt);
@@ -2222,8 +2222,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel13.add(jReportServerPort, gridBagConstraints);
 
-        jButton5.setText("Neustart");
-        jButton5.setToolTipText("Startet den Berichtserver nach Veränderung der Porteinstellung neu");
+        jButton5.setText(trans.get("Neustart"));
+        jButton5.setToolTipText(trans.get("Berichtserver_startet"));
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireRestartReportServerEvent(evt);
@@ -2238,7 +2238,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel13.add(jLabel32, gridBagConstraints);
 
-        jObstServer.setToolTipText("OBST Server, an den gelesene Berichte ebenfalls weitergeleitet werden");
+        jObstServer.setToolTipText(trans.get("OBST_text"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -2264,7 +2264,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2306,7 +2306,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                         .addComponent(jCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, Short.MAX_VALUE))
+                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

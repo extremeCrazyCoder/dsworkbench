@@ -2325,7 +2325,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel13" pref="177" max="32767" attributes="0"/>
+                      <Component id="jPanel13" pref="182" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2360,7 +2360,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Dorfsortierung"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Dorfsortierung&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[138, 18]"/>
                     </Property>
@@ -2379,7 +2381,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Anzeigedauer von Hinweisen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Anzeigedauer_hinweisen&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[138, 18]"/>
                     </Property>
@@ -2401,7 +2405,9 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="jNotifyDurationBoxModel" type="code"/>
                     </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Zeitdauer nach der Hinweise in der rechten unteren Bildschirmecke automatisch ausgeblendet werden"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Zeitdauer_hinweis&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[105, 18]"/>
                     </Property>
@@ -2421,7 +2427,9 @@
                 <Component class="javax.swing.JCheckBox" name="jInformOnUpdates">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Pr&#xfc;fung auf DS Workbench Updates bei jedem Programmstart\u005cn" containsInvalidXMLChars="true"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Pruefungauf_DSWorkbench&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[105, 18]"/>
                     </Property>
@@ -2440,7 +2448,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#xdc;ber Updates  informieren"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Updatesinformieren&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[138, 18]"/>
                     </Property>
@@ -2459,7 +2469,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel16">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&lt;HTML&gt;Max. Deff-Anzahl f&#xfc;r die&lt;BR/&gt;Berechnung der Truppendichte&lt;/HTML&gt;"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;BerechnungTruppendichte&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -2482,8 +2494,12 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="df" green="eb" red="ef" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Ausw&#xe4;hlen"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Setzt die Truppenst&#xe4;rke anhand angegebener Deff-Werte"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Auswaehlen&quot;)" type="code"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Truppenstaerke_text&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[90, 23]"/>
                     </Property>
@@ -2505,7 +2521,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Hauptmen&#xfc; gr&#xf6;&#xdf;e"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Hauptmenuegroesse&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[34, 18]"/>
                     </Property>
@@ -2524,7 +2542,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Hinweis bei gelesenen Clipboard-Daten"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Clipboard_Hinweis&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[34, 18]"/>
                     </Property>
@@ -2544,7 +2564,9 @@
                 <Component class="javax.swing.JCheckBox" name="jClipboardSound">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Spielt einen Ton ab, wenn Spieldaten (Berichte, &#xdc;bersichten...) aus der Zwischenablage importiert wurden"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;SpielteinenTon&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireEnableClipboardNotificationEvent"/>
@@ -2557,7 +2579,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel20">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Farmberichte beim Beenden l&#xf6;schen"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Farmberichte&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[34, 18]"/>
                     </Property>
@@ -2577,7 +2601,9 @@
                 <Component class="javax.swing.JCheckBox" name="jDeleteFarmReportsOnExit">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Farmberichte werden beim Beenden von DS Workbench automatisch gel&#xf6;scht (empfohlen)"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Farmberichte_Beenden&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireDeleteFarmReportsOnExitEvent"/>
@@ -2590,7 +2616,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Systray Benachrichtigungen aktivieren"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Systray&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[34, 18]"/>
                     </Property>
@@ -2610,7 +2638,9 @@
                 <Component class="javax.swing.JCheckBox" name="jEnableSystray">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&#xd6;ffnet eine Nachricht im Systray (sofern unterst&#xfc;tzt) wenn Spieldaten (Berichte, &#xdc;bersichten...) aus der Zwischenablage gelesen wurden"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Systray_open&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fireEnableSystrayEvent"/>
@@ -2765,8 +2795,12 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Neustart"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Startet den Berichtserver nach Ver&#xe4;nderung der Porteinstellung neu"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Neustart&quot;)" type="code"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Berichtserver_startet&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireRestartReportServerEvent"/>
@@ -2789,7 +2823,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jObstServer">
                   <Properties>
-                    <Property name="toolTipText" type="java.lang.String" value="OBST Server, an den gelesene Berichte ebenfalls weitergeleitet werden"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;OBST_text&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

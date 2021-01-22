@@ -25,6 +25,8 @@ import de.tor.tribes.types.StandardAttack;
 import de.tor.tribes.types.UnknownUnit;
 import de.tor.tribes.ui.ImageManager;
 import de.tor.tribes.util.attack.StandardAttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -71,6 +73,8 @@ public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.s
         }
     }
 
+    private static Translator trans = TranslationManager.getTranslator("ui.panels.TroopSelectionPanel");
+    
     /**
      * Creates new form TroopSelectionPanel
      */
@@ -323,7 +327,7 @@ public abstract class TroopSelectionPanel<T extends TroopAmount> extends javax.s
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jSettingsButton.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        jSettingsButton.setText("Einstellungen");
+        jSettingsButton.setText(trans.get("Einstellungen"));
         jSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireClick(evt);
