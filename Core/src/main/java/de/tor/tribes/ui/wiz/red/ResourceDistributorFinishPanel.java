@@ -53,8 +53,7 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  * @author Torridity
  */
 public class ResourceDistributorFinishPanel extends WizardPage {
-
-    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorFinishPanel");
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.red.ResourceDistributorFinishPanel");
     
     private static final Logger logger = LogManager.getLogger("ResourceDistributorFinishPanel");
     private static final String GENERAL_INFO = trans.get("Schritteangekommen");

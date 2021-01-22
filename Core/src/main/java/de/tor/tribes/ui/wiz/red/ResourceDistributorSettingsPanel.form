@@ -328,13 +328,8 @@
             </Container>
             <Component class="javax.swing.JComboBox" name="jGroupDirectionBox">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Empf&#xe4;nger"/>
-                    <StringItem index="1" value="Lieferanten"/>
-                    <StringItem index="2" value="Beides"/>
-                    <StringItem index="3" value="Entfernen"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="jGroupDirectionBoxModel" type="code"/>
                 </Property>
               </Properties>
               <Constraints>

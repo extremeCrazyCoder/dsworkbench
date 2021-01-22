@@ -66,6 +66,8 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
     private Proxy webProxy;
     private boolean INITIALIZED = false;
     private boolean isBlocked = false;
+    private javax.swing.DefaultComboBoxModel jVillageSortTypeChooserModel;
+    private javax.swing.DefaultComboBoxModel jNotifyDurationBoxModel;
 
     public static synchronized DSWorkbenchSettingsDialog getSingleton() {
         if (SINGLETON == null) {
@@ -79,6 +81,12 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
      * Creates new form TribesPlannerStartFrame
      */
     DSWorkbenchSettingsDialog() {
+        jVillageSortTypeChooserModel = new javax.swing.DefaultComboBoxModel(new String[] {
+            trans.get("Alphabetisch"), trans.get("NachKoordinaten")
+        });
+        jNotifyDurationBoxModel = new javax.swing.DefaultComboBoxModel(new String[] {
+            trans.get("Unbegrenzt"), trans.get("10Sekunden"), trans.get("20Sekunden"), trans.get("30Sekunden")
+        });
         initComponents();
         troopDensitySelection.setup(new String[]{"spear", "sword", "archer", "heavy"},
                 TroopSelectionPanel.alignType.VERTICAL, -1);
@@ -1904,7 +1912,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         jPanel6.setOpaque(false);
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jVillageSortTypeChooser.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Alphabetisch", "Nach Koordinaten" }));
+        jVillageSortTypeChooser.setModel(jVillageSortTypeChooserModel);
         jVillageSortTypeChooser.setToolTipText("Art der Dorfsortierung in DS Workbench");
         jVillageSortTypeChooser.setMaximumSize(new java.awt.Dimension(105, 18));
         jVillageSortTypeChooser.setPreferredSize(new java.awt.Dimension(105, 18));
@@ -1942,8 +1950,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jLabel14, gridBagConstraints);
 
-        jNotifyDurationBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unbegrenzt", "10 Sekunden", "20 Sekunden", "30 Sekunden" }));
-        jNotifyDurationBox.setSelectedIndex(1);
+        jNotifyDurationBox.setModel(jNotifyDurationBoxModel);
         jNotifyDurationBox.setToolTipText("Zeitdauer nach der Hinweise in der rechten unteren Bildschirmecke automatisch ausgeblendet werden");
         jNotifyDurationBox.setMaximumSize(new java.awt.Dimension(105, 18));
         jNotifyDurationBox.setMinimumSize(new java.awt.Dimension(105, 18));
@@ -2299,7 +2306,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
                         .addComponent(jCancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jOKButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+                    .addComponent(jSettingsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 638, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

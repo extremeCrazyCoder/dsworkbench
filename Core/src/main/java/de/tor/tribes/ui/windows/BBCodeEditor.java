@@ -100,28 +100,31 @@ public class BBCodeEditor extends javax.swing.JFrame {
      */
     public BBCodeEditor() {
         super();
-        // This list needs to be manually kept in sync with designer
-        elementList.add(new AttackListFormatter(false)); //Angriffe
-        elementList.add(new AttackListFormatter(true)); //Angriffe (IGM)
-        elementList.add(new NoteListFormatter()); //Notizen
-        elementList.add(new VillageListFormatter()); //Dorflisten
-        elementList.add(new SosListFormatter()); //SOS-Anfragen
-        elementList.add(new ReportListFormatter()); //Kampfbericht
-        elementList.add(new TagListFormatter()); //Gruppen
-        elementList.add(new TroopListFormatter()); //Truppen
-        elementList.add(new KnownVillageListFormatter()); //Dorfgebäude
-        elementList.add(new PointStatsFormatter()); //Statistik (Punkte)
-        elementList.add(new KillStatsFormatter()); //Statistik (Angriff)
-        elementList.add(new DefStatsFormatter()); //Statistik (Verteidigung)
-        elementList.add(new WinnerLoserStatsFormatter()); //Statistik (Gewinner/Verlierer)
-        elementList.add(new FormListFormatter()); //Zeichnungen
-        elementList.add(new OverallReportStatsFormatter()); //Berichtauswertung (Zusammenfassung)
-        elementList.add(new AllyReportStatsFormatter()); //Berichtauswertung (Stämme)
-        elementList.add(new TribeReportStatsFormatter()); //Berichtauswertung (Spieler)
-        elementList.add(new MarkerListFormatter()); //Markierungen
 
         initComponents();
         buildSampleData();
+        
+        javax.swing.DefaultComboBoxModel jEditSelectModel = new javax.swing.DefaultComboBoxModel();
+        elementList.add(new AttackListFormatter(false)); jEditSelectModel.addElement(trans.get("Angriffe"));
+        elementList.add(new AttackListFormatter(true)); jEditSelectModel.addElement(trans.get("Angriffe_IGM"));
+        elementList.add(new NoteListFormatter()); jEditSelectModel.addElement(trans.get("Notizen"));
+        elementList.add(new VillageListFormatter()); jEditSelectModel.addElement(trans.get("Dorflisten"));
+        elementList.add(new SosListFormatter()); jEditSelectModel.addElement(trans.get("SOSAnfragen"));
+        elementList.add(new ReportListFormatter()); jEditSelectModel.addElement(trans.get("Kampfbericht"));
+        elementList.add(new TagListFormatter()); jEditSelectModel.addElement(trans.get("Gruppen"));
+        elementList.add(new TroopListFormatter()); jEditSelectModel.addElement(trans.get("Truppen"));
+        elementList.add(new KnownVillageListFormatter()); jEditSelectModel.addElement(trans.get("Dorfgebaeude"));
+        elementList.add(new PointStatsFormatter()); jEditSelectModel.addElement(trans.get("Statistik_Punkte"));
+        elementList.add(new KillStatsFormatter()); jEditSelectModel.addElement(trans.get("Statistik_Angriff"));
+        elementList.add(new DefStatsFormatter()); jEditSelectModel.addElement(trans.get("Statistik_Verteidigung"));
+        elementList.add(new WinnerLoserStatsFormatter()); jEditSelectModel.addElement(trans.get("Statistik_Gewinner_Verlierer"));
+        elementList.add(new FormListFormatter()); jEditSelectModel.addElement(trans.get("Zeichnungen"));
+        elementList.add(new OverallReportStatsFormatter()); jEditSelectModel.addElement(trans.get("Berichtauswertung_Zusammenfassung"));
+        elementList.add(new AllyReportStatsFormatter()); jEditSelectModel.addElement(trans.get("Berichtauswertung_Staemme"));
+        elementList.add(new TribeReportStatsFormatter()); jEditSelectModel.addElement(trans.get("Berichtauswertung_Spieler"));
+        elementList.add(new MarkerListFormatter()); jEditSelectModel.addElement(trans.get("Markierungen"));
+        
+        jComboBoxEditSelect.setModel(jEditSelectModel);
         jTextPane1.setBackground(Constants.DS_BACK_LIGHT);
 
         element = elementList.get(0);
@@ -501,7 +504,6 @@ public class BBCodeEditor extends javax.swing.JFrame {
 
         jPanelEditSelect.setLayout(new java.awt.BorderLayout(5, 0));
 
-        jComboBoxEditSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Angriffe", "Angriffe (IGM)", "Notizen", "Dorflisten", "SOS-Anfragen", "Kampfbericht", "Gruppen", "Truppen", "Dorfgebäude", "Statistik (Punkte)", "Statistik (Angriff)", "Statistik (Verteidigung)", "Statistik (Gewinner/Verlierer)", "Zeichnungen", "Berichtauswertung (Zusammenfassung)", "Berichtauswertung (Stämme)", "Berichtauswertung (Spieler)", "Markierungen" }));
         jComboBoxEditSelect.setMinimumSize(new java.awt.Dimension(66, 20));
         jComboBoxEditSelect.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

@@ -48,12 +48,12 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  * @author Torridity
  */
 public class ResourceDistributorSettingsPanel extends WizardPage {
-
-     private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorSettingsPanel");
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.red.ResourceDistributorSettingsPanel");
     
     private static final String GENERAL_INFO = "Info_Empfaenger";
     private static ResourceDistributorSettingsPanel singleton = null;
     private GroupSelectionList groupList = null;
+    private javax.swing.DefaultComboBoxModel jGroupDirectionBoxModel;
 
     public static synchronized ResourceDistributorSettingsPanel getSingleton() {
         if (singleton == null) {
@@ -67,6 +67,9 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
      * Creates new form ResourceDataReadPanel
      */
     ResourceDistributorSettingsPanel() {
+        jGroupDirectionBoxModel = new javax.swing.DefaultComboBoxModel(new String[] {
+            trans.get("Empfaenger"), trans.get("Lieferanten"), trans.get("Beides"), trans.get("Entfernen")
+        });
         initComponents();
         jXCollapsiblePane1.setLayout(new BorderLayout());
         jXCollapsiblePane1.add(jInfoScrollPane, BorderLayout.CENTER);
@@ -369,7 +372,7 @@ public class ResourceDistributorSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel5.add(jGroupScrollPane, gridBagConstraints);
 
-        jGroupDirectionBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Empfänger", "Lieferanten", "Beides", "Entfernen" }));
+        jGroupDirectionBox.setModel(jGroupDirectionBoxModel);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;

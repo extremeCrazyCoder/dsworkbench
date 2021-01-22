@@ -2341,11 +2341,8 @@
               <SubComponents>
                 <Component class="javax.swing.JComboBox" name="jVillageSortTypeChooser">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="Alphabetisch"/>
-                        <StringItem index="1" value="Nach Koordinaten"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="jVillageSortTypeChooserModel" type="code"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value="Art der Dorfsortierung in DS Workbench"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2401,15 +2398,9 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="jNotifyDurationBox">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Unbegrenzt"/>
-                        <StringItem index="1" value="10 Sekunden"/>
-                        <StringItem index="2" value="20 Sekunden"/>
-                        <StringItem index="3" value="30 Sekunden"/>
-                      </StringArray>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="jNotifyDurationBoxModel" type="code"/>
                     </Property>
-                    <Property name="selectedIndex" type="int" value="1"/>
                     <Property name="toolTipText" type="java.lang.String" value="Zeitdauer nach der Hinweise in der rechten unteren Bildschirmecke automatisch ausgeblendet werden"/>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[105, 18]"/>

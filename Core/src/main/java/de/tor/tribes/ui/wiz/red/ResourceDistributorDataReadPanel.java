@@ -51,12 +51,12 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  * @author Torridity
  */
 public class ResourceDistributorDataReadPanel extends WizardPage {
-
-    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ResourceDistributorDataReadPanel");
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.red.ResourceDistributorDataReadPanel");
     
     private static final String GENERAL_INFO = trans.get("Information_Import");
     private static ResourceDistributorDataReadPanel singleton = null;
-
+    private javax.swing.DefaultComboBoxModel jCombobox1Model;
+    
     public static synchronized ResourceDistributorDataReadPanel getSingleton() {
         if (singleton == null) {
             singleton = new ResourceDistributorDataReadPanel();
@@ -69,6 +69,9 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
      * Creates new form ResourceDataReadPanel
      */
     ResourceDistributorDataReadPanel() {
+        jCombobox1Model = new javax.swing.DefaultComboBoxModel(new String[] {
+            trans.get("allenRohstoffen"), trans.get("Holz"), trans.get("Lehm"), trans.get("Eisen")
+        });
         initComponents();
         jXCollapsiblePane1.setLayout(new BorderLayout());
         jXCollapsiblePane1.add(jInfoScrollPane, BorderLayout.CENTER);
@@ -290,7 +293,7 @@ public class ResourceDistributorDataReadPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel2, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "allen Rohstoffen", "Holz", "Lehm", "Eisen" }));
+        jComboBox1.setModel(jCombobox1Model);
         jComboBox1.setMinimumSize(new java.awt.Dimension(150, 20));
         jComboBox1.setPreferredSize(new java.awt.Dimension(150, 20));
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
