@@ -183,6 +183,10 @@ public class TimeSpan implements Comparable<TimeSpan> {
       other.setDirection(this.getDirection());
       return other.intersects(this);
     }
+    if(startHour == endHour) {
+        return false;
+    }
+    
     if(intersectsWithDailyRange(startHour, 24)) return true;
     return intersectsWithDailyRange(0, endHour);
   }

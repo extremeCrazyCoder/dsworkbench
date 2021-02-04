@@ -1845,6 +1845,8 @@ ui.views.DSWorkbenchSettingsDialog.Language=Language
 ui.views.DSWorkbenchSettingsDialog.LanguageHelp=The language in wich workbench will be displayed
 
 ui.panels.TroopSelectionPanel.Einstellungen=Einstellungen
+ui.panels.TroopSelectionPanel.Standardangriffe=Standardangriffe
+ui.panels.TroopSelectionPanel.Verwenden=Verwenden
 
 locale=en
 
