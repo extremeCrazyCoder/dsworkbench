@@ -15,15 +15,11 @@
  */
 package de.tor.tribes.util;
 
-import de.tor.tribes.control.ManageableType;
-import de.tor.tribes.types.Attack;
-import de.tor.tribes.util.attack.AttackManager;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.regex.Matcher;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.JXTable;
@@ -186,52 +182,11 @@ public class TableHelper {
         }
         pHighlighters.clear();
         int modelIdx = pTable.convertColumnIndexToModel(pTable.getSortedColumnIndex());
-        List<ManageableType> attacks = AttackManager.getSingleton().getAllElements(pPlan);
         List<Object> sortedOjs = new ArrayList<>();
-        for (ManageableType t : attacks) {
-            Attack a = (Attack) t;
-            Object idxElem = null;
-            switch (modelIdx) {
-                case 0:
-                    idxElem = a.getSource().getTribe();
-                    break;
-                case 1:
-                    idxElem = a.getSource().getTribe().getAlly();
-                    break;
-                case 2:
-                    idxElem = a.getSource();
-                    break;
-                case 3:
-                    idxElem = a.getTarget().getTribe();
-                    break;
-                case 4:
-                    idxElem = a.getTarget().getTribe().getAlly();
-                    break;
-                case 5:
-                    idxElem = a.getTarget();
-                    break;
-                case 6:
-                    idxElem = a.getUnit();
-                    break;
-                case 7:
-                    idxElem = a.getType();
-                    break;
-                case 8:
-                    idxElem = a.getSendTime();
-                    break;
-                case 9:
-                    idxElem = a.getArriveTime();
-                    break;
-                case 10:
-                    idxElem = a.getArriveTime().getTime() - a.getSendTime().getTime();
-                    break;
-                case 11:
-                    idxElem = a.isShowOnMap();
-                    break;
-                case 12:
-                    idxElem = a.isTransferredToBrowser();
-                    break;
-            }
+        int max = pTable.getModel().getRowCount();
+        
+        for (int i = 0; i < max; i++) {
+            Object idxElem = pTable.getModel().getValueAt(i, modelIdx);
 
             if (idxElem != null) {
                 if (!sortedOjs.contains(idxElem)) {
@@ -250,9 +205,8 @@ public class TableHelper {
 
         int v = 0;
         cnt = 0;
-
         for (Object o : sortedOjs) {
-            PatternPredicate patternPredicate0 = new PatternPredicate(Matcher.quoteReplacement(o.toString()), modelIdx);
+            PatternPredicate patternPredicate0 = new PatternPredicate(EscapeChars.forRegex(o.toString()), modelIdx);
             MattePainter mp = new MattePainter(getColorCode(v));
             PainterHighlighter h = new PainterHighlighter(patternPredicate0, mp);
             pHighlighters.add(h);

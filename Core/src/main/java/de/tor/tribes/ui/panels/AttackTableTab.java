@@ -106,7 +106,6 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         jxAttackTable.setDefaultEditor(Date.class, new DateSpinEditor());
         jxAttackTable.setDefaultRenderer(Integer.class, new NoteIconCellRenderer(NoteIconCellRenderer.ICON_TYPE.NOTE));
         jxAttackTable.setDefaultEditor(Integer.class, new NoteIconCellEditor(NoteIconCellEditor.ICON_TYPE.NOTE));
-        jxAttackTable.setDefaultRenderer(TroopAmountElement.class, new StandardAttackTypeCellRenderer());
         jxAttackTable.setDefaultEditor(TroopAmountElement.class, new StandardAttackElementEditor());
 
         attackModel = new AttackTableModel(AttackManager.DEFAULT_GROUP);

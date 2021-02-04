@@ -100,9 +100,7 @@ public class ColoredDateCellRenderer extends DefaultTableRenderer {
             }
             renderComponent.setOpaque(true);
             renderComponent.setBackground(color);
-            JPanel panel = new JPanel(new GridBagLayout());
-            panel.add(renderComponent, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, 1, new Insets(0, 0, 0, 0), 0, 0));
-            return panel;
+            return renderComponent;
         } catch (Exception e) {
             return c;
         }
