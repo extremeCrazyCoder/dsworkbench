@@ -3002,8 +3002,9 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
             jLabelServer.setText("no_server");
             return false;
         }
+        
         updateProfileList();
-
+        
         return true;
     }
 
@@ -3013,7 +3014,7 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
         if (profiles != null && profiles.length > 0) {
             model = new DefaultComboBoxModel(profiles);
         } else {
-            model = new DefaultComboBoxModel(new Object[]{trans.get("no_profil")});
+            model = new DefaultComboBoxModel(new UserProfile[]{});
             logger.fatal("no Profile");
         }
 
@@ -3029,7 +3030,6 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
         jProfileBox.setModel(model);
 
         if (profileId != -1) {
-
             for (UserProfile profile : profiles) {
                 if (profile.getProfileId() == profileId) {
                     jProfileBox.setSelectedItem(profile);
@@ -3037,7 +3037,11 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
                 }
             }
         }
-        jLabelServer.setText(((UserProfile) jProfileBox.getSelectedItem()).getServerId());
+        if(jProfileBox.getSelectedItem() != null) {
+            jLabelServer.setText(((UserProfile) jProfileBox.getSelectedItem()).getServerId());
+        } else {
+            jLabelServer.setText(trans.get("no_profil"));
+        }
 
         fireSelectProfile(null);
     }
