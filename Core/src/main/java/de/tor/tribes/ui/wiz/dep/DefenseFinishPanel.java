@@ -44,14 +44,7 @@ public class DefenseFinishPanel extends WizardPage {
 
     private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseFinishPanel");
     
-    private static final String GENERAL_INFO = "<html>Fertig! Wenn alles geklappt hat befinden sich nun in der Tabelle Informationen zu gefundenen Unterst&uuml;tzungen. "
-            + "Diese solltest du &uuml;ber den entsprechenden Button in die Angriffs&uuml;bersicht transferieren, um die Unterst&uuml;tzungen komfortabel abschicken zu k&ouml;nnen. "
-            + "Das sollte nat&uuml; sobald wie m&ouml;glich geschehen.<br/>"
-            + "Wurden nicht ausreichend Unterst&uuml;tzungen gefunden, so kannst du &uuml;ber den zweiten Button eine passende Unterst&uuml;tzungsanfrage stellen und sie im Stammesforum "
-            + "posten. Bei der Anfrage werden auch gleich die Informationen einbezogen, die f&uuml;r die Berechnung verwendet wurden.<br/>"
-            + "<br/>"
-            + "Viel Erfolg bei der Verteidigung!"
-            + "</html>";
+    private static final String GENERAL_INFO = trans.get("INFO_DEFFENS");
     private static DefenseFinishPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
 
@@ -80,7 +73,7 @@ public class DefenseFinishPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Fertig";
+        return trans.get("Fertig");
     }
 
     public static String getStep() {
@@ -122,15 +115,15 @@ public class DefenseFinishPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_INFO"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
-        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jSummaryPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Sichere Ziele");
+        jLabel2.setText(trans.get("SichereZiele"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -147,7 +140,7 @@ public class DefenseFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jSaveTargets, gridBagConstraints);
 
-        jLabel4.setText("Gefährdete Ziele");
+        jLabel4.setText(trans.get("GefaehrdeteZiele"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -164,7 +157,7 @@ public class DefenseFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jFineTargets, gridBagConstraints);
 
-        jLabel6.setText("Unsichere Ziele");
+        jLabel6.setText(trans.get("UnsichereZiele"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -181,7 +174,7 @@ public class DefenseFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jDangerousTargets, gridBagConstraints);
 
-        jLabel8.setText("Verwendete Unterstützungen");
+        jLabel8.setText(trans.get("VerwendeteUnterstuetzungen"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -209,8 +202,8 @@ public class DefenseFinishPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -225,7 +218,7 @@ public class DefenseFinishPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jResultScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Berechnete Unterstützungen"));
+        jResultScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("BerechneteUnterstuetzungen")));
 
         jxResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -250,11 +243,11 @@ public class DefenseFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jResultScrollPane, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Abschließende Aktionen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AbschliessendeAktionen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("<html><b>Keine weiteren Aktionen notwendig.<br/>Die berechneten Unterst&uuml;tzungen sind nun im SOS-Analyzer verf&uuml;gbar.<br/>\nFehlende Truppen k&ouml;nnen im SOS-Analyzer &uuml;ber die Funktion \"Unterst&uuml;tzungsanfrage stellen\" beim Stamm angefordert werden.</b></html>");
+        jLabel3.setText(trans.get("Aktionen_INFO"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -278,7 +271,7 @@ public class DefenseFinishPanel extends WizardPage {
         jPanel2.add(jPanel4, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -301,7 +294,7 @@ public class DefenseFinishPanel extends WizardPage {
         jPanel2.add(jXCollapsiblePane2, gridBagConstraints);
 
         jToggleButton2.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        jToggleButton2.setText("Zusammenfassung anzeigen");
+        jToggleButton2.setText(trans.get("Zusammenfassunganzeigen"));
         jToggleButton2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireShowHideSummaryEvent(evt);
@@ -327,10 +320,10 @@ public class DefenseFinishPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 

@@ -25,6 +25,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.UIHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -41,15 +43,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class DefenseFilterPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>Du befindest dich in der Filterauswahl. Hier kannst du vorher gew&auml;hlte Herkunftsd&ouml;rfer herausfiltern, "
-            + "wenn sie nicht bestimmten Kriterien entsprechen. M&ouml;gliche Filterkriterien sind:"
-            + "<ul> <li>D&ouml;rfer werden bereits in einem Angriffsplan verwendet</li> "
-            + "<li>D&ouml;rfer verf&uuml;gen nicht &uuml;ber eine bestimmte Anzahl Einzelunterst&uuml;tzungen</li>"
-            + "<li>D&ouml;rfer sind zu weit vom Zentrum der Angriffe entfernt</li>"
-            + "</ul> "
-            + "Herausgefilterte D&ouml;rfer sind in der Tabelle markiert. Unter der Tabelle siehst du die genaue Anzahl der D&ouml;rfer, die herausgefiltert wurden. "
-            + "M&ouml;chtest du alle D&ouml;rfer verwenden oder hast du die Filterung abgeschlossen, klicke auf 'Weiter'."
-            + "</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseFilterPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Info_Filter");
     private static DefenseFilterPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
 
@@ -61,7 +57,7 @@ public class DefenseFilterPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Filterung";
+        return trans.get("Filterung");
     }
 
     public static String getStep() {
@@ -133,9 +129,9 @@ public class DefenseFilterPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_INFO"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -149,8 +145,8 @@ public class DefenseFilterPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,7 +161,7 @@ public class DefenseFilterPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jVillageScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Gefilterte Dörfer"));
+        jVillageScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("GefilterteDoerfer")));
 
         jVillageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,10 +189,10 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel6.setPreferredSize(new java.awt.Dimension(389, 300));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("Min. Einzelverteidigungen");
+        jLabel3.setText(trans.get("Min_Einzelverteidigungen"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -209,7 +205,7 @@ public class DefenseFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel5.add(jMinSplits, gridBagConstraints);
 
-        jLabel4.setText("Min. Entf. zum Angriffszentrum");
+        jLabel4.setText(trans.get("Min_Entf_Angriffszentrum"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -225,8 +221,8 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel5.add(jDistance, gridBagConstraints);
 
         jIgnoreAttackedTargets.setSelected(true);
-        jIgnoreAttackedTargets.setText("Angriffsziele ignorieren");
-        jIgnoreAttackedTargets.setToolTipText("Dörfer, auf die Angriffe laufen, werden von der Planung ausgeschlossen");
+        jIgnoreAttackedTargets.setText(trans.get("Angriffszieleignorieren"));
+        jIgnoreAttackedTargets.setToolTipText(trans.get("Angriffszieleignorieren_tooltip"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -244,7 +240,7 @@ public class DefenseFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel6.add(jPanel5, gridBagConstraints);
 
-        jButton3.setText("Filterung aktualisieren");
+        jButton3.setText(trans.get("Filterungaktualisieren"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireUpdateFilterEvent(evt);
@@ -269,7 +265,7 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel2.add(jPanel6, gridBagConstraints);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("0 Dörfer werden ignoriert");
+        jLabel2.setText(trans.get("NULL_Doerfer_werden_ignoriert"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -290,7 +286,7 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel2.add(jPanel4, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -308,7 +304,7 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
         jIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jIgnoreButton.setToolTipText("Gewählte Dörfer ignorieren");
+        jIgnoreButton.setToolTipText(trans.get("GewaehlteDoerferignorieren"));
         jIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -319,7 +315,7 @@ public class DefenseFilterPanel extends WizardPage {
         jPanel7.add(jIgnoreButton, gridBagConstraints);
 
         jNotIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox_disabled.png"))); // NOI18N
-        jNotIgnoreButton.setToolTipText("Gewählte Dörfer nicht ignorieren");
+        jNotIgnoreButton.setToolTipText(trans.get("GewaehlteDoerfernichtignorieren"));
         jNotIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -351,10 +347,10 @@ public class DefenseFilterPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -425,12 +421,12 @@ public class DefenseFilterPanel extends WizardPage {
         }
 
         if (ignored == getModel().getRowCount()) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
         } else {
             setProblem(null);
         }
 
-        jLabel2.setText(ignored + " Dörfer werden ignoriert");
+        jLabel2.setText(ignored + trans.get("Doerferwerdenignoriert"));
     }
 
     private void updateFilters() {
@@ -452,11 +448,11 @@ public class DefenseFilterPanel extends WizardPage {
         }
 
         if (ignored == getModel().getRowCount()) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
         } else {
             setProblem(null);
         }
-        jLabel2.setText(ignored + " Dörfer werden ignoriert");
+        jLabel2.setText(ignored + trans.get("Doerferwerdenignoriert"));
     }
 
     private void filterMisc(List<SupportSourceElement> pAllElements) {
@@ -541,7 +537,7 @@ public class DefenseFilterPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getFilteredElements().length == 0) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

@@ -18,6 +18,8 @@ package de.tor.tribes.ui.wiz.dep;
 import de.tor.tribes.ui.wiz.dep.types.SupportSourceElement;
 import de.tor.tribes.util.UIHelper;
 import de.tor.tribes.util.algo.DefenseCalculator;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.text.SimpleDateFormat;
@@ -38,13 +40,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class DefenseCalculationSettingsPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>Hier kannst du noch einmal pr&uuml;fen, mit welchen Daten DS Workbench versuchen wird, m&ouml;gliche Unterst&uuml;tzungen zu bestimmen. "
-            + "Mit der Checkbox 'Mehrfachunterst&uuml;tzungen erlauben' erh&auml;ltst du zudem eine letzte Einstellungsm&ouml;glichkeit. Ist dieses Feld deaktiviert, so werden aus jedem "
-            + "Dorf nur maximal eine Unterst&uuml;tzung zu einem angegriffenen Dorf geschickt. Dadurch kommt es zu einer sehr guten Verteilung und sehr geringen Verlusten in einzelnen "
-            + "D&ouml;rfern. Bei vielen Angriffen kann es aber sein, dass dadurch nicht alle Ziele ausreichend verteidigt werden k&ouml;nnen. Falls dem so ist, probiere doch mal die Option "
-            + "zu aktivieren.<br/>"
-            + "Anschlie&szlig;end kannst du die Unterst&uuml;tzungen berechnen lassen und zur letzten Seite fortfahren."
-            + "</html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseCalculationSettingsPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Deffensiv_Calc");
     private static DefenseCalculationSettingsPanel singleton = null;
     private DefenseCalculator calculator = null;
     private SimpleDateFormat dateFormat = null;
@@ -72,7 +70,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Einstellungen";
+        return trans.get("Einstellungen");
     }
 
     public static String getStep() {
@@ -115,9 +113,9 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsanalyse_DEFF"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -129,10 +127,10 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(jXCollapsiblePane1, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -147,11 +145,11 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jAllowMultiSupport.setText("Mehrfachunterstützungen erlauben");
-        jAllowMultiSupport.setToolTipText("<html>Erlaubt das Zuweisen mehrerer Unterst&uuml;tzungen zwischen einem Herkunftsdorf und einem Ziel.<br/>Aktiviere diese Option, falls nicht alle Unterst&uuml;tzungen zugewiesen werden k&ouml;nnen.</html>");
+        jAllowMultiSupport.setText(trans.get("Mehrfachunterstuetzungen_erlauben"));
+        jAllowMultiSupport.setToolTipText(trans.get("Mehrfachunterstuetzungen_erlauben_INFO"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jAllowMultiSupport, gridBagConstraints);
@@ -164,7 +162,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jPanel3, gridBagConstraints);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen zur Berechnung"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("InformationenBerechnung")));
         jScrollPane1.setViewportView(jTextPane1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -176,9 +174,9 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14));
+        jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCalculateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jCalculateButton.setText("Unterstützungen berechnen");
+        jCalculateButton.setText(trans.get("Unterstuetzungenberechnen"));
         jCalculateButton.setMaximumSize(new java.awt.Dimension(225, 40));
         jCalculateButton.setMinimumSize(new java.awt.Dimension(225, 40));
         jCalculateButton.setPreferredSize(new java.awt.Dimension(225, 40));
@@ -194,10 +192,10 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jCalculateButton, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Zu verteidigende Ziele");
+        jLabel2.setText(trans.get("ZuverteidigendeZiele"));
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -212,7 +210,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallTargets, gridBagConstraints);
 
-        jLabel4.setText("Angriffe");
+        jLabel4.setText(trans.get("Angriffe"));
         jLabel4.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
@@ -229,7 +227,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallAttacks, gridBagConstraints);
 
-        jLabel6.setText("Fakes");
+        jLabel6.setText(trans.get("Fakes"));
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
@@ -246,7 +244,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallFakes, gridBagConstraints);
 
-        jLabel8.setText("Notwendige Einzelunterstützungen");
+        jLabel8.setText(trans.get("NotwendigeEinzelunterstuetzungen"));
         jLabel8.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
@@ -263,7 +261,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jNeededSupports, gridBagConstraints);
 
-        jLabel10.setText("Verteidigende Dörfer");
+        jLabel10.setText(trans.get("VerteidigendeDoerfer"));
         jLabel10.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
@@ -280,7 +278,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jOverallDefendingVillages, gridBagConstraints);
 
-        jLabel12.setText("Verfügbare Einzelunterstützungen");
+        jLabel12.setText(trans.get("VerfuegbareEinzelunterstuetzungen"));
         jLabel12.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 5;
@@ -318,17 +316,17 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
     private void fireCalculateSupportsEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireCalculateSupportsEvent
         int avail = UIHelper.parseIntFromLabel(jAvailableSupports);
         if (avail == 0) {
-            setProblem("Keine Einzelunterstützungen verfügbar");
+            setProblem(trans.get("Keine_Einzelunterstuezungen"));
             return;
         }
 
@@ -343,7 +341,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
             }
         }
 
-        jCalculateButton.setText("Abbrechen");
+        jCalculateButton.setText(trans.get("Abbrechen"));
         calculator.setAllowMultiSupport(jAllowMultiSupport.isSelected());
         calculator.start();
         setBusy(true);
@@ -375,7 +373,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
     public void notifyCalculationFinished() {
         setBusy(false);
         setProblem(null);
-        jCalculateButton.setText("Unterstützungen berechnen");
+        jCalculateButton.setText(trans.get("Unterstuetzungenberechnen"));
     }
 
     public void notifyStatusUpdate(String pMessage) {
@@ -430,7 +428,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (calculator == null) {
-            setProblem("Noch keine Berechnung durchgeführt");
+            setProblem(trans.get("NochkeineBerechnungdurchgefuehrt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

@@ -51,9 +51,7 @@ public class DefenseAnalysePanel extends WizardPage {
 
     private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseAnalysePanel");
     
-    private static final String GENERAL_INFO = "Du befindest dich in der Angriffsanalyse. In diesem Schritt kannst du eingelesene SOS-Anfragen "
-            + "aus dem SOS-Analyzer in den Verteidigungsplaner übertragen und bei Bedarf einzelne von der Berechnung ausschließen, indem du sie "
-            + "per ENTF löscht.";
+    private static final String GENERAL_INFO = trans.get("Angriffsanalyse_SOS");
     private static DefenseAnalysePanel singleton = null;
     private final NumberFormat numFormat = NumberFormat.getInstance();
     private VillageOverviewMapPanel overviewPanel = null;
@@ -101,7 +99,7 @@ public class DefenseAnalysePanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Analyse";
+        return trans.get("Analyse");
     }
 
     public static String getStep() {
@@ -170,9 +168,9 @@ public class DefenseAnalysePanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -186,8 +184,8 @@ public class DefenseAnalysePanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -214,7 +212,7 @@ public class DefenseAnalysePanel extends WizardPage {
         jPanel2.add(jPanel6, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireChangeViewEvent(evt);
@@ -230,7 +228,7 @@ public class DefenseAnalysePanel extends WizardPage {
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Angegriffene Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AngegriffeneDoerfer")));
 
         jxAttacksTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -254,7 +252,7 @@ public class DefenseAnalysePanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jTableScrollPane, gridBagConstraints);
 
-        jButton1.setToolTipText("Angriffsdaten aus dem SOS-Analyzer übertragen");
+        jButton1.setToolTipText(trans.get("Angriffsdaten_uebertragen"));
         jButton1.setMaximumSize(new java.awt.Dimension(73, 60));
         jButton1.setMinimumSize(new java.awt.Dimension(73, 60));
         jButton1.setPreferredSize(new java.awt.Dimension(73, 60));
@@ -282,7 +280,7 @@ public class DefenseAnalysePanel extends WizardPage {
         jPanel1.add(capabilityInfoPanel1, gridBagConstraints);
 
         jXLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jXLabel1.setText("Bitte beachte, dass bereits als \"Sicher\" gekennzeichnete Angriffsziele nicht übertragen werden. Möchtest du bestimmte Ziele ignorieren, so setze sie im SOS-Analyzer auf \"Sicher\". Dieser Status bleibt bestehen, solange keine neuen Angriffe für diese Ziele auftauchen und eingelesen werden.");
+        jXLabel1.setText(trans.get("SOS_Angriffsziele"));
         jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jXLabel1.setLineWrap(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -315,10 +313,10 @@ public class DefenseAnalysePanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -342,7 +340,7 @@ public class DefenseAnalysePanel extends WizardPage {
 
     private void fireLoadAttackInformationEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireLoadAttackInformationEvent
         if (!DSWorkbenchSOSRequestAnalyzer.getSingleton().sendDataToDefensePlaner()) {
-            JOptionPaneHelper.showInformationBox(this, "Der SOS-Analyzer enthält keine Angriffe.\nBitte lies zuerst SOS-Anfragen ein.", "Information");
+            JOptionPaneHelper.showInformationBox(this, trans.get("SOS_NoAtacks"), trans.get("Information"));
         }
     }//GEN-LAST:event_fireLoadAttackInformationEvent
 
@@ -383,7 +381,7 @@ public class DefenseAnalysePanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getModel().getRowCount() == 0) {
-            setProblem("Keine Angriffe vorhanden. Lies bitte zuerst SOS-Anfragen im SOS-Analyzer ein.");
+            setProblem(trans.get("No_attacks"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         DefenseSourcePanel.getSingleton().update();

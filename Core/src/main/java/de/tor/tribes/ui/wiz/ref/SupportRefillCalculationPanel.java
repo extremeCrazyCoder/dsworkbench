@@ -28,6 +28,8 @@ import de.tor.tribes.util.algo.AbstractAttackAlgorithm;
 import de.tor.tribes.util.algo.BruteForce;
 import de.tor.tribes.util.algo.Iterix;
 import de.tor.tribes.util.algo.types.TimeFrame;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.text.SimpleDateFormat;
@@ -53,10 +55,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class SupportRefillCalculationPanel extends WizardPage {
     
-    private static final String GENERAL_INFO = "In diesem Schritt kannst du mögliche Unterstützungen für die eingegebenen Einstellungen errechnen lassen. "
-            + "Was du nun noch brauchst ist eine Ankunftzeit. Alle Unterstützungen werden so berechnet, dass sie genau zu diesem Zeitpunkt ankommen. "
-            + "Als früheste Abschickzeit wird die aktuelle Zeit gewählt, mögliche Abschickzeiten liegen zwischen jetzt und der eingestellten Ankunftzeit. "
-            + "Drücke auf 'Unterstützungen berechnen' um die Berechnung zu starten.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ref.SupportRefillCalculationPanel");
+    
+    private static final String GENERAL_INFO = trans.get("INFO_Unterstuetzungen");
     private static SupportRefillCalculationPanel singleton = null;
     private AbstractAttackAlgorithm calculator = null;
     private SimpleDateFormat dateFormat = null;
@@ -84,7 +85,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
     }
     
     public static String getDescription() {
-        return "Berechnung";
+        return trans.get("Berechnung");
     }
     
     public static String getStep() {
@@ -164,9 +165,9 @@ public class SupportRefillCalculationPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -180,8 +181,8 @@ public class SupportRefillCalculationPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,7 +197,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen zur Berechnung"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("InformationenBerechnung")));
         jScrollPane1.setViewportView(jTextPane1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -210,7 +211,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
 
         jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCalculateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jCalculateButton.setText("Unterstützungen berechnen");
+        jCalculateButton.setText(trans.get("Unterstuetzungenberechnen"));
         jCalculateButton.setMaximumSize(new java.awt.Dimension(240, 40));
         jCalculateButton.setMinimumSize(new java.awt.Dimension(240, 40));
         jCalculateButton.setPreferredSize(new java.awt.Dimension(240, 40));
@@ -226,10 +227,10 @@ public class SupportRefillCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jCalculateButton, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Notwendige Unterstützungen");
+        jLabel2.setText(trans.get("NotwendigeUnterstuetzungen"));
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -244,7 +245,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jNeededSupports, gridBagConstraints);
 
-        jLabel10.setText("Verfügbare Unterstützungen");
+        jLabel10.setText(trans.get("VerfuegbareUnterstuetzungen"));
         jLabel10.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -278,7 +279,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jProgressBar1, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Einstellungen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einstellungen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -289,7 +290,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
 
         buttonGroup1.add(jBruteForce);
         jBruteForce.setSelected(true);
-        jBruteForce.setText("Zufällige Berechnung");
+        jBruteForce.setText(trans.get("ZufaelligeBerechnung"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -298,7 +299,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
         jPanel3.add(jBruteForce, gridBagConstraints);
 
         buttonGroup1.add(jSystematicCalculation);
-        jSystematicCalculation.setText("Systematische Berechnung");
+        jSystematicCalculation.setText(trans.get("SystematischeBerechnung"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -319,7 +320,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
         jPanel3.add(jRadioLastArrive, gridBagConstraints);
 
         buttonGroup2.add(jRadioFixedArrive);
-        jRadioFixedArrive.setText("fixe Ankunftszeit");
+        jRadioFixedArrive.setText(trans.get("fixeAnkunftszeit"));
         jRadioFixedArrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioArriveActionPerformed(evt);
@@ -332,7 +333,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
 
         buttonGroup2.add(jRadioNoArrive);
         jRadioNoArrive.setSelected(true);
-        jRadioNoArrive.setText("Ohne Ankunftszeit");
+        jRadioNoArrive.setText(trans.get("OhneAnkunftszeit"));
         jRadioNoArrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioArriveActionPerformed(evt);
@@ -364,10 +365,10 @@ public class SupportRefillCalculationPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationen ausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationen einblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
     
@@ -378,7 +379,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
             calculator.abort();
             return;
         } else {//not in use...recalculate
-            if (calculator.hasResults() && JOptionPaneHelper.showQuestionConfirmBox(this, "Vorherige Berechnung verwerfen?", "Berechnung verwerfen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+            if (calculator.hasResults() && JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("VorherigeBerechnungverwerfen"), trans.get("Berechnungverwerfen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                 //not recalculate
                 return;
             } else {
@@ -389,7 +390,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
         
         if(calculator != null && !calculator.hasResults()) {
             //do only if there were no problems during initiation of calculation
-            jCalculateButton.setText("Abbrechen");
+            jCalculateButton.setText(trans.get("Abbrechen"));
             calculator.start();
             setBusy(true);
             //wait until calculation is running
@@ -426,8 +427,8 @@ public class SupportRefillCalculationPanel extends WizardPage {
             f.addStartTimeSpan(new TimeSpan(Range.between(0l, 24l * DateUtils.MILLIS_PER_HOUR), true));
             return f;
         } else {
-            notifyStatusUpdate("Kein Ankunftszeit Typ gew\u00E4hlt");
-            notifyStatusUpdate("Berechnung abgebrochen!");
+            notifyStatusUpdate(trans.get("KeinAnkunftszeit"));
+            notifyStatusUpdate(trans.get("Berechnungabgebrochen"));
             return null;
         }
     }
@@ -436,8 +437,8 @@ public class SupportRefillCalculationPanel extends WizardPage {
         TimeFrame f = getTimeFrame();
         
         if (f.getArriveRange().getMaximum() < System.currentTimeMillis()) {
-            notifyStatusUpdate("Die gewählte Ankunftzeit liegt in der Vergangenheit");
-            notifyStatusUpdate("Berechnung abgebrochen!");
+            notifyStatusUpdate(trans.get("AnkunfszeitliegtVergangenheit"));
+            notifyStatusUpdate(trans.get("Berechnungabgebrochen"));
             return;
         }
         if (jBruteForce.isSelected()) {
@@ -445,8 +446,8 @@ public class SupportRefillCalculationPanel extends WizardPage {
         } else if (jSystematicCalculation.isSelected()) {
             calculator = new Iterix();
         } else {
-            notifyStatusUpdate("Kein Berechnungsverfahren gew\u00E4hlt");
-            notifyStatusUpdate("Berechnung abgebrochen!");
+            notifyStatusUpdate(trans.get("KeinBerechnungsverfahren"));
+            notifyStatusUpdate(trans.get("Berechnungabgebrochen"));
             return;
         }
         
@@ -509,9 +510,9 @@ public class SupportRefillCalculationPanel extends WizardPage {
         if (calculator.hasResults()) {
             setProblem(null);
         } else {
-            setProblem("Berechnung erzielte keine Ergebnisse");
+            setProblem(trans.get("BerechnungkeineErgebnisse"));
         }
-        jCalculateButton.setText("Unterstützungen berechnen");
+        jCalculateButton.setText(trans.get("Unterstuetzungberechnen"));
     }
     
     public void notifyStatusUpdate(String pMessage) {
@@ -570,7 +571,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (calculator == null) {
-            setProblem("Noch keine Berechnung durchgeführt");
+            setProblem(trans.get("NochkeineBerechnungdurchgefuehrt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         

@@ -15,6 +15,8 @@
  */
 package de.tor.tribes.ui.wiz.dep;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Map;
 import org.netbeans.spi.wizard.Wizard;
 import org.netbeans.spi.wizard.WizardPage;
@@ -26,6 +28,8 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class WelcomePanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.WelcomePanel");
+    
     private static WelcomePanel singleton = null;
 
     public static synchronized WelcomePanel getSingleton() {
@@ -56,9 +60,9 @@ public class WelcomePanel extends WizardPage {
         setPreferredSize(new java.awt.Dimension(600, 500));
         setLayout(new java.awt.BorderLayout());
 
-        jTextPane1.setContentType("text/html");
         jTextPane1.setEditable(false);
-        jTextPane1.setText("<html><b>Willkommen beim DS Workbench Verteidigungsplaner.</b><br/><br/>\nIn den folgenden Schritten kannst du dir einen Verteidigungsplan f&uuml;r die vorher analysierten Angriffe auf dich erstellen lassen. Hierf&uuml;r stehen dir eine Vielzahl von Einstellungsm&ouml;glichkeiten zur Verf&uuml;gung. F&uuml;r den Anfang wird jedoch empfohlen, die eingestellten Standardwerte zu verwenden um schnell zu einem Ergebnis zu kommen.</html>");
+        jTextPane1.setContentType("text/html"); // NOI18N
+        jTextPane1.setText(trans.get("Welcome_text"));
         jScrollPane1.setViewportView(jTextPane1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

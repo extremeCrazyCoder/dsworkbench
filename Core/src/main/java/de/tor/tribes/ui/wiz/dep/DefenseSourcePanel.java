@@ -32,6 +32,8 @@ import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.PluginManager;
 import de.tor.tribes.util.TableHelper;
 import de.tor.tribes.util.sos.SOSManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -59,11 +61,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class DefenseSourcePanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "<html>Du befindest dich in der Dorfauswahl. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, "
-            + "mit denen du verteidigen m&ouml;chtest. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:"
-            + "<ul> <li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>"
-            + "<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Gruppen der Gruppen&uuml;bersicht</li>"
-            + "</ul> </html>";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefenseSourcePanel");
+    
+    private static final String GENERAL_INFO = trans.get("INFO_Dorfauswahl");
     private static DefenseSourcePanel singleton = null;
     private VillageSelectionPanel villageSelectionPanel = null;
     private VillageOverviewMapPanel overviewPanel = null;
@@ -76,7 +76,7 @@ public class DefenseSourcePanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Herkunft";
+        return trans.get("Herkunft");
     }
 
     public static String getStep() {
@@ -164,7 +164,7 @@ public class DefenseSourcePanel extends WizardPage {
 
         jInfoTextPane.setEditable(false);
         jInfoTextPane.setContentType("text/html"); // NOI18N
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setText(trans.get("Angriffsmodus"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -179,8 +179,8 @@ public class DefenseSourcePanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquelle"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -196,7 +196,7 @@ public class DefenseSourcePanel extends WizardPage {
 
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Verwendete Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("VerwendeteDoerfer")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 
@@ -248,7 +248,7 @@ public class DefenseSourcePanel extends WizardPage {
         jVillageTablePanel.add(jToggleButton1, gridBagConstraints);
 
         jXLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jXLabel1.setText("Die Anzahl der möglichen Einzelunterstützungen richtet sich nach den Einstellungen im SOS-Analyzer. Werden keine Einzelunterstützungen gefunden, verfügt das Dorf möglicherweise nicht über eine bestimmten Truppentyp, der in den Einstellungen festgelegt ist.");
+        jXLabel1.setText(trans.get("Anzahl_Einzelunterstuetzungen"));
         jXLabel1.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jXLabel1.setLineWrap(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -302,10 +302,10 @@ public class DefenseSourcePanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -429,7 +429,7 @@ public class DefenseSourcePanel extends WizardPage {
                 getModel().removeRow(rows.get(i));
             }
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Dörfer gewählt");
+                setProblem(trans.get("KeineDoerfergewaehlt"));
             }
             overviewPanel.repaint();
         }
@@ -471,7 +471,7 @@ public class DefenseSourcePanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getModel().getRowCount() == 0) {
-            setProblem("Keine Dörfer gewählt");
+            setProblem(trans.get("KeineDoerfergewaehlt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         List<SupportSourceElement> result = new LinkedList<>();
@@ -483,7 +483,7 @@ public class DefenseSourcePanel extends WizardPage {
             supportCount += elem.getSupports();
         }
         if (supportCount == 0) {
-            setProblem("Keine Unterstützungen verfügbar");
+            setProblem(trans.get("No_Support"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         DefenseFilterPanel.getSingleton().setup(result.toArray(new SupportSourceElement[result.size()]));

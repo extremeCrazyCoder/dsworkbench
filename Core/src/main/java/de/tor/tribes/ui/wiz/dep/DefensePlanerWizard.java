@@ -22,6 +22,8 @@ import de.tor.tribes.types.TargetInformation;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.generator.ui.SOSGenerator;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -44,6 +46,8 @@ import org.netbeans.spi.wizard.WizardPanelProvider;
  */
 public class DefensePlanerWizard extends WizardPanelProvider {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.dep.DefensePlanerWizard");
+    
     private static final String ID_WELCOME = "welcome-id";
     private static final String ID_ANALYSE = "analyse-id";
     private static final String ID_VILLAGES = "villages-id";
@@ -53,9 +57,15 @@ public class DefensePlanerWizard extends WizardPanelProvider {
     private static JFrame parent = null;
 
     public DefensePlanerWizard() {
-        super("DS Workbench - Verteidigungsplaner",
+        super(trans.get("DSVerteidigungsplaner"),
                 new String[]{ID_WELCOME, ID_ANALYSE, ID_VILLAGES, ID_FILTER, ID_CALCULATION, ID_FINISH},
-                new String[]{"Willkommen", "Angriffe analysieren", "Unterstützende Dörfer", "Filter", "Berechnung", "Fertigstellung"});
+                new String[]{
+                    trans.get("Willkommen"), 
+                    trans.get("Angriffeanalysieren"), 
+                    trans.get("UnterstuetzungDoerfer"), 
+                    trans.get("Filter"), 
+                    trans.get("Berechnung"), 
+                    trans.get("Fertigstellung")});
     }
 
     @Override
@@ -128,7 +138,7 @@ public class DefensePlanerWizard extends WizardPanelProvider {
         }
         
         parent = new JFrame();
-        parent.setTitle("Verteidigungsplaner");
+        parent.setTitle(trans.get("Verteidigungsplaner"));
         WizardPanelProvider provider = new DefensePlanerWizard();
         Wizard wizard = provider.createWizard();
         parent.getContentPane().setLayout(new BorderLayout());
