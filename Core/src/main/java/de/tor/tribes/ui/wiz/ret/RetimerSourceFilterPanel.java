@@ -54,9 +54,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
 
     private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerSourceFilterPanel");
     
-    private static final String GENERAL_INFO = "Hier kannst du vorher angegebene Retime-Dörfer filtern. So können z.B. Dörfer ignoriert werden,<br/>"
-            + "die bereits in Angriffsplänen verwendet oder die nicht über eine bestimmte Truppenstärke verfügen. Ignorierte Dörfer werden in der Tabelle<br/>"
-            + "entsprechend markiert.";
+    private static final String GENERAL_INFO = trans.get("Filter_INFO");
     private static RetimerSourceFilterPanel singleton = null;
     private TroopFilterDialog troopFilterDialog = null;
     private VillageOverviewMapPanel overviewPanel = null;
@@ -98,7 +96,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Filterung (Herkunft)";
+        return trans.get("Filterung");
     }
 
     public static String getStep() {
@@ -164,9 +162,9 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -181,8 +179,8 @@ public class RetimerSourceFilterPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -199,7 +197,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jFilterPanel.setPreferredSize(new java.awt.Dimension(500, 230));
         jFilterPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Angriffspläne"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Angriffsplaene")));
         jPanel3.setMinimumSize(new java.awt.Dimension(160, 88));
         jPanel3.setPreferredSize(new java.awt.Dimension(160, 195));
         jPanel3.setLayout(new java.awt.GridBagLayout());
@@ -220,7 +218,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 5);
         jPanel3.add(jScrollPane3, gridBagConstraints);
 
-        jButton1.setText("Keinen auswählen");
+        jButton1.setText(trans.get("Keinenauswaehlen"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireRemoveAttackPlanSelectionEvent(evt);
@@ -243,7 +241,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jFilterPanel.add(jPanel3, gridBagConstraints);
 
-        jButton3.setText("Filterung aktualisieren");
+        jButton3.setText(trans.get("Filterungaktualisieren"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireUpdateFilterEvent(evt);
@@ -257,12 +255,12 @@ public class RetimerSourceFilterPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(2, 5, 17, 5);
         jFilterPanel.add(jButton3, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Truppen & Sonstiges"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Truppen")));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jPlayerVillagesOnly.setSelected(true);
-        jPlayerVillagesOnly.setText("Nur Spielerdörfer verwenden");
-        jPlayerVillagesOnly.setToolTipText("Ignoriert alle Herkunftsdörfer die nicht dem Spieler gehören, für den das aktuelle Profil gilt.");
+        jPlayerVillagesOnly.setText(trans.get("NurSpielerdoerferverwenden"));
+        jPlayerVillagesOnly.setToolTipText(trans.get("NurSpielerdoerferverwenden_tooltip"));
         jPlayerVillagesOnly.setIconTextGap(12);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
@@ -291,7 +289,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jTroopFilterButton.setBackground(new java.awt.Color(255, 51, 51));
-        jTroopFilterButton.setText("Inaktiv (klicken)");
+        jTroopFilterButton.setText(trans.get("Inaktiv"));
         jTroopFilterButton.setMaximumSize(new java.awt.Dimension(120, 23));
         jTroopFilterButton.setMinimumSize(new java.awt.Dimension(120, 23));
         jTroopFilterButton.setPreferredSize(new java.awt.Dimension(120, 23));
@@ -318,7 +316,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jPanel1.add(jLabel5, gridBagConstraints);
 
         jMinFarmSpace.setToolTipText("");
-        jMinFarmSpace.setPrompt("Min. BH Plätze");
+        jMinFarmSpace.setPrompt(trans.get("MIN"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -328,7 +326,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jPanel1.add(jMinFarmSpace, gridBagConstraints);
 
         jMinFarmSpaceBonus.setToolTipText("");
-        jMinFarmSpaceBonus.setPrompt("Min. BH Plätze (Bonus)");
+        jMinFarmSpaceBonus.setPrompt(trans.get("MinBHPlaetze"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -357,7 +355,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jVillagePanel.setPreferredSize(new java.awt.Dimension(400, 188));
         jVillagePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Gefilterte Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Gefilterte")));
 
         jVillageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -393,7 +391,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jVillagePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -411,7 +409,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox.png"))); // NOI18N
-        jIgnoreButton.setToolTipText("Gewählte Dörfer ignorieren");
+        jIgnoreButton.setToolTipText(trans.get("GewaehlteDoerferignorieren"));
         jIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -425,7 +423,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         jPanel4.add(jIgnoreButton, gridBagConstraints);
 
         jNotIgnoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/checkbox_disabled.png"))); // NOI18N
-        jNotIgnoreButton.setToolTipText("Gewählte Dörfer nicht ignorieren");
+        jNotIgnoreButton.setToolTipText(trans.get("GewaehlteDoerfernichtignorieren"));
         jNotIgnoreButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireChangeIgnoreSelectionEvent(evt);
@@ -457,10 +455,10 @@ public class RetimerSourceFilterPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationen ausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationen einblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -475,10 +473,10 @@ public class RetimerSourceFilterPanel extends WizardPage {
     private void fireShowTroopFilterEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireShowTroopFilterEvent
         if (troopFilterDialog.showDialog()) {
             jTroopFilterButton.setBackground(Color.GREEN);
-            jTroopFilterButton.setText("Aktiv");
+            jTroopFilterButton.setText(trans.get("Aktiv"));
         } else {
             jTroopFilterButton.setBackground(Color.RED);
-            jTroopFilterButton.setText("Inaktiv (klicken)");
+            jTroopFilterButton.setText(trans.get("Inaktiv"));
         }
     }//GEN-LAST:event_fireShowTroopFilterEvent
 
@@ -623,7 +621,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
         }
 
         if (ignoreCount == getModel().getRowCount()) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
         } else {
             setProblem(null);
         }
@@ -690,7 +688,7 @@ public class RetimerSourceFilterPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getFilteredElements().length == 0) {
-            setProblem("Alle Dörfer werden ignoriert");
+            setProblem(trans.get("AlleDoerferwerdenignoriert"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

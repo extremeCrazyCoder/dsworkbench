@@ -47,9 +47,7 @@ public class RetimerFinishPanel extends WizardPage {
 
     private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerFinishPanel");
     
-    private static final String GENERAL_INFO = "Die Berechnung ist nun abgeschlossen und in der Tabelle im unteren Bereich siehst du alle Retime-Angriffe<br/>"
-            + "die momentan möglich sind. Dabei sei nochmal erwähnt, dass jedes Herkunftsdorf mehrfach vorkommen kann. Beachte dies bei der Auswahl oder später<br/>"
-            + "beim Abschicken der Angriffe aus der Befehlsübersicht.";
+    private static final String GENERAL_INFO = trans.get("Berechnung_INFO");
     private static RetimerFinishPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
 
@@ -61,7 +59,7 @@ public class RetimerFinishPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Fertig";
+        return trans.get("Fertig");
     }
 
     public static String getStep() {
@@ -118,9 +116,9 @@ public class RetimerFinishPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -134,8 +132,8 @@ public class RetimerFinishPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -150,7 +148,7 @@ public class RetimerFinishPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Angegriffene Ziele"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AngegriffeneZiele")));
 
         jxResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,11 +172,11 @@ public class RetimerFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Abschließende Aktionen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AbschliessendeAktionen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/48x48/selection_axe_clipboard.png"))); // NOI18N
-        jButton4.setToolTipText("Ausgewählte Angriffe in die Befehlsübersicht übertragen");
+        jButton4.setToolTipText(trans.get("AbschliessendeAktionen_Info"));
         jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
         jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton4.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -218,7 +216,7 @@ public class RetimerFinishPanel extends WizardPage {
         jPanel4.add(jPanel5, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -253,10 +251,10 @@ public class RetimerFinishPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -291,7 +289,7 @@ public class RetimerFinishPanel extends WizardPage {
 
     private void transferToAttackView(List<Attack> pToTransfer) {
         if (pToTransfer.isEmpty()) {
-            JOptionPaneHelper.showInformationBox(this, "Keine Angriffe gewählt", "Information");
+            JOptionPaneHelper.showInformationBox(this, trans.get("KeineAngriffegewaehlt"), trans.get("Information"));
             return;
         }
         new AttackTransferDialog(TacticsPlanerWizard.getFrame(), true).setupAndShow(pToTransfer.toArray(new Attack[pToTransfer.size()]));
