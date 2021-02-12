@@ -99,7 +99,7 @@ public class NoteTableModel extends AbstractTableModel {
                 return n.getMapMarker();
             }
             default: {
-                return new Date(n.getTimestamp());// new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(n.getTimestamp());
+                return new Date(n.getTimestamp());
             }
         }
     }

@@ -16,8 +16,6 @@
 package de.tor.tribes.ui.components;
 
 import de.tor.tribes.types.FightReport;
-import de.tor.tribes.util.translation.TranslationManager;
-import de.tor.tribes.util.translation.Translator;
 
 /**
  *

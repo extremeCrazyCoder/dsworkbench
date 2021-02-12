@@ -17,6 +17,7 @@ package de.tor.tribes.util.js;
 
 import de.tor.tribes.types.Attack;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -100,9 +101,9 @@ public class AttackScriptWriter {
             //times
             SimpleDateFormat df = null;
             if (ServerSettings.getSingleton().isMillisArrival()) {
-                df = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
+                df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
             } else {
-                df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+                df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
             }
             block += "'send':'" + df.format(a.getSendTime()) + "',\n";
             block += "'arrive':'" + df.format(a.getArriveTime()) + "',\n";

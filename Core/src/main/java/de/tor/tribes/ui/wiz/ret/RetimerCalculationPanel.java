@@ -24,6 +24,7 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.TroopHelper;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
@@ -58,7 +59,7 @@ public class RetimerCalculationPanel extends WizardPage {
     private static final String GENERAL_INFO = trans.get("Retimes_INFO");
     private static RetimerCalculationPanel singleton = null;
     private List<Attack> retimes = null;
-    private SimpleDateFormat dateFormat = null;
+    private final SimpleDateFormat dateFormat;
 
     public static synchronized RetimerCalculationPanel getSingleton() {
         if (singleton == null) {
@@ -79,7 +80,8 @@ public class RetimerCalculationPanel extends WizardPage {
         Style defaultStyle = doc.addStyle("Default", null);
         StyleConstants.setItalic(defaultStyle, true);
         StyleConstants.setFontFamily(defaultStyle, "SansSerif");
-        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        dateFormat = TimeManager.getSimpleDateFormat("HH:mm:ss");
+        TimeManager.register(dateFormat);
         retimes = new LinkedList<>();
     }
 

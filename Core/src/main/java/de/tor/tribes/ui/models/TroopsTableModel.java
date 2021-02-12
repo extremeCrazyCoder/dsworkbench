@@ -318,7 +318,7 @@ public class TroopsTableModel extends AbstractTableModel {
             case VILLAGE:
                 return h.getVillage();
             case LAST_CHANGE:
-                return h.getState();//new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(h.getState());
+                return h.getState();
             case SPEAR:
                 return h.getTroops().getAmountForUnit("spear");
             case SWORD:

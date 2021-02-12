@@ -53,7 +53,6 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -136,8 +135,8 @@ public class DSWorkbenchDoItYourselfAttackPlaner extends AbstractDSWorkbenchFram
         jAttackTable.setModel(new DoItYourselfAttackTableModel());
         jAttackTable.getSelectionModel().addListSelectionListener(DSWorkbenchDoItYourselfAttackPlaner.this);
 
-        jArriveTime.setDate(Calendar.getInstance().getTime());
-        jNewArriveSpinner.setDate(Calendar.getInstance().getTime());
+        jArriveTime.setDate(new Date());
+        jNewArriveSpinner.setDate(new Date());
         capabilityInfoPanel1.addActionListener(this);
         KeyStroke copy = KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK, false);
         KeyStroke bbCopy = KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK, false);

@@ -68,7 +68,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -725,7 +724,7 @@ public class DSWorkbenchMainFrame extends JRibbonFrame implements
     File backupFile = new File(GlobalOptions.getSelectedProfile().getProfileDirectory() + "/backup.xml");
     String lastBackup = null;
     if (backupFile.exists()) {
-      lastBackup = new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(new Date(backupFile.lastModified()));
+      lastBackup = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss").format(new Date(backupFile.lastModified()));
     }
 
       if (lastBackup != null) {

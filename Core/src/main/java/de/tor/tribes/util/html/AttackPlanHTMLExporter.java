@@ -187,7 +187,7 @@ public class AttackPlanHTMLExporter {
             logger.warn("Skip writing HTML file due to TEMPLATE_ERROR flag");
             return;
         }
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         StringBuilder result = new StringBuilder();
         //append header
         result.append(replaceHeadFootVariables(HEADER, pPlanName, pAttacks));
@@ -413,7 +413,7 @@ public class AttackPlanHTMLExporter {
         //replace version
         result = result.replace(VERSION, Double.toString(Constants.VERSION) + Constants.VERSION_ADDITION);
         //replace creation date
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss 'Uhr'");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss 'Uhr'");
         result = result.replace(CREATION_DATE, f.format(new Date(System.currentTimeMillis())));
 
         return result;

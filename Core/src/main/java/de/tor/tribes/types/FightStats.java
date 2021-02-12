@@ -19,6 +19,7 @@ import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.types.ext.NoAlly;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.TimeManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -224,7 +225,7 @@ public class FightStats {
     public String toString() {
 
         String res = "";
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm");
         res += "Start: " + f.format(new Date(startTime)) + "\n";
         res += "End: " + f.format(new Date(endTime)) + "\n";
         res += "Reports: " + reportCount + "\n";

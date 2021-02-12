@@ -37,7 +37,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
@@ -273,12 +272,12 @@ public class DSWorkbenchFormFrame extends AbstractDSWorkbenchFrame implements Li
             
             if (extended) {
                 buffer.append(trans.get("Erstelltamsize"));
-                buffer.append(new SimpleDateFormat(trans.get("Date_format")).format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat(trans.get("Date_format")).format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + trans.get("[/size]\n"));
             } else {
                 buffer.append("\nErstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(" mit DS Workbench ");
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }

@@ -29,6 +29,7 @@ import de.tor.tribes.util.BBCodeFormatter;
 import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.conquer.ConquerManager;
 import de.tor.tribes.util.farm.FarmManager;
 import de.tor.tribes.util.mark.MarkerManager;
@@ -62,7 +63,7 @@ public class VillageHTMLTooltipGenerator {
         b.append("<html><head>").append(BBCodeFormatter.getStyles()).append("</head><table width=\"400\" style=\"border: solid 1px black; cellspacing:0px;cellpadding: 0px;background-color:#EFEBDF;color:black;\">\n");
         b.append(buildVillageRow(pVillage));
         NumberFormat nf = NumberFormat.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         nf.setMinimumFractionDigits(0);
         nf.setMaximumFractionDigits(0);
         b.append(buildInfoRow("Punkte:", nf.format(pVillage.getPoints()), false));
@@ -138,7 +139,7 @@ public class VillageHTMLTooltipGenerator {
         }
         Conquer c = ConquerManager.getSingleton().getConquer(pVillage);
         if (c != null) {
-            SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss");
             b.append(buildInfoRow("Erobert am:", f.format(c.getTimestamp() * 1000L), false));
             b.append(buildInfoRow("Zustimmung:", c.getCurrentAcceptance(), false));
         }

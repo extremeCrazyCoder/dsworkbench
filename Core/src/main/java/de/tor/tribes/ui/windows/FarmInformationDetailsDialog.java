@@ -17,6 +17,7 @@ package de.tor.tribes.ui.windows;
 
 import de.tor.tribes.types.FarmInformation;
 import de.tor.tribes.ui.views.DSWorkbenchFarmManager;
+import de.tor.tribes.util.TimeManager;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
@@ -44,7 +45,7 @@ public class FarmInformationDetailsDialog extends javax.swing.JDialog {
         setTitle("Farminformationen - " + pInfo.getVillage().getFullName());
         jVillageName.setText(pInfo.getVillage().getFullName());
         jAttacks.setText(Integer.toString(pInfo.getAttackCount()));
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(0);
         nf.setMaximumFractionDigits(0);

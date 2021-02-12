@@ -25,10 +25,13 @@ import java.io.InputStream;
 import java.net.Proxy;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TimeZone;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lorecraft.phparser.SerializedPhpParser;
@@ -39,14 +42,13 @@ import org.lorecraft.phparser.SerializedPhpParser;
 public class ServerManager {
 
     private static Logger logger = LogManager.getLogger("ServerManager");
-    // private static HashMap<String, URL> SERVER_LIST = null;
-    // private static List<DatabaseServerEntry> SERVERS = null;
-    private static LinkedHashMap<String, String> SERVERS = null;
+    //Server id (e.g. de181) -> Pair(Server_URL, Timezone>
+    private static Map<String, ImmutablePair<String, TimeZone>> SERVERS = null;
 
     private static boolean SERVERS_UPDATED = false;
 
     static {
-        SERVERS = new LinkedHashMap<>();
+        SERVERS = new HashMap<>();
         File serverDir = new File(Constants.SERVER_DIR);
         if (!serverDir.exists()) {
             serverDir.mkdir();
@@ -54,11 +56,12 @@ public class ServerManager {
     }
     
     public static void loadServerList(Proxy pProxy) {
-        SERVERS = new LinkedHashMap<>();
+        SERVERS = new HashMap<>();
         logger.debug("Reading servers from servers.txt");
 
         BufferedReader r = null;
         try {
+            logger.debug("Available Timezones {}", Arrays.asList(TimeZone.getAvailableIDs()));
             if (new File("servers.txt").exists()) {
                 r = new BufferedReader(new FileReader("servers.txt"));
                 int cnt = 0, regCnt = 0;
@@ -67,22 +70,43 @@ public class ServerManager {
                     if (line.startsWith("#") || line.trim().length() <= 1) {//commented or empty line
                         continue;
                     }
-                    if(line.startsWith("\\")) {
+                    String type = line.substring(0, 2);
+                    String[] splited = line.substring(2).split(";");
+                    if(type.equals("r\\")) {
                         //region
-                        logger.debug("Loading servers for " + line.substring(1));
-                        LinkedHashMap<String, String> serversRegion = loadServerList(line.substring(1), pProxy);
+                        TimeZone zone = null;
+                        for(String id : TimeZone.getAvailableIDs()) {
+                            if(id.equals(splited[1]))
+                                zone = TimeZone.getTimeZone(id);
+                        }
+                        if(zone == null) {
+                            logger.error("Skipping region {} due to wrong time zone: {}",  splited[0], splited[1]);
+                            continue;
+                        }
+                        
+                        logger.debug("Loading servers for region {} with timezone {}", splited[0], splited[1]);
+                        Map<String, String> serversRegion = loadServerList(splited[0], pProxy);
                         regCnt++;
                         
                         for (String id : serversRegion.keySet()) {
                             logger.debug("Adding server with id " + id + " and URL " + serversRegion.get(id));
-                            SERVERS.put(id, serversRegion.get(id));
+                            SERVERS.put(id, new ImmutablePair(serversRegion.get(id), zone));
                             cnt++;
                         }
-                    } else {
+                    } else if(type.equals("s\\")) {
                         //single server
-                        String[] split = line.split(";");
-                        logger.debug("Adding server with id " + split[0] + " and URL " + split[1]);
-                        SERVERS.put(split[0], split[1]);
+                        TimeZone zone = null;
+                        for(String id : TimeZone.getAvailableIDs()) {
+                            if(id.equals(splited[2]))
+                                zone = TimeZone.getTimeZone(id);
+                        }
+                        if(zone == null) {
+                            logger.error("Skipping server {} due to wrong time zone: {}",  splited[0], splited[2]);
+                            continue;
+                        }
+                        
+                        logger.debug("Adding server with id {} and URL {} and Timezone {}", splited[0], splited[1], splited[2]);
+                        SERVERS.put(splited[0], new ImmutablePair(splited[1], zone));
                         cnt++;
                     }
                 }
@@ -100,7 +124,7 @@ public class ServerManager {
         }
     }
 
-    public static LinkedHashMap<String, String> loadServerList(String pServerBaseUrl, Proxy pProxy) throws Exception {
+    public static Map<String, String> loadServerList(String pServerBaseUrl, Proxy pProxy) throws Exception {
         URLConnection con;
         if (pProxy == null) {
             con = new URL(pServerBaseUrl + "/backend/get_servers.php").openConnection();
@@ -115,14 +139,14 @@ public class ServerManager {
             result.write(data, 0, bytes);
         }
         SerializedPhpParser serializedPhpParser = new SerializedPhpParser(result.toString());
-        return (LinkedHashMap<String, String>) serializedPhpParser.parse();
+        return (Map<String, String>) serializedPhpParser.parse();
     }
 
     /**
      * Get the listof locally stored servers
      */
     public static String[] getLocalServers() {
-        List<String> servers = new LinkedList<>();
+        List<String> servers = new ArrayList<>();
         for (File serverDir : new File(Constants.SERVER_DIR).listFiles()) {
             if (serverDir.isDirectory()) {
                 servers.add(serverDir.getName());
@@ -138,10 +162,24 @@ public class ServerManager {
     }
 
     public static String getServerURL(String pServerID) {
-        return SERVERS.get(pServerID);
+        if(SERVERS.get(pServerID) == null) {
+            return null;
+        }
+        return SERVERS.get(pServerID).getLeft();
+    }
+
+    public static TimeZone getServerTimeZone(String pServerID) {
+        if(SERVERS.get(pServerID) == null) {
+            return null;
+        }
+        return SERVERS.get(pServerID).getRight();
     }
     
     public static void giveSimulatorServerList() {
-        ConfigManager.getSingleton().setServers(SERVERS);
+        Map<String, String> temp = new HashMap<>();
+        for(Map.Entry<String, ImmutablePair<String, TimeZone>> entry : SERVERS.entrySet()) {
+            temp.put(entry.getKey(), entry.getValue().getLeft());
+        }
+        ConfigManager.getSingleton().setServers(temp);
     }
 }

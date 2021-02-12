@@ -24,6 +24,7 @@ import de.tor.tribes.ui.wiz.ref.types.REFSourceElement;
 import de.tor.tribes.ui.wiz.ref.types.REFTargetElement;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.algo.AbstractAttackAlgorithm;
 import de.tor.tribes.util.algo.BruteForce;
 import de.tor.tribes.util.algo.Iterix;
@@ -60,7 +61,7 @@ public class SupportRefillCalculationPanel extends WizardPage {
     private static final String GENERAL_INFO = trans.get("INFO_Unterstuetzungen");
     private static SupportRefillCalculationPanel singleton = null;
     private AbstractAttackAlgorithm calculator = null;
-    private SimpleDateFormat dateFormat = null;
+    private final SimpleDateFormat dateFormat;
     
     public static synchronized SupportRefillCalculationPanel getSingleton() {
         if (singleton == null) {
@@ -81,7 +82,8 @@ public class SupportRefillCalculationPanel extends WizardPage {
         Style defaultStyle = doc.addStyle("Default", null);
         StyleConstants.setItalic(defaultStyle, true);
         StyleConstants.setFontFamily(defaultStyle, "SansSerif");
-        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        dateFormat = TimeManager.getSimpleDateFormat("HH:mm:ss");
+        TimeManager.register(dateFormat);
     }
     
     public static String getDescription() {

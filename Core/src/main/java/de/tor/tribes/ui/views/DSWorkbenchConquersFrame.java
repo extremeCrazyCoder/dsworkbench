@@ -37,7 +37,6 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -690,11 +689,10 @@ public class DSWorkbenchConquersFrame extends AbstractDSWorkbenchFrame implement
 
     @Override
     public void dataChangedEvent(String pGroup) {
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(ConquerManager.getSingleton().getLastUpdate());
-        SimpleDateFormat f = new SimpleDateFormat(trans.get("dateFormat"));
+        Date c = new Date(ConquerManager.getSingleton().getLastUpdate());
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat(trans.get("dateFormat"));
 
-        jLastUpdateLabel.setText(String.format(trans.get("updateLabel"), f.format(c.getTime())));
+        jLastUpdateLabel.setText(String.format(trans.get("updateLabel"), f.format(c)));
 
         int[] conquerStats = ConquerManager.getSingleton().getConquersStats();
         int conquers = ConquerManager.getSingleton().getConquerCount();

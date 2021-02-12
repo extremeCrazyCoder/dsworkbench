@@ -418,10 +418,12 @@ public class GlobalOptions {
             } else {
                 logger.info("Setting selected server to " + pServer);
                 SELECTED_SERVER = pServer;
+                TimeManager.updateTimeZone(SELECTED_SERVER);
             }
         } else {
             logger.info("Setting selected server to " + pServer);
             SELECTED_SERVER = pServer;
+            TimeManager.updateTimeZone(SELECTED_SERVER);
         }
     }
 

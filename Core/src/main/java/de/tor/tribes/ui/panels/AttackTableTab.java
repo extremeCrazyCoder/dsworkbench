@@ -1730,9 +1730,9 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         b.append("Ziel: ").append(attack.getTarget().toString()).append("\n");
         SimpleDateFormat f = null;
         if (ServerSettings.getSingleton().isMillisArrival()) {
-            f = new SimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
+            f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
         } else {
-            f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+            f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         }
         b.append("Ankunft: ").append(f.format(attack.getArriveTime())).append("\n");
 

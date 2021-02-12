@@ -16,6 +16,7 @@
 package de.tor.tribes.ui.wiz.dep;
 
 import de.tor.tribes.ui.wiz.dep.types.SupportSourceElement;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.UIHelper;
 import de.tor.tribes.util.algo.DefenseCalculator;
 import de.tor.tribes.util.translation.TranslationManager;
@@ -45,7 +46,7 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
     private static final String GENERAL_INFO = trans.get("Deffensiv_Calc");
     private static DefenseCalculationSettingsPanel singleton = null;
     private DefenseCalculator calculator = null;
-    private SimpleDateFormat dateFormat = null;
+    private final SimpleDateFormat dateFormat;
 
     public static synchronized DefenseCalculationSettingsPanel getSingleton() {
         if (singleton == null) {
@@ -66,7 +67,9 @@ public class DefenseCalculationSettingsPanel extends WizardPage {
         Style defaultStyle = doc.addStyle("Default", null);
         StyleConstants.setItalic(defaultStyle, true);
         StyleConstants.setFontFamily(defaultStyle, "SansSerif");
-        dateFormat = new SimpleDateFormat("HH:mm:ss");
+        dateFormat = TimeManager.getSimpleDateFormat("HH:mm:ss");
+        
+        TimeManager.register(dateFormat);
     }
 
     public static String getDescription() {

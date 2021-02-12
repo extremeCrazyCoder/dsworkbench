@@ -125,11 +125,9 @@ public class AttackTimePanel extends javax.swing.JPanel implements DragGestureLi
         model.addElement(new TimeSpanDivider());
         jTimeFrameList.setModel(model);
         jTimeFrameList.setCellRenderer(new TimeFrameListCellRenderer());
-        Calendar c = Calendar.getInstance();
-        minSendTimeField.setDate(c.getTime());
-        c.setTimeInMillis(System.currentTimeMillis() + DateUtils.MILLIS_PER_HOUR);
-        maxArriveTimeField.setDate(c.getTime());
-        dateTimeField.setDate(c.getTime());
+        minSendTimeField.setDate(new Date());
+        maxArriveTimeField.setDate(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_HOUR));
+        dateTimeField.setDate(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_HOUR));
         
         fireTimeFrameChangedEvent();
     }

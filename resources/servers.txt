@@ -7,10 +7,10 @@
 #
 #Adding a whole region:
 #\[url]
-\https://www.die-staemme.de
-\https://www.staemme.ch
-\https://www.tribalwars.net
-\https://www.tribalwars.co.uk
-\https://www.tribalwars.works
+r\https://www.die-staemme.de;Europe/Berlin
+r\https://www.staemme.ch;Europe/Zurich
+r\https://www.tribalwars.net;Europe/London
+r\https://www.tribalwars.co.uk;Europe/London
+r\https://www.tribalwars.works;Europe/London
 
-#fr1;https://fr1.guerretribale.fr
+#r\fr1;https://fr1.guerretribale.fr;Europe/Paris

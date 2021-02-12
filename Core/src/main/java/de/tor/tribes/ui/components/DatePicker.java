@@ -15,6 +15,7 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
@@ -42,7 +43,7 @@ public class DatePicker extends javax.swing.JPanel {
     private static final Color LIGHT_GRAY = Color.LIGHT_GRAY;
     private static final Color GRAY = new Color(200, 200, 200);
     private static final Color BLACK = new Color(0, 0, 0);
-    private static final SimpleDateFormat monthAndYear = new SimpleDateFormat(trans.get("MMMMMyyyy"));
+    private static final SimpleDateFormat monthAndYear = TimeManager.getSimpleDateFormat(trans.get("MMMMMyyyy"));
     private static final int WEEKS_TO_SHOW = 6;
     
     private CrossedLabel daysInMonth[][];
@@ -67,6 +68,11 @@ public class DatePicker extends javax.swing.JPanel {
         originalDate = DateUtils.truncate(new Date(), Calendar.DATE);
         selectedDate = originalDate;
         init();
+        TimeManager.register(monthAndYear);
+    }
+    
+    void unregisterTimeZoneListener() {
+        TimeManager.unregister(monthAndYear);
     }
 
     public DatePicker(Date date) {

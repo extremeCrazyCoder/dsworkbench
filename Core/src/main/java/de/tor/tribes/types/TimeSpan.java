@@ -16,6 +16,7 @@
 package de.tor.tribes.types;
 
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
 import java.text.SimpleDateFormat;
@@ -320,8 +321,8 @@ public class TimeSpan implements Comparable<TimeSpan> {
   @Override
   public String toString() {
     String result = null;
-    SimpleDateFormat fDate = new SimpleDateFormat(trans.get("dateFormat"));
-    SimpleDateFormat tDate = new SimpleDateFormat(trans.get("timeFormat"));
+    SimpleDateFormat fDate = TimeManager.getSimpleDateFormat(trans.get("dateFormat"));
+    SimpleDateFormat tDate = TimeManager.getSimpleDateFormat(trans.get("timeFormat"));
     
     if (isValidAtSpecificDay()) {
       int startHour = (int) DateUtils.getFragmentInHours(new Date(getSpan().getMinimum()), Calendar.DATE);

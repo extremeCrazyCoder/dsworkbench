@@ -22,6 +22,7 @@ import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.types.ext.NoAlly;
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.util.Filter;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.farm.FarmManager;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -391,7 +392,7 @@ public class ReportRule implements Filter<FightReport> {
         case CONQUERED:
             return "AG-Angriffe/Eroberungen";
         case DATE:
-            SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy");
+            SimpleDateFormat df = TimeManager.getSimpleDateFormat("dd.MM.yy");
             Range<Long> dates = (Range<Long>) filterComponent;
             return "Gesendet zwischen " + df.format(new Date(dates.getMinimum())) +
                     " und " + df.format(new Date(dates.getMaximum()));

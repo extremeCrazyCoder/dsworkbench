@@ -226,9 +226,9 @@ public class SOSGenerator extends javax.swing.JFrame {
         }
         SimpleDateFormat f;
         if (!ServerSettings.getSingleton().isMillisArrival()) {
-            f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
+            f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
         } else {
-            f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
+            f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
         }
         StringBuilder b = new StringBuilder();
 
@@ -282,9 +282,9 @@ public class SOSGenerator extends javax.swing.JFrame {
         StringBuilder b = new StringBuilder();
         SimpleDateFormat df;
         if (de.tor.tribes.util.ServerSettings.getSingleton().isMillisArrival()) {
-            df = new SimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
+            df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
         } else {
-            df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+            df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         }
         for(Village target: sos.getTargets()) {
             b.append("[b]Dorf:[/b] ").append(target.toBBCode()).append("\n");

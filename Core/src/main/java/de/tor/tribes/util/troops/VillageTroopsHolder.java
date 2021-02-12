@@ -21,6 +21,7 @@ import de.tor.tribes.io.TroopAmountFixed;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.interfaces.BBFormatterInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -175,7 +176,7 @@ public class VillageTroopsHolder extends ManageableType implements BBSupport {
         
         String updateVal = "-";
         if(state != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
+            SimpleDateFormat sdf = TimeManager.getSimpleDateFormat("yy.MM.dd HH:mm:ss");
             updateVal = sdf.format(state);
         }
         replacements.add(updateVal);

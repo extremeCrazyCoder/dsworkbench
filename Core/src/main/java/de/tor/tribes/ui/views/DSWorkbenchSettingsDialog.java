@@ -3089,7 +3089,7 @@ private void fireProfileActionEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:
 
     @Override
     public void fireDataHolderEvent(String eventMessage) {
-        SimpleDateFormat f = new SimpleDateFormat(trans.get("dateFormat"));
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat(trans.get("dateFormat"));
         jStatusArea.insert("(" + f.format(new Date(System.currentTimeMillis())) + ") " + eventMessage + "\n", jStatusArea.getText().length());
         UIHelper.applyCorrectViewPosition(jStatusArea, jScrollPane1);
     }

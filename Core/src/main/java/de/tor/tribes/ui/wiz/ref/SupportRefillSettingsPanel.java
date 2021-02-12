@@ -31,6 +31,7 @@ import de.tor.tribes.ui.wiz.ref.types.REFTargetElement;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.TroopHelper;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
@@ -134,7 +135,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
                 trans.get("Nein"), 
                 trans.get("Ja")) == JOptionPane.YES_OPTION);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         StringBuilder b = new StringBuilder();
         b.append(trans.get("AufgelistetenVergleichbare"));
 

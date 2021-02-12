@@ -19,6 +19,7 @@ import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.TroopAmountFixed;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.TimeManager;
 import static de.tor.tribes.util.troops.VillageTroopsHolder.UNIT_NAMES;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.text.SimpleDateFormat;
@@ -158,7 +159,7 @@ public class SupportVillageTroopsHolder extends VillageTroopsHolder {
         
         String updateVal = "-";
         if(getState() != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+            SimpleDateFormat sdf = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
             updateVal = sdf.format(getState());
         }
         replacements.add(updateVal);

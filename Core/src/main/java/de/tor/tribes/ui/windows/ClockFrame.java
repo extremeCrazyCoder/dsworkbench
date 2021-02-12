@@ -22,6 +22,7 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.SystrayHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
@@ -35,7 +36,6 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.sound.sampled.AudioInputStream;
@@ -103,6 +103,7 @@ public class ClockFrame extends javax.swing.JFrame implements ActionListener {
 
     private void removeTimer(TimerPanel pPanel, boolean pSave) {
         jTimerContainer.remove(pPanel);
+        pPanel.unregisterTimeZone();
         timers.remove(pPanel);
         storeTimers();
     }
@@ -147,7 +148,7 @@ public class ClockFrame extends javax.swing.JFrame implements ActionListener {
             cp.setValue(millis);
         }
 
-        for (final TimerPanel p : timers.toArray(new TimerPanel[timers.size()])) {
+        for (final TimerPanel p : timers) {
             if (p.isExpired()) {
                 SystrayHelper.showInfoMessage(String.format(trans.get("istabgelaufen"), p.getName()));
                 //moved playing the sound to a new Thread because of graphic problems
@@ -584,12 +585,14 @@ private void fireTestSoundEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
 class TimerThread extends Thread {
 
     private ClockFrame mParent;
-    private final SimpleDateFormat FORMAT = new SimpleDateFormat("HH:mm:ss:SSS");
+    private final SimpleDateFormat FORMAT = TimeManager.getSimpleDateFormat("HH:mm:ss:SSS");
 
     public TimerThread(ClockFrame pParent) {
         mParent = pParent;
         setName("ClockTimer");
         setDaemon(true);
+        
+        TimeManager.register(FORMAT);
     }
 
     public void setNotifyTime(long pTime) {
@@ -599,7 +602,7 @@ class TimerThread extends Thread {
     public void run() {
         while (true) {
             long currentTime = System.currentTimeMillis();
-            mParent.updateTime(FORMAT.format(new Date(currentTime)), (int) DateUtils.getFragmentInMilliseconds(new Date(), Calendar.SECOND));
+            mParent.updateTime(FORMAT.format(new Date(currentTime)), (int) (currentTime % 1000));
             if (mParent.isVisible()) {
                 mParent.repaint();
             } else {

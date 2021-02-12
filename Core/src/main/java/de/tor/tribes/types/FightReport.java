@@ -27,6 +27,7 @@ import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.BuildingSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -61,7 +62,7 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
     public String[] getReplacements(boolean pExtended) {
         String attackerVal = attacker.toBBCode();
         String targetVal = targetVillage.toBBCode();
-        SimpleDateFormat d = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat d = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         String sendDateVal = d.format(new Date(timestamp));
         String resultVal = (won) ? "Der Angreifer hat gewonnen" : "Der Verteidiger hat gewonnen";
 
@@ -935,7 +936,7 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm");
         result.append("Gesendet: ").append(f.format(new Date(timestamp))).append("\n");
         result.append(won ? "Gewonnen\n" : "Verloren\n");
 

@@ -15,6 +15,7 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.util.TimeManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ import org.jdom2.Element;
 public class TimerPanel extends javax.swing.JPanel {
     private final Logger logger = LogManager.getLogger("TimerPanel");
 
-    private final SimpleDateFormat FORMAT = new SimpleDateFormat("HH:mm:ss:SSS");
+    private final SimpleDateFormat FORMAT = TimeManager.getSimpleDateFormat("HH:mm:ss:SSS");
     private ActionListener listener = null;
     private String name = null;
     private long expires = 0;
@@ -38,6 +39,11 @@ public class TimerPanel extends javax.swing.JPanel {
 
     public TimerPanel(ActionListener pListener) {
         this(pListener, null, 0, null);
+        TimeManager.register(FORMAT);
+    }
+    
+    public void unregisterTimeZone() {
+        TimeManager.unregister(FORMAT);
     }
 
     /**

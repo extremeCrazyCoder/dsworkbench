@@ -636,9 +636,9 @@ public class RetimerDataPanel extends WizardPage {
 
                 SimpleDateFormat f;
                 if (!ServerSettings.getSingleton().isMillisArrival()) {
-                    f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
+                    f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
                 } else {
-                    f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
+                    f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
                 }
                 arriveDate = f.parse(arrive);
                 jArriveTime.setDate(arriveDate);
@@ -723,7 +723,7 @@ public class RetimerDataPanel extends WizardPage {
 
                 long runtime = DSCalculator.calculateMoveTimeInMillis(source, target, unit.getSpeed());
                 Date send = new Date(arriveTime.getTime() - runtime);
-                SimpleDateFormat f = new SimpleDateFormat(trans.get("ddMMyy"));
+                SimpleDateFormat f = TimeManager.getSimpleDateFormat(trans.get("ddMMyy"));
                 result = f.format(send);
                 if (arriveTime.getTime() < System.currentTimeMillis()) {
                     jWarningLabel.setVisible(true);

@@ -24,6 +24,7 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.bb.AttackListFormatter;
 import de.tor.tribes.util.support.SOSFormater;
 import de.tor.tribes.util.xml.JDomUtils;
@@ -83,9 +84,9 @@ public class SOSRequest extends ManageableType implements BBSupport {
         //add first and last attack information
         SimpleDateFormat dateFormat = null;
         if (ServerSettings.getSingleton().isMillisArrival()) {
-            dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
+            dateFormat = TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss.SSS");
         } else {
-            dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+            dateFormat = TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         }
         String firstAttackVal = "[img]" + serverURL + "/graphic/map/attack.png[/img] " + dateFormat.format(new Date(atts.get(0).getlArriveTime()));
 

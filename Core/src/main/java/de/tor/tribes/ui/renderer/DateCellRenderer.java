@@ -16,6 +16,7 @@
 package de.tor.tribes.ui.renderer;
 
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import java.awt.Component;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,20 +31,22 @@ import org.jdesktop.swingx.renderer.DefaultTableRenderer;
  */
 public class DateCellRenderer extends DefaultTableRenderer {
 
-    private SimpleDateFormat specialFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
+    private final SimpleDateFormat specialFormat;
 
     public DateCellRenderer() {
         super();
         if (!ServerSettings.getSingleton().isMillisArrival()) {
-            specialFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+            specialFormat = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         } else {
-            specialFormat = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
+            specialFormat = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
         }
+        TimeManager.register(specialFormat);
     }
 
     public DateCellRenderer(String pPattern) {
-        this();
-        specialFormat = new SimpleDateFormat(pPattern);
+        super();
+        specialFormat = TimeManager.getSimpleDateFormat(pPattern);
+        TimeManager.register(specialFormat);
     }
 
     @Override

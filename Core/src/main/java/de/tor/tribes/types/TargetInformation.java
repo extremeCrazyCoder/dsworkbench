@@ -20,6 +20,7 @@ import de.tor.tribes.io.TroopAmountFixed;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -303,7 +304,7 @@ public class TargetInformation {
             }
         }
         result += "\n";
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
+        SimpleDateFormat format = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS");
         for (TimedAttack attack : getAttacks()) {
             result += " * " + attack.getSource() + "(" + format.format(new Date(attack.getlArriveTime())) + ")\n";
         }

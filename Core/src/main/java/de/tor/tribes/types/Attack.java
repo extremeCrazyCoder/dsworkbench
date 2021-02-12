@@ -265,7 +265,7 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
     
     @Override
     public String toString() {
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         String result = source + "\n";
         result += target + "\n";
         result += getUnit() + "\n";
@@ -394,12 +394,12 @@ public class Attack extends ManageableType implements Serializable, Comparable<A
         SimpleDateFormat sdf;
         if(ServerSettings.getSingleton().isMillisArrival()) {
             if(pExtended) {
-                sdf = new SimpleDateFormat(trans.get("Time1"));
+                sdf = TimeManager.getSimpleDateFormat(trans.get("Time1"));
             } else {
-                sdf = new SimpleDateFormat(trans.get("Time2"));
+                sdf = TimeManager.getSimpleDateFormat(trans.get("Time2"));
             }
         } else {
-            sdf = new SimpleDateFormat(trans.get("Time3"));
+            sdf = TimeManager.getSimpleDateFormat(trans.get("Time3"));
         }
         sendVal = sdf.format(sTime);
         arriveVal = sdf.format(aTime);

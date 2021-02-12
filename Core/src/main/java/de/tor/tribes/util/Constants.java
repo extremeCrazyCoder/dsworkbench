@@ -16,7 +16,6 @@
 package de.tor.tribes.util;
 
 import java.awt.Color;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 /**
@@ -54,9 +53,5 @@ public class Constants {
         if (DEBUG) {
             System.err.println("DEBUG MODE ENABLED!");
         }
-    }
-
-    public static SimpleDateFormat getDateFormat() {
-        return new SimpleDateFormat("dd.MM.yy HH:mm:ss");
     }
 }

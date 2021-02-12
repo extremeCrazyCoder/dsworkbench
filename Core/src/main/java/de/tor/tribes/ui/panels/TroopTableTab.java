@@ -31,6 +31,7 @@ import de.tor.tribes.util.BrowserInterface;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.bb.TroopListFormatter;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
@@ -43,8 +44,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -361,12 +360,12 @@ public class TroopTableTab extends javax.swing.JPanel implements ListSelectionLi
 
             if (extended) {
                 buffer.append("\n[size=8]Erstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(" mit DS Workbench ");
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
                 buffer.append("\nErstellt am ");
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(" mit DS Workbench ");
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }

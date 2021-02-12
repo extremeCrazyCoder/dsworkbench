@@ -16,6 +16,7 @@
 package de.tor.tribes.util.algo.types;
 
 import de.tor.tribes.types.TimeSpan;
+import de.tor.tribes.util.TimeManager;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.commons.lang3.Range;
@@ -397,7 +398,7 @@ public class TimeFrame {
   @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
-    SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+    SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
     builder.append("Start: ").append(f.format(new Date(getStartRange().getMinimum()))).append("-").append(f.format(new Date(getStartRange().getMaximum()))).append("\n");
     builder.append("Arrive: ").append(f.format(new Date(getArriveRange().getMinimum()))).append("-").append(f.format(new Date(getArriveRange().getMaximum()))).append("\n");
     builder.append("SendSpans: ").append(sendTimeSpans).append("\n");

@@ -20,12 +20,12 @@ import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.ImageManager;
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.bb.VillageListFormatter;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -142,7 +142,7 @@ public class Note extends ManageableType implements BBSupport {
     public String toBBCode() {
         StringBuilder buffer = new StringBuilder();
         buffer.append("[quote][b]Notiz vom:[/b] ");
-        buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date(timestamp)));
+        buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date(timestamp)));
         buffer.append("\n\n");
         buffer.append("[b]Zugeordnete Dörfer:[/b]\n\n");
         boolean isNext = false;
@@ -262,7 +262,7 @@ public class Note extends ManageableType implements BBSupport {
 
     @Override
     public String[] getReplacements(boolean pExtended) {
-        String lastChangeVal = new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date(timestamp));
+        String lastChangeVal = TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date(timestamp));
         String villageVal = "";
 
         List<Village> villages = new LinkedList<>();

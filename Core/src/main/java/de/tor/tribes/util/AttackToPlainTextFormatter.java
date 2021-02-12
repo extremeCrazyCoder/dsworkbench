@@ -19,7 +19,6 @@ import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.Attack;
 import de.tor.tribes.types.ext.Barbarians;
 import de.tor.tribes.types.ext.Village;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -39,11 +38,11 @@ public class AttackToPlainTextFormatter {
         String sendtime = null;
         String arrivetime = null;
         if (ServerSettings.getSingleton().isMillisArrival()) {
-            sendtime = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(sTime);
-            arrivetime = new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(aTime);
+            sendtime = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(sTime);
+            arrivetime = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(aTime);
         } else {
-            sendtime = new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(sTime);
-            arrivetime = new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(aTime);
+            sendtime = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss").format(sTime);
+            arrivetime = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss").format(aTime);
         }
         switch (type) {
             case Attack.CLEAN_TYPE: {

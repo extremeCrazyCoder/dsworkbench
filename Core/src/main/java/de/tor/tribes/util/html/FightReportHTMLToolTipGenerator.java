@@ -21,6 +21,7 @@ import de.tor.tribes.types.FightReport;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BuildingSettings;
 import de.tor.tribes.util.EscapeChars;
+import de.tor.tribes.util.TimeManager;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -84,7 +85,7 @@ public class FightReportHTMLToolTipGenerator {
     public static String buildToolTip(FightReport pReport) {
         String res = pTemplateData;
         String[] tables = buildUnitTables(pReport);
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(0);
         nf.setMaximumFractionDigits(0);

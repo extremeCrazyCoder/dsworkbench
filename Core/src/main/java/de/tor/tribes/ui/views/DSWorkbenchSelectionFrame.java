@@ -37,6 +37,7 @@ import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.PluginManager;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.UIHelper;
 import de.tor.tribes.util.bb.VillageListFormatter;
 import de.tor.tribes.util.html.SelectionHTMLExporter;
@@ -58,9 +59,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -527,12 +527,12 @@ public class DSWorkbenchSelectionFrame extends AbstractDSWorkbenchFrame implemen
 
             if (extended) {
                 buffer.append(trans.get("sizeErstelltam"));
-                buffer.append(new SimpleDateFormat(trans.get("date_format_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat(trans.get("date_format_um")).format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
                 buffer.append(trans.get("Erstelltam"));
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }

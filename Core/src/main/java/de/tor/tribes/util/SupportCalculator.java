@@ -22,7 +22,6 @@ import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +37,7 @@ public class SupportCalculator {
     public static List<SupportMovement> calculateSupport(Village pVillage, Date pArrive, boolean pRealDefOnly, List<Tag> pTags, int pMinNumber) {
         HashMap<UnitHolder, Integer> unitTable = new HashMap<>();
         if (logger.isDebugEnabled()) {
-            logger.debug("Try to find support for village " + pVillage + " at arrival time " + new SimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(pArrive));
+            logger.debug("Try to find support for village " + pVillage + " at arrival time " + TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss.SSS").format(pArrive));
             if (pTags == null || pTags.isEmpty()) {
                 logger.debug(" - using all villages of current user");
             } else {
@@ -218,7 +217,7 @@ public class SupportCalculator {
 
         @Override
         public String toString() {
-            return "Von " + source + " am " + new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.SSS").format(sendTime) + " mit " + unit;
+            return "Von " + source + " am " + TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss.SSS").format(sendTime) + " mit " + unit;
         }
     }
 }

@@ -37,8 +37,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -409,12 +408,12 @@ public class DSWorkbenchChurchFrame extends AbstractDSWorkbenchFrame implements 
 
             if (extended) {
                 buffer.append(trans.get("Erstelltamsize"));
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
                 buffer.append(trans.get("Erstelltam"));
-                buffer.append(new SimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }

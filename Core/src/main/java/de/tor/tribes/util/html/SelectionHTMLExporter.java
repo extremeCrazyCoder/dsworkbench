@@ -25,6 +25,7 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.EscapeChars;
 import de.tor.tribes.util.GlobalOptions;
+import de.tor.tribes.util.TimeManager;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -272,7 +273,7 @@ public class SelectionHTMLExporter {
         String foot = FOOTER;
         foot = foot.replace(VERSION, Double.toString(Constants.VERSION) + Constants.VERSION_ADDITION);
 
-        SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss 'Uhr'");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss 'Uhr'");
 
         foot = foot.replace(CREATION_DATE, f.format(new Date()));
         result.append(foot);

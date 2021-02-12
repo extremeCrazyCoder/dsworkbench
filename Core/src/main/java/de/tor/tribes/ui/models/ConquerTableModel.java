@@ -24,6 +24,7 @@ import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.windows.DSWorkbenchMainFrame;
 import de.tor.tribes.util.DSCalculator;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.conquer.ConquerManager;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
@@ -58,7 +59,14 @@ public class ConquerTableModel extends AbstractTableModel {
         trans.get("Entfernung")
     };
     private boolean[] editableColumns = new boolean[]{false, false, false, false, false, false, false, false, false, false};
-
+    
+    private SimpleDateFormat sdf;
+    
+    public ConquerTableModel() {
+        sdf = TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        TimeManager.register(sdf);
+    }
+    
     @Override
     public int getColumnCount() {
         return colNames.length;
@@ -107,8 +115,7 @@ public class ConquerTableModel extends AbstractTableModel {
                 return c.getVillage().getContinentString();
             }
             case 3: {
-                SimpleDateFormat f = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
-                return f.format(new Date(c.getTimestamp() * 1000));
+                return sdf.format(new Date(c.getTimestamp() * 1000));
             }
             case 4: {
                 Tribe t = c.getLoser();

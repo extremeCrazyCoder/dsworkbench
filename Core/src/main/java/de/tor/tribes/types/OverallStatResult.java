@@ -16,6 +16,7 @@
 package de.tor.tribes.types;
 
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.TimeManager;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,7 +56,7 @@ public class OverallStatResult implements BBSupport {
 
     @Override
     public String[] getReplacements(boolean pExtended) {
-        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm");
+        SimpleDateFormat df = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm");
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(0);
         nf.setMinimumFractionDigits(0);

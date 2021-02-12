@@ -26,6 +26,7 @@ import de.tor.tribes.util.BBCodeFormatter;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.bb.DefStatsFormatter;
 import de.tor.tribes.util.bb.KillStatsFormatter;
 import de.tor.tribes.util.bb.PointStatsFormatter;
@@ -35,7 +36,6 @@ import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
@@ -418,7 +418,7 @@ public class DSWorkbenchStatsFrame extends AbstractDSWorkbenchFrame implements A
         
         renderer.setDefaultItemLabelsVisible(jShowItemValues.isSelected());
         renderer.setDefaultItemLabelGenerator(new org.jfree.chart.labels.StandardXYItemLabelGenerator());
-        renderer.setDefaultToolTipGenerator(new StandardXYToolTipGenerator(StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT, new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"), NumberFormat.getInstance()));
+        renderer.setDefaultToolTipGenerator(new StandardXYToolTipGenerator(StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT, TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss"), NumberFormat.getInstance()));
         int lastDataset = plot.getDatasetCount() - 1;
         if (lastDataset > 0) {
             plot.getRangeAxis().setAxisLinePaint(plot.getLegendItems().get(lastDataset).getLinePaint());
@@ -455,7 +455,7 @@ public class DSWorkbenchStatsFrame extends AbstractDSWorkbenchFrame implements A
             plot.setRenderer(plot.getDatasetCount() - 1, renderer);
             renderer.setDefaultItemLabelsVisible(jShowItemValues.isSelected());
             renderer.setDefaultItemLabelGenerator(new org.jfree.chart.labels.StandardXYItemLabelGenerator());
-            renderer.setDefaultToolTipGenerator(new StandardXYToolTipGenerator(StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT, new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"), NumberFormat.getInstance()));
+            renderer.setDefaultToolTipGenerator(new StandardXYToolTipGenerator(StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT, TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss"), NumberFormat.getInstance()));
             axis.setAxisLinePaint(plot.getLegendItems().get(plot.getDatasetCount() - 1).getLinePaint());
             axis.setLabelPaint(plot.getLegendItems().get(plot.getDatasetCount() - 1).getLinePaint());
             axis.setTickLabelPaint(plot.getLegendItems().get(plot.getDatasetCount() - 1).getLinePaint());
@@ -472,7 +472,7 @@ public class DSWorkbenchStatsFrame extends AbstractDSWorkbenchFrame implements A
         pPlot.setRangeCrosshairVisible(true);
         
         DateAxis axis = (DateAxis) pPlot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("dd.MM.yyyy HH:mm:ss"));
+        axis.setDateFormatOverride(TimeManager.getSimpleDateFormat("dd.MM.yyyy HH:mm:ss"));
     }
 
     /** This method is called from within the constructor to
@@ -1104,7 +1104,7 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
         if (startPointer == null) {
             //remove before end
             long v = (long) endPointer.getValue();
-            String date = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(v));
+            String date = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(v));
             if (JOptionPaneHelper.showQuestionConfirmBox(this, "Alle Werte vor dem " + date + " löschen?", "Werte löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
                 StatManager.getSingleton().removeDataBefore((Tribe) tribeSelection, new Date(v).getTime());
                 fireUpdateChartEvent(null);
@@ -1112,7 +1112,7 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
         } else if (endPointer == null) {
             //remove after start
             long v = (long) startPointer.getValue();
-            String date = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(v));
+            String date = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(v));
             if (JOptionPaneHelper.showQuestionConfirmBox(this, "Alle Werte nach dem " + date + " löschen?", "Werte löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
                 StatManager.getSingleton().removeDataAfter((Tribe) tribeSelection, new Date(v).getTime());
                 fireUpdateChartEvent(null);
@@ -1121,8 +1121,8 @@ private void fireAlwaysOnTopEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRS
             //remove date between
             long vstart = (long) startPointer.getValue();
             long vend = (long) endPointer.getValue();
-            String startDate = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(vstart));
-            String endDate = new SimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(vend));
+            String startDate = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(vstart));
+            String endDate = TimeManager.getSimpleDateFormat("dd.MM.yyyy 'um' HH:mm:ss").format(new Date(vend));
             
             if (JOptionPaneHelper.showQuestionConfirmBox(this, "Alle Werte zwischen dem " + startDate + " und dem " + endDate + " löschen?", "Werte löschen", "Nein", "Ja") == JOptionPane.YES_OPTION) {
                 StatManager.getSingleton().removeDataBetween((Tribe) tribeSelection, new Date(vstart).getTime(), new Date(vend).getTime());

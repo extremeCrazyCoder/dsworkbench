@@ -16,6 +16,7 @@
 package de.tor.tribes.ui.components;
 
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.translation.Translator;
 import java.awt.Point;
@@ -40,7 +41,7 @@ public class DateTimeField extends javax.swing.JPanel {
     private DatePicker dp;
     private TimePicker tp;
     private JDialog dlg;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat(trans.get("ddMMyyyy"));
+    private SimpleDateFormat dateFormat = TimeManager.getSimpleDateFormat(trans.get("ddMMyyyy"));
     private SimpleDateFormat timeFormat;
     private boolean timeEnabled = true;
     private boolean dateEnabled = true;
@@ -51,20 +52,23 @@ public class DateTimeField extends javax.swing.JPanel {
      */
     public DateTimeField() {
         if(ServerSettings.getSingleton().isMillisArrival()) {
-            timeFormat = new SimpleDateFormat(trans.get("HHmmssSSS"));
+            timeFormat = TimeManager.getSimpleDateFormat(trans.get("HHmmssSSS"));
         } else {
-            timeFormat = new SimpleDateFormat(trans.get("HHmmss"));
+            timeFormat = TimeManager.getSimpleDateFormat(trans.get("HHmmss"));
         }
         
         initComponents();
-        jDateField.setText(dateFormat.format(Calendar.getInstance().getTime()));
-        jTimeField.setText(timeFormat.format(Calendar.getInstance().getTime()));
+        jDateField.setText(dateFormat.format(new Date()));
+        jTimeField.setText(timeFormat.format(new Date()));
         //jDateField.setEditable(false);
         //jTimeField.setEditable(false);
         jChangeTime.setEnabled(timeEnabled);
         jTimeField.setEnabled(timeEnabled);
         jChangeDate.setEnabled(dateEnabled);
         jDateField.setEnabled(dateEnabled);
+        
+        TimeManager.register(timeFormat);
+        TimeManager.register(dateFormat);
     }
 
     public void setActionListener(ActionListener pListener) {
@@ -243,7 +247,7 @@ public class DateTimeField extends javax.swing.JPanel {
 
             return result.getTime();
         } catch (Exception e) {
-            Date now = Calendar.getInstance().getTime();
+            Date now = new Date();
             setDate(now);
             return now;
         }
@@ -261,6 +265,9 @@ public class DateTimeField extends javax.swing.JPanel {
         if (evt.getSource() == jChangeDate) {
             if (!dateEnabled) {
                 return;
+            }
+            if(dp != null) {
+                dp.unregisterTimeZoneListener();
             }
             try {
                 dp = new DatePicker(dateFormat.parse(jDateField.getText()));

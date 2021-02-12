@@ -401,7 +401,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         }
         boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("ErweiterterBBCode_Text"), trans.get("ErweiterterBBCode"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION);
 
-        SimpleDateFormat df = new SimpleDateFormat(trans.get("dateFormat"));
+        SimpleDateFormat df = TimeManager.getSimpleDateFormat(trans.get("dateFormat"));
         StringBuilder b = new StringBuilder();
         b.append(trans.get("vergleichbareUnterstutzungen"));
 
@@ -438,7 +438,7 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
     private String buildSimpleRequestTable(Village pTarget, TroopAmountFixed pNeed, DefenseInformation pDefense) {
         StringBuilder b = new StringBuilder();
-        SimpleDateFormat df = new SimpleDateFormat(trans.get("dateFormat"));
+        SimpleDateFormat df = TimeManager.getSimpleDateFormat(trans.get("dateFormat"));
         b.append("[table]\n");
         b.append("[**]").append(pTarget.toBBCode());
         int colCount = 0;
@@ -485,9 +485,9 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
         }
         SimpleDateFormat f;
         if (!ServerSettings.getSingleton().isMillisArrival()) {
-            f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
+            f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format"));
         } else {
-            f = new SimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
+            f = TimeManager.getSimpleDateFormat(PluginManager.getSingleton().getVariableValue("sos.date.format.ms"));
         }
         StringBuilder b = new StringBuilder();
 
@@ -548,12 +548,12 @@ public class DSWorkbenchSOSRequestAnalyzer extends AbstractDSWorkbenchFrame impl
 
             if (extended) {
                 buffer.append(trans.get("Erstelltamsize"));
-                buffer.append(new SimpleDateFormat(trans.get("DateFormat_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat(trans.get("DateFormat_um")).format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "[/size]\n");
             } else {
                 buffer.append(trans.get("Erstelltam"));
-                buffer.append(new SimpleDateFormat(trans.get("DateFormat_um")).format(Calendar.getInstance().getTime()));
+                buffer.append(TimeManager.getSimpleDateFormat(trans.get("DateFormat_um")).format(new Date()));
                 buffer.append(trans.get("mitDSWorkbench"));
                 buffer.append(Constants.VERSION).append(Constants.VERSION_ADDITION + "\n");
             }

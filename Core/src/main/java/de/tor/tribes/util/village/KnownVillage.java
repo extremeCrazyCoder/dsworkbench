@@ -22,6 +22,7 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.BuildingSettings;
 import de.tor.tribes.util.ServerSettings;
+import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.interfaces.BBFormatterInterface;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -333,7 +334,7 @@ public class KnownVillage extends ManageableType implements BBSupport {
         
         String updateVal = "-";
         if(getLastUpdate() > System.currentTimeMillis() - 1000L * 60 * 60 * 24 * 365) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
+            SimpleDateFormat sdf = TimeManager.getSimpleDateFormat("yy.MM.dd HH:mm:ss");
             updateVal = sdf.format(getLastUpdate());
         }
         replacements.add(updateVal);

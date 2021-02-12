@@ -38,7 +38,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 import javax.swing.*;
@@ -565,7 +564,7 @@ public class VillageSupportFrame extends javax.swing.JFrame implements ActionLis
         } else {
             buildResults(movements);
             jTargetVillage.setText(mCurrentVillage.toString());
-            jArriveTime.setText(new SimpleDateFormat("dd.MM.yy HH:mm:ss").format(dateTimeField.getSelectedDate()));
+            jArriveTime.setText(TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss").format(dateTimeField.getSelectedDate()));
             jResultFrame.setVisible(true);
         }
     }//GEN-LAST:event_fireCalculateEvent
