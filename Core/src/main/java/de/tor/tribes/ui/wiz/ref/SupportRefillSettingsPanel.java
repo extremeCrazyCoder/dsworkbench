@@ -32,6 +32,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.TroopHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -61,10 +63,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class SupportRefillSettingsPanel extends WizardPage implements ActionListener {
 
-    private static final String GENERAL_INFO = "In diesem Schritt kannst du bestimmen, wieviele Truppen in alles Zieldörfer sein sollen und wie groß eine "
-            + "einzelne Unterstützung ist. DS Workbench wird versuchen, die Zielmenge durch alle bekannten Truppeninformationen im möglichst vielen Dörfern zu erreichen. "
-            + "Beachte: Je kleiner die Einzelunterstützungen sind, desto schneller können Verluste ausgeglichen werden, jedoch dauert es auch eine Weile, bis man die Unterstützungen "
-            + "auf den Weg geschickt hat. Hast du deine Einstellungen getroffen, klicke auf 'Notwendige Unterstützungen berechnen' um die Tabelle zu aktualisieren.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ref.SupportRefillSettingsPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Ziel_INFO");
     private static SupportRefillSettingsPanel singleton = null;
     private VillageOverviewMapPanel overviewPanel = null;
     private TroopSelectionPanelFixed targetAmountPanel = null;
@@ -97,7 +98,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
             public void valueChanged(ListSelectionEvent e) {
                 int selectedRows = jVillageTable.getSelectedRowCount();
                 if (selectedRows != 0) {
-                    jStatusLabel.setText(selectedRows + " Dorf/Dörfer gewählt");
+                    jStatusLabel.setText(selectedRows + trans.get("Dorfgeweahlt"));
                 }
             }
         });
@@ -124,14 +125,18 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         REFTargetElement[] selection = getSelectedElements();
 
         if (selection.length == 0) {
-            jStatusLabel.setText("Keine Einträge gewählt");
+            jStatusLabel.setText(trans.get("KeineEintraege"));
             return;
         }
-        boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, "Erweiterte BB-Codes verwenden (nur für Forum und Notizen geeignet)?", "Erweiterter BB-Code", "Nein", "Ja") == JOptionPane.YES_OPTION);
+        boolean extended = (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                trans.get("ErweiterteBBCodes"), 
+                trans.get("ErweiterterBBCode"), 
+                trans.get("Nein"), 
+                trans.get("Ja")) == JOptionPane.YES_OPTION);
 
         SimpleDateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
         StringBuilder b = new StringBuilder();
-        b.append("Ich benötige die aufgelisteten oder vergleichbare Unterstützungen in den folgenden Dörfern:\n\n");
+        b.append(trans.get("AufgelistetenVergleichbare"));
 
         TroopAmountFixed split = splitAmountPanel.getAmounts();
 
@@ -154,9 +159,9 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         }
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
-            jStatusLabel.setText("Unterstützungsanfragen in die Zwischenablage kopiert");
+            jStatusLabel.setText(trans.get("Unterstuetunganfragen"));
         } catch (HeadlessException hex) {
-            jStatusLabel.setText("Fehler beim Kopieren in die Zwischenablage");
+            jStatusLabel.setText(trans.get("FehlerbeimKopieren"));
         }
     }
 
@@ -201,7 +206,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
     }
 
     public static String getDescription() {
-        return "Einstellungen";
+        return trans.get("Einstellungen");
     }
 
     public static String getStep() {
@@ -266,9 +271,9 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -283,8 +288,8 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -304,12 +309,12 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jTargetAmountsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Gewünschte Truppenstärke"));
+        jTargetAmountsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Truppenstaerke")));
         jTargetAmountsPanel.setLayout(new java.awt.BorderLayout());
 
         jAllowSimilarTroops.setSelected(true);
-        jAllowSimilarTroops.setText("Gleichwertige Truppenstärke zulassen");
-        jAllowSimilarTroops.setToolTipText("<html>Ist diese Option aktiviert, so werden nicht zwingend die vorgegebenen Truppen aufgef&uuml;llt.<br/>Stattdessen wird versucht, unter Ber&uuml;cksichtigung der bereits \nstationierten Truppen,<br/>die vorgegebene St&auml;rke der Verteidigung zu erreichen.</html>");
+        jAllowSimilarTroops.setText(trans.get("Truppenstaerke_Text"));
+        jAllowSimilarTroops.setToolTipText(trans.get("Truppenstaerke_Option"));
         jAllowSimilarTroops.setMaximumSize(new java.awt.Dimension(150, 23));
         jAllowSimilarTroops.setMinimumSize(new java.awt.Dimension(150, 23));
         jAllowSimilarTroops.setPreferredSize(new java.awt.Dimension(150, 23));
@@ -323,7 +328,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jTargetAmountsPanel, gridBagConstraints);
 
-        jSplitSizePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Einzelunterstützung"));
+        jSplitSizePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Einzelunterstuetzung_border")));
         jSplitSizePanel.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -333,7 +338,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         gridBagConstraints.weighty = 1.0;
         jPanel1.add(jSplitSizePanel, gridBagConstraints);
 
-        jButton1.setText("<html>Notwendige Unterstützungen<br/>berechnen</html>");
+        jButton1.setText(trans.get("HTML_Unterstuetzung"));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCalculateNeededSupportsEvent(evt);
@@ -345,8 +350,8 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jButton1, gridBagConstraints);
 
-        jButton2.setText("<html>Notwendige Truppen als<br/>BB-Code exportieren</html>");
-        jButton2.setToolTipText("Exportiert die Differenz zur gewünschten Truppenstärke für alle Dörfer in die Zwischenablage");
+        jButton2.setText(trans.get("HTML_Notwendige"));
+        jButton2.setToolTipText(trans.get("HTML_Notwendige_Tooltip"));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireCalculateAndExportRequiredTroopsEvent(evt);
@@ -378,7 +383,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         jVillageTablePanel.setPreferredSize(new java.awt.Dimension(400, 232));
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Berücksichtigte Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Beruecksichtigte")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 
@@ -418,7 +423,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         jVillageTablePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -506,10 +511,10 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -535,11 +540,11 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         TroopAmountFixed split = splitAmountPanel.getAmounts();
 
         if (target.getTroopPopCount() == 0) {
-            jStatusLabel.setText("Keine gewünschte Truppenstärke angegeben");
+            jStatusLabel.setText(trans.get("KeineTruppenstaerke"));
             return;
         }
         if (split.getTroopPopCount() == 0) {
-            jStatusLabel.setText("Menge einer Einzelunterstützung nicht angegeben");
+            jStatusLabel.setText(trans.get("Einzelunterstuetzung"));
             return;
         }
 
@@ -562,11 +567,11 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
     private void fireCalculateAndExportRequiredTroopsEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireCalculateAndExportRequiredTroopsEvent
         TroopAmountFixed target = targetAmountPanel.getAmounts();
         if (target.getTroopPopCount() == 0) {
-            jStatusLabel.setText("Keine gewünschte Truppenstärke angegeben");
+            jStatusLabel.setText(trans.get("KeineTruppenstaerke"));
             return;
         }
         StringBuilder b = new StringBuilder();
-        b.append("Ich benötige die aufgelisteten oder vergleichbare Unterstützungen in den folgenden Dörfern:\n\n");
+        b.append(trans.get("AufgelistetenVergleichbare"));
 
         for (int i = 0; i < getModel().getRowCount(); i++) {
             REFTargetElement elem = getModel().getRow(jVillageTable.convertRowIndexToModel(i));
@@ -580,9 +585,9 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
 
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
-            jStatusLabel.setText("Unterstützungsanfragen in die Zwischenablage kopiert");
+            jStatusLabel.setText(trans.get("Unterstuetunganfragenzungs"));
         } catch (HeadlessException hex) {
-            jStatusLabel.setText("Fehler beim Kopieren in die Zwischenablage");
+            jStatusLabel.setText(trans.get("FehlerbeimKopieren"));
         }
 
     }//GEN-LAST:event_fireCalculateAndExportRequiredTroopsEvent
@@ -610,13 +615,13 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
                 }
             }
 
-            jStatusLabel.setText(modificationCount + " Unterstützung(en) " + ((increase) ? "hinzugefügt" : "entfernt"));
+            jStatusLabel.setText(modificationCount + trans.get("Unterstuetzungen") + ((increase) ? trans.get("hinzugefuegt") : trans.get("entfernt")));
             if (modificationCount > 0) {
                 // getModel().fireTableDataChanged();
                 jVillageTable.repaint();
             }
         } else {
-            jStatusLabel.setText("Keine Ziele gewählt");
+            jStatusLabel.setText(trans.get("KeinZiel"));
         }
         overviewPanel.repaint();
         setProblem(null);
@@ -690,7 +695,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getAllElements().length == 0) {
-            setProblem("Keine Dörfer gewählt");
+            setProblem(trans.get("KeineDoerfergewaehlt"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
         int need = 0;
@@ -699,7 +704,7 @@ public class SupportRefillSettingsPanel extends WizardPage implements ActionList
         }
 
         if (need == 0) {
-            setProblem("Keine notwendigen Unterstützungen bestimmmt");
+            setProblem(trans.get("Keinenotwendigen"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

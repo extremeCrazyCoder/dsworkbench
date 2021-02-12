@@ -19,9 +19,11 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jInfoTextPane">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Du befindest dich im &lt;b&gt;Angriffsmodus&lt;/b&gt;. Hier kannst du die Herkunftsd&amp;ouml;rfer ausw&amp;auml;hlen, die f&amp;uuml;r Angriffe verwendet werden d&amp;uuml;rfen. Hierf&amp;uuml;r hast die folgenden M&amp;ouml;glichkeiten:&#xa;&lt;ul&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus der Gruppen&amp;uuml;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus dem SOS-Analyzer&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen der Herkunftsd&amp;ouml;rfer aus Berichten&lt;/li&gt;&#xa;&lt;li&gt;Einf&amp;uuml;gen aus der Auswahl&#xfc;bersicht&lt;/li&gt;&#xa;&lt;li&gt;Manuelle Eingabe&lt;/li&gt;&#xa;&lt;/ul&gt;&#xa;&lt;/html&gt;&#xa;"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Angriffsmodus_Text&quot;)" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -58,8 +60,12 @@
           <Font name="Tahoma" size="10" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Informationen einblenden"/>
-        <Property name="toolTipText" type="java.lang.String" value="Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Informationeneinblenden&quot;)" type="code"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="trans.get(&quot;Datenquellen&quot;)" type="code"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder roundedCorners="true"/>
@@ -105,7 +111,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Gew&#xfc;nschte Truppenst&#xe4;rke"/>
+                    <TitledBorder title="&lt;User Code&gt;">
+                      <Connection PropertyName="titleX" code="trans.get(&quot;Truppenstaerke&quot;)" type="code"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -120,8 +128,12 @@
                 <Component class="javax.swing.JCheckBox" name="jAllowSimilarTroops">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Gleichwertige Truppenst&#xe4;rke zulassen"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Ist diese Option aktiviert, so werden nicht zwingend die vorgegebenen Truppen aufgef&amp;uuml;llt.&lt;br/&gt;Stattdessen wird versucht, unter Ber&amp;uuml;cksichtigung der bereits &#xa;stationierten Truppen,&lt;br/&gt;die vorgegebene St&amp;auml;rke der Verteidigung zu erreichen.&lt;/html&gt;"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Truppenstaerke_Text&quot;)" type="code"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="trans.get(&quot;Truppenstaerke_Option&quot;)" type="code"/>
+                    </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[150, 23]"/>
                     </Property>
@@ -144,7 +156,9 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Einzelunterst&#xfc;tzung"/>
+                    <TitledBorder title="&lt;User Code&gt;">
+                      <Connection PropertyName="titleX" code="trans.get(&quot;Einzelunterstuetzung_border&quot;)" type="code"/>
+                    </TitledBorder>
                   </Border>
                 </Property>
               </Properties>
@@ -158,7 +172,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Notwendige Unterst&#xfc;tzungen&lt;br/&gt;berechnen&lt;/html&gt;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;HTML_Unterstuetzung&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireCalculateNeededSupportsEvent"/>
@@ -171,8 +187,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;Notwendige Truppen als&lt;br/&gt;BB-Code exportieren&lt;/html&gt;"/>
-                <Property name="toolTipText" type="java.lang.String" value="Exportiert die Differenz zur gew&#xfc;nschten Truppenst&#xe4;rke f&#xfc;r alle D&#xf6;rfer in die Zwischenablage"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;HTML_Notwendige&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="trans.get(&quot;HTML_Notwendige_Tooltip&quot;)" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fireCalculateAndExportRequiredTroopsEvent"/>
@@ -205,7 +225,9 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Ber&#xfc;cksichtigte D&#xf6;rfer"/>
+                <TitledBorder title="&lt;User Code&gt;">
+                  <Connection PropertyName="titleX" code="trans.get(&quot;Beruecksichtigte&quot;)" type="code"/>
+                </TitledBorder>
               </Border>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -267,7 +289,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/res/search.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Informationskarte vergr&#xf6;&#xdf;ern"/>
+            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="trans.get(&quot;Informationskarte&quot;)" type="code"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[100, 23]"/>
             </Property>

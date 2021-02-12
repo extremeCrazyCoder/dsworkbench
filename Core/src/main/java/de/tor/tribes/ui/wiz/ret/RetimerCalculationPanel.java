@@ -25,6 +25,8 @@ import de.tor.tribes.util.DSCalculator;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.TroopHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
 import java.awt.BorderLayout;
@@ -50,12 +52,10 @@ import org.netbeans.spi.wizard.*;
  */
 public class RetimerCalculationPanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerCalculationPanel");
+    
     private static Logger logger = LogManager.getLogger("Retimer-Calculation");
-    private static final String GENERAL_INFO = "In diesem Schritt können alle verfügbaren Retimes berechnet werden. Dabei wird DS Workbench versuchen,<br/>"
-            + "die angegebenen Herkunftsdörfer so zu timen, dass sie die angreifenden Dörfer erreichen sobald die Truppen aus diesen Dörfern zurückkehren.<br/>"
-            + "Da ein Angriff auch mal schiefgehen kann, berechnet DS Workbench für jedes Herkunfts- und Zieldorf verschiedene Kombinationen, die von der verwendeten<br/>"
-            + "Einheit und somit der Laufzeit abhängen. Am Ende kann natürlich nur ein Angriff tatsächlich durchgeführt werden. Die Entscheidung womit du retimen<br/>"
-            + "möchtest liegt allein bei dir.";
+    private static final String GENERAL_INFO = trans.get("Retimes_INFO");
     private static RetimerCalculationPanel singleton = null;
     private List<Attack> retimes = null;
     private SimpleDateFormat dateFormat = null;
@@ -84,7 +84,7 @@ public class RetimerCalculationPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Berechnung";
+        return trans.get("Berechnung");
     }
 
     public static String getStep() {
@@ -129,9 +129,9 @@ public class RetimerCalculationPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html");
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -145,8 +145,8 @@ public class RetimerCalculationPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,7 +161,7 @@ public class RetimerCalculationPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Informationen zur Berechnung"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("InformationenzurBerechnung")));
         jScrollPane1.setViewportView(jTextPane1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -175,7 +175,7 @@ public class RetimerCalculationPanel extends WizardPage {
 
         jCalculateButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCalculateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/select.png"))); // NOI18N
-        jCalculateButton.setText("Retimes berechnen");
+        jCalculateButton.setText(trans.get("Retimesberechnen"));
         jCalculateButton.setMaximumSize(new java.awt.Dimension(190, 40));
         jCalculateButton.setMinimumSize(new java.awt.Dimension(190, 40));
         jCalculateButton.setPreferredSize(new java.awt.Dimension(190, 40));
@@ -191,10 +191,10 @@ public class RetimerCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jCalculateButton, gridBagConstraints);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Angriffe");
+        jLabel2.setText(trans.get("Angriffe"));
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -209,7 +209,7 @@ public class RetimerCalculationPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel1.add(jAttacks, gridBagConstraints);
 
-        jLabel10.setText("Herkunftsdörfer für Retimes");
+        jLabel10.setText(trans.get("Herkunft_Retimes"));
         jLabel10.setPreferredSize(new java.awt.Dimension(200, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -256,10 +256,10 @@ public class RetimerCalculationPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -279,7 +279,11 @@ public class RetimerCalculationPanel extends WizardPage {
          * Thread.sleep(20); } catch (Exception e) { }
          */
         if (!retimes.isEmpty()) {
-            if (JOptionPaneHelper.showQuestionConfirmBox(this, "Vorherige Berechnung verwerfen?", "Berechnung verwerfen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+            if (JOptionPaneHelper.showQuestionConfirmBox(this, 
+                    trans.get("VorherigeBerechnungverwerfen"), 
+                    trans.get("Berechnungverwerfen"), 
+                    trans.get("Nein"), 
+                    trans.get("Ja")) == JOptionPane.NO_OPTION) {
                 return;
 
             }
@@ -289,10 +293,10 @@ public class RetimerCalculationPanel extends WizardPage {
 
     private void doCalculation() {
         if (!jCalculateButton.isEnabled()) {
-            setProblem("Berechnung läuft bereits");
+            setProblem(trans.get("Berechnunglauftbereits"));
             return;
         }
-        jCalculateButton.setText("Berechne...");
+        jCalculateButton.setText(trans.get("Berechne"));
         jCalculateButton.setEnabled(false);
 
         setBusy(true);
@@ -304,10 +308,10 @@ public class RetimerCalculationPanel extends WizardPage {
                     RETSourceElement[] filtered = RetimerSourceFilterPanel.getSingleton().getFilteredElements();
                     Attack[] attacks = RetimerDataPanel.getSingleton().getAttacks();
                     for (Attack a : attacks) {
-                        notifyStatusUpdate("Berechne Retimes für Angriff " + a.getSource().getFullName() + " -> " + a.getTarget().getFullName());
+                        notifyStatusUpdate(trans.get("BrechneRetimes") + a.getSource().getFullName() + " -> " + a.getTarget().getFullName());
                         for (RETSourceElement element : filtered) {
                             if (!element.isIgnored()) {
-                                notifyStatusUpdate(" - Teste Herkunftsdorf " + element.getVillage().getFullName());
+                                notifyStatusUpdate(trans.get("TesteHerkunftsdorf") + element.getVillage().getFullName());
                                 VillageTroopsHolder holder = TroopsManager.getSingleton().getTroopsForVillage(element.getVillage(), TroopsManager.TROOP_TYPE.OWN);
                                 if (holder == null && Constants.DEBUG) {
                                     holder = TroopHelper.getRandomOffVillageTroops(element.getVillage());
@@ -316,16 +320,16 @@ public class RetimerCalculationPanel extends WizardPage {
                                     List<Attack> retimesForVillage = getRetimesForVillage(a, holder);
                                     CollectionUtils.addAll(retimes, retimesForVillage.toArray(new Attack[retimesForVillage.size()]));
                                 } else {
-                                    notifyStatusUpdate("Keine Truppen für Dorf " + element.getVillage() + " gefunden");
+                                    notifyStatusUpdate(trans.get("KeineTruppenDorf") + element.getVillage() + trans.get("gefunden"));
                                 }
                             } else {
-                                notifyStatusUpdate("Dorf " + element.getVillage() + " wird ignoriert");
+                                notifyStatusUpdate(trans.get("Dorf") + element.getVillage() + trans.get("wirdignoriert"));
                             }
                         }
                     }
                 } catch (Exception e) {
                     logger.error("Failed to calculate retimes", e);
-                    notifyStatusUpdate("Interner Fehler bei der Berechnung!");
+                    notifyStatusUpdate(trans.get("InternerFehler"));
                 } finally {
                     notifyCalculationFinished();
                 }
@@ -343,18 +347,18 @@ public class RetimerCalculationPanel extends WizardPage {
         for (int i = units.size() - 1; i >= 0; i--) {
             UnitHolder unit = units.get(i);
             if (unit.isRetimeUnit()) {
-                notifyStatusUpdate(" - Teste Einheit '" + unit.getName() + "'");
+                notifyStatusUpdate(trans.get("TesteEinheit") + unit.getName() + "'");
                 long sendTime = returnTime - DSCalculator.calculateMoveTimeInMillis(source, target, unit.getSpeed());
                 if (sendTime > System.currentTimeMillis() + DateUtils.MILLIS_PER_MINUTE) {
                     boolean allowFromSame = true;
                     if (source.getId() == pAttack.getTarget().getId()) {
                         if (sendTime < pAttack.getArriveTime().getTime() + DateUtils.MILLIS_PER_MINUTE) {
-                            notifyStatusUpdate(" - Angriffsziel und Retime-Herkunft identisch, Abschickzeit zu nah an Ankunft");
+                            notifyStatusUpdate(trans.get("Angriffszielidentisch"));
                             allowFromSame = false;
                         }
                     }
                     if (allowFromSame) {
-                        notifyStatusUpdate(" - Einheit für Retime geeignet");
+                        notifyStatusUpdate(trans.get("EinheitRetimegeeignet"));
                         Attack a = new Attack();
                         a.setSource(source);
                         a.setTarget(target);
@@ -381,10 +385,10 @@ public class RetimerCalculationPanel extends WizardPage {
         if (!retimes.isEmpty()) {
             setProblem(null);
         } else {
-            setProblem("Berechnung erzielte keine Ergebnisse");
+            setProblem(trans.get("BerechnungerzieltekeineErgebnisse"));
         }
-        notifyStatusUpdate("Berechnung abgeschlossen");
-        jCalculateButton.setText("Retimes berechnen");
+        notifyStatusUpdate(trans.get("Berechnungabgeschlossen"));
+        jCalculateButton.setText(trans.get("Retimesberechnen"));
         jCalculateButton.setEnabled(true);
     }
 
@@ -436,7 +440,7 @@ public class RetimerCalculationPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (retimes.isEmpty()) {
-            setProblem("Keine Ergebnisse vorhanden");
+            setProblem(trans.get("KeineErgebnissevorhanden"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 

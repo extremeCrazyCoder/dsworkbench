@@ -24,6 +24,8 @@ import de.tor.tribes.ui.renderer.DefaultTableHeaderRenderer;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.PluginManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -53,9 +55,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class SupportRefillTargetPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "Hier kannst du die Zieldörfer für Unterstützungen festlegen. Abhängig von den importierten Truppeninformationen"
-            + " wird DS Workbench später diesen Dörfern Einzelunterstützungen zuteilen, bis eine bestimmte Gesamtunterstützung erreicht ist. "
-            + "Möchtest du die Dörfer lieber aus einer vorhandenen BB-Code Liste einfügen, so kannst du die BB-Codes in die Zwischenablage kopieren und hier per STRG+V einfügen.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ref.SupportRefillTargetPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Ziel_INFO");
     private static SupportRefillTargetPanel singleton = null;
     private VillageSelectionPanel villageSelectionPanel = null;
     private VillageOverviewMapPanel overviewPanel = null;
@@ -115,7 +117,7 @@ public class SupportRefillTargetPanel extends WizardPage {
             public void valueChanged(ListSelectionEvent e) {
                 int selectedRows = jVillageTable.getSelectedRowCount();
                 if (selectedRows != 0) {
-                    jStatusLabel.setText(selectedRows + " Dorf/Dörfer gewählt");
+                    jStatusLabel.setText(selectedRows + trans.get("Dorfgeweahlt"));
                 }
             }
         });
@@ -127,7 +129,7 @@ public class SupportRefillTargetPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Ziele";
+        return trans.get("Ziele");
     }
 
     public static String getStep() {
@@ -171,9 +173,9 @@ public class SupportRefillTargetPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setContentType("text/html"); // NOI18N
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
         setLayout(new java.awt.GridBagLayout());
@@ -188,8 +190,8 @@ public class SupportRefillTargetPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -218,7 +220,7 @@ public class SupportRefillTargetPanel extends WizardPage {
         jVillageTablePanel.setPreferredSize(new java.awt.Dimension(400, 232));
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Zieldörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zieldoerfer")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 
@@ -258,7 +260,7 @@ public class SupportRefillTargetPanel extends WizardPage {
         jVillageTablePanel.add(jPanel2, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -305,10 +307,10 @@ public class SupportRefillTargetPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -342,7 +344,7 @@ public class SupportRefillTargetPanel extends WizardPage {
         if (model.getRowCount() > 0) {
             setProblem(null);
         }
-        jStatusLabel.setText(pVillages.length + " Dorf/Dörfer eingefügt");
+        jStatusLabel.setText(pVillages.length + trans.get("Dorfeingefuegt"));
         updateOverview(false);
     }
 
@@ -369,10 +371,10 @@ public class SupportRefillTargetPanel extends WizardPage {
             for (int i = rows.size() - 1; i >= 0; i--) {
                 getModel().removeRow(rows.get(i));
             }
-            jStatusLabel.setText(selection.length + " Dorf/Dörfer entfernt");
+            jStatusLabel.setText(selection.length + trans.get("Dorfentfernt"));
             updateOverview(true);
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Dörfer gewählt");
+                setProblem(trans.get("KeineDoerfergewaehlt"));
             }
         }
     }
@@ -413,7 +415,7 @@ public class SupportRefillTargetPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getAllElements().length == 0) {
-            setProblem("Keine Dörfer gewählt");
+            setProblem(trans.get("KeineDoerfergewaehlt"));
             return WizardPanelNavResult.PROCEED;
         }
         SupportRefillSettingsPanel.getSingleton().update();

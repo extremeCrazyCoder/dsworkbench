@@ -27,6 +27,8 @@ import de.tor.tribes.ui.wiz.tap.*;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.JOptionPaneHelper;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -43,6 +45,8 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class RetimerFinishPanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerFinishPanel");
+    
     private static final String GENERAL_INFO = "Die Berechnung ist nun abgeschlossen und in der Tabelle im unteren Bereich siehst du alle Retime-Angriffe<br/>"
             + "die momentan möglich sind. Dabei sei nochmal erwähnt, dass jedes Herkunftsdorf mehrfach vorkommen kann. Beachte dies bei der Auswahl oder später<br/>"
             + "beim Abschicken der Angriffe aus der Befehlsübersicht.";

@@ -1,3 +1,9 @@
+ui.panels.TroopSelectionPanel.Einstellungen=Settings
+ui.panels.TroopSelectionPanel.Standardangriffe=Standard attacks
+ui.panels.TroopSelectionPanel.Verwenden=Use
+
+locale=en
+
 types.TimeSpan.Abschick=Send
 types.TimeSpan.Ankunfts=Arrival
 types.TimeSpan.datuminderVergangenheit=date in the past
@@ -1968,9 +1974,5 @@ ui.wiz.ref.SupportRefillCalculationPanel.SystematischeBerechnung=Systematic calc
 ui.wiz.ref.SupportRefillCalculationPanel.fixeAnkunftszeit=fixed arrival time 
 ui.wiz.ref.SupportRefillCalculationPanel.OhneAnkunftszeit=Without arrival time 
 
-ui.panels.TroopSelectionPanel.Einstellungen=Settings
-ui.panels.TroopSelectionPanel.Standardangriffe=Standard attacks
-ui.panels.TroopSelectionPanel.Verwenden=Use
 
-locale=en
 

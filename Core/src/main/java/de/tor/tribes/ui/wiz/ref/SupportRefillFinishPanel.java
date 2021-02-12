@@ -35,6 +35,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.algo.types.TimeFrame;
 import de.tor.tribes.util.attack.StandardAttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Point;
@@ -53,10 +55,9 @@ import org.netbeans.spi.wizard.WizardPanelNavResult;
  */
 public class SupportRefillFinishPanel extends WizardPage {
 
-  private static final String GENERAL_INFO = "Die Berechnung ist abgeschlossen und im besten Fall wurden für die angegebenen Einstellungen und Truppeninformationen "
-          + "Unterstützungen gefunden. Du kannst die Ergebnisse nun in die Befehlsübersicht übertragen, von dort im Browser öffnen und abschicken. Beachte dabei, "
-          + "dass es sich bei der Abschickzeit um die späteste Abschickzeit handelt. Da es hier um Unterstützungen geht ist es kein Problem, wenn du die Befehle "
-          + "vorher abschickst, falls die Abschickzeit mitten in der Nacht liegt oder du die Unterstützungen schnell in den Zieldörfern haben möchtest.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ref.SupportRefillFinishPanel");
+    
+  private static final String GENERAL_INFO = trans.get("Berechnung_INFO");
   private static SupportRefillFinishPanel singleton = null;
   private VillageOverviewMapPanel overviewPanel = null;
   
@@ -70,7 +71,7 @@ public class SupportRefillFinishPanel extends WizardPage {
   }
 
   public static String getDescription() {
-    return "Fertig";
+    return trans.get("Fertig");
   }
 
   public static String getStep() {
@@ -134,13 +135,13 @@ public class SupportRefillFinishPanel extends WizardPage {
 
         jInfoTextPane.setEditable(false);
         jInfoTextPane.setContentType("text/html"); // NOI18N
-        jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
+        jInfoTextPane.setText(trans.get("Angriffsmodus_Text"));
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
-        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Zusammenfassung"));
+        jSummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Zusammenfassung")));
         jSummaryPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Unterstützte Ziele");
+        jLabel2.setText(trans.get("UnterstuetzteZiele"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -157,7 +158,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jSupportedTargets, gridBagConstraints);
 
-        jLabel4.setText("Zugeteilte Unterstützungen");
+        jLabel4.setText(trans.get("Zugeteilte_Supp"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -174,7 +175,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jOverallSupports, gridBagConstraints);
 
-        jLabel6.setText("Verwendete Herkunftsdörfer");
+        jLabel6.setText(trans.get("VerwendeteHerkunftsdoerfer"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -191,7 +192,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jSummaryPanel.add(jUsedSourceVillages, gridBagConstraints);
 
-        jLabel3.setText("Voll belegte Ziele");
+        jLabel3.setText(trans.get("VollbelegteZiele"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -219,8 +220,8 @@ public class SupportRefillFinishPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -235,7 +236,7 @@ public class SupportRefillFinishPanel extends WizardPage {
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Angegriffene Ziele"));
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AngegriffeneZiele")));
 
         jxResultsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -259,11 +260,11 @@ public class SupportRefillFinishPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Abschließende Aktionen"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("AbschliessendeAktionen")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/48x48/full_sword_clipboard.png"))); // NOI18N
-        jButton1.setToolTipText("Alle Unterstützungen in die Befehlsübersicht übertragen");
+        jButton1.setToolTipText(trans.get("AlleUnterstuetzungen"));
         jButton1.setMaximumSize(new java.awt.Dimension(70, 70));
         jButton1.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton1.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -282,7 +283,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         jPanel3.add(jButton1, gridBagConstraints);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/48x48/selection_sword_clipboard.png"))); // NOI18N
-        jButton4.setToolTipText("Ausgewählte Unterstützungen in die Befehlsübersicht übertragen");
+        jButton4.setToolTipText(trans.get("AusgewaehlteUnterstuezungen"));
         jButton4.setMaximumSize(new java.awt.Dimension(70, 70));
         jButton4.setMinimumSize(new java.awt.Dimension(70, 70));
         jButton4.setPreferredSize(new java.awt.Dimension(70, 70));
@@ -322,7 +323,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         jPanel4.add(jPanel5, gridBagConstraints);
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/search.png"))); // NOI18N
-        jToggleButton1.setToolTipText("Informationskarte vergrößern");
+        jToggleButton1.setToolTipText(trans.get("Informationskarte"));
         jToggleButton1.setMaximumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setMinimumSize(new java.awt.Dimension(100, 23));
         jToggleButton1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -345,7 +346,7 @@ public class SupportRefillFinishPanel extends WizardPage {
         jPanel2.add(jPanel4, gridBagConstraints);
 
         jToggleButton2.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        jToggleButton2.setText("Zusammenfassung anzeigen");
+        jToggleButton2.setText(trans.get("Zusammenfassunganzeigen"));
         jToggleButton2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 fireShowHideSummaryEvent(evt);
@@ -378,10 +379,10 @@ public class SupportRefillFinishPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
       if (jXCollapsiblePane1.isCollapsed()) {
         jXCollapsiblePane1.setCollapsed(false);
-        jLabel1.setText("Informationen ausblenden");
+        jLabel1.setText(trans.get("Informationenausblenden"));
       } else {
         jXCollapsiblePane1.setCollapsed(true);
-        jLabel1.setText("Informationen einblenden");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
       }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -460,7 +461,7 @@ public class SupportRefillFinishPanel extends WizardPage {
 
   private void transferToAttackView(List<Attack> pToTransfer) {
     if (pToTransfer.isEmpty()) {
-      JOptionPaneHelper.showInformationBox(this, "Keine Unterstützungen gewählt", "Information");
+      JOptionPaneHelper.showInformationBox(this, trans.get("Kein_Supp"), trans.get("Information"));
       return;
     }
     new AttackTransferDialog(TacticsPlanerWizard.getFrame(), true).setupAndShow(pToTransfer.toArray(new Attack[pToTransfer.size()]));
@@ -529,10 +530,10 @@ public class SupportRefillFinishPanel extends WizardPage {
     }
 
     jxResultsTable.setModel(model);
-    jSupportedTargets.setText(Integer.toString(supportedTargets) + " von " + results.size());
+    jSupportedTargets.setText(Integer.toString(supportedTargets) + trans.get("von") + results.size());
     jPerfectTargets.setText(Integer.toString(perfectTargets));
-    jOverallSupports.setText(Integer.toString(assignedSupports) + " von " + Integer.toString(maxSupports));
-    jUsedSourceVillages.setText(Integer.toString(usedSources.size()) + " von " + SupportRefillSourcePanel.getSingleton().getAllElements().length);
+    jOverallSupports.setText(Integer.toString(assignedSupports) + trans.get("von") + Integer.toString(maxSupports));
+    jUsedSourceVillages.setText(Integer.toString(usedSources.size()) + trans.get("von") + SupportRefillSourcePanel.getSingleton().getAllElements().length);
     focusSubmit();
   }
 

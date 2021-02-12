@@ -29,6 +29,8 @@ import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.UIHelper;
 import de.tor.tribes.util.attack.AttackManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
 import java.awt.BorderLayout;
@@ -50,6 +52,8 @@ import org.netbeans.spi.wizard.*;
  */
 public class RetimerSourceFilterPanel extends WizardPage {
 
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerSourceFilterPanel");
+    
     private static final String GENERAL_INFO = "Hier kannst du vorher angegebene Retime-Dörfer filtern. So können z.B. Dörfer ignoriert werden,<br/>"
             + "die bereits in Angriffsplänen verwendet oder die nicht über eine bestimmte Truppenstärke verfügen. Ignorierte Dörfer werden in der Tabelle<br/>"
             + "entsprechend markiert.";

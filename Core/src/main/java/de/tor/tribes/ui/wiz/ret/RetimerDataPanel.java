@@ -22,6 +22,8 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.ui.models.RETAttackTableModel;
 import de.tor.tribes.ui.renderer.*;
 import de.tor.tribes.util.*;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.awt.Point;
@@ -50,10 +52,9 @@ import org.netbeans.spi.wizard.*;
  */
 public class RetimerDataPanel extends WizardPage {
 
-    private static final String GENERAL_INFO = "In diesem Schritt kannst du Angriffe einfügen, die du retimen möchtest.<br>"
-            + "Dies kann ein einzelner Angriffsbefehl sein oder du kannst den Angriff manuell eingeben.<br/>"
-            + "Die wohl wichtigte Einstellung ist die der erwarteten Einheit. Solltest du die Einheit nicht wissen, kannst<br/>"
-            + "du verschiedene Einheiten probieren und DS Workbench wird dich warnen, sofern die Einheit nicht plausibel erscheint.";
+    private static Translator trans = TranslationManager.getTranslator("ui.wiz.ret.RetimerDataPanel");
+    
+    private static final String GENERAL_INFO = trans.get("Angriffe_INFO");
     private static RetimerDataPanel singleton = null;
 
     public static synchronized RetimerDataPanel getSingleton() {
@@ -100,7 +101,7 @@ public class RetimerDataPanel extends WizardPage {
             public void valueChanged(ListSelectionEvent e) {
                 int selectedRows = jAttacksTable.getSelectedRowCount();
                 if (selectedRows != 0) {
-                    jStatusLabel.setText(selectedRows + " Dorf/Dörfer gewählt");
+                    jStatusLabel.setText(selectedRows + trans.get("Dorfgeweahlt"));
                 }
             }
         });
@@ -144,7 +145,7 @@ public class RetimerDataPanel extends WizardPage {
     }
 
     public static String getDescription() {
-        return "Angriffe";
+        return trans.get("Angriffe");
     }
 
     public static String getStep() {
@@ -200,8 +201,8 @@ public class RetimerDataPanel extends WizardPage {
         jInfoScrollPane.setMinimumSize(new java.awt.Dimension(19, 180));
         jInfoScrollPane.setPreferredSize(new java.awt.Dimension(19, 180));
 
-        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setEditable(false);
+        jInfoTextPane.setContentType("text/html"); // NOI18N
         jInfoTextPane.setText("<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd&ouml;rfer ausw&auml;hlen, die f&uuml;r Angriffe verwendet werden d&uuml;rfen. Hierf&uuml;r hast die folgenden M&ouml;glichkeiten:\n<ul>\n<li>Einf&uuml;gen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus der Gruppen&uuml;bersicht</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus dem SOS-Analyzer</li>\n<li>Einf&uuml;gen der Herkunftsd&ouml;rfer aus Berichten</li>\n<li>Einf&uuml;gen aus der Auswahlübersicht</li>\n<li>Manuelle Eingabe</li>\n</ul>\n</html>\n");
         jInfoScrollPane.setViewportView(jInfoTextPane);
 
@@ -217,8 +218,8 @@ public class RetimerDataPanel extends WizardPage {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Informationen einblenden");
-        jLabel1.setToolTipText("Blendet Informationen zu dieser Ansicht und zu den Datenquellen ein/aus");
+        jLabel1.setText(trans.get("Informationeneinblenden"));
+        jLabel1.setToolTipText(trans.get("Datenquellen"));
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -236,16 +237,16 @@ public class RetimerDataPanel extends WizardPage {
         jDataPanel.setPreferredSize(new java.awt.Dimension(600, 280));
         jDataPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Manuelle Eingabe"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("ManuelleEingabe")));
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jLabel2.setText("Herkunft");
+        jLabel2.setText(trans.get("Herkunft"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel2, gridBagConstraints);
 
-        jLabel3.setText("Ziel");
+        jLabel3.setText(trans.get("Ziel"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -253,7 +254,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("Ankunft");
+        jLabel4.setText(trans.get("Ankunft"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -261,7 +262,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel4, gridBagConstraints);
 
-        jLabel5.setText("Vermutete Einheit");
+        jLabel5.setText(trans.get("VermuteteEinheit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -269,7 +270,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel5, gridBagConstraints);
 
-        jLabel6.setText("Errechnete Abschickzeit");
+        jLabel6.setText(trans.get("ErrechneteAbschickzeit"));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -300,7 +301,7 @@ public class RetimerDataPanel extends WizardPage {
         jPanel3.add(jArriveTime, gridBagConstraints);
 
         jSendTime.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jSendTime.setText("-unbekannt-");
+        jSendTime.setText(trans.get("unbekannt"));
         jSendTime.setToolTipText("");
         jSendTime.setMaximumSize(new java.awt.Dimension(34, 22));
         jSendTime.setMinimumSize(new java.awt.Dimension(34, 22));
@@ -313,7 +314,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jSendTime, gridBagConstraints);
 
-        jButton3.setText("Angriff hinzufügen");
+        jButton3.setText(trans.get("Angriffhinzufuegen"));
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireAddAttackEvent(evt);
@@ -344,7 +345,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.weighty = 1.0;
         jDataPanel.add(jPanel3, gridBagConstraints);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Sonstige Quellen"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("Sonstige")));
         jPanel2.setMinimumSize(new java.awt.Dimension(200, 87));
         jPanel2.setPreferredSize(new java.awt.Dimension(200, 87));
         jPanel2.setLayout(new java.awt.GridBagLayout());
@@ -383,7 +384,7 @@ public class RetimerDataPanel extends WizardPage {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel2.add(jButton2, gridBagConstraints);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Unbekannte Einheit"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("UnbekannteEinheit")));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jAttackBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Keine" }));
@@ -394,7 +395,7 @@ public class RetimerDataPanel extends WizardPage {
         jPanel4.add(jAttackBox, gridBagConstraints);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ui/prev.png"))); // NOI18N
-        jButton4.setToolTipText("Einheit manuell bestimmen");
+        jButton4.setToolTipText(trans.get("Einheitmanuellbestimmen"));
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 fireSetSelectedSOSAttackEvent(evt);
@@ -433,7 +434,7 @@ public class RetimerDataPanel extends WizardPage {
         jVillageTablePanel.setPreferredSize(new java.awt.Dimension(400, 250));
         jVillageTablePanel.setLayout(new java.awt.GridBagLayout());
 
-        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder("Verwendete Dörfer"));
+        jTableScrollPane.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("VerwendeteDoerfer")));
         jTableScrollPane.setMinimumSize(new java.awt.Dimension(23, 100));
         jTableScrollPane.setPreferredSize(new java.awt.Dimension(23, 100));
 
@@ -495,10 +496,10 @@ public class RetimerDataPanel extends WizardPage {
     private void fireHideInfoEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireHideInfoEvent
         if (jXCollapsiblePane1.isCollapsed()) {
             jXCollapsiblePane1.setCollapsed(false);
-            jLabel1.setText("Informationen ausblenden");
+            jLabel1.setText(trans.get("Informationenausblenden"));
         } else {
             jXCollapsiblePane1.setCollapsed(true);
-            jLabel1.setText("Informationen einblenden");
+            jLabel1.setText(trans.get("Informationeneinblenden"));
         }
     }//GEN-LAST:event_fireHideInfoEvent
 
@@ -516,16 +517,16 @@ public class RetimerDataPanel extends WizardPage {
         Date arrive = jArriveTime.getSelectedDate();
         UnitHolder unit = (UnitHolder) jUnitBox.getSelectedItem();
         if (source == null) {
-            jStatusLabel.setText("Kein gültiges Herkunftsdorf angegeben");
+            jStatusLabel.setText(trans.get("KeinHerkunftsdorf"));
             return;
         }
         if (target == null) {
-            jStatusLabel.setText("Kein gültiges Zieldorf angegeben");
+            jStatusLabel.setText(trans.get("KeinZieldorf"));
             return;
         }
 
         if (unit == null) {
-            jStatusLabel.setText("Keine gültige Einheit angegeben");
+            jStatusLabel.setText(trans.get("KeineEinheit"));
             return;
         }
         Attack a = new Attack();
@@ -549,7 +550,7 @@ public class RetimerDataPanel extends WizardPage {
         TimedAttackListEntry selection = (TimedAttackListEntry) element;
         ((DefaultComboBoxModel) jAttackBox.getModel()).removeElement(selection);
         if (jAttackBox.getModel().getSize() == 0) {
-            DefaultComboBoxModel model = new DefaultComboBoxModel(new Object[]{"Keine"});
+            DefaultComboBoxModel model = new DefaultComboBoxModel(new Object[]{trans.get("Keine")});
             jAttackBox.setModel(model);
         }
         jSourceCoord.setValue(selection.getAttack().getSource().getPosition());
@@ -573,7 +574,7 @@ public class RetimerDataPanel extends WizardPage {
             List<SOSRequest> sos = PluginManager.getSingleton().executeSOSParser(data);
             DefaultComboBoxModel model = null;
             if (sos.isEmpty()) {
-                model = new DefaultComboBoxModel(new Object[]{"Keine"});
+                model = new DefaultComboBoxModel(new Object[]{trans.get("Keine")});
             } else {
                 model = new DefaultComboBoxModel();
                 for (SOSRequest request : sos) {
@@ -603,7 +604,7 @@ public class RetimerDataPanel extends WizardPage {
         boolean result = true;
         List<Village> villages = PluginManager.getSingleton().executeVillageParser(pData);
         if (villages == null || villages.isEmpty() || villages.size() < 2) {
-            jWarningLabel.setText("Kein gültiger Angriff gefunden");
+            jWarningLabel.setText(trans.get("KeinAngriff"));
             jWarningLabel.setVisible(true);
         } else {
             Village source = villages.get(0);
@@ -642,12 +643,12 @@ public class RetimerDataPanel extends WizardPage {
                 arriveDate = f.parse(arrive);
                 jArriveTime.setDate(arriveDate);
                 if (arriveDate == null) {
-                    jWarningLabel.setText("Kann Ankunftzeit nicht lesen");
+                    jWarningLabel.setText(trans.get("Ankunftzeit"));
                     jWarningLabel.setVisible(true);
                     return false;
                 }
             } catch (Exception ignored) {
-                jWarningLabel.setText("Kein gültiger Angriff gefunden");
+                jWarningLabel.setText(trans.get("KeinAngriffgefunden"));
                 jWarningLabel.setVisible(true);
                 return false;
             }
@@ -666,12 +667,12 @@ public class RetimerDataPanel extends WizardPage {
             }
 
             if (arriveDate.getTime() < System.currentTimeMillis()) {
-                jWarningLabel.setText("Ankunft in der Vergangenheit. Bitte Zeit prüfen.");
+                jWarningLabel.setText(trans.get("Ankunftpruefen"));
                 jWarningLabel.setVisible(true);
                 result = false;
             } else {
                 if (possibleUnits.isEmpty()) {
-                    jWarningLabel.setText("Keine mögliche Einheit gefunden");
+                    jWarningLabel.setText(trans.get("KeineEinheitgefunden"));
                     jWarningLabel.setVisible(true);
                     result = false;
                 } else {
@@ -679,7 +680,7 @@ public class RetimerDataPanel extends WizardPage {
                     for (UnitHolder unit : possibleUnits) {
                         unitString += unit.getName() + ", ";
                     }
-                    jWarningLabel.setText("Mögliche Einheiten: " + unitString.substring(0, unitString.lastIndexOf(",")));
+                    jWarningLabel.setText(trans.get("MoeglicheEinheiten") + unitString.substring(0, unitString.lastIndexOf(",")));
                     jWarningLabel.setVisible(true);
                     result = true;
                 }
@@ -707,29 +708,29 @@ public class RetimerDataPanel extends WizardPage {
         Village source = jSourceCoord.getVillage();
         String result;
         if (source == null) {
-            result = "-unbekannt-";
+            result = trans.get("unbekannt");
             jWarningLabel.setVisible(true);
-            jWarningLabel.setText("Herkunftsdorf ungültig");
+            jWarningLabel.setText(trans.get("Herkunftungueltig"));
         } else {
             Village target = jTargetCoord.getVillage();
             if (target == null) {
-                result = "-unbekannt-";
+                result = trans.get("-unbekannt-");
                 jWarningLabel.setVisible(true);
-                jWarningLabel.setText("Zieldorf ungültig");
+                jWarningLabel.setText(trans.get("Zieldorfungueltig"));
             } else {
                 Date arriveTime = jArriveTime.getSelectedDate();
                 UnitHolder unit = (UnitHolder) jUnitBox.getSelectedItem();
 
                 long runtime = DSCalculator.calculateMoveTimeInMillis(source, target, unit.getSpeed());
                 Date send = new Date(arriveTime.getTime() - runtime);
-                SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+                SimpleDateFormat f = new SimpleDateFormat(trans.get("ddMMyy"));
                 result = f.format(send);
                 if (arriveTime.getTime() < System.currentTimeMillis()) {
                     jWarningLabel.setVisible(true);
-                    jWarningLabel.setText("Ankunft in der Vergangenheit. Bitte Zeit prüfen.");
+                    jWarningLabel.setText(trans.get("AnkunftVergangenheit"));
                 } else if (send.getTime() > System.currentTimeMillis()) {
                     jWarningLabel.setVisible(true);
-                    jWarningLabel.setText("Abschickzeit in der Zukunft. Langsamere Einheit wählen?");
+                    jWarningLabel.setText(trans.get("AbschickzeitZukunft"));
                 } else {
                     jWarningLabel.setVisible(false);
                 }
@@ -753,9 +754,9 @@ public class RetimerDataPanel extends WizardPage {
             for (int i = rows.size() - 1; i >= 0; i--) {
                 getModel().removeRow(rows.get(i));
             }
-            jStatusLabel.setText(selection.length + " Angriff(e) entfernt");
+            jStatusLabel.setText(selection.length + trans.get("Angriffentfernt"));
             if (getModel().getRowCount() == 0) {
-                setProblem("Keine Angriffe gewählt");
+                setProblem(trans.get("KeineAngriffegewaehlt"));
             }
         }
     }
@@ -813,7 +814,7 @@ public class RetimerDataPanel extends WizardPage {
     @Override
     public WizardPanelNavResult allowNext(String string, Map map, Wizard wizard) {
         if (getAllElements().length == 0) {
-            setProblem("Keine Angriffe eingelesen");
+            setProblem(trans.get("KeineAngriffeeingelesen"));
             return WizardPanelNavResult.REMAIN_ON_PAGE;
         }
 
