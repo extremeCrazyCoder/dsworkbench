@@ -16,12 +16,15 @@
 package de.tor.tribes.types;
 
 import de.tor.tribes.io.UnitHolder;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 
 /**
  *
  * @author Torridity
  */
 public class ImpossibleSnobUnit extends UnitHolder {
+    private Translator trans = TranslationManager.getTranslator("types.ImpossibleSnobUnit");
 
     private static ImpossibleSnobUnit SINGLETON = null;
 
@@ -33,7 +36,7 @@ public class ImpossibleSnobUnit extends UnitHolder {
     }
 
     ImpossibleSnobUnit() {
-        setName("Adelsgeschlecht");
+        setName(trans.getRaw("io.UnitHolder.snob"));
         setPlainName("snob");
     }
 }

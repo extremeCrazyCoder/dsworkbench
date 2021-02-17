@@ -139,31 +139,6 @@ public class Note extends ManageableType implements BBSupport {
         return note;
     }
 
-    public String toBBCode() {
-        StringBuilder buffer = new StringBuilder();
-        buffer.append("[quote][b]Notiz vom:[/b] ");
-        buffer.append(TimeManager.getSimpleDateFormat("dd.MM.yy 'um' HH:mm:ss").format(new Date(timestamp)));
-        buffer.append("\n\n");
-        buffer.append("[b]Zugeordnete Dörfer:[/b]\n\n");
-        boolean isNext = false;
-        for (Integer id : villageIds) {
-            if (isNext) {
-                buffer.append(", ");
-            }
-            Village v = DataHolder.getSingleton().getVillagesById().get(id);
-            buffer.append(v.toBBCode());
-            isNext = true;
-        }
-        buffer.append("\n\n");
-        if (noteSymbol != -1) {
-            buffer.append("[b]Notizsymbol:[/b] [img]").append(ImageManager.getNoteImageURLOnServer(noteSymbol)).append("[/img]\n\n");
-        }
-        buffer.append("[b]Notiztext:[/b]\n\n");
-        buffer.append(getNoteText());
-        buffer.append("[/quote]\n");
-        return buffer.toString();
-    }
-
     @Override
     public String toString() {
         return getNoteText();

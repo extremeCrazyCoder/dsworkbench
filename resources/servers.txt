@@ -1,16 +1,19 @@
 #List of servers
 #
 #Add a server (without adding the whole Region:
-#[name];[url]    (with [name] as the name displayed by Workbench; [url] the base server url
+#s\[name];[url];[Timezone]
+#with [name] as the name displayed by Workbench
+#with [url] the base server url
+#with [Timezone] the JAVA name of the timezone the server is located in (Available options are shown on boot when in debugging mode)
 #e.g.:
-#zz1;https://zz1.tribalwars.works
+#s\zz1;https://zz1.tribalwars.works;Europe/London
 #
 #Adding a whole region:
-#\[url]
+#\[url];[Timezone]
 r\https://www.die-staemme.de;Europe/Berlin
 r\https://www.staemme.ch;Europe/Zurich
 r\https://www.tribalwars.net;Europe/London
 r\https://www.tribalwars.co.uk;Europe/London
 r\https://www.tribalwars.works;Europe/London
 
-#r\fr1;https://fr1.guerretribale.fr;Europe/Paris
+#s\fr1;https://fr1.guerretribale.fr;Europe/Paris

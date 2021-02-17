@@ -69,7 +69,7 @@ public class UnitHolder implements Serializable {
             this.carry = Double.parseDouble(pElement.getChild("carry").getText());
             this.buildTime = Double.parseDouble(pElement.getChild("build_time").getText());
         } catch (Exception e) {
-            throw new Exception("Fehler beim laden von Einheit '" + pElement.getName() + "'", e);
+            throw new Exception("Error during loading of unit '" + pElement.getName() + "'", e);
         }
     }
 
