@@ -142,9 +142,7 @@ public class MinimapPanel extends javax.swing.JPanel implements GenericManagerLi
         MarkerManager.getSingleton().addManagerListener(this);
         TagManager.getSingleton().addManagerListener(this);
         MinimapRepaintThread.getSingleton().setVisiblePart(rVisiblePart);
-        if (!GlobalOptions.isMinimal()) {
-            MinimapRepaintThread.getSingleton().start();
-        }
+        
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -421,6 +419,7 @@ public class MinimapPanel extends javax.swing.JPanel implements GenericManagerLi
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        MinimapRepaintThread.getSingleton().syncPaint();
         try {
             Graphics2D g2d = (Graphics2D) g;
             g2d.clearRect(0, 0, getWidth(), getHeight());
@@ -947,7 +946,7 @@ private void fireScreenshotControlClosingEvent(java.awt.event.WindowEvent evt) {
   // End of variables declaration//GEN-END:variables
 }
 
-class MinimapRepaintThread extends Thread {
+class MinimapRepaintThread {
 
     private static Logger logger = LogManager.getLogger("MinimapRenderer");
     private BufferedImage mBuffer = null;
@@ -969,8 +968,6 @@ class MinimapRepaintThread extends Thread {
     }
 
     MinimapRepaintThread() {
-        setName("MinimapUpdater");
-        setDaemon(true);
     }
 
     public void setVisiblePart(Rectangle pVisible) {
@@ -1014,26 +1011,23 @@ class MinimapRepaintThread extends Thread {
         return drawn;
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                if (!drawn) {
-                    drawn = redraw();
-                    MinimapZoomFrame.getSingleton().setMinimap(getImage());
-                }
+    public void syncPaint() {
+        try {
+            if (!drawn) {
+                drawn = redraw();
+                MinimapZoomFrame.getSingleton().setMinimap(getImage());
+            }
 
-                MinimapPanel.getSingleton().updateComplete();
-                try {
-                    Thread.sleep(100);
-                } catch (Exception ignored) {
-                }
-            } catch (Exception oe) {
-                if (mBuffer == null) {
-                    update();
-                } else {
-                    logger.error("Failed to re-render minimap", oe);
-                }
+            MinimapPanel.getSingleton().updateComplete();
+            try {
+                Thread.sleep(100);
+            } catch (Exception ignored) {
+            }
+        } catch (Exception oe) {
+            if (mBuffer == null) {
+                update();
+            } else {
+                logger.error("Failed to re-render minimap", oe);
             }
         }
     }
