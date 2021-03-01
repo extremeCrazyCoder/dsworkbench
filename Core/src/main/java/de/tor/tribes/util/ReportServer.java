@@ -29,6 +29,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
@@ -172,16 +174,24 @@ public class ReportServer {
                 url = url.split(" ")[1];
                 url = url.substring((url.startsWith("/")?1:0));
                 
-                String report = null;
-                try {
-                    //workaround for finding start & end because "&", "/" are not escaped in URL
-                    report = url.substring(url.indexOf("&report=") + 8, url.indexOf("&user="));
-
-                    report = URLDecoder.decode(report, "UTF-8");
-                    logger.debug("Report raw: {}", report);
-                } catch(Exception e) {
-                    report = null;
+                Map<String, String> params = new HashMap<>();
+                for(String part : url.split("&")) {
+                    if(part.trim().equals("")) continue;
+                    
+                    splited = part.split("=");
+                    
+                    if(splited.length == 1) {
+                        params.put(splited[0], "");
+                        logger.debug("Empty param {]", splited[0]);
+                    } else {
+                        String key = splited[0];
+                        String value = URLDecoder.decode(splited[1], "UTF-8");
+                        params.put(key, value);
+                        logger.debug("Param raw: {} / {}", key, value);
+                    }
                 }
+                    
+                String report = params.get("report");
                 
                 if (PluginManager.getSingleton().executeObstReportParser(report)) {
                     logger.debug("Successfully parsed report. Sending response.");
