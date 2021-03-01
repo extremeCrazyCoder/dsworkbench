@@ -17,6 +17,8 @@ package de.tor.tribes.types;
 
 import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,29 +28,15 @@ import java.util.List;
  * @author Torridity
  */
 public class AllyStatResult implements BBSupport {
+    private static Translator trans = TranslationManager.getTranslator("types.AllyStatResult");
 
     private final static String[] VARIABLES = new String[]{"%ALLY_NAME%", "%ALLY_TAG%", "%ATTACKERS%", "%ATTACKS%", "%OFF_ATTACKS%", "%SNOB_ATTACKS%", "%FAKE_ATTACKS%", "%ENOBLEMENTS%",
         "%KILLS%", "%KILLS_FARM%", "%KILLS_PERCENT%", "%LOSSES%", "%LOSSES_FARM%", "%LOSSES_PERCENT%", "%WALL_DESTRUCTION%", "%BUILDING_DESTRUCTION%"};
-    public final static String STANDARD_TEMPLATE;
-    static {
-        StringBuilder b = new StringBuilder();
-        b.append("[b]Auswertung für %ALLY_NAME% ([ally]%ALLY_TAG%[/ally])[/b]\n\n");
-        b.append("Angreifer: %ATTACKERS%\n");
-        b.append("Adelungen: %ENOBLEMENTS%\n");
-        b.append("Zerstörte Wallstufen: %WALL_DESTRUCTION%\n");
-        b.append("Zerstörte Gebäudestufen: %BUILDING_DESTRUCTION%\n\n");
-        b.append("Angriffe:\n");
-        b.append("[table][**]Gesamt[||]Off[||]Fake[||]AG[/**]\n");
-        b.append("[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n");
-        b.append("[/table]\n\n");
-        b.append("Besiegte Einheiten:\n");
-        b.append("[table][**]Art[||]Anzahl[||]Bauernhofplätze[||]Anteil[/**]\n");
-        b.append("[*]Getötet[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT%[/*]\n");
-        b.append("[*]Verloren[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT%[/*]\n");
-        b.append("[/table]\n");
-        STANDARD_TEMPLATE = b.toString();
+    
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
     }
-
+    
     @Override
     public String[] getBBVariables() {
         return VARIABLES;

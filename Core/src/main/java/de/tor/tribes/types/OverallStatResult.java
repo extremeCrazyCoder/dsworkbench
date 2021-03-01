@@ -17,6 +17,8 @@ package de.tor.tribes.types;
 
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.TimeManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,27 +30,15 @@ import java.util.List;
  * @author Torridity
  */
 public class OverallStatResult implements BBSupport {
+    private static Translator trans = TranslationManager.getTranslator("types.OverallStatResult");
 
     private final static String[] VARIABLES = new String[]{"%START_DATE%", "%END_DATE%", "%REPORT_COUNT%", "%ATTACK_TRIBES%", "%ATTACK_ALLIES%", "%DEFEND_TRIBES%", "%DEFEND_ALLIES%",
         "%KILLS%", "%KILLS_FARM%", "%LOSSES%", "%LOSSES_FARM%", "%LOSSES_PER_ATTACKER%", "%LOSSES_PER_DEFENDER%", "%WALL_DESTRUCTION%", "%BUILDING_DESTRUCTION%"};
-    public final static String STANDARD_TEMPLATE;
-    static {
-        StringBuilder b = new StringBuilder();
-        b.append("[b][u]Gesamtstatistiken[/u][/b]\n\n");
-        b.append("Auswertung vom %START_DATE% bis zum %END_DATE%\n\n");
-        b.append("[table]\n");
-        b.append("[**]Ausgewertete Berichte[||]%REPORT_COUNT%[/**]\n");
-        b.append("[*]Ausgewertete Angreifer (Stämme)[|]%ATTACK_TRIBES% (%ATTACK_ALLIES%)[/*]\n");
-        b.append("[**]Verteidiger (Stämme)[||]%DEFEND_TRIBES% (%DEFEND_ALLIES%)[/**]\n");
-        b.append("[*]Verluste der Verteidiger (Bauernhofplätze)[|] %KILLS% (%KILLS_FARM%)[/*]\n");
-        b.append("[**]Verluste pro Verteidiger[||]%LOSSES_PER_DEFENDER%[/**]\n");
-        b.append("[*]Verluste der Angreifer (Bauernhofplätze)[|]%LOSSES% (%LOSSES_FARM%)[/*]\n");
-        b.append("[**]Verluste pro Angreifer[||]%LOSSES_PER_ATTACKER%[/**]\n");
-        b.append("[*]Zerstörte Wallstufen[|]%WALL_DESTRUCTION%[/*]\n");
-        b.append("[**]Zerstörte Gebäudestufen[||]%BUILDING_DESTRUCTION%[/**]\n");
-        STANDARD_TEMPLATE = b.toString();
+    
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
     }
-
+    
     @Override
     public String[] getBBVariables() {
         return VARIABLES;

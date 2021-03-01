@@ -5,6 +5,8 @@
  */
 package de.tor.tribes.util;
 
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.io.File;
 import java.util.Arrays;
@@ -20,6 +22,7 @@ import org.jdom2.Element;
  */
 public class BuildingSettings {
     private static Logger logger = LogManager.getLogger("ServerSettings");
+    private static Translator trans = TranslationManager.getTranslator("util.BuildingSettings");
     
     public static final String[] BUILDING_NAMES = {"main", "barracks", "stable", "garage",
         "church", "watchtower", "snob", "smith", "place", "statue", "market", "wood",
@@ -234,5 +237,9 @@ public class BuildingSettings {
     private static int calculateValue(int pBase, double pFactor, int pLevel) {
         if(pLevel <= 0) return 0;
         return (int) Math.round(pBase * Math.pow(pFactor, (pLevel - 1)));
+    }
+    
+    public static String getTranslatedName(int pBuildingId) {
+        return trans.get(BUILDING_NAMES[pBuildingId]);
     }
 }

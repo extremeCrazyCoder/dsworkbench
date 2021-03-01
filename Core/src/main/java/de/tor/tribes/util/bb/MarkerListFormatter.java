@@ -16,6 +16,8 @@
 package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.Marker;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,10 +26,9 @@ import java.util.List;
  * @author Torridity
  */
 public class MarkerListFormatter extends BasicFormatter<Marker> {
+    private static Translator trans = TranslationManager.getTranslator("types.MarkerListFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "Anzahl der Markierungen: %ELEMENT_COUNT%\n\n"
-            + "%LIST_START% %NAME% [color=%MARKER_COLOR%]▓▓▓[/color] %LIST_END%\n";
     private static final String TEMPLATE_PROPERTY = "marker.list.bbexport.template";
 
     @Override
@@ -37,7 +38,7 @@ public class MarkerListFormatter extends BasicFormatter<Marker> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

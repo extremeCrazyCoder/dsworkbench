@@ -16,6 +16,8 @@
 package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.Tag;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,10 +26,9 @@ import java.util.List;
  * @author Torridity
  */
 public class TagListFormatter extends BasicFormatter<Tag> {
+    private static Translator trans = TranslationManager.getTranslator("types.TagListFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "[b]Gruppenübersicht[/b]\n"
-            + "%LIST_START%" + Tag.STANDARD_TEMPLATE + "%LIST_END%";
     private static final String TEMPLATE_PROPERTY = "tag.list.bbexport.template";
 
     @Override
@@ -37,7 +38,7 @@ public class TagListFormatter extends BasicFormatter<Tag> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

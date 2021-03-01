@@ -331,6 +331,7 @@ ui.models.TAPTargetTableModel.Angriffe=Angriffe
 
 ui.models.TagLinkMatrixModel.Alle=Alle
 ui.models.TagLinkMatrixModel.UND=UND
+ui.models.TagLinkMatrixModel.ODER=ODER
 ui.models.TagLinkMatrixModel.sowieaufKontinent=sowie auf Kontinent
 ui.models.TagLinkMatrixModel.inGruppe=in Gruppe
 
@@ -2172,3 +2173,90 @@ ui.wiz.ret.RetimerSourcePanel.KeineDoerfergewaehlt=Keine D\u00f6rfer gew\u00e4hl
 ui.wiz.ret.RetimerSourcePanel.VerwendeteDoerfer=Verwendete D\u00f6rfer
 ui.wiz.ret.RetimerSourcePanel.Informationskarte=Informationskarte vergr\u00f6ßern
 ui.wiz.ret.RetimerSourcePanel.Angriffsmodus_Text=<html>Du befindest dich im <b>Angriffsmodus</b>. Hier kannst du die Herkunftsd\u00f6rfer ausw\u00e4hlen, die f\u00fcr Angriffe verwendet werden d\u00fcrfen. Hierf\u00fcr hast die folgenden M\u00f6glichkeiten:<ul><li>Einf\u00fcgen von Dorfkoordinaten aus der Zwischenablage per STRG+V</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus der Gruppen\u00fcbersicht</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus dem SOS-Analyzer</li><li>Einf\u00fcgen der Herkunftsd\u00f6rfer aus Berichten</li><li>Einf\u00fcgen aus der Auswahl\u00fcbersicht</li><li>Manuelle Eingabe</li></ul></html>
+
+types.FightReport.standard_template=[quote][i][b]Betreff:[/b][/i] %ATTACKER% greift %TARGET% an\n[i][b]Gesendet:[/b][/i] %SEND_TIME%\n[size=16]%RESULT%[/size]\n[b]Gl\u00FCck:[/b] %LUCK%\n[b]Moral:[/b] %MORALE%\n\n[b]Angreifer:[/b] %ATTACKER%\n[b]Dorf:[/b] %SOURCE%\n%ATTACKER_TROOPS%\n\n[b]Verteidiger:[/b] %DEFENDER%\n[b]Dorf:[/b] %TARGET%\n %DEFENDER_TROOPS%\n\n%DEFENDERS_OUTSIDE%\n%DEFENDERS_EN_ROUTE%\n%LOYALITY_CHANGE%\n%WALL_CHANGE%\n%BUILDING_CHANGE%[/quote]
+types.FightReport.attacker_won=Der Angreifer hat gewonnen
+types.FightReport.defender_won=Der Verteidiger hat gewonnen
+types.FightReport.hidden_by_owner=Durch Besitzer des Berichts verborgen
+types.FightReport.nobody_survived=Keiner deiner K\u00E4mpfer ist lebend zur\u00FCckgekehrt.\nEs konnten keine Informationen \u00FCber die Truppenst\u00E4rke des Gegners erlangt werden.
+types.FightReport.troops_otw=[b]Truppen des Verteidigers, die unterwegs waren[/b]
+types.FightReport.acceptance_change=[b]Ver\u00E4nderung der Zustimmung:[/b] Zustimmung gesunken von %d auf %d
+types.FightReport.wall_change=[b]Schaden durch Rammen:[/b] Wall besch\u00E4digt von Level %d auf Level %d
+types.FightReport.building_change=[b]Schaden durch Katapultbeschuss:[/b] %s besch\u00E4digt von Level %d auf Level %d
+types.FightReport.sent=Gesendet
+types.FightReport.won=Gewonnen
+types.FightReport.lost=Verloren
+types.FightReport.color_blue=Farbe: Blau
+types.FightReport.color_red=Farbe: Rot
+types.FightReport.color_green=Farbe: Gr\u00fcn
+types.FightReport.color_yellow=Farbe: Gelb
+types.FightReport.morale=Moral
+types.FightReport.luck=Gl\u00fcck
+types.FightReport.attacker_tribe=Angreifer
+types.FightReport.attacker_village=Herkunft
+types.FightReport.hidden=Verborgen
+types.FightReport.no_informations=Keine Informationen
+types.FightReport.amount=Anzahl
+types.FightReport.looses=Verluste
+types.FightReport.defender_tribe=Verteidiger
+types.FightReport.defender_village=Ziel
+types.FightReport.wall_change_string=Schaden durch Rammen: Wall besch\u00E4digt von Level %d auf Level %d
+types.FightReport.building_change_string=Schaden durch Katapultbeschuss: %s besch\u00E4digt von Level %d auf Level %d
+types.FightReport.acceptance_change_string=Ver\u00E4nderung der Zustimmung: Zustimmung gesunken von %d auf %d
+
+types.AllyStatResult.standard_template=[b]Auswertung f\u00FCr %ALLY_NAME% ([ally]%ALLY_TAG%[/ally])[/b]\n\nAngreifer: %ATTACKERS%\nAdelungen: %ENOBLEMENTS%\nZerst\u00F6rte Wallstufen: %WALL_DESTRUCTION%\nZerst\u00F6rte Geb\u00E4udestufen: %BUILDING_DESTRUCTION%\n\nAngriffe:\n[table][**]Gesamt[||]Off[||]Fake[||]AG[/**]\n[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n[/table]\n\nBesiegte Einheiten:\n[table][**]Art[||]Anzahl[||]Bauernhofpl\u00E4tze[||]Anteil[/**]\n[*]Get\u00F6tet[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT%[/*]\n[*]Verloren[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT%[/*]\n[/table]\n
+
+types.Note.standard_template=[quote][b]Notiz vom:[/b] %LAST_CHANGE%\n\n[b]Zugeordnete D\u00F6rfer:[/b]\n%VILLAGE_LIST%\n\n[b]Notizsymbol:[/b] %NOTE_ICON%\n\n[b]Notiztext:[/b]\n\n%NOTE_TEXT%[/quote]
+
+types.OverallStatResult.standard_template=[b][u]Gesamtstatistiken[/u][/b]\n\nAuswertung vom %START_DATE% bis zum %END_DATE%\n\n[table]\n[**]Ausgewertete Berichte[||]%REPORT_COUNT%[/**]\n[*]Ausgewertete Angreifer (St\u00E4mme)[|]%ATTACK_TRIBES% (%ATTACK_ALLIES%)[/*]\n[**]Verteidiger (St\u00E4mme)[||]%DEFEND_TRIBES% (%DEFEND_ALLIES%)[/**]\n[*]Verluste der Verteidiger (Bauernhofpl\u00E4tze)[|] %KILLS% (%KILLS_FARM%)[/*]\n[**]Verluste pro Verteidiger[||]%LOSSES_PER_DEFENDER%[/**]\n[*]Verluste der Angreifer (Bauernhofpl\u00E4tze)[|]%LOSSES% (%LOSSES_FARM%)[/*]\n[**]Verluste pro Angreifer[||]%LOSSES_PER_ATTACKER%[/**]\n[*]Zerst\u00F6rte Wallstufen[|]%WALL_DESTRUCTION%[/*]\n[**]Zerst\u00F6rte Geb\u00E4udestufen[||]%BUILDING_DESTRUCTION%[/**]\n
+
+types.SOSRequest.standard_template=[quote]%SOS_ICON% %TARGET% (%ATTACKS%)\n[quote]%DEFENDERS%\n%WALL_INFO%[/quote]\n\n%FIRST_ATTACK%\n%SOURCE_DATE_LIST%\n%LAST_ATTACK%\n\n%SUMMARY%[/quote]
+
+types.Tag.standard_template=[u][color="%COLOR%"][b]%NAME%[/b][/color][/u]\n%ICON%\nD\u00F6rfer: %VILLAGE_COUNT%\n[quote]%VILLAGE_LIST%[/quote]
+
+types.TribeStatResult.standard_template=[b]Auswertung f\u00FCr [player]%TRIBE_NAME%[/player][/b]\n\nAdelungen: %ENOBLEMENTS%\nZerst\u00F6rte Wallstufen: %WALL_DESTRUCTION%\nZerst\u00F6rte Geb\u00E4udestufen: %BUILDING_DESTRUCTION%\n\nAngriffe:\n[table][**]Gesamt[||]Off[||]Fake[||]AG[/**]\n[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n[/table]\n\nBesiegte Einheiten:\n[table][**]Art[||]Anzahl[||]Bauernhofpl\u00E4tze[||]Anteil (Stamm)[||]Anteil (Gesamt)[/**]\n[*]Get\u00F6tet[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT_ALLY%[|]%KILLS_PERCENT_ALL%[/*]\n[*]Verloren[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT_ALLY%[|]%LOSSES_PERCENT_ALL%[/*]\n[/table]\n
+
+types.AbstractForm.standard_template=%Name% (%START_X%|%START_Y% bis %END_X%|%END_Y%)\nEnthaltene D\u00F6rfer:\n%VILLAGE_LIST%
+
+types.FormListFormatter.standard_template=[b]Zeichnungen[/b]\nAnzahl der Zeichnungen: %ELEMENT_COUNT%\n%LIST_START%\n%Name% (%START_X%|%START_Y% bis %END_X%|%END_Y%)\nEnthaltene D\u00F6rfer:\n%VILLAGE_LIST%\n%LIST_END%
+
+types.AttackListFormatter.standard_template=Anzahl der Angriffe: %ELEMENT_COUNT%\n[table]\n[**]ID[||]Art[||]Einheit[||]Herkunft[||]Ziel[||]Abschickzeit[||]Versammlungsplatz[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%TYPE%[|]%UNIT%[|]%SOURCE%[|]%TARGET%[|]%SEND%[|]%PLACE%[/*]%LIST_END%\n[/table]
+types.AttackListFormatter.standard_template_IGM=Anzahl der Angriffe: %ELEMENT_COUNT%\n\n%LIST_START%\n%TYPE% von %ATTACKER% aus %SOURCE% mit %UNIT% auf %DEFENDER% in %TARGET% startet am [color=#ff0e0e]%SEND%[/color] und kommt am [color=#2eb92e]%ARRIVE%[/color] an (%PLACE%)%LIST_END%\n
+
+types.DefStatsFormatter.standard_template=[b]Verteidigungsstatistik[/b]\nBer\u00FCcksichtigte Spieler: %ELEMENT_COUNT%\n[table]\n[**]Platz[||]Spieler[||]Besiegte Angreifer (Anfang)[||]Zuwachs[||]Besiegte Angreifer (Ende)[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%KILLS_START%[|]%KILLS_DIFFERENCE%[|]%KILLS_END%[/*]%LIST_END%\n[/table]
+
+types.KillStatsFormatter.standard_template=[b]Angriffsstatistik[/b]\nBer\u00FCcksichtigte Spieler: %ELEMENT_COUNT%\n[table]\n[**]Platz[||]Spieler[||]Kills (Anfang)[||]Zuwachs[||]Kills (Ende)[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%KILLS_START%[|]%KILLS_DIFFERENCE%[|]%KILLS_END%[/*]%LIST_END%\n[/table]
+
+types.KnownVillage.standard_template=[table]\n[**]Spieler[||]Dorf[||]main[||]barracks[||]stable[||]garage[||]church[||]watchtower[||]snob[||]smith[||]place[||]statue[||]market[||]wood[||]stone[||]iron[||]farm[||]storage[||]hide[||]wall[/**]\n%LIST_START%[*]%PLAYER%[|]%VILLAGE%[|]%MAIN%[|]%bARRACKS%[|]%STABLE%[|]%GARAGE%[|]%CHURCH%[|]%WATCHTOWER%[|]%SNOB%[|]%SMITH%[|]%PLACE%[|]%STATUE%[|]%MARKET%[|]%WOOD%[|]%STONE%[|]%IRON%[|]%FARM%[|]%STORAGE%[|]%HIDE%[|]%WALL%[/*]\n%LIST_END%[/table]
+
+types.MarkerListFormatter.standard_template=Anzahl der Markierungen: %ELEMENT_COUNT%\n\n%LIST_START% %NAME% [color=%MARKER_COLOR%]\u2593\u2593\u2593[/color] %LIST_END%\n
+
+types.PointStatsFormatter.standard_template=[b]Punktestatistik[/b]\nBer\u00FCcksichtigte Spieler: %ELEMENT_COUNT%\n[table]\n[**]Platz[||]Spieler[||]Punkte (Anfang)[||]Wachstum[||]Punkte (Ende)[||]Kills/Punkt[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%POINTS_START%[|]%PERCENT_DIFFERENCE%[|]%POINTS_END%[|]%KILLS_PER_POINT%[/*]%LIST_END%\n[/table]
+
+types.TagListFormatter.standard_template=[b]Gruppen\u00FCbersicht[/b]\n%LIST_START%[u][color="%COLOR%"][b]%NAME%[/b][/color][/u]\n%ICON%\nD\u00F6rfer: %VILLAGE_COUNT%\n[quote]%VILLAGE_LIST%[/quote]%LIST_END%
+
+types.VillageListFormatter.standard_template=[table]\n[**]ID[||]Dorf[||]Besitzer[||]Punkte[/**]\n%LIST_START%[*]%ELEMENT_ID%[|][coord]%X%|%Y%[/coord][|]%PLAYER%[|]%POINTS%[/*]%LIST_END%\n[/table]
+
+types.WinnerLoserStatsFormatter.standard_template=[b]Gewinner und Verlierer[/b]\n\n[table]\n[**]Titel[||]Spieler[/**]\n[*][u][b]Gewinner[/b][/u][|][/*]\n[*][b]Punktesammler[/b][|]%WINNER_BY_POINTS%[/*]\n[*][b]\u00DCberflieger(in)[/b][|]%WINNER_BY_EXPANSION%[/*]\n[*][b]Adelk\u00F6nig(in)[/b][|]%WINNER_BY_CONQUERS%[/*]\n[*][b]'My Home is my Castle'[/b][|]%WINNER_BY_DEFENSE%[/*]\n[*][b]'Angriff ist die beste Verteidigung'[/b][|]%WINNER_BY_OFFENSE%[/*]\n[*][b]'Ein hart erarbeiteter Sieg'[/b][|]%WINNER_BY_KILLS_PER_POINT%[/*]\n[*][|][/*]\n[*][u][b]Verlierer[/b][/u][|][/*]\n[*][b]Punktespender[/b][|]%LOSER_BY_POINTS%[/*]\n[*][b]'Geier Sturzflug'[/b][|]%LOSER_BY_EXPANSION%[/*]\n[*][b]Dorfspender[/b][|]%LOSER_BY_CONQUERS%[/*]\n[*][b]Friedensaktivist[/b][|]%LOSER_BY_OFFENSE%[/*]\n[*][b]Liebling des Feindes[/b][|]%LOSER_BY_DEFENSE%[/*]\n[/table]
+
+types.VillageTroopsHolder.standard_template=[b]Truppen\u00FCbersicht[/b]\n[table]\n[**]Dorf[||]%SPEAR_ICON%[||]%SWORD_ICON%[||]%AXE_ICON%[||]%ARCHER_ICON%[||]%SPY_ICON%[||]%LIGHT_ICON%[||]%MARCHER_ICON%[||]%HEAVY_ICON%[||]%RAM_ICON%[||]%CATAPULT_ICON%[||]%KNIGHT_ICON%[||]%SNOB_ICON%[||]%MILITA_ICON%[/**]\n%LIST_START%[*]%VILLAGE%[|]%SPEAR_AMOUNT%[|]%SWORD_AMOUNT%[|]%AXE_AMOUNT%[|]%ARCHER_AMOUNT%[|]%SPY_AMOUNT%[|]%LIGHT_AMOUNT%[|]%MARCHER_AMOUNT%[|]%HEAVY_AMOUNT%[|]%RAM_AMOUNT%[|]%CATAPULT_AMOUNT%[|]%KNIGHT_AMOUNT%[|]%SNOB_AMOUNT%[||]%MILITA_AMOUNT%[/*]\n%LIST_END%[/table]
+
+util.BuildingSettings.main=Hauptgeb\u00E4ude
+util.BuildingSettings.barracks=Kaserne
+util.BuildingSettings.stable=Stall
+util.BuildingSettings.garage=Werkstatt
+util.BuildingSettings.church=Kirche
+util.BuildingSettings.watchtower=Wachturm
+util.BuildingSettings.snob=Adelshof
+util.BuildingSettings.smith=Schmiede
+util.BuildingSettings.place=Versammlungsplatz
+util.BuildingSettings.statue=Statue
+util.BuildingSettings.market=Marktplatz
+util.BuildingSettings.wood=Holzf\u00E4llerlager
+util.BuildingSettings.stone=Lehmgrube
+util.BuildingSettings.iron=Eisenmine
+util.BuildingSettings.farm=Bauernhof
+util.BuildingSettings.storage=Speicher
+util.BuildingSettings.hide=Versteck
+util.BuildingSettings.wall=Wall
+

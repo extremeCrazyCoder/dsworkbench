@@ -462,12 +462,11 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         File runningIndicator = new File("runningFile");
         if (runningIndicator.exists()) {
             try {
-                GlobalDefaults.initialize();
                 GlobalOptions.loadProperties(true);
+                GlobalDefaults.initialize();
             } catch (Exception ex) {
                 java.util.logging.Logger.getLogger(DSWorkbenchSplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
-            TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
             int answer = JOptionPaneHelper.showQuestionConfirmBox(null, trans.get("DSWorkbenchnochlaufenwuerde"), trans.get("Absturz"), trans.get("Nein"), trans.get("Ja"));
 
             if(answer == JOptionPane.NO_OPTION) {
@@ -505,14 +504,11 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
         GlobalOptions.setMinimalVersion(minimal == 1);
 
         try {
-            GlobalDefaults.initialize();
             GlobalOptions.initialize();
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             logger.error("Failed to setup LnF", e);
         }
-        
-        TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
 
         final boolean useSSD = ssd;
 

@@ -29,7 +29,6 @@ public class TroopListFormatter extends BasicFormatter<VillageTroopsHolder> {
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
     private static final String TEMPLATE_PROPERTY = "troops.list.bbexport.template";
-    private static final String STANDARD_TEMPLATE = VillageTroopsHolder.STANDARD_TEMPLATE;
 
     @Override
     public String formatElements(List<VillageTroopsHolder> pElements, boolean pExtended) {
@@ -58,7 +57,7 @@ public class TroopListFormatter extends BasicFormatter<VillageTroopsHolder> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return VillageTroopsHolder.getStandardTemplate();
     }
 
     @Override

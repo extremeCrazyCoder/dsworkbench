@@ -331,6 +331,7 @@ ui.models.TAPTargetTableModel.Angriffe=Attacks
 
 ui.models.TagLinkMatrixModel.Alle=All
 ui.models.TagLinkMatrixModel.UND=AND
+ui.models.TagLinkMatrixModel.ODER=OR
 ui.models.TagLinkMatrixModel.sowieaufKontinent=as well as on continent
 ui.models.TagLinkMatrixModel.inGruppe=in group
 
@@ -2172,4 +2173,90 @@ ui.wiz.ret.RetimerSourcePanel.KeineDoerfergewaehlt=No villages selected
 ui.wiz.ret.RetimerSourcePanel.VerwendeteDoerfer=Used villages 
 ui.wiz.ret.RetimerSourcePanel.Informationskarte=Enlarge information card 
 ui.wiz.ret.RetimerSourcePanel.Angriffsmodus_Text=<html> You are in <b> attack mode </b>. Here you can select the sources of origin that can be used for attacks. You have the following options for this: <ul> <li> Paste village coordinates from the clipboard using CTRL + V </li> <li> Paste the originators from the group overview </ li > <li> Insert the originators from the SOS Analyzer </li> <li> Insert the originators from reports </li> <li> Insert from the selection overview </ li > <li> Manual entry </li> </ul> </html> 
+
+types.FightReport.standard_template=[quote][i][b]Subject:[/b][/i] %ATTACKER% attacks %TARGET%\n[i][b]Sent:[/b][/i] %SEND_TIME%\n[size=16]%RESULT%[/size]\n[b]Luck:[/b] %LUCK%\n[b]Morale:[/b] %MORALE%\n\n[b]Attacker:[/b] %ATTACKER%\n[b]Village:[/b] %SOURCE%\n%ATTACKER_TROOPS%\n\n[b]Defender:[/b] %DEFENDER%\n[b]Village:[/b] %TARGET%\n %DEFENDER_TROOPS%\n\n%DEFENDERS_OUTSIDE%\n%DEFENDERS_EN_ROUTE%\n%LOYALITY_CHANGE%\n%WALL_CHANGE%\n%BUILDING_CHANGE%[/quote]
+types.FightReport.attacker_won=The atacker won
+types.FightReport.defender_won=The defender won
+types.FightReport.hidden_by_owner=Hidden by the owner of the Report
+types.FightReport.nobody_survived=None of your Fighers returned. Thus you cannot see the defender strenght
+types.FightReport.troops_otw=[b]Troups of the defender, that were on the way[/b]
+types.FightReport.acceptance_change=[b]Change in acceptance:[/b] Acceptance reduced from %d to %d
+types.FightReport.wall_change=[b]Damage by rams:[/b] Wall reduced from level %d to level %d
+types.FightReport.building_change=[b]Damage by catapults:[/b] %s damaged from level %d to level %d
+types.FightReport.sent=Sent
+types.FightReport.won=Won
+types.FightReport.lost=Lost
+types.FightReport.color_blue=Color: Blue
+types.FightReport.color_red=Color: Red
+types.FightReport.color_green=Color: Green
+types.FightReport.color_yellow=Color: Yellow
+types.FightReport.morale=Morale
+types.FightReport.luck=Luck
+types.FightReport.attacker_tribe=Attacker
+types.FightReport.attacker_village=Source
+types.FightReport.hidden=Hidden
+types.FightReport.no_informations=No informations
+types.FightReport.amount=Amount
+types.FightReport.looses=Lost
+types.FightReport.defender_tribe=Defender
+types.FightReport.defender_village=Target
+types.FightReport.wall_change_string=Damage by rams: Wall reduced from level %d to level %d
+types.FightReport.building_change_string=Damage by catapults: %s damaged from level %d to level %d
+types.FightReport.acceptance_change_string=Change in acceptance: Acceptance reduced from %d to %d
+
+types.AllyStatResult.standard_template=[b]Evaluation for %ALLY_NAME% ([ally]%ALLY_TAG%[/ally])[/b]\n\nAttacker: %ATTACKERS%\nEnoblements: %ENOBLEMENTS%\nDestructed wall levels: %WALL_DESTRUCTION%\nDestructed building levels: %BUILDING_DESTRUCTION%\n\nAttacks:\n[table][**]Total[||]Off[||]Fake[||]Snob[/**]\n[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n[/table]\n\nKilled units:\n[table][**]Type[||]Amount[||]Farm space[||]Proportion[/**]\n[*]Killed[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT%[/*]\n[*]Lost[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT%[/*]\n[/table]\n
+
+types.Note.standard_template=[quote][b]Note from:[/b] %LAST_CHANGE%\n\n[b]Assigned Villages:[/b]\n%VILLAGE_LIST%\n\n[b]Symbol:[/b] %NOTE_ICON%\n\n[b]Text:[/b]\n\n%NOTE_TEXT%[/quote]
+
+types.OverallStatResult.standard_template=[b][u]Totalstatistics[/u][/b]\n\nEvaluation from %START_DATE% to %END_DATE%\n\n[table]\n[**]Evaluated reports[||]%REPORT_COUNT%[/**]\n[*]Evaluated attackers (Allies)[|]%ATTACK_TRIBES% (%ATTACK_ALLIES%)[/*]\n[**]Defenders (Allies)[||]%DEFEND_TRIBES% (%DEFEND_ALLIES%)[/**]\n[*]Losses of the Defender (Farm space)[|] %KILLS% (%KILLS_FARM%)[/*]\n[**]Losses per defender[||]%LOSSES_PER_DEFENDER%[/**]\n[*]Losses of the attacker (Farm space)[|]%LOSSES% (%LOSSES_FARM%)[/*]\n[**]Losses per attacker[||]%LOSSES_PER_ATTACKER%[/**]\n[*]Destructed wall levels[|]%WALL_DESTRUCTION%[/*]\n[**]Destructed building levels[||]%BUILDING_DESTRUCTION%[/**]\n
+
+types.SOSRequest.standard_template=[quote]%SOS_ICON% %TARGET% (%ATTACKS%)\n[quote]%DEFENDERS%\n%WALL_INFO%[/quote]\n\n%FIRST_ATTACK%\n%SOURCE_DATE_LIST%\n%LAST_ATTACK%\n\n%SUMMARY%[/quote]
+
+types.Tag.standard_template=[u][color="%COLOR%"][b]%NAME%[/b][/color][/u]\n%ICON%\nVillages: %VILLAGE_COUNT%\n[quote]%VILLAGE_LIST%[/quote]
+
+types.TribeStatResult.standard_template=[b]Evaluation for [player]%TRIBE_NAME%[/player][/b]\n\nEnoblements: %ENOBLEMENTS%\nDestructed wall levels: %WALL_DESTRUCTION%\nDestructed building levels: %BUILDING_DESTRUCTION%\n\nAttacks:\n[table][**]Total[||]Off[||]Fake[||]Snob[/**]\n[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n[/table]\n\nKilled units:\n[table][**]Type[||]Amount[||]Farm space[||]percentage (ally)[||]percentage (total)[/**]\n[*]Killed[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT_ALLY%[|]%KILLS_PERCENT_ALL%[/*]\n[*]Verloren[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT_ALLY%[|]%LOSSES_PERCENT_ALL%[/*]\n[/table]\n
+
+types.AbstractForm.standard_template=%Name% (%START_X%|%START_Y% bis %END_X%|%END_Y%)\nContained villages:\n%VILLAGE_LIST%
+
+types.FormListFormatter.standard_template=[b]Drawings[/b]\nAmount of drawings: %ELEMENT_COUNT%\n%LIST_START%\n%Name% (%START_X%|%START_Y% bis %END_X%|%END_Y%)\nContained villages:\n%VILLAGE_LIST%\n%LIST_END%
+
+types.AttackListFormatter.standard_template=Amount of attacks: %ELEMENT_COUNT%\n[table]\n[**]ID[||]Type[||]Unit[||]Source[||]Targe[||]Send time[||]Rally point[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%TYPE%[|]%UNIT%[|]%SOURCE%[|]%TARGET%[|]%SEND%[|]%PLACE%[/*]%LIST_END%\n[/table]
+types.AttackListFormatter.standard_template_IGM=Amount of attacks: %ELEMENT_COUNT%\n\n%LIST_START%\n%TYPE% of %ATTACKER% from %SOURCE% with %UNIT% to %DEFENDER% in %TARGET% sent at [color=#ff0e0e]%SEND%[/color] and arrives at [color=#2eb92e]%ARRIVE%[/color] (%PLACE%)%LIST_END%\n
+
+types.DefStatsFormatter.standard_template=[b]Defence statistic[/b]\nPlayers evaluated: %ELEMENT_COUNT%\n[table]\n[**]Rank[||]Player[||]Killed attackers (Start)[||]Growth[||]Killed attackers (End)[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%KILLS_START%[|]%KILLS_DIFFERENCE%[|]%KILLS_END%[/*]%LIST_END%\n[/table]
+
+types.KillStatsFormatter.standard_template=[b]Attack statistic[/b]\nPlayers evaluated: %ELEMENT_COUNT%\n[table]\n[**]Rank[||]Player[||]Kills (start)[||]Growth[||]Kills (end)[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%KILLS_START%[|]%KILLS_DIFFERENCE%[|]%KILLS_END%[/*]%LIST_END%\n[/table]
+
+types.KnownVillage.standard_template=[table]\n[**]Player[||]Village[||]main[||]barracks[||]stable[||]garage[||]church[||]watchtower[||]snob[||]smith[||]place[||]statue[||]market[||]wood[||]stone[||]iron[||]farm[||]storage[||]hide[||]wall[/**]\n%LIST_START%[*]%PLAYER%[|]%VILLAGE%[|]%MAIN%[|]%bARRACKS%[|]%STABLE%[|]%GARAGE%[|]%CHURCH%[|]%WATCHTOWER%[|]%SNOB%[|]%SMITH%[|]%PLACE%[|]%STATUE%[|]%MARKET%[|]%WOOD%[|]%STONE%[|]%IRON%[|]%FARM%[|]%STORAGE%[|]%HIDE%[|]%WALL%[/*]\n%LIST_END%[/table]
+
+types.MarkerListFormatter.standard_template=Amount of markers: %ELEMENT_COUNT%\n\n%LIST_START% %NAME% [color=%MARKER_COLOR%]\u2593\u2593\u2593[/color] %LIST_END%\n
+
+types.PointStatsFormatter.standard_template=[b]Point statistic[/b]\nPlayers evaluated: %ELEMENT_COUNT%\n[table]\n[**]Rank[||]Player[||]Points (start)[||]Growth[||]Points (end)[||]Kills/Point[/**]\n%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%POINTS_START%[|]%PERCENT_DIFFERENCE%[|]%POINTS_END%[|]%KILLS_PER_POINT%[/*]%LIST_END%\n[/table]
+
+types.TagListFormatter.standard_template=[b]Group overview[/b]\n%LIST_START%[u][color="%COLOR%"][b]%NAME%[/b][/color][/u]\n%ICON%\nVillages: %VILLAGE_COUNT%\n[quote]%VILLAGE_LIST%[/quote]%LIST_END%
+
+types.VillageListFormatter.standard_template=[table]\n[**]ID[||]Village[||]Owner[||]Points[/**]\n%LIST_START%[*]%ELEMENT_ID%[|][coord]%X%|%Y%[/coord][|]%PLAYER%[|]%POINTS%[/*]%LIST_END%\n[/table]
+
+types.WinnerLoserStatsFormatter.standard_template=[b]Winner and loser[/b]\n\n[table]\n[**]Title[||]Player[/**]\n[*][u][b]Winner[/b][/u][|][/*]\n[*][b]Point collector[/b][|]%WINNER_BY_POINTS%[/*]\n[*][b]High flyer[/b][|]%WINNER_BY_EXPANSION%[/*]\n[*][b]Enoblement King[/b][|]%WINNER_BY_CONQUERS%[/*]\n[*][b]'My Home is my Castle'[/b][|]%WINNER_BY_DEFENSE%[/*]\n[*][b]'Attacking is the best defence'[/b][|]%WINNER_BY_OFFENSE%[/*]\n[*][b]'A hard won victory'[/b][|]%WINNER_BY_KILLS_PER_POINT%[/*]\n[*][|][/*]\n[*][u][b]Loser[/b][/u][|][/*]\n[*][b]Points donator[/b][|]%LOSER_BY_POINTS%[/*]\n[*][b]'Vulture nosedive'[/b][|]%LOSER_BY_EXPANSION%[/*]\n[*][b]Village donator[/b][|]%LOSER_BY_CONQUERS%[/*]\n[*][b]Peace activitst[/b][|]%LOSER_BY_OFFENSE%[/*]\n[*][b]Darling of the enemy[/b][|]%LOSER_BY_DEFENSE%[/*]\n[/table]
+
+types.VillageTroopsHolder.standard_template=[b]Troop overview[/b]\n[table]\n[**]Village[||]%SPEAR_ICON%[||]%SWORD_ICON%[||]%AXE_ICON%[||]%ARCHER_ICON%[||]%SPY_ICON%[||]%LIGHT_ICON%[||]%MARCHER_ICON%[||]%HEAVY_ICON%[||]%RAM_ICON%[||]%CATAPULT_ICON%[||]%KNIGHT_ICON%[||]%SNOB_ICON%[||]%MILITA_ICON%[/**]\n%LIST_START%[*]%VILLAGE%[|]%SPEAR_AMOUNT%[|]%SWORD_AMOUNT%[|]%AXE_AMOUNT%[|]%ARCHER_AMOUNT%[|]%SPY_AMOUNT%[|]%LIGHT_AMOUNT%[|]%MARCHER_AMOUNT%[|]%HEAVY_AMOUNT%[|]%RAM_AMOUNT%[|]%CATAPULT_AMOUNT%[|]%KNIGHT_AMOUNT%[|]%SNOB_AMOUNT%[||]%MILITA_AMOUNT%[/*]\n%LIST_END%[/table]
+
+util.BuildingSettings.main=Main
+util.BuildingSettings.barracks=Barracks
+util.BuildingSettings.stable=Stable
+util.BuildingSettings.garage=Garage
+util.BuildingSettings.church=Church
+util.BuildingSettings.watchtower=Watchtower
+util.BuildingSettings.snob=Snob
+util.BuildingSettings.smith=Smith
+util.BuildingSettings.place=Place
+util.BuildingSettings.statue=Statue
+util.BuildingSettings.market=Market
+util.BuildingSettings.wood=Wood
+util.BuildingSettings.stone=Stone
+util.BuildingSettings.iron=Iron
+util.BuildingSettings.farm=Farm
+util.BuildingSettings.storage=Storage
+util.BuildingSettings.hide=Hide
+util.BuildingSettings.wall=Wall
 

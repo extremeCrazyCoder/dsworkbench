@@ -16,6 +16,8 @@
 package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.TribeStatsElement.Stats;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -26,6 +28,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author Torridity
  */
 public class WinnerLoserStatsFormatter extends BasicFormatter<Stats> {
+    private static Translator trans = TranslationManager.getTranslator("types.WinnerLoserStatsFormatter");
 
     private static final String WINNER_BY_POINTS = "%WINNER_BY_POINTS%";
     private static final String WINNER_BY_EXPANSION = "%WINNER_BY_EXPANSION%";
@@ -39,23 +42,6 @@ public class WinnerLoserStatsFormatter extends BasicFormatter<Stats> {
     private static final String LOSER_BY_OFFENSE = "%LOSER_BY_OFFENSE%";
     private static final String LOSER_BY_DEFENSE = "%LOSER_BY_DEFENSE%";
     private static final String[] VARIABLES = new String[] {};
-    private static final String STANDARD_TEMPLATE = "[b]Gewinner und Verlierer[/b]\n\n"
-            + "[table]\n[**]Titel[||]Spieler[/**]\n"
-            + "[*][u][b]Gewinner[/b][/u][|][/*]\n"
-            + "[*][b]Punktesammler[/b][|]%WINNER_BY_POINTS%[/*]\n"
-            + "[*][b]Überflieger(in)[/b][|]%WINNER_BY_EXPANSION%[/*]\n"
-            + "[*][b]Adelkönig(in)[/b][|]%WINNER_BY_CONQUERS%[/*]\n"
-            + "[*][b]'My Home is my Castle'[/b][|]%WINNER_BY_DEFENSE%[/*]\n"
-            + "[*][b]'Angriff ist die beste Verteidigung'[/b][|]%WINNER_BY_OFFENSE%[/*]\n"
-            + "[*][b]'Ein hart erarbeiteter Sieg'[/b][|]%WINNER_BY_KILLS_PER_POINT%[/*]\n"
-            + "[*][|][/*]\n"
-            + "[*][u][b]Verlierer[/b][/u][|][/*]\n"
-            + "[*][b]Punktespender[/b][|]%LOSER_BY_POINTS%[/*]\n"
-            + "[*][b]'Geier Sturzflug'[/b][|]%LOSER_BY_EXPANSION%[/*]\n"
-            + "[*][b]Dorfspender[/b][|]%LOSER_BY_CONQUERS%[/*]\n"
-            + "[*][b]Friedensaktivist[/b][|]%LOSER_BY_OFFENSE%[/*]\n"
-            + "[*][b]Liebling des Feindes[/b][|]%LOSER_BY_DEFENSE%[/*]\n"
-            + "[/table]";
     private static final String TEMPLATE_PROPERTY = "winner.loser.stats.bbexport.template";
     private final String[] STAT_SPECIFIC_VARIABLES = new String[] {WINNER_BY_POINTS, WINNER_BY_EXPANSION, WINNER_BY_CONQUERS, WINNER_BY_OFFENSE, WINNER_BY_DEFENSE, WINNER_BY_KILLS_PER_POINT, LOSER_BY_POINTS, LOSER_BY_EXPANSION, LOSER_BY_CONQUERS, LOSER_BY_OFFENSE, LOSER_BY_DEFENSE};
 
@@ -141,7 +127,7 @@ public class WinnerLoserStatsFormatter extends BasicFormatter<Stats> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

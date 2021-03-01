@@ -19,6 +19,8 @@ import de.tor.tribes.types.Attack;
 import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.JOptionPaneHelper;
 import de.tor.tribes.util.TimeManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Component;
 import java.util.Collections;
 import java.util.Date;
@@ -32,22 +34,14 @@ import org.apache.logging.log4j.Logger;
  * @author Torridity
  */
 public class AttackListFormatter extends BasicFormatter<Attack> {
+    private static Logger logger = LogManager.getLogger("AttackListFormatter");
+    private static Translator trans = TranslationManager.getTranslator("types.AttackListFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "Anzahl der Angriffe: %ELEMENT_COUNT%\n[table]\n"
-            + "[**]ID[||]Art[||]Einheit[||]Herkunft[||]Ziel[||]Abschickzeit[||]Versammlungsplatz[/**]\n"
-            + "%LIST_START%[*]%ELEMENT_ID%[|]%TYPE%[|]%UNIT%[|]%SOURCE%[|]%TARGET%[|]%SEND%[|]%PLACE%[/*]%LIST_END%\n"
-            + "[/table]";
     private static final String TEMPLATE_PROPERTY = "attack.list.bbexport.template";
     
-    
-    private static final String IGM_STANDARD_TEMPLATE = "Anzahl der Angriffe: %ELEMENT_COUNT%\n\n%LIST_START%\n"
-            + "%TYPE% von %ATTACKER% aus %SOURCE% mit %UNIT% auf %DEFENDER% in %TARGET% startet am "
-            + "[color=#ff0e0e]%SEND%[/color] und kommt am [color=#2eb92e]%ARRIVE%[/color] an (%PLACE%)"
-            + "%LIST_END%\n";
     private static final String IGM_TEMPLATE_PROPERTY = "attack.list.bbexport.igmtemplate";
     
-    private static Logger logger = LogManager.getLogger("AttackListFormatter");
     
     private boolean igmExport;
     public AttackListFormatter(boolean forIGM) {
@@ -62,8 +56,8 @@ public class AttackListFormatter extends BasicFormatter<Attack> {
 
     @Override
     public String getStandardTemplate() {
-        if(igmExport) return IGM_STANDARD_TEMPLATE;
-        return STANDARD_TEMPLATE;
+        if(igmExport) return trans.get("standard_template_IGM");
+        return trans.get("standard_template");
     }
 
     @Override

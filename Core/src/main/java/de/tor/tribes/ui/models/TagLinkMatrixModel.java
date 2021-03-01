@@ -154,7 +154,7 @@ public class TagLinkMatrixModel extends AbstractTableModel {
                 String relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE1)) {
                     if (group1.length() > 0) {
-                        group1.append(trans.get(" UND "));
+                        group1.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
                         relation += name;
@@ -166,36 +166,36 @@ public class TagLinkMatrixModel extends AbstractTableModel {
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE2)) {
                     if (group2.length() > 0) {
-                        group2.append(trans.get(" UND "));
+                        group2.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
                         relation += name;
                     } else {
-                        relation += "(" + name + trans.get(" UND ") + columnNames[j] + ")";
+                        relation += "(" + name + " " + trans.get("UND") + " " + columnNames[j] + ")";
                     }
                     group2.append(relation);
                 }
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE3)) {
                     if (group3.length() > 0) {
-                        group3.append(trans.get(" UND "));
+                        group3.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
                         relation += name;
                     } else {
-                        relation += "(" + name + trans.get(" UND ") + columnNames[j] + ")";
+                        relation += "(" + name + " " + trans.get("UND") + " " + columnNames[j] + ")";
                     }
                     group3.append(relation);
                 }
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE4)) {
                     if (group4.length() > 0) {
-                        group4.append(trans.get(" UND "));
+                        group4.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
                         relation += name;
                     } else {
-                        relation += "(" + name + trans.get(" UND ") + columnNames[j] + ")";
+                        relation += "(" + name + " " + trans.get("UND") + " " + columnNames[j] + ")";
                     }
                     group4.append(relation);
                 }
@@ -208,19 +208,19 @@ public class TagLinkMatrixModel extends AbstractTableModel {
         }
         if (group2.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(trans.get(" ODER "));
+                builder.append(" ").append(trans.get("ODER")).append(" ");
             }
             builder.append("(").append(group2.toString()).append(")");
         }
         if (group3.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(trans.get(" ODER "));
+                builder.append(" ").append(trans.get("ODER")).append(" ");
             }
             builder.append("(").append(group3.toString()).append(")");
         }
         if (group4.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(trans.get(" ODER "));
+                builder.append(" ").append(trans.get("ODER")).append(" ");
             }
             builder.append("(").append(group4.toString()).append(")");
         }
@@ -241,48 +241,48 @@ public class TagLinkMatrixModel extends AbstractTableModel {
                 String relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE1)) {
                     if (group1.length() > 0) {
-                        group1.append(" und ");
+                        group1.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
-                        relation += trans.get("inGruppe '") + name + "'";
+                        relation += trans.get("inGruppe") + " '" + name + "'";
                     } else {
-                        relation += trans.get("inGruppe '") + name + trans.get("' sowieaufKontinent ") + columnNames[j];
+                        relation += trans.get("inGruppe") + " '" + name + "' " + trans.get("sowieaufKontinent ") + columnNames[j];
                     }
                     group1.append(relation);
                 }
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE2)) {
                     if (group2.length() > 0) {
-                        group2.append(trans.get(" und "));
+                        group2.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
-                        relation += trans.get("inGruppe '") + name + "'";
+                        relation += trans.get("inGruppe") + " '" + name + "'";
                     } else {
-                        relation += trans.get("inGruppe '") + name + trans.get("' sowieaufKontinent ") + columnNames[j];
+                        relation += trans.get("inGruppe") + " '" + name + "' " + trans.get("sowieaufKontinent ") + columnNames[j];
                     }
                     group2.append(relation);
                 }
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE3)) {
                     if (group3.length() > 0) {
-                        group3.append(trans.get(" und "));
+                        group3.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
-                        relation += trans.get("inGruppe '") + name + "'";
+                        relation += trans.get("inGruppe") + " '" + name + "'";
                     } else {
-                        relation += trans.get("inGruppe '") + name + trans.get("' sowieaufKontinent ") + columnNames[j];
+                        relation += trans.get("inGruppe") + " '" + name + "' " + trans.get("sowieaufKontinent ") + columnNames[j];
                     }
                     group3.append(relation);
                 }
                 relation = "";
                 if (MultiBooleanTableCellEditor.isOptionSet((Integer) value[j], MultiBooleanTableCellEditor.VALUE4)) {
                     if (group4.length() > 0) {
-                        group4.append(" und ");
+                        group4.append(" ").append(trans.get("UND")).append(" ");
                     }
                     if (j == 1) {
-                        relation += "inGruppe '" + name + "'";
+                        relation += trans.get("inGruppe") + " '" + name + "'";
                     } else {
-                        relation += "inGruppe '" + name + "' sowieaufKontinent " + columnNames[j];
+                        relation += trans.get("inGruppe") + " '" + name + "' " + trans.get("sowieaufKontinent ") + columnNames[j];
                     }
                     group4.append(relation);
                 }
@@ -295,19 +295,19 @@ public class TagLinkMatrixModel extends AbstractTableModel {
         }
         if (group2.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(" <BR/>oder<BR/> ");
+                builder.append(" <BR/>").append(trans.get("ODER")).append("<BR/> ");
             }
             builder.append("<b><font color='#1C7B38'>").append(group2.toString()).append("</font></b>");
         }
         if (group3.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(" <BR/>oder<BR/> ");
+                builder.append(" <BR/>").append(trans.get("ODER")).append("<BR/> ");
             }
             builder.append("<b><font color='#0000FF'>").append(group3.toString()).append("</font></b>");
         }
         if (group4.length() > 0) {
             if (builder.length() > 0) {
-                builder.append(" <BR/>oder<BR/> ");
+                builder.append(" <BR/>").append(trans.get("ODER")).append("<BR/> ");
             }
             builder.append("<b><font color='#FF00FF'>").append(group4.toString()).append("</font></b>");
         }

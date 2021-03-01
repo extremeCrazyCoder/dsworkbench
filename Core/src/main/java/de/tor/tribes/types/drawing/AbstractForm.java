@@ -19,6 +19,8 @@ import de.tor.tribes.control.ManageableType;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -34,10 +36,15 @@ import org.jdom2.Element;
  * @author Charon
  */
 public abstract class AbstractForm extends ManageableType implements BBSupport {
+    private static Logger logger = LogManager.getLogger("AbstractForm");
+    private static Translator trans = TranslationManager.getTranslator("types.TribeStatResult");
 
     private final static String[] VARIABLES = new String[]{"%Name%", "%START_X%", "%START_Y%", "%WIDTH%", "%HEIGHT%", "%END_X%", "%END_Y%", "%COLOR%", "%VILLAGE_LIST%"};
-    public final static String STANDARD_TEMPLATE = "%Name% (%START_X%|%START_Y% bis %END_X%|%END_Y%)\nEnthaltene Dörfer:\n%VILLAGE_LIST%";
 
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
+    }
+    
     public abstract boolean allowsBBExport();
 
     @Override
@@ -48,7 +55,7 @@ public abstract class AbstractForm extends ManageableType implements BBSupport {
     public enum FORM_TYPE {
         LINE, ARROW, RECTANGLE, CIRCLE, TEXT, FREEFORM
     }
-    private static Logger logger = LogManager.getLogger("AbstractForm");
+    
     private double xPos = 0;
     private double yPos = 0;
     private Color textColor = Color.BLACK;

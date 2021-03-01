@@ -17,6 +17,8 @@ package de.tor.tribes.types;
 
 import de.tor.tribes.types.ext.Tribe;
 import de.tor.tribes.util.BBSupport;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 
 /**
@@ -24,29 +26,15 @@ import java.text.NumberFormat;
  * @author Torridity
  */
 public class TribeStatResult implements BBSupport {
+    private static Translator trans = TranslationManager.getTranslator("types.TribeStatResult");
 
     private final static String[] VARIABLES = new String[]{"%TRIBE_NAME%", "%ATTACKS%", "%OFF_ATTACKS%", "%SNOB_ATTACKS%", "%FAKE_ATTACKS%", "%ENOBLEMENTS%",
         "%KILLS%", "%KILLS_FARM%", "%KILLS_PERCENT_ALLY%", "%KILLS_PERCENT_ALL%", "%LOSSES%", "%LOSSES_FARM%", "%LOSSES_PERCENT_ALLY%", "%LOSSES_PERCENT_ALL%", "%WALL_DESTRUCTION%", "%BUILDING_DESTRUCTION%"};
-    public static final String STANDARD_TEMPLATE;
-    static {
-        StringBuilder b = new StringBuilder();
-        b.append("[b]Auswertung für [player]%TRIBE_NAME%[/player][/b]\n\n");
-        b.append("Adelungen: %ENOBLEMENTS%\n");
-        b.append("Zerstörte Wallstufen: %WALL_DESTRUCTION%\n");
-        b.append("Zerstörte Gebäudestufen: %BUILDING_DESTRUCTION%\n\n");
-        b.append("Angriffe:\n");
-        b.append("[table][**]Gesamt[||]Off[||]Fake[||]AG[/**]\n");
-        b.append("[*]%ATTACKS%[|]%OFF_ATTACKS%[|]%FAKE_ATTACKS%[|]%SNOB_ATTACKS%[/*]\n");
-        b.append("[/table]\n\n");
-        b.append("Besiegte Einheiten:\n");
-        b.append("[table][**]Art[||]Anzahl[||]Bauernhofplätze[||]Anteil (Stamm)[||]Anteil (Gesamt)[/**]\n");
-        b.append("[*]Getötet[|]%KILLS%[|]%KILLS_FARM%[|]%KILLS_PERCENT_ALLY%[|]%KILLS_PERCENT_ALL%[/*]\n");
-        b.append("[*]Verloren[|]%LOSSES%[|]%LOSSES_FARM%[|]%LOSSES_PERCENT_ALLY%[|]%LOSSES_PERCENT_ALL%[/*]\n");
-        b.append("[/table]\n");
 
-        STANDARD_TEMPLATE = b.toString();
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
     }
-
+    
     @Override
     public String[] getBBVariables() {
         return VARIABLES;

@@ -25,7 +25,6 @@ import java.util.List;
  */
 public class OverallReportStatsFormatter extends BasicFormatter<OverallStatResult> {
 
-    private static final String STANDARD_TEMPLATE = OverallStatResult.STANDARD_TEMPLATE;
     private static final String TEMPLATE_PROPERTY = "overall.report.stats.bbexport.template";
 
     @Override
@@ -35,7 +34,7 @@ public class OverallReportStatsFormatter extends BasicFormatter<OverallStatResul
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return OverallStatResult.getStandardTemplate();
     }
 
     @Override

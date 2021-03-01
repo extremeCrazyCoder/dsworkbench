@@ -28,6 +28,8 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.BuildingSettings;
 import de.tor.tribes.util.TimeManager;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -46,13 +48,16 @@ import org.jdom2.Element;
  * @author Torridity
  */
 public class FightReport extends ManageableType implements Comparable<FightReport>, BBSupport {
+    private Logger logger = LogManager.getLogger("FightReport");
+    private static Translator trans = TranslationManager.getTranslator("types.FightReport");
 
     private final static String[] VARIABLES = new String[]{"%ATTACKER%", "%SOURCE%", "%DEFENDER%", "%TARGET%", "%SEND_TIME%", "%RESULT%", "%LUCK%", "%MORALE%", "%ATTACKER_TROOPS%",
         "%DEFENDER_TROOPS%", "%DEFENDERS_OUTSIDE%", "%DEFENDERS_EN_ROUTE%", "%LOYALITY_CHANGE%", "%WALL_CHANGE%", "%BUILDING_CHANGE%"};
-    public final static String STANDARD_TEMPLATE = "[quote][i][b]Betreff:[/b][/i] %ATTACKER% greift %TARGET% an\n[i][b]Gesendet:[/b][/i] %SEND_TIME%\n[size=16]%RESULT%[/size]\n"
-            + "[b]Glück:[/b] %LUCK%\n[b]Moral:[/b] %MORALE%\n\n[b]Angreifer:[/b] %ATTACKER%\n[b]Dorf:[/b] %SOURCE%\n%ATTACKER_TROOPS%\n\n[b]Verteidiger:[/b] %DEFENDER%\n"
-            + "[b]Dorf:[/b] %TARGET%\n %DEFENDER_TROOPS%\n\n%DEFENDERS_OUTSIDE%\n%DEFENDERS_EN_ROUTE%\n%LOYALITY_CHANGE%\n%WALL_CHANGE%\n%BUILDING_CHANGE%[/quote]";
 
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
+    }
+    
     @Override
     public String[] getBBVariables() {
         return VARIABLES;
@@ -64,29 +69,29 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
         String targetVal = targetVillage.toBBCode();
         SimpleDateFormat d = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         String sendDateVal = d.format(new Date(timestamp));
-        String resultVal = (won) ? "Der Angreifer hat gewonnen" : "Der Verteidiger hat gewonnen";
+        String resultVal = (won) ? trans.get("attacker_won") : trans.get("defender_won");
 
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(1);
-        nf.setMinimumFractionDigits(1);
+        nf.setMaximumFractionDigits(1);
 
         String luckVal = "[img]" + LuckViewInterface.createLuckIndicator(luck) + "[/img] " + nf.format(luck) + "%";
         nf.setMinimumFractionDigits(0);
-        nf.setMinimumFractionDigits(0);
+        nf.setMaximumFractionDigits(0);
         String moraleVal = nf.format(moral) + " %";
 
         String sourceVal = sourceVillage.toBBCode();
         String attackerTroopsVal = (areAttackersHidden())
-                ? "Durch Besitzer des Berichts verborgen"
+                ? trans.get("hidden_by_owner")
                 : "[img]" + UnitTableInterface.createAttackerUnitTableLink(attackers, diedAttackers) + "[/img]";
 
         String defenderVal = defender.toBBCode();
         String defenderTroopsVal = (wasLostEverything())
-                ? "Keiner deiner Kämpfer ist lebend zurückgekehrt.\nEs konnten keine Informationen über die Truppenstärke des Gegners erlangt werden."
+                ? trans.get("nobody_survived")
                 : "[img]" + UnitTableInterface.createDefenderUnitTableLink(defenders, diedDefenders) + "[/img]";
 
         String troopsEnRouteVal = (whereDefendersOnTheWay())
-                ? "[b]Truppen des Verteidigers, die unterwegs waren[/b]\n\n" + "[img]" + UnitTableInterface.createAttackerUnitTableLink(defendersOnTheWay) + "[/img]"
+                ? trans.get("troops_otw") + "\n\n" + "[img]" + UnitTableInterface.createAttackerUnitTableLink(defendersOnTheWay) + "[/img]"
                 : "";
         String troopsOutsideVal = "";
         if (whereDefendersOutside()) {
@@ -98,15 +103,15 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
         }
 
         String loyalityChangeVal = (wasSnobAttack())
-                ? "[b]Veränderung der Zustimmung:[/b] Zustimmung gesunken von " + nf.format(getAcceptanceBefore()) + " auf " + getAcceptanceAfter()
+                ? String.format(trans.get("acceptance_change"), getAcceptanceBefore(), getAcceptanceAfter())
                 : "";
 
         String wallChangeVal = (wasWallDamaged())
-                ? "[b]Schaden durch Rammen:[/b] Wall beschädigt von Level " + getWallBefore() + " auf Level " + getWallAfter()
+                ? String.format(trans.get("wall_change"), getWallBefore(), getWallAfter())
                 : "";
-        //TODO use building names from Translation file
+        
         String cataChangeVal = (wasBuildingDamaged())
-                ? "[b]Schaden durch Katapultbeschuss:[/b] " + BuildingSettings.BUILDING_NAMES[aimedBuildingId] + " beschädigt von Level " + getBuildingBefore() + " auf Level " + getBuildingAfter()
+                ? String.format(trans.get("building_change"), BuildingSettings.getTranslatedName(aimedBuildingId), getBuildingBefore(), getBuildingAfter())
                 : "";
         return new String[]{attackerVal, sourceVal, defenderVal, targetVal, sendDateVal, resultVal, luckVal, moraleVal, attackerTroopsVal, defenderTroopsVal, troopsOutsideVal, troopsEnRouteVal, loyalityChangeVal, wallChangeVal, cataChangeVal};
     }
@@ -118,8 +123,6 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
         SPY,
         HIDDEN
     }
-    
-    private Logger logger = LogManager.getLogger("FightReport");
     
     private boolean won = false;
     private long timestamp = 0;
@@ -936,31 +939,32 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm");
-        result.append("Gesendet: ").append(f.format(new Date(timestamp))).append("\n");
-        result.append(won ? "Gewonnen\n" : "Verloren\n");
+        SimpleDateFormat f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
+        result.append(trans.get("sent")).append(": ").append(f.format(new Date(timestamp))).append("\n");
+        result.append(won ? trans.get("won") : trans.get("lost")).append("\n");
 
         if (isSpyReport()) {
-            result.append("Farbe: Blau\n");
+            result.append(trans.get("color_blue"));
         } else if (wasLostEverything()) {
-            result.append("Farbe: Rot\n");
+            result.append(trans.get("color_red"));
         } else if (wasLostNothing()) {
-            result.append("Farbe: Grün\n");
+            result.append(trans.get("color_green"));
         } else {
-            result.append("Farbe: Gelb\n");
+            result.append(trans.get("color_yellow"));
         }
-        result.append("Moral: ").append(moral).append("\n");
-        result.append("Glück: ").append(luck).append("\n");
-        result.append("Angreifer: ").append(attacker).append("\n");
-        result.append("Herkunft: ").append(sourceVillage).append("\n");
+        result.append("\n");
+        result.append(trans.get("morale")).append(": ").append(moral).append("\n");
+        result.append(trans.get("luck")).append(": ").append(luck).append("\n");
+        result.append(trans.get("attacker_tribe")).append(": ").append(attacker).append("\n");
+        result.append(trans.get("attacker_village")).append(": ").append(sourceVillage).append("\n");
         String sAttackers = "";
         String sAttackersDied = "";
         String sDefenders = "";
         String sDefendersDied = "";
 
         if (areAttackersHidden()) {
-            sAttackers = "Verborgen\n";
-            sAttackersDied = "Verborgen\n";
+            sAttackers = trans.get("hidden") + "\n";
+            sAttackersDied = trans.get("hidden") + "\n";
         } else {
             for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
                 sAttackers += attackers.getAmountForUnit(unit) + " ";
@@ -971,8 +975,8 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
         }
 
         if (wasLostEverything()) {
-            sDefenders = "Keine Informationen\n";
-            sDefendersDied = "Keine Informationen\n";
+            sDefenders = trans.get("no_informations") + "\n";
+            sDefendersDied = trans.get("no_informations") + "\n";
         } else {
             for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
                 sDefenders += defenders.getAmountForUnit(unit) + " ";
@@ -982,12 +986,12 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
             sDefendersDied = sDefendersDied.trim() + "\n";
         }
 
-        result.append("Anzahl: ").append(sAttackers);
-        result.append("Verluste: ").append(sAttackersDied);
-        result.append("Verteidiger: ").append(defender).append("\n");
-        result.append("Ziel: ").append(targetVillage).append("\n");
-        result.append("Anzahl: ").append(sDefenders);
-        result.append("Verluste: ").append(sDefendersDied);
+        result.append(trans.get("amount")).append(": ").append(sAttackers);
+        result.append(trans.get("looses")).append(": ").append(sAttackersDied);
+        result.append(trans.get("defender_tribe")).append(": ").append(defender).append("\n");
+        result.append(trans.get("defender_village")).append(": ").append(targetVillage).append("\n");
+        result.append(trans.get("amount")).append(": ").append(sDefenders);
+        result.append(trans.get("looses")).append(": ").append(sDefendersDied);
 
         if (wasConquered()) {
             if (whereDefendersOutside()) {
@@ -1007,15 +1011,14 @@ public class FightReport extends ManageableType implements Comparable<FightRepor
             }
         }
 
-
         if (wasWallDamaged()) {
-            result.append("Wall zerstört von Stufe ").append(getWallBefore()).append(" auf ").append(getWallAfter()).append("\n");
+            result.append(String.format(trans.get("wall_change_string"), getWallBefore(), getWallAfter())).append("\n");
         }
         if (wasBuildingDamaged()) {
-            result.append(BuildingSettings.BUILDING_NAMES[aimedBuildingId]).append(" zerstört von Stufe ").append(getBuildingBefore()).append(" auf ").append(getBuildingAfter()).append("\n");
+            result.append(String.format(trans.get("building_change_string"), BuildingSettings.getTranslatedName(aimedBuildingId), getBuildingBefore(), getBuildingAfter())).append("\n");
         }
         if (wasSnobAttack()) {
-            result.append("Zustimmung gesenkt von ").append(getAcceptanceBefore()).append(" auf ").append(getAcceptanceAfter()).append("\n");
+            result.append(String.format(trans.get("acceptance_change"), getAcceptanceBefore(), getAcceptanceAfter())).append("\n");
         }
         return result.toString();
     }

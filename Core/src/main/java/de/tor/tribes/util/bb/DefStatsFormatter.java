@@ -16,6 +16,8 @@
 package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.TribeStatsElement.Stats;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -26,12 +28,9 @@ import org.apache.commons.lang3.StringUtils;
  * @author Torridity
  */
 public class DefStatsFormatter extends BasicFormatter<Stats> {
+    private static Translator trans = TranslationManager.getTranslator("types.DefStatsFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "[b]Verteidigungsstatistik[/b]\nBerücksichtigte Spieler: %ELEMENT_COUNT%\n[table]\n"
-            + "[**]Platz[||]Spieler[||]Besiegte Angreifer (Anfang)[||]Zuwachs[||]Besiegte Angreifer (Ende)[/**]\n"
-            + "%LIST_START%[*]%ELEMENT_ID%[|]%PLAYER%[|]%KILLS_START%[|]%KILLS_DIFFERENCE%[|]%KILLS_END%[/*]%LIST_END%\n"
-            + "[/table]";
     private static final String TEMPLATE_PROPERTY = "def.stats.bbexport.template";
     private final String[] STAT_SPECIFIC_VARIABLES = new String[] {
         "%PLAYER%", "%PLAYER_NO_BB%",
@@ -107,7 +106,7 @@ public class DefStatsFormatter extends BasicFormatter<Stats> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

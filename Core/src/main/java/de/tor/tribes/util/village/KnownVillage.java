@@ -23,7 +23,8 @@ import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.BuildingSettings;
 import de.tor.tribes.util.ServerSettings;
 import de.tor.tribes.util.TimeManager;
-import de.tor.tribes.util.interfaces.BBFormatterInterface;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,9 +43,9 @@ import org.jdom2.Element;
  */
 public class KnownVillage extends ManageableType implements BBSupport {
     private static Logger logger = LogManager.getLogger("KnownVillage");
+    private static Translator trans = TranslationManager.getTranslator("types.KnownVillage");
     
     public final static String[] BB_VARIABLES;
-    public final static String STANDARD_TEMPLATE;
     static {
         List<String> bbTemp = new ArrayList<>();
         bbTemp.addAll(Arrays.asList(new Village().getBBVariables()));
@@ -53,23 +54,10 @@ public class KnownVillage extends ManageableType implements BBSupport {
             bbTemp.add("%" + buildingName.toUpperCase() + "%");
         }
         BB_VARIABLES = bbTemp.toArray(new String[bbTemp.size()]);
-        
-        StringBuilder stdTemplate = new StringBuilder();
-        stdTemplate.append("[table]\n");
-        stdTemplate.append("[**]Spieler[||]Dorf");
-        for (String buildingName : BuildingSettings.BUILDING_NAMES) {
-            stdTemplate.append("[||]").append(buildingName);
-        }
-        stdTemplate.append("[/**]\n");
-        stdTemplate.append(BBFormatterInterface.LIST_START);
-        stdTemplate.append("[*]%PLAYER%[|]%VILLAGE%");
-        for (String buildingName : BuildingSettings.BUILDING_NAMES) {
-            stdTemplate.append("[|]").append("%").append(buildingName.toUpperCase()).append("%");
-        }
-        stdTemplate.append("[/*]\n");
-        stdTemplate.append(BBFormatterInterface.LIST_END);
-        stdTemplate.append("[/table]");
-        STANDARD_TEMPLATE = stdTemplate.toString();
+    }
+    
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
     }
     
     private int[] buildings;

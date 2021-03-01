@@ -511,8 +511,11 @@ public class DSWorkbenchTagFrame extends AbstractDSWorkbenchFrame implements Gen
         StringBuilder data = new StringBuilder();
 
         try {
+            boolean first = true;
             for (Integer id : villageIds) {
-                data.append(id).append(";");
+                if(! first) data.append(";");
+                data.append(id);
+                first = false;
             }
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(data.toString()), null);
             showSuccess("<html>D&ouml;rfer erfolgreich in die Zwischenablage kopiert.<br/>F&uuml;ge sie nun in der Gruppen&uuml;bersicht in das entsprechende Feld unterhalb einer leeren Gruppe ein und weise sie dadurch dieser Gruppe zu.</html>");

@@ -16,6 +16,8 @@
 package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.ext.Village;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,11 +26,9 @@ import java.util.List;
  * @author Torridity
  */
 public class VillageListFormatter extends BasicFormatter<Village> {
+    private static Translator trans = TranslationManager.getTranslator("types.VillageListFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "[table]\n[**]ID[||]Dorf[||]Besitzer[||]Punkte[/**]\n"
-            + "%LIST_START%[*]%ELEMENT_ID%[|][coord]%X%|%Y%[/coord][|]%PLAYER%[|]%POINTS%[/*]%LIST_END%\n"
-            + "[/table]";
     private static final String TEMPLATE_PROPERTY = "village.list.bbexport.template";
 
     @Override
@@ -38,7 +38,7 @@ public class VillageListFormatter extends BasicFormatter<Village> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

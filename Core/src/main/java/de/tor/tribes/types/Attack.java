@@ -48,11 +48,8 @@ import org.jdom2.Element;
  * @author Charon
  */
 public class Attack extends ManageableType implements Serializable, Comparable<Attack>, BBSupport {
-
-    
-    private Translator trans = TranslationManager.getTranslator("types.Attack");
-    
     private static Logger logger = LogManager.getLogger("AttackTableModel");
+    private Translator trans = TranslationManager.getTranslator("types.Attack");
 
     private final static String[] VARIABLES = new String[]{
         "%TYPE%", "%STD_NAME%", "%UNIT%",

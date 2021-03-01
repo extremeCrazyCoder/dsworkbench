@@ -26,7 +26,6 @@ import java.util.List;
 public class ReportListFormatter extends BasicFormatter<FightReport> {
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = FightReport.STANDARD_TEMPLATE;
     private static final String TEMPLATE_PROPERTY = "report.list.bbexport.template";
 
     @Override
@@ -36,7 +35,7 @@ public class ReportListFormatter extends BasicFormatter<FightReport> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return FightReport.getStandardTemplate();
     }
 
     @Override

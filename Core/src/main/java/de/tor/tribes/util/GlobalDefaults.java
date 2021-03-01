@@ -60,6 +60,9 @@ public class GlobalDefaults {
     
     public static void loadDefaults() {
         GLOBAL_DEFAULTS = new PropertiesConfiguration();
+        GLOBAL_DEFAULTS.addProperty("ui.language", TranslationManager.DEFAULT_LANGUAGE);
+        TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
+        
         GLOBAL_DEFAULTS.addProperty("attack.movement", false);
         GLOBAL_DEFAULTS.addProperty("attack.planer.check.amount", 20000);
         GLOBAL_DEFAULTS.addProperty("attack.planer.enable.check", true);
@@ -139,7 +142,6 @@ public class GlobalDefaults {
         GLOBAL_DEFAULTS.addProperty("tap.height", 0);
         GLOBAL_DEFAULTS.addProperty("tap.width", 0);
         GLOBAL_DEFAULTS.addProperty("text.attacks.per.file", "10");
-        GLOBAL_DEFAULTS.addProperty("ui.language", TranslationManager.DEFAULT_LANGUAGE);
         GLOBAL_DEFAULTS.addProperty("village.order", 0);
         GLOBAL_DEFAULTS.addProperty("watchtower.frame.alwaysOnTop", false);
         GLOBAL_DEFAULTS.addProperty("zip.text.attacks", false);

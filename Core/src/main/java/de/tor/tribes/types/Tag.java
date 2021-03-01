@@ -22,6 +22,8 @@ import de.tor.tribes.ui.ImageManager;
 import de.tor.tribes.util.BBSupport;
 import de.tor.tribes.util.StringHelper;
 import de.tor.tribes.util.bb.VillageListFormatter;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.awt.Color;
 import java.net.URLDecoder;
@@ -38,21 +40,21 @@ import org.jdom2.Element;
  * @author Charon
  */
 public class Tag extends ManageableType implements Comparable<Tag>, BBSupport {
+    private static Logger logger = LogManager.getLogger("Tag");
+    private static Translator trans = TranslationManager.getTranslator("types.Tag");
 
     public static final Comparator<Tag> CASE_INSENSITIVE_ORDER = new CaseInsensitiveTagComparator();
     public static final Comparator<Tag> SIZE_ORDER = new SizeComparator();
     private final static String[] VARIABLES = new String[]{"%NAME%", "%VILLAGE_LIST%", "%VILLAGE_COUNT%", "%COLOR%", "%ICON%"};
-    public final static String STANDARD_TEMPLATE = "[u][color=\"%COLOR%\"][b]%NAME%[/b][/color][/u]\n"
-            + "%ICON%\n"
-            + "Dörfer: %VILLAGE_COUNT%\n"
-            + "[quote]%VILLAGE_LIST%[/quote]";
     private String sName = null;
     private List<Integer> mVillageIDs = new LinkedList<>();
     //-1 means no icon
     private TagMapMarker mapMarker = null;
     private boolean showOnMap = true;
-    
-    private static Logger logger = LogManager.getLogger("Tag");
+
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
+    }
 
     @Override
     public String[] getBBVariables() {

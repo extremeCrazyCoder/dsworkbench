@@ -26,7 +26,6 @@ import java.util.List;
 public class KnownVillageListFormatter extends BasicFormatter<KnownVillage> {
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = KnownVillage.STANDARD_TEMPLATE;
     private static final String TEMPLATE_PROPERTY = "knownVillage.list.bbexport.template";
 
     @Override
@@ -36,7 +35,7 @@ public class KnownVillageListFormatter extends BasicFormatter<KnownVillage> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return KnownVillage.getStandardTemplate();
     }
 
     @Override

@@ -27,6 +27,8 @@ import de.tor.tribes.util.ServerSettings;
 import de.tor.tribes.util.TimeManager;
 import de.tor.tribes.util.bb.AttackListFormatter;
 import de.tor.tribes.util.support.SOSFormater;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import de.tor.tribes.util.xml.JDomUtils;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -46,15 +48,18 @@ import org.jdom2.Element;
  * @author Torridity
  */
 public class SOSRequest extends ManageableType implements BBSupport {
-    
-    private static Logger logger = LogManager.getLogger("SOSManager");
+    private static Logger logger = LogManager.getLogger("SOSRequest");
+    private static Translator trans = TranslationManager.getTranslator("types.SOSRequest");
 
     private final String[] VARIABLES = new String[]{"%SOS_ICON%", "%TARGET%", "%ATTACKS%", "%DEFENDERS%", "%WALL_INFO%", "%WALL_LEVEL%", "%FIRST_ATTACK%", "%LAST_ATTACK%", "%SOURCE_LIST%", "%SOURCE_DATE_TYPE_LIST%", "%ATTACK_LIST%", "%SOURCE_DATE_LIST%", "%SOURCE_TYPE_LIST%", "%SUMMARY%"};
-    public final static String STANDARD_TEMPLATE = "[quote]%SOS_ICON% %TARGET% (%ATTACKS%)\n[quote]%DEFENDERS%\n%WALL_INFO%[/quote]\n\n%FIRST_ATTACK%\n%SOURCE_DATE_LIST%\n%LAST_ATTACK%\n\n%SUMMARY%[/quote]";
     private Tribe mDefender = null;
     private HashMap<Village, TargetInformation> targetInformations = null;
     private HashMap<Village, DefenseInformation> defenseInformations = null;
 
+    public static String getStandardTemplate() {
+        return trans.get("standard_template");
+    }
+    
     @Override
     public String[] getBBVariables() {
         return VARIABLES;

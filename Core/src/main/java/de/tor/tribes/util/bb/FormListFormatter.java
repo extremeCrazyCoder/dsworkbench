@@ -17,6 +17,8 @@ package de.tor.tribes.util.bb;
 
 import de.tor.tribes.types.drawing.AbstractForm;
 import de.tor.tribes.types.drawing.Circle;
+import de.tor.tribes.util.translation.TranslationManager;
+import de.tor.tribes.util.translation.Translator;
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -27,10 +29,9 @@ import org.apache.commons.lang3.StringUtils;
  * @author Torridity
  */
 public class FormListFormatter extends BasicFormatter<AbstractForm> {
+    private static Translator trans = TranslationManager.getTranslator("types.FormListFormatter");
 
     private static final String[] VARIABLES = new String[] {LIST_START, LIST_END, ELEMENT_COUNT, ELEMENT_ID};
-    private static final String STANDARD_TEMPLATE = "[b]Zeichnungen[/b]\nAnzahl der Zeichnungen: %ELEMENT_COUNT%\n"
-            + "%LIST_START%\n" + AbstractForm.STANDARD_TEMPLATE + "\n%LIST_END%";
     private static final String TEMPLATE_PROPERTY = "form.list.bbexport.template";
 
     @Override
@@ -73,7 +74,7 @@ public class FormListFormatter extends BasicFormatter<AbstractForm> {
 
     @Override
     public String getStandardTemplate() {
-        return STANDARD_TEMPLATE;
+        return trans.get("standard_template");
     }
 
     @Override

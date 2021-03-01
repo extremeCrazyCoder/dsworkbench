@@ -32,6 +32,7 @@ import de.tor.tribes.util.roi.ROIManager;
 import de.tor.tribes.util.sos.SOSManager;
 import de.tor.tribes.util.stat.StatManager;
 import de.tor.tribes.util.tag.TagManager;
+import de.tor.tribes.util.translation.TranslationManager;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.village.KnownVillageManager;
 import java.io.File;
@@ -97,6 +98,7 @@ public class GlobalOptions {
         loadHelpSystem();
         logger.debug("Loading properties");
         loadProperties(false);
+        GlobalDefaults.initialize();
         logger.debug("Loading graphic pack");
         loadSkin();
         logger.debug("Loading world.dat");
@@ -475,12 +477,11 @@ public class GlobalOptions {
          * @param def get the Default ore the user-defined value?
          */
         private Object getObject(String key, boolean def) {
-            /*logger.debug("Fetching " + ((def)?("default of"):("")) + 
-                    "Option '" + key + "'");*/
             Object obj = GLOBAL_PROPERTIES.getProperty(key);
             if(obj == null || def) {
                 obj = GlobalDefaults.getProperties().getProperty(key);
             }
+            //logger.debug("Fetching {}Option '{}' -> '{}'", ((def)?("default of "):("")), key, obj);
             return obj;
         }
         
