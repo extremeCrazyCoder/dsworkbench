@@ -16,6 +16,7 @@
 package de.tor.tribes.io;
 
 import de.tor.tribes.control.ManageableType;
+import de.tor.tribes.dssim.types.TechState;
 import de.tor.tribes.types.ext.Village;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -64,40 +65,100 @@ public abstract class TroopAmount extends ManageableType implements Cloneable {
         return result;
     }
 
-    public int getDefValue(Village pVillage) {
+    public int getOffInfantryValue(Village pVillage, TechState pTech) {
         int result = 0;
         for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
             int amount = this.getInternalAmountForUnit(unit, pVillage);
-            if(amount > 0) {
-                result += unit.getDefense() * amount;
+            if (unit.isInfantry() && !unit.isArcher()) {
+                result += unit.getAttack() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
             }
         }
 
         return result;
+    }
+
+    public int getOffCavalryValue(Village pVillage, TechState pTech) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if (unit.isCavalry() && !unit.isArcher()) {
+                result += unit.getAttack() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
+            }
+        }
+
+        return result;
+    }
+
+    public int getOffArcherValue(Village pVillage, TechState pTech) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if (unit.isArcher()) {
+                result += unit.getAttack() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
+            }
+        }
+
+        return result;
+    }
+
+    public int getOffInfantryValue(Village pVillage) {
+        return getOffInfantryValue(pVillage, null);
+    }
+
+    public int getOffCavalryValue(Village pVillage) {
+        return getOffCavalryValue(pVillage, null);
+    }
+
+    public int getOffArcherValue(Village pVillage) {
+        return getOffArcherValue(pVillage, null);
+    }
+
+    public int getDefInfantryValue(Village pVillage, TechState pTech) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getDefense() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
+            }
+        }
+
+        return result;
+    }
+
+    public int getDefArcherValue(Village pVillage, TechState pTech) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getDefenseArcher() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
+            }
+        }
+
+        return result;
+    }
+
+    public int getDefCavalryValue(Village pVillage, TechState pTech) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getDefenseCavalry() * amount * (pTech == null ? 1 : pTech.getFactor(unit));
+            }
+        }
+
+        return result;
+    }
+
+    public int getDefInfantryValue(Village pVillage) {
+        return getDefInfantryValue(pVillage, null);
     }
 
     public int getDefArcherValue(Village pVillage) {
-        int result = 0;
-        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
-            int amount = this.getInternalAmountForUnit(unit, pVillage);
-            if(amount > 0) {
-                result += unit.getDefenseArcher() * amount;
-            }
-        }
-
-        return result;
+        return getDefArcherValue(pVillage, null);
     }
 
     public int getDefCavalryValue(Village pVillage) {
-        int result = 0;
-        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
-            int amount = this.getInternalAmountForUnit(unit, pVillage);
-            if(amount > 0) {
-                result += unit.getDefenseCavalry() * amount;
-            }
-        }
-
-        return result;
+        return getDefCavalryValue(pVillage, null);
     }
 
     public int getTroopPopCount(Village pVillage) {
@@ -106,6 +167,72 @@ public abstract class TroopAmount extends ManageableType implements Cloneable {
             int amount = this.getInternalAmountForUnit(unit, pVillage);
             if(amount > 0) {
                 result += unit.getPop() * amount;
+            }
+        }
+
+        return result;
+    }
+
+    public int getTroopWoodCost(Village pVillage) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getWood() * amount;
+            }
+        }
+
+        return result;
+    }
+
+    public int getTroopStoneCost(Village pVillage) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getStone() * amount;
+            }
+        }
+
+        return result;
+    }
+
+    public int getTroopIronCost(Village pVillage) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getIron() * amount;
+            }
+        }
+
+        return result;
+    }
+    
+    /**
+     * Can be used to get the Bash that an Attacker would get for bashing this many defenders
+     */
+    public int getTroopAttackerBash(Village pVillage) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getBashAttacker() * amount;
+            }
+        }
+
+        return result;
+    }
+    
+    /**
+     * Can be used to get the Bash that an Defender would get for bashing this many attackers
+     */
+    public int getTroopDefenderBash(Village pVillage) {
+        int result = 0;
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int amount = this.getInternalAmountForUnit(unit, pVillage);
+            if(amount > 0) {
+                result += unit.getBashDefender() * amount;
             }
         }
 

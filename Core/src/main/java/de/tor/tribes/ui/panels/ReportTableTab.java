@@ -16,7 +16,7 @@
 package de.tor.tribes.ui.panels;
 
 import de.tor.tribes.dssim.ui.DSWorkbenchSimulatorFrame;
-import de.tor.tribes.dssim.util.AStarResultReceiver;
+import de.tor.tribes.dssim.types.AStarResultReceiver;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.TroopAmountFixed;
 import de.tor.tribes.io.UnitHolder;
@@ -506,9 +506,11 @@ public class ReportTableTab extends javax.swing.JPanel implements ListSelectionL
         if (!GlobalOptions.isOfflineMode()) {
             try {
                 if (!DSWorkbenchSimulatorFrame.getSingleton().isVisible()) {
-                    DSWorkbenchSimulatorFrame.getSingleton().setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-                    DSWorkbenchSimulatorFrame.getSingleton().showIntegratedVersion(DSWorkbenchSettingsDialog.getSingleton().getWebProxy(),GlobalOptions.getSelectedServer());
+                    DSWorkbenchSimulatorFrame.getSingleton().setVisible(true);
                 }
+                DSWorkbenchSimulatorFrame.getSingleton().toFront();
+                DSWorkbenchSimulatorFrame.getSingleton().requestFocus();
+                
                 Point coord = new Point(report.getTargetVillage().getX(), report.getTargetVillage().getY());
                 DSWorkbenchSimulatorFrame.getSingleton().insertValuesExternally(coord, values, this);
             } catch(Exception e) {

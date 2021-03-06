@@ -15,6 +15,7 @@
  */
 package de.tor.tribes.io;
 
+import de.tor.tribes.dssim.types.TechState;
 import de.tor.tribes.types.StandardAttack;
 import de.tor.tribes.types.UnknownUnit;
 import de.tor.tribes.types.ext.Village;
@@ -297,20 +298,82 @@ public class TroopAmountFixed extends TroopAmount {
         return super.getRealOffValue(null);
     }
 
-    public int getDefValue() {
-        return super.getDefValue(null);
+    public int getOffInfantryValue(TechState pTech) {
+        return super.getOffInfantryValue(null, pTech);
+    }
+
+    public int getOffInfantryValue() {
+        return super.getOffInfantryValue(null);
+    }
+
+    public int getOffCavalryValue(TechState pTech) {
+        return super.getOffCavalryValue(null, pTech);
+    }
+
+    public int getOffCavalryValue() {
+        return super.getOffCavalryValue(null);
+    }
+
+    public int getOffArcherValue(TechState pTech) {
+        return super.getOffArcherValue(null, pTech);
+    }
+
+    public int getOffArcherValue() {
+        return super.getOffArcherValue(null);
+    }
+
+    public int getDefInfantryValue() {
+        return super.getDefInfantryValue(null);
+    }
+
+    public int getDefInfantryValue(TechState pTech) {
+        return super.getDefInfantryValue(null, pTech);
     }
 
     public int getDefArcherValue() {
         return super.getDefArcherValue(null);
     }
 
+    public int getDefArcherValue(TechState pTech) {
+        return super.getDefArcherValue(null, pTech);
+    }
+
     public int getDefCavalryValue() {
         return super.getDefCavalryValue(null);
     }
 
+    public int getDefCavalryValue(TechState pTech) {
+        return super.getDefCavalryValue(null, pTech);
+    }
+
     public int getTroopPopCount() {
         return super.getTroopPopCount(null);
+    }
+
+    public int getTroopWoodCost() {
+        return super.getTroopWoodCost(null);
+    }
+
+    public int getTroopStoneCost() {
+        return super.getTroopStoneCost(null);
+    }
+
+    public int getTroopIronCost() {
+        return super.getTroopIronCost(null);
+    }
+    
+    /**
+     * Can be used to get the Bash that an Attacker would get for bashing this many defenders
+     */
+    public int getTroopAttackerBash() {
+        return super.getTroopAttackerBash(null);
+    }
+    
+    /**
+     * Can be used to get the Bash that an Defender would get for bashing this many attackers
+     */
+    public int getTroopDefenderBash() {
+        return super.getTroopDefenderBash(null);
     }
 
     public int getTroopSum() {
@@ -387,5 +450,14 @@ public class TroopAmountFixed extends TroopAmount {
             dynamic.setAmount(new TroopAmountElement(unit, getAmountForUnit(unit)));
         }
         return dynamic;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for(UnitHolder u : getContainedUnits()) {
+            str.append(u.getName()).append("=").append(getAmountForUnit(u)).append("-");
+        }
+        return str.toString();
     }
 }

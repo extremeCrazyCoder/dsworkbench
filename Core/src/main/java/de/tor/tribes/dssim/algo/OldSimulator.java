@@ -1,17 +1,26 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.algo;
 
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.KnightItem;
 import de.tor.tribes.dssim.types.SimulatorResult;
-import de.tor.tribes.dssim.types.UnitHolder;
-import de.tor.tribes.dssim.util.ConfigManager;
-import de.tor.tribes.dssim.util.UnitManager;
-import java.util.HashMap;
-import java.util.List;
+import de.tor.tribes.dssim.types.TechState;
+import de.tor.tribes.io.DataHolder;
+import de.tor.tribes.io.TroopAmountFixed;
+import de.tor.tribes.io.UnitHolder;
+import de.tor.tribes.util.ServerSettings;
 
 /**
  * @author Charon
@@ -22,10 +31,10 @@ public class OldSimulator extends AbstractSimulator {
 
     @Override
     public SimulatorResult calculate(
-            HashMap<UnitHolder, AbstractUnitElement> pOff,
-            HashMap<UnitHolder, AbstractUnitElement> pDef,
-            KnightItem pOffItem,
-            List<KnightItem> pDefItems,
+            TroopAmountFixed pOff,
+            TroopAmountFixed pDef,
+            TechState pOffTech,
+            TechState pDefTech,
             boolean pNightBonus,
             double pLuck,
             double pMoral,
@@ -35,10 +44,11 @@ public class OldSimulator extends AbstractSimulator {
             boolean pAttackerBelieve,
             boolean pDefenderBelieve,
             boolean pCataChurch,
-            boolean pCataFarm,
             boolean pCataWall) {
         setOff(pOff);
         setDef(pDef);
+        setOffTech(pOffTech);
+        setDefTech(pOffTech);
         setMoral(pMoral);
         setLuck(pLuck);
         setNightBonus(pNightBonus);
@@ -47,7 +57,6 @@ public class OldSimulator extends AbstractSimulator {
         setFarmLevel(pFarmLevel);
         setAttackerBelieve(pAttackerBelieve);
         setDefenderBelieve(pDefenderBelieve);
-        setCataFarm(pCataFarm);
         setCataChurch(pCataChurch);
         setCataWall(pCataWall);
         SimulatorResult result = new SimulatorResult(getOff(), getDef());
@@ -66,8 +75,8 @@ public class OldSimulator extends AbstractSimulator {
         double defStrength = infantryRatio * defStrengths[ID_INFANTRY] + cavaleryRatio * defStrengths[ID_CAVALRY];
 
         //calculate farm factor if farm limit exists
-        if (ConfigManager.getSingleton().getFarmLimit() != 0) {
-            double limit = getFarmLevel() * ConfigManager.getSingleton().getFarmLimit();
+        if (ServerSettings.getSingleton().getFarmLimit() != 0) {
+            double limit = getFarmLevel() * ServerSettings.getSingleton().getFarmLimit();
             double defFarmUsage = calculateDefFarmUsage();
             double factor = limit / defFarmUsage;
             if (factor > 1.0) {
@@ -77,15 +86,16 @@ public class OldSimulator extends AbstractSimulator {
         }
 
         //temporary lower wall for fight
-        AbstractUnitElement rams = getOff().get(UnitManager.getSingleton().getUnitByPlainName("ram"));
-        double ramCount = 0;
+        UnitHolder ramsElm = DataHolder.getSingleton().getUnitByPlainName("ram");
+        double ramCount = getOff().getAmountForUnit(ramsElm);
+        if(ramCount < 0) ramCount = 0;
+        
         double ramAttPoint = 0;
         double wallAtFight = getWallLevel();
-        if (rams != null && rams.getCount() != 0) {
+        if (ramCount > 0) {
             //rams are used, so calculate the fight level of the wall
-            ramCount = rams.getCount();
             println("RamCount: " + ramCount);
-            ramAttPoint = rams.getUnit().getAttack() * getTechFactor(rams.getTech());
+            ramAttPoint = ramsElm.getAttack() * getOffTech().getFactor(ramsElm);
             println("RamAttPoints: " + ramAttPoint);
             double wallReduction = ramCount / (4 * Math.pow(1.09, getWallLevel()));
             if (wallReduction > (double) getWallLevel() / 2.0) {
@@ -101,22 +111,10 @@ public class OldSimulator extends AbstractSimulator {
         defStrength = (20 + 50 * wallAtFight) + (defStrength * Math.pow(1.037, wallAtFight));
         double offStrength = offStrengths[ID_INFANTRY] + offStrengths[ID_CAVALRY];
 
-        // <editor-fold defaultstate="collapsed" desc="Debug output">
-        println("OffInf " + offStrengths[ID_INFANTRY]);
-        println("OffCav " + offStrengths[ID_CAVALRY]);
-        println("DefInf " + (defStrengths[ID_INFANTRY] * infantryRatio));
-        println("DefCav " + (defStrengths[ID_CAVALRY] * cavaleryRatio));
-        println("InfRatio " + infantryRatio);
-        println("CavRatio " + cavaleryRatio);
-        println("---------------");
-        println("OffStrength " + offStrength);
-        println("DefStrength " + defStrength);
-        //</editor-fold>
-
         //obtain loss ratio based on tech level
         double lossPowerValue = 1.5;
-        if ((ConfigManager.getSingleton().getTech() == ConfigManager.ID_TECH_10)
-                || (ConfigManager.getSingleton().getFarmLimit() != 0)) {
+        if ((ServerSettings.getSingleton().getTechType() == ServerSettings.TECH_10)
+                || (ServerSettings.getSingleton().getFarmLimit() != 0)) {
             lossPowerValue = 1.6;
         }
 
@@ -143,7 +141,8 @@ public class OldSimulator extends AbstractSimulator {
         result.setWallLevel((wallAfter <= 0) ? 0 : (int) wallAfter);
 
         //calculate building destruction
-        AbstractUnitElement cata = getOff().get(UnitManager.getSingleton().getUnitByPlainName("catapult"));
+        UnitHolder cataElm = DataHolder.getSingleton().getUnitByPlainName("catapult");
+        int cataAmount = getOff().getAmountForUnit(cataElm);
         double buildingAfter = getBuildingLevel();
         if (isCataWall()) {
             setBuildingLevel(result.getWallLevel());
@@ -151,32 +150,18 @@ public class OldSimulator extends AbstractSimulator {
             buildingAfter = getBuildingLevel();
         }
         double buildingDemolish = 0;
-        if (cata != null && cata.getCount() != 0) {
-            double cataAttPoints = cata.getUnit().getAttack() * getTechFactor(cata.getTech());
+        if (cataAmount > 0) {
+            double cataAttPoints = cataElm.getAttack() * getOffTech().getFactor(cataElm);
             if (lossRatioOff > 1) {
                 //attacker lost
-                if (isCataFarm()) {
-                    /* double buildingDemolish = Math.pow((offStrength / defStrength), lossPowerValue) * (cataAttPoints * cata.getCount()) / (700 * Math.pow(1.09, getBuildingLevel()));
-                    buildingDemolish = (buildingDemolish > 3.0) ? 3.0 : buildingDemolish;
-                    println("DemoBuild " + buildingDemolish);
-                    buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);*/
-                } else {
-                    buildingDemolish = Math.pow((offStrength / defStrength), lossPowerValue) * (cataAttPoints * cata.getCount()) / (600 * Math.pow(1.09, getBuildingLevel()));
-                    println("DemoBuild " + buildingDemolish);
-                    buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);
-                }
+                buildingDemolish = Math.pow((offStrength / defStrength), lossPowerValue) * (cataAttPoints * cataAmount) / (600 * Math.pow(1.09, getBuildingLevel()));
+                println("DemoBuild " + buildingDemolish);
+                buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);
             } else {
                 //attacker wins
-                if (isCataFarm()) {
-                    /*   System.out.println("Cata farm");
-                    double buildingDemolish = (1-Math.pow((defStrength / offStrength), lossPowerValue)) * (cataAttPoints * cata.getCount()) / (700 * Math.pow(1.09, (getBuildingLevel())));
-                    buildingDemolish = (buildingDemolish > 3.0) ? 3.0 : buildingDemolish;
-                    buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);*/
-                } else {
-                    buildingDemolish = (2 - Math.pow((defStrength / offStrength), lossPowerValue)) * (cataAttPoints * cata.getCount()) / (600 * Math.pow(1.09, (getBuildingLevel())));
-                    println("DemoBuild " + buildingDemolish);
-                    buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);
-                }
+                buildingDemolish = (2 - Math.pow((defStrength / offStrength), lossPowerValue)) * (cataAttPoints * cataAmount) / (600 * Math.pow(1.09, (getBuildingLevel())));
+                println("DemoBuild " + buildingDemolish);
+                buildingAfter = Math.round(getBuildingLevel() - buildingDemolish);
             }
             //set building level after destruction
             println("BuildingAfter: " + buildingAfter);
@@ -191,47 +176,39 @@ public class OldSimulator extends AbstractSimulator {
         }
 
         //substract lost units
-        for (UnitHolder unit : UnitManager.getSingleton().getUnits()) {
-            if (!isSpy(unit)) {
+        for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
+            int offAmount = getOff().getAmountForUnit(unit);
+            int defAmount = getDef().getAmountForUnit(unit);
+            if (!unit.isSpy()) {
                 //normal calculation for off losses
-                int survivors = (int) Math.round(getOff().get(unit).getCount() - lossRatioOff * getOff().get(unit).getCount());
-                result.getSurvivingOff().get(unit).setCount((survivors < 0) ? 0 : survivors);
+                int survivors = (int) Math.round(offAmount - lossRatioOff * offAmount);
+                result.getSurvivingOff().setAmountForUnit(unit, (survivors < 0) ? 0 : survivors);
             } else {
                 double spyRateTillDeath = 2.0;
-                if (ConfigManager.getSingleton().getSpyType() == 3) {
-                    spyRateTillDeath = 1.0;
-                }
 
                 //special handling for spies
                 int spyLosses = 0;
                 //special spy calculation
-                if (getOff().get(unit).getCount() == 0) {
+                if (offAmount == 0) {
                     //no spy
                     spyLosses = 0;
-                } else if ((getDef().get(unit).getCount() + 1) / getOff().get(unit).getCount() >= spyRateTillDeath) {
+                } else if ((defAmount + 1) / offAmount >= spyRateTillDeath) {
                     //no change
-                    spyLosses = getOff().get(unit).getCount();
+                    spyLosses = offAmount;
                 } else {
-                    spyLosses = (int) Math.round((double) getOff().get(unit).getCount() * Math.pow((double) (getDef().get(unit).getCount() + 1) / (double) getOff().get(unit).getCount() / spyRateTillDeath, lossPowerValue));
+                    spyLosses = (int) Math.round((double) offAmount * Math.pow((double) (defAmount + 1) / (double) offAmount / spyRateTillDeath, lossPowerValue));
                 }
-                result.getSurvivingOff().get(unit).setCount(result.getSurvivingOff().get(unit).getCount() - spyLosses);
+                result.getSurvivingOff().setAmountForUnit(unit, result.getSurvivingOff().getAmountForUnit(unit) - spyLosses);
             }
 
 
             //calculate def losses
-            int survivors = (int) Math.round(getDef().get(unit).getCount() - lossRatioDef * getDef().get(unit).getCount());
-            result.getSurvivingDef().get(unit).setCount((survivors < 0) ? 0 : survivors);
+            int survivors = (int) Math.round(defAmount - lossRatioDef * defAmount);
+            result.getSurvivingDef().setAmountForUnit(unit, (survivors < 0) ? 0 : survivors);
         }
 
         //calculate who has won
-        result.setWin(true);
-        for (UnitHolder u : UnitManager.getSingleton().getUnits()) {
-            if (result.getSurvivingDef().get(u).getCount() > 0) {
-                //at least one defender has survived
-                result.setWin(false);
-                break;
-            }
-        }
+        result.setWin(! result.getSurvivingDef().hasUnits());
         return result;
     }
 
@@ -243,16 +220,10 @@ public class OldSimulator extends AbstractSimulator {
 
     /**Calculate the overall strength of the current off divided into infantry and cavalry*/
     private double[] calculateOffStrengthts() {
-        double[] result = new double[]{0.0, 0.0};
-        for(UnitHolder unit: getOff().keySet()) {
-            AbstractUnitElement unitElement = getOff().get(unit);
-            if (isInfantry(unit)) {
-                result[ID_INFANTRY] += unitElement.getCount() * unit.getAttack() * getTechFactor(unitElement.getTech());
-            }
-            if (isCavalery(unit)) {
-                result[ID_CAVALRY] += unitElement.getCount() * unit.getAttack() * getTechFactor(unitElement.getTech());
-            }
-        }
+        double[] result = new double[2];
+        result[ID_INFANTRY] = getOff().getOffInfantryValue(getOffTech());
+        result[ID_CAVALRY] = getOff().getOffCavalryValue(getOffTech());
+        
         //integrate moral and luck
         double moral = getMoral() / 100;
         double luck = ((100 + getLuck()) / 100);
@@ -263,12 +234,9 @@ public class OldSimulator extends AbstractSimulator {
 
     /**Calculate the overall strength of the current def divided into infantry and cavalry*/
     private double[] calculateDefStrengths() {
-        double[] result = new double[]{0.0, 0.0};
-        for(UnitHolder unit: getDef().keySet()) {
-            AbstractUnitElement unitElement = getDef().get(unit);
-            result[ID_INFANTRY] += unitElement.getCount() * unit.getDefense() * getTechFactor(unitElement.getTech());
-            result[ID_CAVALRY] += unitElement.getCount() * unit.getDefenseCavalry() * getTechFactor(unitElement.getTech());
-        }
+        double[] result = new double[2];
+        result[ID_INFANTRY] = getDef().getDefInfantryValue(getDefTech());
+        result[ID_CAVALRY] = getDef().getDefCavalryValue(getDefTech());
 
         result[ID_INFANTRY] = result[ID_INFANTRY] * ((isNightBonus()) ? 2.0 : 1.0);
         result[ID_CAVALRY] = result[ID_CAVALRY] * ((isNightBonus()) ? 2.0 : 1.0);
@@ -277,30 +245,6 @@ public class OldSimulator extends AbstractSimulator {
 
     //Calculate how many farm places are needed for the current def
     private double calculateDefFarmUsage() {
-        int result = 0;
-        for(UnitHolder unit: getDef().keySet()) {
-            AbstractUnitElement unitElement = getDef().get(unit);
-            result += unit.getPop() * unitElement.getCount();
-        }
-        return result;
-    }
-
-    /**Get the factors for the different tech levels*/
-    private double getTechFactor(int pLevel) {
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_TECH_3) {
-            switch (pLevel) {
-                case 2:
-                    return 1.25;
-                case 3:
-                    return 1.4;
-                default:
-                    return 1;
-            }
-        } else if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_TECH_10) {
-            //use 10 level tech factor
-            return Math.pow(1.04608, (pLevel - 1));
-        }
-        //for simple tech servers
-        return 1.0;
+        return getDef().getTroopPopCount();
     }
 }

@@ -1398,10 +1398,10 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
             if (!GlobalOptions.isOfflineMode()) {
                 try {
                     if (!DSWorkbenchSimulatorFrame.getSingleton().isVisible()) {
-                        DSWorkbenchSimulatorFrame.getSingleton().setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-                        DSWorkbenchSimulatorFrame.getSingleton().showIntegratedVersion(DSWorkbenchSettingsDialog.getSingleton().getWebProxy(), GlobalOptions.getSelectedServer());
+                        DSWorkbenchSimulatorFrame.getSingleton().setVisible(true);
                     }
                     DSWorkbenchSimulatorFrame.getSingleton().toFront();
+                    DSWorkbenchSimulatorFrame.getSingleton().requestFocus();
                     DSWorkbenchSimulatorFrame.getSingleton().insertValuesExternally(values);
                 } catch(Exception e) {
                     logger.warn("Problem during writing Troops to AStar", e);

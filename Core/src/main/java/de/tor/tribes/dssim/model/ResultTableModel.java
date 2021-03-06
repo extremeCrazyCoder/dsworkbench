@@ -1,12 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.model;
 
 import de.tor.tribes.dssim.types.SimulatorResult;
-import de.tor.tribes.dssim.types.UnitHolder;
-import de.tor.tribes.dssim.util.UnitManager;
+import de.tor.tribes.io.DataHolder;
+import de.tor.tribes.io.UnitHolder;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,25 +30,18 @@ import javax.swing.table.AbstractTableModel;
 public class ResultTableModel extends AbstractTableModel {
 
     private static ResultTableModel SINGLETON = null;
-    private Class[] columnClasses;
-    private String[] columnNames;
+    private final List<String> columnNames = new LinkedList<>();
+    private final List<Class> columnTypes = new LinkedList<>();
     private List<SimulatorResult> data = null;
 
     ResultTableModel() {
         super();
-        String[] ordered = new String[]{"", "spear", "sword", "axe", "archer", "spy", "light", "marcher", "heavy", "ram", "catapult", "knight", "snob", "militia"};
-        List<String> columns = new LinkedList<>();
-        List<Class> classes = new LinkedList<>();
-        columns.add("");
-        classes.add(String.class);
-        for (String col : ordered) {
-            if (UnitManager.getSingleton().getUnitByPlainName(col) != null) {
-                columns.add(col);
-                classes.add(Integer.class);
-            }
+        
+        columnNames.add("");columnTypes.add(String.class);
+        for (UnitHolder unit : DataHolder.getSingleton().getSendableUnits()) {
+            columnNames.add(unit.getName());
+            columnTypes.add(Integer.class);
         }
-        columnNames = columns.toArray(new String[]{});
-        columnClasses = classes.toArray(new Class[]{});
         data = new LinkedList<>();
     }
 
@@ -54,17 +58,17 @@ public class ResultTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.length;
+        return columnNames.size();
     }
 
     @Override
     public String getColumnName(int column) {
-        return columnNames[column];
+        return columnNames.get(column);
     }
 
     @Override
     public Class getColumnClass(int columnIndex) {
-        return columnClasses[columnIndex];
+        return columnTypes.get(columnIndex);
     }
 
     @Override
@@ -179,17 +183,17 @@ public class ResultTableModel extends AbstractTableModel {
                 return "Angreifer";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                return res.getOffBefore().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                return res.getOffBefore().getAmountForUnit(unit);
             }
         } else if (pRowId == 1) {
             if (pColIndex == 0) {
                 return "Verluste";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                int before = res.getOffBefore().get(unit).getCount();
-                int after = res.getSurvivingOff().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                int before = res.getOffBefore().getAmountForUnit(unit);
+                int after = res.getSurvivingOff().getAmountForUnit(unit);
                 int losses = before - after;
                 return losses;
             }
@@ -198,8 +202,8 @@ public class ResultTableModel extends AbstractTableModel {
                 return "Überlebende";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                return res.getSurvivingOff().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                return res.getSurvivingOff().getAmountForUnit(unit);
             }
         }
     }
@@ -210,17 +214,17 @@ public class ResultTableModel extends AbstractTableModel {
                 return "Verteidiger";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                return res.getDefBefore().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                return res.getDefBefore().getAmountForUnit(unit);
             }
         } else if (pRowId == 1) {
             if (pColIndex == 0) {
                 return "Verluste";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                int before = res.getDefBefore().get(unit).getCount();
-                int after = res.getSurvivingDef().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                int before = res.getDefBefore().getAmountForUnit(unit);
+                int after = res.getSurvivingDef().getAmountForUnit(unit);
                 int losses = before - after;
                 return losses;
             }
@@ -229,8 +233,8 @@ public class ResultTableModel extends AbstractTableModel {
                 return "Überlebende";
             } else {
                 SimulatorResult res = data.get(pDataset);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(columnNames[pColIndex]);
-                return res.getSurvivingDef().get(unit).getCount();
+                UnitHolder unit = DataHolder.getSingleton().getUnitByName(columnNames.get(pColIndex));
+                return res.getSurvivingDef().getAmountForUnit(unit);
             }
         }
     }

@@ -725,7 +725,6 @@ ui.RibbonConfigurator.angriffsplaner_text=The manual attack planner allows small
 ui.RibbonConfigurator.AStar=A*Star
 ui.RibbonConfigurator.Simulator=Opens the simulator
 ui.RibbonConfigurator.AStar_Text=A*Star Allows attack simulations to be carried out using the combat system used in the game. Additional features make it possible to determine the number of offs that are required for the destruction of a certain deff.
-ui.RibbonConfigurator.AStarOfflineModus=A*Star is unfortunately not available in offline mode.
 ui.RibbonConfigurator.SOSAnalyzer_Text=The SOS Analyzer is used to analyze SOS requests, which you simply copy from the game into a corresponding text field. Targets, attackers and originators are excluded, which provides a quick overview of the situation. Furthermore, this information can be reformatted into a clearer format and exported as BB code.
 ui.RibbonConfigurator.open_SOSAnalyzer=Opens the SOS Analyzer
 ui.RibbonConfigurator.SOSAnalyzer=SOS Analyzer
@@ -2259,4 +2258,7 @@ util.BuildingSettings.farm=Farm
 util.BuildingSettings.storage=Storage
 util.BuildingSettings.hide=Hide
 util.BuildingSettings.wall=Wall
+
+dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightDesc=Paladin with Items are not supported right now. You can use the simulator without Items
+dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightTitle=Paladin with Items
 

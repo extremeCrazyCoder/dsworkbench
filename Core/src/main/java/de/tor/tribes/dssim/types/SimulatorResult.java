@@ -1,11 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.types;
 
-import de.tor.tribes.dssim.util.UnitManager;
-import java.util.HashMap;
+import de.tor.tribes.io.TroopAmountFixed;
 
 /**
  *
@@ -15,10 +25,10 @@ public class SimulatorResult {
 
     private boolean win = false;
     private int nukes = 1;
-    private HashMap<UnitHolder, AbstractUnitElement> offBefore = null;
-    private HashMap<UnitHolder, AbstractUnitElement> defBefore = null;
-    private HashMap<UnitHolder, AbstractUnitElement> survivingOff = null;
-    private HashMap<UnitHolder, AbstractUnitElement> survivingDef = null;
+    private TroopAmountFixed offBefore = null;
+    private TroopAmountFixed defBefore = null;
+    private TroopAmountFixed survivingOff = null;
+    private TroopAmountFixed survivingDef = null;
     private int wallLevel = 0;
     private int buildingLevel = 0;
     private int wallBefore = 0;
@@ -26,42 +36,28 @@ public class SimulatorResult {
     private boolean cataAtWall = false;
 
     public SimulatorResult() {
-        survivingOff = new HashMap<>();
-        survivingDef = new HashMap<>();
-        for (UnitHolder unit : UnitManager.getSingleton().getUnits()) {
-            AbstractUnitElement copy = new AbstractUnitElement(unit, 0, 1);
-            survivingOff.put(unit, copy);
-            copy = new AbstractUnitElement(unit, 0, 1);
-            survivingDef.put(unit, copy);
-        }
+        survivingOff = new TroopAmountFixed(0);
+        survivingDef = new TroopAmountFixed(0);
     }
 
-    public SimulatorResult(HashMap<UnitHolder, AbstractUnitElement> pOff, HashMap<UnitHolder, AbstractUnitElement> pDef) {
-        survivingOff = new HashMap<>();
-        survivingDef = new HashMap<>();
-        for (UnitHolder unit : UnitManager.getSingleton().getUnits()) {
-            AbstractUnitElement element = pOff.get(unit);
-            AbstractUnitElement copy = new AbstractUnitElement(unit, element.getCount(), element.getTech());
-            survivingOff.put(unit, copy);
-            element = pDef.get(unit);
-            copy = new AbstractUnitElement(unit, element.getCount(), element.getTech());
-            survivingDef.put(unit, copy);
-        }
+    public SimulatorResult(TroopAmountFixed pOff, TroopAmountFixed pDef) {
+        survivingOff = pOff.clone();
+        survivingDef = pDef.clone();
     }
 
-    public void setOffBefore(HashMap<UnitHolder, AbstractUnitElement> pOff) {
+    public void setOffBefore(TroopAmountFixed pOff) {
         offBefore = pOff;
     }
 
-    public void setDefBefore(HashMap<UnitHolder, AbstractUnitElement> pDef) {
+    public void setDefBefore(TroopAmountFixed pDef) {
         defBefore = pDef;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getOffBefore() {
+    public TroopAmountFixed getOffBefore() {
         return offBefore;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getDefBefore() {
+    public TroopAmountFixed getDefBefore() {
         return defBefore;
     }
 
@@ -90,28 +86,28 @@ public class SimulatorResult {
     /**
      * @return the survivingOff
      */
-    public HashMap<UnitHolder, AbstractUnitElement> getSurvivingOff() {
+    public TroopAmountFixed getSurvivingOff() {
         return survivingOff;
     }
 
     /**
      * @param survivingOff the survivingOff to set
      */
-    public void setSurvivingOff(HashMap<UnitHolder, AbstractUnitElement> survivingOff) {
+    public void setSurvivingOff(TroopAmountFixed survivingOff) {
         this.survivingOff = survivingOff;
     }
 
     /**
      * @return the survivingDef
      */
-    public HashMap<UnitHolder, AbstractUnitElement> getSurvivingDef() {
+    public TroopAmountFixed getSurvivingDef() {
         return survivingDef;
     }
 
     /**
      * @param survivingDef the survivingDef to set
      */
-    public void setSurvivingDef(HashMap<UnitHolder, AbstractUnitElement> survivingDef) {
+    public void setSurvivingDef(TroopAmountFixed survivingDef) {
         this.survivingDef = survivingDef;
     }
 

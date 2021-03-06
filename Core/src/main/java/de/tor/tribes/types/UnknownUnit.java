@@ -33,7 +33,6 @@ public class UnknownUnit extends UnitHolder {
     }
 
     UnknownUnit() {
-        setName("unbekannt");
         setPlainName("unknown");
     }
 }

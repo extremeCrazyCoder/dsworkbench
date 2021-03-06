@@ -200,16 +200,16 @@ public class TroopDensityLayerRenderer extends AbstractBufferedLayerRenderer {
         if (pIncludeSupport) {
             holder = TroopsManager.getSingleton().getTroopsForVillage(v);
             if (holder != null) {
-                defIn = holder.getTroops().getDefValue();
+                defIn = holder.getTroops().getDefInfantryValue();
             }
             holder = TroopsManager.getSingleton().getTroopsForVillage(v, TroopsManager.TROOP_TYPE.OWN);
             if (holder != null) {
-                defOwn = holder.getTroops().getDefValue();
+                defOwn = holder.getTroops().getDefInfantryValue();
             }
         } else {
             holder = TroopsManager.getSingleton().getTroopsForVillage(v, TroopsManager.TROOP_TYPE.OWN);
             if (holder != null) {
-                defIn = holder.getTroops().getDefValue();
+                defIn = holder.getTroops().getDefInfantryValue();
                 defOwn = defIn;
             }
         }
@@ -306,7 +306,7 @@ class TroopAnimator {
             double offValue = holder.getTroops().getOffValue();
             double defArchValue = holder.getTroops().getDefArcherValue();
             double defCavValue = holder.getTroops().getDefCavalryValue();
-            double defValue = holder.getTroops().getDefValue();
+            double defValue = holder.getTroops().getDefInfantryValue();
 
             double fightValueIn = offValue + defValue + defArchValue + defCavValue;
             int centerX = (int) Math.floor((double) col * pFieldWidth + pFieldWidth / 2.0 - 16 + pDx);

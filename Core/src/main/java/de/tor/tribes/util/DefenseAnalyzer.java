@@ -17,12 +17,8 @@ package de.tor.tribes.util;
 
 import de.tor.tribes.control.ManageableType;
 import de.tor.tribes.dssim.algo.NewSimulator;
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.KnightItem;
 import de.tor.tribes.dssim.types.SimulatorResult;
-import de.tor.tribes.dssim.types.UnitHolder;
-import de.tor.tribes.dssim.util.UnitManager;
-import de.tor.tribes.io.DataHolder;
+import de.tor.tribes.dssim.types.TechState;
 import de.tor.tribes.io.TroopAmountFixed;
 import de.tor.tribes.types.DefenseInformation;
 import de.tor.tribes.types.SOSRequest;
@@ -31,10 +27,6 @@ import de.tor.tribes.types.ext.Village;
 import de.tor.tribes.util.sos.SOSManager;
 import de.tor.tribes.util.troops.TroopsManager;
 import de.tor.tribes.util.troops.VillageTroopsHolder;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,15 +69,6 @@ public class DefenseAnalyzer extends Thread {
         void fireFinishedEvent();
     }
 
-    private HashMap<UnitHolder, AbstractUnitElement> dswbUnitsToSimulatorUnits(TroopAmountFixed pInput) {
-        HashMap<UnitHolder, AbstractUnitElement> result = new HashMap<>();
-        for (de.tor.tribes.io.UnitHolder unit : DataHolder.getSingleton().getUnits()) {
-            int value = pInput.getAmountForUnit(unit);
-            result.put(UnitManager.getSingleton().getUnitByPlainName(unit.getPlainName()), new AbstractUnitElement(UnitManager.getSingleton().getUnitByPlainName(unit.getPlainName()), value, 10));
-        }
-        return result;
-    }
-
     public boolean isRunning() {
         return running;
     }
@@ -97,11 +80,6 @@ public class DefenseAnalyzer extends Thread {
     @Override
     public void run() {
         running = true;
-        try {
-            //set units inside DSSim
-            UnitManager.getSingleton().setUnits("./servers/" + GlobalOptions.getSelectedServer() + "/units.xml");
-        } catch (Exception ignored) {
-        }
         logger.debug("Stating analyzing of Data");
         updateStatus();
         logger.debug("Finished analyzing of Data");
@@ -110,6 +88,7 @@ public class DefenseAnalyzer extends Thread {
     }
 
     private void updateStatus() {
+        TechState maxTech = new TechState(TechState.MAXED);
         int targetCount = SOSManager.getSingleton().getOverallTargetCount();
         int currentTarget = 0;
         for (ManageableType e : SOSManager.getSingleton().getAllElements()) {
@@ -129,35 +108,28 @@ public class DefenseAnalyzer extends Thread {
                 
                 try {
                     if (reAnalyze || !info.isAnalyzed()) {//re-analyze info
-                        HashMap<UnitHolder, AbstractUnitElement> off = dswbUnitsToSimulatorUnits(standardOff);
-                        HashMap<UnitHolder, AbstractUnitElement> def = getDefense(targetInfo, info, info.getSupports().length);
+                        TroopAmountFixed off = standardOff;
+                        TroopAmountFixed def = getDefense(targetInfo, info, info.getSupports().length);
 
-                        int pop = 0;
-                        for(Entry<UnitHolder, AbstractUnitElement> entry: def.entrySet()) {
-                            pop += entry.getValue().getCount() * DataHolder.getSingleton()
-                                .getUnitByPlainName(entry.getKey().getPlainName()).getPop();
-                        }
+                        int pop = def.getTroopPopCount();
 
                         NewSimulator sim = new NewSimulator();
 
-                        SimulatorResult result = sim.calculate(off, def, KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM), Arrays.asList(KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM)), false, 0, 100.0, 20, 0, 30, true, true, false, false, false);
+                        SimulatorResult result = sim.calculate(off, def, maxTech, maxTech, false, 0, 100.0, 20, 0, 30, true, true, false, false);
                         int cleanAfter = 0;
                         for (int i = 1; i < attCount; i++) {
                             if (result.isWin()) {
                                 cleanAfter = i + 1;
                                 break;
                             }
-                            result = sim.calculate(off, result.getSurvivingDef(), KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM), Arrays.asList(KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM)), false, 0, 100.0, result.getWallLevel(), 0, 30, true, true, false, false, false);
+                            result = sim.calculate(off, result.getSurvivingDef(), maxTech, maxTech, false, 0, 100.0, result.getWallLevel(), 0, 30, true, true, false, false);
                         }
 
 
                         double lossPercent = 0;
                         if (!noAttack) {
                             if (!result.isWin()) {
-                                double survive = 0;
-                                for(Entry<UnitHolder, AbstractUnitElement> entry: result.getSurvivingDef().entrySet()) {
-                                    survive += (double) entry.getValue().getCount() * entry.getKey().getPop();
-                                }
+                                int survive = result.getSurvivingDef().getTroopPopCount();
                                 lossPercent = 100 - (100.0 * survive / (double) pop);
                                 if (Math.max(75.0, lossPercent) == lossPercent) {
                                     info.setDefenseStatus(DefenseInformation.DEFENSE_STATUS.DANGEROUS);
@@ -188,26 +160,23 @@ public class DefenseAnalyzer extends Thread {
         }
     }
 
-    private HashMap<UnitHolder, AbstractUnitElement> getDefense(TargetInformation pTargetInfo, DefenseInformation pInfo, int pAdditionalSplits) {
+    private TroopAmountFixed getDefense(TargetInformation pTargetInfo, DefenseInformation pInfo, int pAdditionalSplits) {
         int supportCount = pInfo.getSupports().length;
-        TroopAmountFixed units = new TroopAmountFixed();
+        TroopAmountFixed result;
         VillageTroopsHolder holder = TroopsManager.getSingleton().getTroopsForVillage(pTargetInfo.getTarget(), TroopsManager.TROOP_TYPE.IN_VILLAGE);
         if (holder != null) {
-            units = holder.getTroops();
+            result = holder.getTroops().clone();
         } else {
-            units = pTargetInfo.getTroops();
+            result = pTargetInfo.getTroops().clone();
         }
-        HashMap<UnitHolder, AbstractUnitElement> result = dswbUnitsToSimulatorUnits(units);
-
-        for (de.tor.tribes.io.UnitHolder unit : DataHolder.getSingleton().getUnits()) {
-            int value = standardDefSplit.getAmountForUnit(unit);
-            AbstractUnitElement elem = result.get(UnitManager.getSingleton().getUnitByPlainName(unit.getPlainName()));
-            elem.setCount(elem.getCount() + ((value * (supportCount + pAdditionalSplits))));
-        }
+        TroopAmountFixed stdDeffMul = standardDefSplit.clone();
+        stdDeffMul.multiplyWith(supportCount + pAdditionalSplits);
+        result.addAmount(stdDeffMul);
         return result;
     }
 
     private void calculateNeededSupports(DefenseInformation pInfo, TargetInformation pTargetInfo) {
+        TechState maxTech = new TechState(TechState.MAXED);
         try {
             NewSimulator sim = new NewSimulator();
             int attCount = pTargetInfo.getOffs();
@@ -222,28 +191,20 @@ public class DefenseAnalyzer extends Thread {
                 if (aborted) {
                     return;
                 }
-                HashMap<UnitHolder, AbstractUnitElement> off = dswbUnitsToSimulatorUnits(standardOff);
-                HashMap<UnitHolder, AbstractUnitElement> def = getDefense(pTargetInfo, pInfo, factor);
-                double troops = 0;
-                Set<Entry<UnitHolder, AbstractUnitElement>> entries = def.entrySet();
-                for (Entry<UnitHolder, AbstractUnitElement> entry : entries) {
-                    UnitHolder unit = entry.getKey();
-                    troops += unit.getPop() * entry.getValue().getCount();
-                }
+                TroopAmountFixed off = standardOff;
+                TroopAmountFixed def = getDefense(pTargetInfo, pInfo, factor);
+                int troops = def.getTroopPopCount();
 
-                result = sim.calculate(off, def, KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM), Arrays.asList(KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM)), false, 0, 100.0, pTargetInfo.getWallLevel(), 0, 30, true, true, false, false, false);
+                result = sim.calculate(off, def, maxTech, maxTech, false, 0, 100.0, pTargetInfo.getWallLevel(), 0, 30, true, true, false, false);
                 for (int i = 1; i < attCount; i++) {
                     if (result.isWin()) {
                         break;
                     }
-                    result = sim.calculate(off, result.getSurvivingDef(), KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM), Arrays.asList(KnightItem.factoryKnightItem(KnightItem.ID_NO_ITEM)), false, 0, 100.0, result.getWallLevel(), 0, 30, true, true, false, false, false);
+                    result = sim.calculate(off, result.getSurvivingDef(), maxTech, maxTech, false, 0, 100.0, result.getWallLevel(), 0, 30, true, true, false, false);
                 }
 
-                double survive = 0;
-                for(Entry<UnitHolder, AbstractUnitElement> entry: result.getSurvivingDef().entrySet()) {
-                    survive += (double) entry.getValue().getCount() * entry.getKey().getPop();
-                }
-                double lossesPercent = 100 - (100.0 * survive / troops);
+                int survive = result.getSurvivingDef().getTroopPopCount();
+                double lossesPercent = 100 - (100.0 * ((double) survive) / troops);
                 if (!result.isWin() && lossesPercent < maxLossRatio) {
                     pInfo.setNeededSupports(factor);
                     //  pInfo.setDefenseStatus(DefenseInformation.DEFENSE_STATUS.SAVE);

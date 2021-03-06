@@ -15,7 +15,6 @@
  */
 package de.tor.tribes.io;
 
-import de.tor.tribes.dssim.util.ConfigManager;
 import de.tor.tribes.util.Constants;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -173,13 +172,5 @@ public class ServerManager {
             return null;
         }
         return SERVERS.get(pServerID).getRight();
-    }
-    
-    public static void giveSimulatorServerList() {
-        Map<String, String> temp = new HashMap<>();
-        for(Map.Entry<String, ImmutablePair<String, TimeZone>> entry : SERVERS.entrySet()) {
-            temp.put(entry.getKey(), entry.getValue().getLeft());
-        }
-        ConfigManager.getSingleton().setServers(temp);
     }
 }

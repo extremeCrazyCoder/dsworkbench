@@ -1,22 +1,36 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.ui;
 
-import de.tor.tribes.dssim.types.UnitHolder;
-import de.tor.tribes.dssim.util.UnitManager;
-import java.util.HashMap;
+import de.tor.tribes.io.DataHolder;
+import de.tor.tribes.io.TroopAmountFixed;
+import de.tor.tribes.io.UnitHolder;
 import java.util.StringTokenizer;
 import javax.swing.JButton;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Torridity
  */
 public class UnitParserFrame extends javax.swing.JFrame {
+    private static Logger logger = LogManager.getLogger("UnitParserFrame");
 
-    private HashMap<UnitHolder, Integer> lastUnits = new HashMap<>();
+    private TroopAmountFixed lastUnits = new TroopAmountFixed();
 
     /**
      * Creates new form UnitParserFrame
@@ -133,44 +147,46 @@ public class UnitParserFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_fireDisposeEvent
 
     private void parseTroops() {
-        int units = UnitManager.getSingleton().getUnits().length;
+        int units = DataHolder.getSingleton().getUnits().size();
         StringTokenizer t = new StringTokenizer(jTextArea1.getText(), " \t");
-        lastUnits.clear();
+        lastUnits.fill(-1);
         if (t.countTokens() == units || t.countTokens() == units - 1) {//allow missing militia
-            for (UnitHolder unit : UnitManager.getSingleton().getUnits()) {
+            for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
                 try {
                     Integer amount = Integer.parseInt(t.nextToken());
-                    lastUnits.put(unit, amount);
+                    lastUnits.setAmountForUnit(unit, amount);
                 } catch (Exception e) {
+                    //invalid
+                    logger.debug("Unable to read", e);
                 }
             }
-            if (lastUnits.size() < units - 1) {//allow missing militia
-                //invalid
-                lastUnits.clear();
+            if (lastUnits.getContainedUnits().size() < units - 1) {//allow missing militia
+                lastUnits.fill(-1);
             }
         } else {
             StringTokenizer tok = new StringTokenizer(jTextArea1.getText(), "\n\r");
             try {
                 String line = tok.nextToken();
-                for (UnitHolder unit : UnitManager.getSingleton().getUnits()) {
+                for (UnitHolder unit : DataHolder.getSingleton().getUnits()) {
                     if (line.contains(unit.getPlainName())) {
                         //found unit
                         line = line.replaceAll(unit.getPlainName(), "");
                         try {
                             Integer amount = Integer.parseInt(line.trim());
-                            lastUnits.put(unit, amount);
+                            lastUnits.setAmountForUnit(unit, amount);
                             break;
                         } catch (Exception e) {
+                            logger.debug("Unable to read", e);
                         }
                     }
                 }
             } catch (Exception e) {
-                lastUnits.clear();
+                lastUnits.fill(-1);
             }
         }
 
-        jAddAsAttackerButton.setEnabled(!lastUnits.isEmpty());
-        jAddAsDefenderButton.setEnabled(!lastUnits.isEmpty());
+        jAddAsAttackerButton.setEnabled(lastUnits.containsInformation());
+        jAddAsDefenderButton.setEnabled(lastUnits.containsInformation());
     }
 
     /**

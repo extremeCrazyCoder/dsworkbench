@@ -282,17 +282,8 @@ public class RibbonConfigurator {
 
                     @Override
                     public void run() {
-                        try {
-                            if (!GlobalOptions.isOfflineMode()) {
-                                DSWorkbenchSimulatorFrame.getSingleton().setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
-                                DSWorkbenchSimulatorFrame.getSingleton().showIntegratedVersion(DSWorkbenchSettingsDialog.getSingleton().getWebProxy(), GlobalOptions.getSelectedServer());
-                                DSWorkbenchSimulatorFrame.getSingleton().requestFocus();
-                            } else {
-                                JOptionPaneHelper.showInformationBox(DSWorkbenchMainFrame.getSingleton(), trans.get("AStarOfflineModus"), trans.get("Information"));
-                            }
-                        } catch (Exception e) {
-                            logger.warn("Error while showing Simulator", e);
-                        }
+                        DSWorkbenchSimulatorFrame.getSingleton().setVisible(true);
+                        DSWorkbenchSimulatorFrame.getSingleton().requestFocus();
                     }
                 });
 

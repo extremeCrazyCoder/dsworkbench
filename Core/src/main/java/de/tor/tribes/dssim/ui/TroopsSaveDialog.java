@@ -1,23 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * TroopsSaveDialog.java
+/* 
+ * Copyright 2015 Torridity.
  *
- * Created on 01.08.2009, 18:58:20
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.ui;
 
-import de.tor.tribes.dssim.io.SimIOHelper;
 import de.tor.tribes.dssim.model.SimulatorTableModel;
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.UnitHolder;
 import java.awt.event.ItemEvent;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -43,7 +42,7 @@ public class TroopsSaveDialog extends javax.swing.JDialog {
         setTitle("Deff speichern");
         type = SAVE_DEF_TYPE;
         jNameField.setText("MeineDeff");
-        jExistingSetups.setModel(new DefaultComboBoxModel(SimIOHelper.getDefSetups().toArray(new String[]{})));
+        jExistingSetups.setModel(new DefaultComboBoxModel(TroopsLoadDialog.getSingleton().getDeffSetups()));
         //jExistingSetups.setSelectedIndex(0);
         setLocationRelativeTo(DSWorkbenchSimulatorFrame.getSingleton());
         setVisible(true);
@@ -53,7 +52,7 @@ public class TroopsSaveDialog extends javax.swing.JDialog {
         setTitle("Off speichern");
         type = SAVE_OFF_TYPE;
         jNameField.setText("MeineOff");
-        jExistingSetups.setModel(new DefaultComboBoxModel(SimIOHelper.getOffSetups().toArray(new String[]{})));
+        jExistingSetups.setModel(new DefaultComboBoxModel(TroopsLoadDialog.getSingleton().getOffSetups()));
         //jExistingSetups.setSelectedIndex(0);
         setLocationRelativeTo(DSWorkbenchSimulatorFrame.getSingleton());
         setVisible(true);
@@ -171,26 +170,15 @@ public class TroopsSaveDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Ungültige Bezeichnung.", "Fehler", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            HashMap<UnitHolder, AbstractUnitElement> toSave;
+            
             if (type == SAVE_OFF_TYPE) {
                 //save off
-                name = name + "_off.xml";
-                toSave = SimulatorTableModel.getSingleton().getOff();
+                TroopsLoadDialog.getSingleton().saveOff(name, SimulatorTableModel.getSingleton().getOffTroops());
             } else {
                 //save def
-                name = name + "_def.xml";
-                toSave = SimulatorTableModel.getSingleton().getDef();
+                TroopsLoadDialog.getSingleton().saveDeff(name, SimulatorTableModel.getSingleton().getDefTroops());
             }
-            List<AbstractUnitElement> elements = new LinkedList<>();
-            for(UnitHolder unit: toSave.keySet()) {
-                elements.add(toSave.get(unit));
-            }
-            try {
-                SimIOHelper.writeTroopSetup(elements, SimIOHelper.getDataDir() + "/" + name);
-                JOptionPane.showMessageDialog(this, "Truppen erfolgreich gespeichert.", "Information", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Fehler beim Speichern der Truppen. (Grund: " + e.getMessage() + ")", "Fehler", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(this, "Truppen erfolgreich gespeichert.", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
         setVisible(false);
     }//GEN-LAST:event_fireCloseEvent

@@ -2589,7 +2589,7 @@ private void fireAcceptDeffStrengthEvent(java.awt.event.MouseEvent evt) {//GEN-F
     if (evt.getSource() == jDeffStrengthOKButton) {
         try {
             TroopAmountFixed troops = troopDensitySelection.getAmounts();
-            String result = Integer.toString((int) troops.getDefValue());
+            String result = Integer.toString((int) troops.getDefInfantryValue());
             GlobalOptions.addProperty("max.density.troops", result);
             jMaxTroopDensity.setText(result);
         } catch (Exception e) {

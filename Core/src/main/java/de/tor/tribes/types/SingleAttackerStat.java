@@ -76,7 +76,7 @@ public class SingleAttackerStat {
             elem.addEnoblement();
         }
 
-        elem.addDestroyedBuildingLevel(BuildingSettings.getBuildingIdByName("Bauernhof"),
+        elem.addDestroyedBuildingLevel(BuildingSettings.getBuildingIdByName("farm"),
                 ((int) Math.rint(Math.random() * 30)));
         elem.addDestroyedWallLevels(((int) Math.rint(Math.random() * 60)));
         

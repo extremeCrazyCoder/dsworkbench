@@ -348,7 +348,7 @@ public class TroopsTableModel extends AbstractTableModel {
             case OFF:
                 return h.getTroops().getOffValue();
             case DEF:
-                return h.getTroops().getDefValue();
+                return h.getTroops().getDefInfantryValue();
             case DEF_CAV:
                 return h.getTroops().getDefCavalryValue();
             case DEF_ARCH:

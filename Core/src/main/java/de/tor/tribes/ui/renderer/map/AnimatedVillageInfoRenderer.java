@@ -99,7 +99,7 @@ public class AnimatedVillageInfoRenderer {
             double offValue = holder.getTroops().getOffValue();
             double defArchValue = holder.getTroops().getDefArcherValue();
             double defCavValue = holder.getTroops().getDefCavalryValue();
-            double defValue = holder.getTroops().getDefValue();
+            double defValue = holder.getTroops().getDefInfantryValue();
             double fightValueIn = offValue + defValue + defArchValue + defCavValue;
             Color before = g2d.getColor();
             Composite cb = g2d.getComposite();

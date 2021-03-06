@@ -484,50 +484,27 @@ public class Village implements Comparable<Village>, Serializable, BBSupport {
     }
 
     public static String getBonusDescription(Village pVillage) {
-        if (ServerSettings.getSingleton().getNewBonus() == 0) {
-            switch (pVillage.getType()) {
-                case WOOD_BONUS:
-                    return "10% mehr Holzproduktion";
-                case CLAY_BONUS:
-                    return "10% mehr Lehmproduktion";
-                case IRON_BONUS:
-                    return "10% mehr Eisenproduktion";
-                case FARM_BONUS:
-                    return "10% mehr Bevölkerung";
-                case BARRACKS_BONUS:
-                    return "10% schnellere Produktion in der Kaserne";
-                case STABLE_BONUS:
-                    return "10% schnellere Produktion im Stall";
-                case WORKSHOP_BONUS:
-                    return "10% schnellere Produktion in der Werkstatt";
-                case RESOURCES_BONUS:
-                    return "3% höhere Rohstoffproduktion";
-                default:
-                    return "";
-            }
-        } else {
-            switch (pVillage.getType()) {
-                case WOOD_BONUS:
-                    return "100% mehr Holzproduktion";
-                case CLAY_BONUS:
-                    return "100% mehr Lehmproduktion";
-                case IRON_BONUS:
-                    return "100% mehr Eisenproduktion";
-                case FARM_BONUS:
-                    return "10% mehr Bevölkerung";
-                case BARRACKS_BONUS:
-                    return "33% schnellere Produktion in der Kaserne";
-                case STABLE_BONUS:
-                    return "33% schnellere Produktion im Stall";
-                case WORKSHOP_BONUS:
-                    return "50% schnellere Produktion in der Werkstatt";
-                case RESOURCES_BONUS:
-                    return "30% höhere Rohstoffproduktion";
-                case STORAGE_BONUS:
-                    return "50% mehr Speicherkapazität und Händler";
-                default:
-                    return "";
-            }
+        switch (pVillage.getType()) {
+            case WOOD_BONUS:
+                return "100% mehr Holzproduktion";
+            case CLAY_BONUS:
+                return "100% mehr Lehmproduktion";
+            case IRON_BONUS:
+                return "100% mehr Eisenproduktion";
+            case FARM_BONUS:
+                return "10% mehr Bevölkerung";
+            case BARRACKS_BONUS:
+                return "33% schnellere Produktion in der Kaserne";
+            case STABLE_BONUS:
+                return "33% schnellere Produktion im Stall";
+            case WORKSHOP_BONUS:
+                return "50% schnellere Produktion in der Werkstatt";
+            case RESOURCES_BONUS:
+                return "30% höhere Rohstoffproduktion";
+            case STORAGE_BONUS:
+                return "50% mehr Speicherkapazität und Händler";
+            default:
+                return "";
         }
     }
 

@@ -1,42 +1,84 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * TroopsSaveDialog.java
+/* 
+ * Copyright 2015 Torridity.
  *
- * Created on 01.08.2009, 18:58:20
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.ui;
 
-import de.tor.tribes.dssim.io.SimIOHelper;
 import de.tor.tribes.dssim.model.SimulatorTableModel;
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.UnitHolder;
-import java.io.File;
+import de.tor.tribes.io.TroopAmountFixed;
+import de.tor.tribes.util.GlobalOptions;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Charon
  */
 public class TroopsLoadDialog extends javax.swing.JDialog {
+    private static Logger logger = LogManager.getLogger("TroopsLoadDialog");
 
     private final int LOAD_OFF_TYPE = 0;
     private final int LOAD_DEF_TYPE = 1;
     private static TroopsLoadDialog SINGLETON = null;
     private int type = LOAD_OFF_TYPE;
+    
+    private Map<String, TroopAmountFixed> storedTroopsOff = new HashMap<>();
+    private Map<String, TroopAmountFixed> storedTroopsDeff = new HashMap<>();
 
     public static synchronized TroopsLoadDialog getSingleton() {
         if (SINGLETON == null) {
             SINGLETON = new TroopsLoadDialog(DSWorkbenchSimulatorFrame.getSingleton(), true);
         }
         return SINGLETON;
+    }
+
+    /** Creates new form TroopsSaveDialog */
+    private TroopsLoadDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        
+        if(GlobalOptions.getProperties().exists("sim.storedTroopsOff")) {
+            String troops = GlobalOptions.getProperty("sim.storedTroopsOff");
+            for(String part : troops.split(";")) {
+                if(part.equals("")) continue;
+                String name = part.substring(0, part.lastIndexOf("_"));
+                String values = part.substring(part.lastIndexOf("_") + 1);
+
+                TroopAmountFixed asAmount = new TroopAmountFixed();
+                asAmount.loadFromProperty(values);
+                storedTroopsOff.put(name, asAmount);
+            }
+        }
+        
+        if(GlobalOptions.getProperties().exists("sim.storedTroopsDeff")) {
+            String troops = GlobalOptions.getProperty("sim.storedTroopsDeff");
+            for(String part : troops.split(";")) {
+                if(part.equals("")) continue;
+                String name = part.substring(0, part.lastIndexOf("_"));
+                String values = part.substring(part.lastIndexOf("_") + 1);
+
+                TroopAmountFixed asAmount = new TroopAmountFixed();
+                asAmount.loadFromProperty(values);
+                storedTroopsDeff.put(name, asAmount);
+            }
+        }
+        
+        initComponents();
     }
 
     public void showLoadDefDialog() {
@@ -54,14 +96,32 @@ public class TroopsLoadDialog extends javax.swing.JDialog {
         setLocationRelativeTo(DSWorkbenchSimulatorFrame.getSingleton());
         setVisible(true);
     }
+    
+    public String[] getOffSetups() {
+        return storedTroopsOff.keySet().toArray(new String[storedTroopsOff.size()]);
+    }
+    
+    public String[] getDeffSetups() {
+        return storedTroopsDeff.keySet().toArray(new String[storedTroopsDeff.size()]);
+    }
+    
+    public void saveOff(String name, TroopAmountFixed troops) {
+        storedTroopsOff.put(name, troops);
+        saveToGlobalOptions();
+    }
+    
+    public void saveDeff(String name, TroopAmountFixed troops) {
+        storedTroopsDeff.put(name, troops);
+        saveToGlobalOptions();
+    }
 
     private void buildSetupList() {
         DefaultListModel model = new DefaultListModel();
         String[] setups = null;
         if (type == LOAD_OFF_TYPE) {
-            setups = SimIOHelper.getOffSetups().toArray(new String[]{});
+            setups = getOffSetups();
         } else {
-            setups = SimIOHelper.getDefSetups().toArray(new String[]{});
+            setups = getDeffSetups();
         }
         Arrays.sort(setups);
         for (String setup : setups) {
@@ -69,12 +129,6 @@ public class TroopsLoadDialog extends javax.swing.JDialog {
         }
         jTroopSetupList.setModel(model);
         jTroopSetupList.setSelectedIndex(0);
-    }
-
-    /** Creates new form TroopsSaveDialog */
-    TroopsLoadDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
     }
 
     /** This method is called from within the constructor to
@@ -171,30 +225,15 @@ public class TroopsLoadDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Bitte einen Eintrag auswählen.", "Warnung", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
+            
+            TroopAmountFixed troops;
             if (type == LOAD_OFF_TYPE) {
                 //save off
-                name = name + "_off.xml";
+                SimulatorTableModel.getSingleton().setOff(storedTroopsOff.get(name), null);
             } else {
                 //save def
-                name = name + "_def.xml";
-            }
-            List<AbstractUnitElement> elements = null;
-            try {
-                elements = SimIOHelper.readTroopSetup(SimIOHelper.getDataDir() + "/" + name);
-                HashMap<UnitHolder, AbstractUnitElement> setup = new HashMap<>();
-                for (AbstractUnitElement element : elements) {
-                    setup.put(element.getUnit(), element);
-                }
-                if (type == LOAD_OFF_TYPE) {
-                    SimulatorTableModel.getSingleton().setOff(setup);
-                } else {
-                    SimulatorTableModel.getSingleton().setDef(setup);
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Fehler beim Laden der Truppen. (Grund: " + e.getMessage() + ")", "Fehler", JOptionPane.ERROR_MESSAGE);
-                setVisible(false);
-                return;
+                
+                SimulatorTableModel.getSingleton().setDef(storedTroopsDeff.get(name), null);
             }
         }
         setVisible(false);
@@ -209,40 +248,39 @@ public class TroopsLoadDialog extends javax.swing.JDialog {
 
         if (type == LOAD_OFF_TYPE) {
             //save off
-            name = name + "_off.xml";
+            storedTroopsOff.remove(name);
         } else {
             //save def
-            name = name + "_def.xml";
+            storedTroopsDeff.remove(name);
         }
-
-
-        if (new File(SimIOHelper.getDataDir() + "/" + name).delete()) {
-            buildSetupList();
-        } else {
-            JOptionPane.showMessageDialog(this, "Eintrag konnte nicht gelöscht werden.", "Fehler", JOptionPane.ERROR_MESSAGE);
-        }
-
+        saveToGlobalOptions();
+        buildSetupList();
     }//GEN-LAST:event_fireDeleteSetupEvent
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                TroopsLoadDialog dialog = new TroopsLoadDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    private void saveToGlobalOptions() {
+        StringBuilder str = new StringBuilder();
+        boolean first = true;
+        for(Map.Entry<String, TroopAmountFixed> e : storedTroopsOff.entrySet()) {
+            if(!first) str.append(";");
+            str.append(e.getKey());
+            str.append("_");
+            str.append(e.getValue().toProperty());
+            first = false;
+        }
+        GlobalOptions.getProperties().setProperty("sim.storedTroopsOff", str.toString());
+        
+        str = new StringBuilder();
+        first = true;
+        for(Map.Entry<String, TroopAmountFixed> e : storedTroopsDeff.entrySet()) {
+            if(!first) str.append(";");
+            str.append(e.getKey());
+            str.append("_");
+            str.append(e.getValue().toProperty());
+            first = false;
+        }
+        GlobalOptions.getProperties().setProperty("sim.storedTroopsDeff", str.toString());
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

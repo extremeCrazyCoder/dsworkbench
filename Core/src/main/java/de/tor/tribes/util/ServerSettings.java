@@ -34,7 +34,6 @@ public class ServerSettings {
     private static Logger logger = LogManager.getLogger("ServerSettings");
     private String SERVER_ID = "de26";
     private Rectangle mapSize = null;
-    private int BONUS_NEW = 0;
     private int SNOB_RANGE = 70;
     private boolean church = false;
     private boolean watchtower = false;
@@ -42,7 +41,8 @@ public class ServerSettings {
     private boolean millisArrival = true;
     private double speed = 1.0;
     private int resourceConstant = 30;
-    private int barbarianPoints = 500;
+    private int barbarianPoints = 500;    
+    private int farmLimit = 0;
 
     private boolean nightBonusActive = true;
     private int nightBonusStartHour = 0;
@@ -58,6 +58,22 @@ public class ServerSettings {
     public static final int NOBLESYSTEM_GOLD_COINS = 1;
     private int nobleSystem = 0;
     
+    public final static int TECH_10 = 0;
+    public final static int TECH_3 = 1;
+    public final static int SIMPLE_TECH = 2;
+    private int techType = 2;
+    
+    public final static int NO_KNIGHT = 0;
+    public final static int KNIGHT_WITHOUT_ITEMS = 1;
+    public final static int KNIGHT_WITH_ITEMS = 2;
+    public final static int KNIGHT_WITH_SKILLS = 3;
+    private int knightType = 0;
+    
+    public final static int NO_KILL_RANKING = 0;
+    public final static int OLD_KILL_RANKING = 1;
+    public final static int NEW_KILL_RANKING = 2;
+    private int kill_ranking = 0;
+            
     private int haulType = 1;
     private int haulLimitActive = 0;
     private int haulBase = 0;
@@ -88,14 +104,6 @@ public class ServerSettings {
             } catch (Exception inner) {
                 logger.warn("Unable to read map Size", inner);
                 setMapSize(1000);
-            }
-            
-            logger.debug(" - reading bonus type");
-            try {
-                BONUS_NEW = Integer.parseInt(JDomUtils.getNodeValue(d, "coord/bonus_new"));
-            } catch (Exception inner) {
-                logger.warn("Unable to read bonus type", inner);
-                BONUS_NEW = 0;
             }
             
             logger.debug(" - reading snob distance");
@@ -218,6 +226,33 @@ public class ServerSettings {
                 logger.warn("Unable read haul values", inner);
             }
             
+            logger.debug(" - reading tech value");
+            try {
+                this.techType = Integer.parseInt(JDomUtils.getNodeValue(d, "game/tech"));
+            } catch (Exception inner) {
+                logger.warn("Unable read tech value", inner);
+            }
+            
+            logger.debug(" - reading knight value");
+            try {
+                this.knightType = Integer.parseInt(JDomUtils.getNodeValue(d, "game/knight"));
+            } catch (Exception inner) {
+                logger.warn("Unable read knight value", inner);
+            }
+            
+            logger.debug(" - reading farm_limit value");
+            try {
+                this.farmLimit = Integer.parseInt(JDomUtils.getNodeValue(d, "game/farm_limit"));
+            } catch (Exception inner) {
+                logger.warn("Unable read farm_limit value", inner);
+            }
+            
+            logger.debug(" - reading kill_ranking value");
+            try {
+                this.kill_ranking = Integer.parseInt(JDomUtils.getNodeValue(d, "misc/kill_ranking"));
+            } catch (Exception inner) {
+                logger.warn("Unable read kill_ranking value", inner);
+            }
         } catch (Exception e) {
             logger.error("Failed to load server settings", e);
             fireServerSettingsChanged();
@@ -253,10 +288,6 @@ public class ServerSettings {
             return new Rectangle(0, 0, 1000, 1000);
         }
         return mapSize;
-    }
-
-    public int getNewBonus() {
-        return BONUS_NEW;
     }
 
     public int getSnobRange() {
@@ -336,6 +367,22 @@ public class ServerSettings {
 
     public int getHaulLimitMax() {
         return haulMax;
+    }
+    
+    public int getKnightType() {
+        return knightType;
+    }
+
+    public int getTechType() {
+        return techType;
+    }
+    
+    public int getFarmLimit() {
+        return farmLimit;
+    }
+    
+    public int getKillRanking() {
+        return kill_ranking;
     }
 
     /**

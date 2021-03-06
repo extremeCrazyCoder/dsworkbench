@@ -39,6 +39,9 @@ public class Constants {
     public final static int LAYER_COUNT = 10;
     public final static boolean DEBUG = false;
     
+    public final static Color WINNER_GREEN = new Color(96, 238, 90);
+    public final static Color LOSER_RED = new Color(255, 99, 71);
+    
     static {
         LAYERS.put("Markierungen", 0);
         LAYERS.put("Dörfer", 1);

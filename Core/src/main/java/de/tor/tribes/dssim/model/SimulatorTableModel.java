@@ -1,21 +1,34 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.model;
 
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.UnitHolder;
-import de.tor.tribes.dssim.util.ConfigManager;
-import de.tor.tribes.dssim.util.UnitManager;
-import java.util.HashMap;
+import de.tor.tribes.dssim.types.TechState;
+import de.tor.tribes.io.TroopAmountFixed;
+import de.tor.tribes.io.UnitHolder;
+import de.tor.tribes.util.ServerSettings;
 import javax.swing.table.DefaultTableModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Charon
  */
 public class SimulatorTableModel extends DefaultTableModel {
+    private static Logger logger = LogManager.getLogger("SimulatorTableModel");
 
     private static SimulatorTableModel SINGLETON = null;
     private Class[] columnClasses;
@@ -23,12 +36,12 @@ public class SimulatorTableModel extends DefaultTableModel {
 
     SimulatorTableModel() {
         super();
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             columnNames = new String[]{"", "Einheit", "Angreifer", "", "Verteidiger", ""};
-            columnClasses = new Class[]{Object.class, String.class, Integer.class, Object.class, Integer.class, Object.class};
+            columnClasses = new Class[]{Object.class, UnitHolder.class, Integer.class, Object.class, Integer.class, Object.class};
         } else {
             columnNames = new String[]{"", "Einheit", "Angreifer", "Tech", "", "Verteidiger", "Tech", ""};
-            columnClasses = new Class[]{Object.class, String.class, Integer.class, Double.class, Object.class, Integer.class, Double.class, Object.class};
+            columnClasses = new Class[]{Object.class, UnitHolder.class, Integer.class, Double.class, Object.class, Integer.class, Double.class, Object.class};
         }
     }
 
@@ -60,29 +73,42 @@ public class SimulatorTableModel extends DefaultTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if (!(getValueAt(rowIndex, columnIndex) instanceof String)) {
+        if (!(getValueAt(rowIndex, columnIndex) instanceof UnitHolder)) {
             return true;
         }
         return false;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getOff() {
-        HashMap<UnitHolder, AbstractUnitElement> result = new HashMap<>();
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+    public TroopAmountFixed getOffTroops() {
+        TroopAmountFixed resTroop = new TroopAmountFixed();
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             //return new world values
             for (int i = 0; i < getRowCount(); i++) {
                 Integer count = (Integer) getValueAt(i, 2);
                 //add element if cout larger than 0
-                UnitHolder unit = (UnitHolder) UnitManager.getSingleton().getUnitByPlainName((String) getValueAt(i, 1));
-                int tech = 1;
-                AbstractUnitElement element = new AbstractUnitElement(unit, count, tech);
-                result.put(unit, element);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                resTroop.setAmountForUnit(unit, count);
             }//end of all rows
         } else {
             for (int i = 0; i < getRowCount(); i++) {
-                Integer count = (Integer) getValueAt(i, 2);
+                int count = (Integer) getValueAt(i, 2);
                 //add element if cout larger than 0
-                UnitHolder unit = (UnitHolder) UnitManager.getSingleton().getUnitByPlainName((String) getValueAt(i, 1));
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                resTroop.setAmountForUnit(unit, count);
+            }//end of all rows
+        }//end of getting table
+        //return final result
+        return resTroop;
+    }
+
+    public TechState getOffTech() {
+        TechState resTech = new TechState();
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
+            resTech.fill(1);
+        } else {
+            for (int i = 0; i < getRowCount(); i++) {
+                //add element if cout larger than 0
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
                 int tech = 1;
                 Object val = getValueAt(i, 3);
 
@@ -91,31 +117,43 @@ public class SimulatorTableModel extends DefaultTableModel {
                 } else {
                     tech = (Integer) val;
                 }
-                AbstractUnitElement element = new AbstractUnitElement(unit, count, tech);
-                result.put(unit, element);
+                resTech.setTechLevel(unit, tech);
             }//end of all rows
         }//end of getting table
         //return final result
-        return result;
+        return resTech;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getDef() {
-        HashMap<UnitHolder, AbstractUnitElement> result = new HashMap<>();
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+    public TroopAmountFixed getDefTroops() {
+        TroopAmountFixed resTroop = new TroopAmountFixed();
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             //return new world values
             for (int i = 0; i < getRowCount(); i++) {
                 Integer count = (Integer) getValueAt(i, 4);
                 //add element if cout larger than 0
-                UnitHolder unit = (UnitHolder) UnitManager.getSingleton().getUnitByPlainName((String) getValueAt(i, 1));
-                int tech = 1;
-                AbstractUnitElement element = new AbstractUnitElement(unit, count, tech);
-                result.put(unit, element);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                resTroop.setAmountForUnit(unit, count);
             }//end of all rows
         } else {
             for (int i = 0; i < getRowCount(); i++) {
                 Integer count = (Integer) getValueAt(i, 5);
                 //add element if cout larger than 0
-                UnitHolder unit = (UnitHolder) UnitManager.getSingleton().getUnitByPlainName((String) getValueAt(i, 1));
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                resTroop.setAmountForUnit(unit, count);
+            }//end of all rows
+        }//end of getting table
+        //return final result
+        return resTroop;
+    }
+
+    public TechState getDefTech() {
+        TechState resTech = new TechState();
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
+            resTech.fill(1);
+        } else {
+            for (int i = 0; i < getRowCount(); i++) {
+                //add element if cout larger than 0
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
                 int tech = 1;
                 Object val = getValueAt(i, 6);
 
@@ -125,18 +163,17 @@ public class SimulatorTableModel extends DefaultTableModel {
                     tech = (Integer) val;
                 }
 
-                AbstractUnitElement element = new AbstractUnitElement(unit, count, tech);
-                result.put(unit, element);
+                resTech.setTechLevel(unit, tech);
             }//end of all rows
         }//end of getting table
         //return final result
-        return result;
+        return resTech;
     }
 
     public void setOffUnitCount(UnitHolder pUnit, int pCount) {
         for (int i = 0; i < getRowCount(); i++) {
-            String unitName = (String) getValueAt(i, 1);
-            if (unitName != null && unitName.equals(pUnit.getPlainName())) {
+            UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+            if (unit.equals(pUnit)) {
                 setValueAt(pCount, i, 2);
                 return;
             }
@@ -144,18 +181,18 @@ public class SimulatorTableModel extends DefaultTableModel {
     }
 
     public void setDefUnitCount(UnitHolder pUnit, int pCount) {
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                if (unitName != null && unitName.equals(pUnit.getPlainName())) {
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                if (unit.equals(pUnit)) {
                     setValueAt(pCount, i, 4);
                     return;
                 }
             }
         } else {
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                if (unitName != null && unitName.equals(pUnit.getPlainName())) {
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                if (unit.equals(pUnit)) {
                     setValueAt(pCount, i, 5);
                     return;
                 }
@@ -163,59 +200,57 @@ public class SimulatorTableModel extends DefaultTableModel {
         }
     }
 
-    public void setDef(HashMap<UnitHolder, AbstractUnitElement> pDef) {
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+    public void setDef(TroopAmountFixed pTroops, TechState pTech) {
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             //return new world values
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(unitName);
-                AbstractUnitElement elem = pDef.get(unit);
-                if (elem != null) {
-                    setValueAt(pDef.get(unit).getCount(), i, 4);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                int count = pTroops.getAmountForUnit(unit);
+                if (count >= 0) {
+                    setValueAt(count, i, 4);
                 } else {
                     setValueAt(0, i, 4);
                 }
             }//end of all rows
         } else {
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(unitName);
-                AbstractUnitElement elem = pDef.get(unit);
-                if (elem != null) {
-                    setValueAt(pDef.get(unit).getCount(), i, 5);
-                    setValueAt(pDef.get(unit).getTech(), i, 6);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                int count = pTroops.getAmountForUnit(unit);
+                if (count >= 0) {
+                    setValueAt(pTroops.getAmountForUnit(unit), i, 5);
                 } else {
                     setValueAt(0, i, 5);
-                    setValueAt(1.0, i, 6);
+                }
+                if(pTech != null) {
+                    setValueAt(pTech.getTechLevel(unit), i, 6);
                 }
             }//end of all rows
         }//end of getting table
     }
 
-    public void setOff(HashMap<UnitHolder, AbstractUnitElement> pOff) {
-        if (ConfigManager.getSingleton().getTech() == ConfigManager.ID_SIMPLE_TECH) {
+    public void setOff(TroopAmountFixed pTroops, TechState pTech) {
+        if (ServerSettings.getSingleton().getTechType() == ServerSettings.SIMPLE_TECH) {
             //return new world values
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(unitName);
-                AbstractUnitElement elem = pOff.get(unit);
-                if (elem != null) {
-                    setValueAt(pOff.get(unit).getCount(), i, 2);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                int count = pTroops.getAmountForUnit(unit);
+                if (count >= 0) {
+                    setValueAt(count, i, 2);
                 } else {
                     setValueAt(0, i, 2);
                 }
             }//end of all rows
         } else {
             for (int i = 0; i < getRowCount(); i++) {
-                String unitName = (String) getValueAt(i, 1);
-                UnitHolder unit = UnitManager.getSingleton().getUnitByPlainName(unitName);
-                AbstractUnitElement elem = pOff.get(unit);
-                if (elem != null) {
-                    setValueAt(pOff.get(unit).getCount(), i, 2);
-                    setValueAt(pOff.get(unit).getTech(), i, 3);
+                UnitHolder unit = (UnitHolder) getValueAt(i, 1);
+                int count = pTroops.getAmountForUnit(unit);
+                if (count >= 0) {
+                    setValueAt(pTroops.getAmountForUnit(unit), i, 2);
                 } else {
                     setValueAt(0, i, 2);
-                    setValueAt(1.0, i, 3);
+                }
+                if(pTech != null) {
+                    setValueAt(pTech.getTechLevel(unit), i, 3);
                 }
             }//end of all rows
         }//end of getting table

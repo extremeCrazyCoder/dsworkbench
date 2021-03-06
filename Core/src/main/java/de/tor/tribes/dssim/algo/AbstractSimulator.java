@@ -1,17 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * Copyright 2015 Torridity.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package de.tor.tribes.dssim.algo;
 
-import de.tor.tribes.dssim.types.AbstractUnitElement;
-import de.tor.tribes.dssim.types.KnightItem;
 import de.tor.tribes.dssim.types.SimulatorResult;
-import de.tor.tribes.dssim.types.UnitHolder;
+import de.tor.tribes.dssim.types.TechState;
 import de.tor.tribes.dssim.ui.DSWorkbenchSimulatorFrame;
-import de.tor.tribes.dssim.util.ConfigManager;
-import java.util.HashMap;
-import java.util.List;
+import de.tor.tribes.io.TroopAmountFixed;
+import de.tor.tribes.util.ServerSettings;
 
 /**
  *
@@ -22,8 +30,10 @@ public abstract class AbstractSimulator {
     public final int ID_INFANTRY = 0;
     public final int ID_CAVALRY = 1;
     public final int ID_ARCHER = 2;
-    private HashMap<UnitHolder, AbstractUnitElement> off = null;
-    private HashMap<UnitHolder, AbstractUnitElement> def = null;
+    private TroopAmountFixed off = null;
+    private TroopAmountFixed def = null;
+    private TechState offTech = null;
+    private TechState defTech = null;
     private boolean nightBonus = false;
     private double luck = 0.0;
     private double moral = 100;
@@ -33,22 +43,20 @@ public abstract class AbstractSimulator {
     private boolean attackerBelieve = false;
     private boolean defenderBelieve = false;
     private boolean cataChurch = false;
-    private boolean cataFarm = false;
     private boolean cataWall = false;
 
-    public abstract SimulatorResult calculate(HashMap<UnitHolder, AbstractUnitElement> pOff, HashMap<UnitHolder, AbstractUnitElement> pDef, KnightItem pOffItem, List<KnightItem> pDefItems, boolean pNightBonus, double pLuck, double pMoral, int pWallLevel, int pBuildingLevel, int pFarmLevel, boolean pAttackerBelieve, boolean pDefenderBelieve, boolean pCataChurch, boolean pCataFarm, boolean pCataWall);
+    public abstract SimulatorResult calculate(TroopAmountFixed pOff, TroopAmountFixed pDef, TechState pOffTech, TechState pDefTech, boolean pNightBonus, double pLuck, double pMoral, int pWallLevel, int pBuildingLevel, int pFarmLevel, boolean pAttackerBelieve, boolean pDefenderBelieve, boolean pCataChurch, boolean pCataWall);
 
-    public SimulatorResult bunkerBuster(HashMap<UnitHolder, AbstractUnitElement> pOff, HashMap<UnitHolder, AbstractUnitElement> pDef, KnightItem pOffItem, List<KnightItem> pDefItems, boolean pNightBonus, double pLuck, double pMoral, int pWallLevel, int pBuildingLevel, int pFarmLevel, boolean pAttackerBelieve, boolean pDefenderBelieve, boolean pCataChurch, boolean pCataFarm, boolean pCataWall) {
-        SimulatorResult result = calculate(pOff, pDef, pOffItem, pDefItems, pNightBonus, pLuck, pMoral, pWallLevel, pBuildingLevel, pFarmLevel, pAttackerBelieve, pDefenderBelieve, pCataChurch, pCataFarm, pCataWall);
+    public SimulatorResult bunkerBuster(TroopAmountFixed pOff, TroopAmountFixed pDef, TechState pOffTech, TechState pDefTech, boolean pNightBonus, double pLuck, double pMoral, int pWallLevel, int pBuildingLevel, int pFarmLevel, boolean pAttackerBelieve, boolean pDefenderBelieve, boolean pCataChurch, boolean pCataWall) {
+        SimulatorResult result = calculate(pOff, pDef, pOffTech, pDefTech, pNightBonus, pLuck, pMoral, pWallLevel, pBuildingLevel, pFarmLevel, pAttackerBelieve, pDefenderBelieve, pCataChurch, pCataWall);
         DSWorkbenchSimulatorFrame.getSingleton().addResultExternally(result);
         setFarmLevel(pFarmLevel);
         setCataChurch(pCataChurch);
-        setCataFarm(pCataFarm);
         setCataWall(pCataWall);
        
         int cnt = 1;
         while (!result.isWin() && cnt <= 1000) {
-            result = calculate(pOff, result.getSurvivingDef(), pOffItem, pDefItems, pNightBonus, pLuck, pMoral, result.getWallLevel(), result.getBuildingLevel(), pFarmLevel, pAttackerBelieve, pDefenderBelieve, pCataChurch, pCataFarm, pCataWall);
+            result = calculate(pOff, result.getSurvivingDef(), pOffTech, pDefTech, pNightBonus, pLuck, pMoral, result.getWallLevel(), result.getBuildingLevel(), pFarmLevel, pAttackerBelieve, pDefenderBelieve, pCataChurch, pCataWall);
            /* if (pCataWall) {
                 int wallDecrement = result.getBuildingBefore() - result.getBuildingLevel();
                 result.setWallLevel(result.getWallBefore() - wallDecrement);
@@ -66,45 +74,36 @@ public abstract class AbstractSimulator {
         return result;
     }
 
-    public boolean isInfantry(UnitHolder pUnit) {
-        return !isCavalery(pUnit);
-    }
-
-    public boolean isCavalery(UnitHolder pUnit) {
-        return (pUnit.getPlainName().equals("spy")
-                || pUnit.getPlainName().equals("light")
-                || pUnit.getPlainName().equals("marcher")
-                || pUnit.getPlainName().equals("heavy")
-                || pUnit.getPlainName().equals("knight"));
-    }
-
-    public boolean isArcher(UnitHolder pUnit) {
-        return (pUnit.getPlainName().equals("archer")
-                || pUnit.getPlainName().equals("marcher"));
-    }
-
-    public boolean isSpy(UnitHolder pUnit) {
-        return (pUnit.getPlainName().equals("spy"));
-    }
-
-    public boolean isKnight(UnitHolder pUnit) {
-        return (pUnit.getPlainName().equals("knight"));
-    }
-
-    public void setOff(HashMap<UnitHolder, AbstractUnitElement> pOff) {
+    public void setOff(TroopAmountFixed pOff) {
         off = pOff;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getOff() {
+    public TroopAmountFixed getOff() {
         return off;
     }
 
-    public void setDef(HashMap<UnitHolder, AbstractUnitElement> pDef) {
+    public void setDef(TroopAmountFixed pDef) {
         def = pDef;
     }
 
-    public HashMap<UnitHolder, AbstractUnitElement> getDef() {
+    public TroopAmountFixed getDef() {
         return def;
+    }
+
+    public void setOffTech(TechState pOffTech) {
+        offTech = pOffTech;
+    }
+
+    public TechState getOffTech() {
+        return offTech;
+    }
+
+    public void setDefTech(TechState pDefTech) {
+        defTech = pDefTech;
+    }
+
+    public TechState getDefTech() {
+        return defTech;
     }
 
     /**
@@ -195,7 +194,7 @@ public abstract class AbstractSimulator {
      * @return the attackerBelieve
      */
     public boolean isAttackerBelieve() {
-        if (ConfigManager.getSingleton().isChurch()) {
+        if (ServerSettings.getSingleton().isChurch()) {
             return attackerBelieve;
         } else {
             //if no church is used take care that the believe factor would be 1 later
@@ -214,7 +213,7 @@ public abstract class AbstractSimulator {
      * @return the defenderBelieve
      */
     public boolean isDefenderBelieve() {
-        if (ConfigManager.getSingleton().isChurch()) {
+        if (ServerSettings.getSingleton().isChurch()) {
             return defenderBelieve;
         } else {
             //if no church is used take care that the believe factor would be 1 later
@@ -255,19 +254,5 @@ public abstract class AbstractSimulator {
      */
     public void setCataWall(boolean cataWall) {
         this.cataWall = cataWall;
-    }
-
-    /**
-     * @return the cataFarm
-     */
-    public boolean isCataFarm() {
-        return cataFarm;
-    }
-
-    /**
-     * @param cataFarm the cataFarm to set
-     */
-    public void setCataFarm(boolean cataFarm) {
-        this.cataFarm = cataFarm;
     }
 }

@@ -13,29 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.tor.tribes.types;
+package de.tor.tribes.dssim.types;
 
-import de.tor.tribes.io.UnitHolder;
-import de.tor.tribes.util.translation.TranslationManager;
-import de.tor.tribes.util.translation.Translator;
+import java.awt.Point;
 
 /**
  *
  * @author Torridity
  */
-public class ImpossibleSnobUnit extends UnitHolder {
-    private Translator trans = TranslationManager.getTranslator("types.ImpossibleSnobUnit");
+public interface AStarResultReceiver {
 
-    private static ImpossibleSnobUnit SINGLETON = null;
-
-    public static synchronized ImpossibleSnobUnit getSingleton() {
-        if (SINGLETON == null) {
-            SINGLETON = new ImpossibleSnobUnit();
-        }
-        return SINGLETON;
-    }
-
-    ImpossibleSnobUnit() {
-        setPlainName("snob");
-    }
+    public void fireNotifyOnResultEvent (Point pTarget, int pOffAmount);
 }

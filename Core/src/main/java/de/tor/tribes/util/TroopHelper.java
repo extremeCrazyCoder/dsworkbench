@@ -267,11 +267,11 @@ public class TroopHelper {
         }
 
         if (pAllowSimilar) {
-            int defSplit = pSplitAmount.getDefValue();
+            int defSplit = pSplitAmount.getDefInfantryValue();
             int defCavSplit = pSplitAmount.getDefCavalryValue();
             int defArchSplit = pSplitAmount.getDefArcherValue();
 
-            int defDiff = pTargetAmount.getDefValue() - troops.getDefValue();
+            int defDiff = pTargetAmount.getDefInfantryValue() - troops.getDefInfantryValue();
             int defCavDiff = pTargetAmount.getDefCavalryValue() - troops.getDefCavalryValue();
             int defArchDiff = pTargetAmount.getDefArcherValue() - troops.getDefArcherValue();
 

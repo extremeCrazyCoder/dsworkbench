@@ -387,7 +387,7 @@ public class RetimerDataPanel extends WizardPage {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(trans.get("UnbekannteEinheit")));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        jAttackBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Keine" }));
+        jAttackBox.setModel(new DefaultComboBoxModel(new Object[]{trans.get("Keine")}));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;

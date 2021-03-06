@@ -387,13 +387,8 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
             
             // <editor-fold defaultstate="collapsed" desc=" Init HelpSystem ">
             if (!Constants.DEBUG) {
-                GlobalOptions.getHelpBroker().enableHelpKey(DSWorkbenchSimulatorFrame.getSingleton().getRootPane(), "pages.astar", GlobalOptions.getHelpBroker().getHelpSet());
                 GlobalOptions.getHelpBroker().enableHelpKey(DSWorkbenchMainFrame.getSingleton().getRootPane(), "index", GlobalOptions.getHelpBroker().getHelpSet());
             }
-            // </editor-fold>
-
-            // <editor-fold defaultstate="collapsed" desc=" Init A*Star Servers ">
-            ServerManager.giveSimulatorServerList();
             // </editor-fold>
             
             t.stopRunning();
