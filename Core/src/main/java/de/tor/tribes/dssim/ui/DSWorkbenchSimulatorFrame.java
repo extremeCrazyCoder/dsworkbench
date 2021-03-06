@@ -158,7 +158,7 @@ public class DSWorkbenchSimulatorFrame extends AbstractDSWorkbenchFrame {
         jAttackerTable.setRowHeight(20);
         jAttackerTable.setDefaultEditor(Double.class, new TechLevelCellEditor((ServerSettings.getSingleton().getTechType() == ServerSettings.TECH_3) ? 3 : 10));
         jAttackerTable.setDefaultEditor(Integer.class, new SpreadSheetCellEditor());
-        jAttackerTable.setDefaultRenderer(String.class, new UnitCellRenderer());
+        jAttackerTable.setDefaultRenderer(UnitHolder.class, new UnitCellRenderer());
         jAttackerTable.setDefaultRenderer(Object.class, new MultiFunctionCellRenderer());
         jAttackerTable.setDefaultEditor(Object.class, new MultiCellEditor());
         if (ServerSettings.getSingleton().getTechType() != ServerSettings.SIMPLE_TECH) {
