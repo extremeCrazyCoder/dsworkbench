@@ -1,4 +1,6 @@
 #default variables for german servers
+dateFormat.locale=de
+
 troops.own=eigene
 troops.in.village=im Dorf
 troops.outside=ausw\u00e4rts

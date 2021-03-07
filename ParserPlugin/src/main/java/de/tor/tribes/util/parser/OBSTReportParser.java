@@ -45,12 +45,12 @@ public class OBSTReportParser implements SilentParserInterface {
             
             if (token.startsWith("Gesendet")) {
                 String sendTime = token.replaceAll("Gesendet", "").trim();
-                SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm");
+                SimpleDateFormat f = new SimpleDateFormat("dd.MM.yy HH:mm", ParserVariableManager.getSingleton().getDateLocale());
                 try {
                     Date d = f.parse(sendTime);
                     result.setTimestamp(d.getTime());
                 } catch (Exception e) {
-                    f = new SimpleDateFormat("dd.MM.yy HH:mm:ss");
+                    f = new SimpleDateFormat("dd.MM.yy HH:mm:ss", ParserVariableManager.getSingleton().getDateLocale());
                     try {
                         Date d = f.parse(sendTime);
                         result.setTimestamp(d.getTime());

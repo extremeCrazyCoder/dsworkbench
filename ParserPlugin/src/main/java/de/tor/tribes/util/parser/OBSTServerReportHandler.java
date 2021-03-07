@@ -201,9 +201,9 @@ public class OBSTServerReportHandler implements SilentParserInterface {
                 
                 SimpleDateFormat f;
                 if (ServerSettings.getSingleton().isMillisArrival()) {
-                    f = new SimpleDateFormat(getVariable("report.date.format.ms"));
+                    f = new SimpleDateFormat(getVariable("report.date.format.ms"), ParserVariableManager.getSingleton().getDateLocale());
                 } else {
-                    f = new SimpleDateFormat(getVariable("report.date.format"));
+                    f = new SimpleDateFormat(getVariable("report.date.format"), ParserVariableManager.getSingleton().getDateLocale());
                 }
                 Date sent = f.parse(date);
                 report.setTimestamp(sent.getTime());

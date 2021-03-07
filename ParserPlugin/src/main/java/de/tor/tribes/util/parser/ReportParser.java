@@ -88,9 +88,9 @@ public class ReportParser implements SilentParserInterface {
                 
                 SimpleDateFormat f;
                 if (ServerSettings.getSingleton().isMillisArrival()) {
-                    f = new SimpleDateFormat(getVariable("report.date.format.ms"));
+                    f = new SimpleDateFormat(getVariable("report.date.format.ms"), ParserVariableManager.getSingleton().getDateLocale());
                 } else {
-                    f = new SimpleDateFormat(getVariable("report.date.format"));
+                    f = new SimpleDateFormat(getVariable("report.date.format"), ParserVariableManager.getSingleton().getDateLocale());
                 }
                 try {
                     Date d = f.parse(line);
@@ -409,7 +409,7 @@ public class ReportParser implements SilentParserInterface {
             if (!haveTime) {
                 logger.debug("Parse sent date");
                 line = line.trim();
-                SimpleDateFormat f = new SimpleDateFormat(getVariable("report.date.format"));
+                SimpleDateFormat f = new SimpleDateFormat(getVariable("report.date.format"), ParserVariableManager.getSingleton().getDateLocale());
                 try {
                     Date d = f.parse(line);
                     result.setTimestamp(d.getTime());

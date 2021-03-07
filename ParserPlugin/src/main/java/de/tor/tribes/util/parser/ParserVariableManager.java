@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.Locale;
 import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -188,7 +189,20 @@ public class ParserVariableManager {
             property = DEFAULT.getProperty("de." + pProperty);
         }
         return property;
-    }   
+    }
+    
+    public Locale getDateLocale() {
+        String locale = getProperty("dateFormat.locale");
+        
+        Locale all[] = java.util.Locale.getAvailableLocales();
+        for(Locale cur : all) {
+            if(cur.getLanguage().equals(locale)) {
+                return cur;
+            }
+        }
+        
+        throw new RuntimeException("Locale not found");
+    }
 
     private String fileExtension(File file) {
         String fileName = file.getName().toLowerCase();

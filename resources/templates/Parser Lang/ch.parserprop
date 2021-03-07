@@ -1,4 +1,6 @@
 #variables for suisse servers
+dateFormat.locale=de
+
 troops.own=eigeni
 troops.in.village=im Dorf
 troops.outside=usw\u00e4rts

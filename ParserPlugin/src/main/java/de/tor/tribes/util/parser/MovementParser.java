@@ -129,18 +129,18 @@ public class MovementParser implements SilentParserInterface {
                 //replace date names that simple Date Format can't handle
                 if(parts[2].startsWith(getVariable("movement.date.today"))) {
                     parts[2] = parts[2].substring(parts[2].indexOf(' '));
-                    parts[2] = new SimpleDateFormat(getVariable("movement.date.format.ouput")).format(new Date()) + parts[2];
+                    parts[2] = new SimpleDateFormat(getVariable("movement.date.format.ouput"), ParserVariableManager.getSingleton().getDateLocale()).format(new Date()) + parts[2];
                 } else if(parts[2].startsWith(getVariable("movement.date.tomorrow"))) {
                     parts[2] = parts[2].substring(parts[2].indexOf(' '));
-                    parts[2] = new SimpleDateFormat(getVariable("movement.date.format.ouput")).format(new Date(new Date().getTime() + (1000 * 60 * 60 * 24))) + parts[2];
+                    parts[2] = new SimpleDateFormat(getVariable("movement.date.format.ouput"), ParserVariableManager.getSingleton().getDateLocale()).format(new Date(new Date().getTime() + (1000 * 60 * 60 * 24))) + parts[2];
                 }
 
                 boolean useMillis = ServerSettings.getSingleton().isMillisArrival();
                 SimpleDateFormat dateFormat;
                 if (!useMillis) {
-                    dateFormat = new SimpleDateFormat(getVariable("movement.date.format"));
+                    dateFormat = new SimpleDateFormat(getVariable("movement.date.format"), ParserVariableManager.getSingleton().getDateLocale());
                 } else {
-                    dateFormat = new SimpleDateFormat(getVariable("movement.date.format.ms"));
+                    dateFormat = new SimpleDateFormat(getVariable("movement.date.format.ms"), ParserVariableManager.getSingleton().getDateLocale());
                 }
                 try {
                     parsed.setArriveTime(dateFormat.parse(parts[2]));

@@ -1,4 +1,6 @@
 #default variables for english servers
+dateFormat.locale=en
+
 troops.own=your own
 troops.in.village=in village
 troops.outside=outwards
