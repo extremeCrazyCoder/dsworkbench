@@ -49,7 +49,7 @@ public class AttackTypeTableModel extends AbstractTableModel {
         columnTypes.add(Integer.class);
         units = DataHolder.getSingleton().getSendableUnits();
         for (UnitHolder unit : units) {
-            columnNames.add(unit.getPlainName());
+            columnNames.add(unit.getName());
             columnTypes.add(TroopAmountElement.class);
         }
     }
