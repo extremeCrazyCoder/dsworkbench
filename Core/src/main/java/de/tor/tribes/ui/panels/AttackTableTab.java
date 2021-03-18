@@ -214,7 +214,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         if (e.getValueIsAdjusting()) {
             int selectionCount = jxAttackTable.getSelectedRowCount();
             if (selectionCount != 0) {
-                showInfo(selectionCount + ((selectionCount == 1) ? " Befehl gewählt" : " Befehle gewählt"));
+                showInfo(selectionCount + ((selectionCount == 1) ? trans.get("Befehlgewaehlt") : trans.get("Befehlegewaehlt")));
             }
         }
     }
@@ -251,7 +251,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     public void addAttackTimer() {
         List<Attack> selection = getSelectedAttacks();
         if (selection.isEmpty()) {
-            showInfo("Kein Befehl gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
         } else {
             //remove attacks from past
             for (Attack a : selection.toArray(new Attack[]{})) {
@@ -261,20 +261,20 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             }
 
             if (selection.size() > 10) {
-                showInfo("Es können maximal 10 Timer gleichzeitig erstellt werden.");
+                showInfo(trans.get("MaximalZehn"));
                 return;
             }
 
-            String result = JOptionPane.showInputDialog(this, "Wieviele Sekunden vor dem Befehl soll der Alarm abgespielt werden?", 30);
+            String result = JOptionPane.showInputDialog(this, trans.get("WievieleSekunden"), 30);
             if (result != null) {
                 try {
                     int time = Integer.parseInt(result);
                     for (Attack a : selection) {
                         ClockFrame.getSingleton().addTimer(a, time);
                     }
-                    showInfo(selection.size() + " Timer erstellt.");
+                    showInfo(selection.size() + trans.get("Timererstellt"));
                 } catch (Exception ex) {
-                    showInfo("Ungültige Sekundenangabe");
+                    showInfo(trans.get("UngueltigeSekundenangabe"));
                 }
             }
         }
@@ -1246,18 +1246,19 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         }
 
         if (AttackScriptWriter.writeAttackScript(attacks, false, 5, true, Color.GREEN, Color.RED, jShowAttacksInVillageInfo.isSelected(), jShowAttacksOnConfirmPage.isSelected(), jShowAttacksInPlace.isSelected(), jShowAttacksInOverview.isSelected())) {
-            showSuccess("Script erfolgreich nach 'zz_attack_info.user.js' geschrieben.\nDenke bitte daran, das Script in deinem Browser einzufügen/zu aktualisieren!");
+            showSuccess(trans.get("Scripterfolgreich"));
             if (System.getProperty("os.name").startsWith("Windows")) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Möchtest du das Speicherverzeichnis des Scripts nun im Explorer öffnen?", "Information", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Speicherverzeichnis"),
+                        trans.get("Information"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                     try {
                         Runtime.getRuntime().exec("explorer.exe .\\");
                     } catch (Exception e) {
-                        showError("Explorer konnte nicht geöffnet werden.");
+                        showError(trans.get("Explorer_noopen"));
                     }
                 }
             }
         } else {
-            showError("Fehler beim Schreiben des Scripts.");
+            showError(trans.get("Error_writing_script"));
         }
         //store properties
         GlobalOptions.addProperty("attack.script.draw.vectors", Boolean.toString(false));
@@ -1279,9 +1280,9 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         if (toRemove.isEmpty()) {
             return;
         }
-        String message = (toRemove.size() == 1) ? "1 Befehl entfernen?" : toRemove.size() + " Befehle entfernen?";
+        String message = (toRemove.size() == 1) ? trans.get("One_report_delete") : toRemove.size() + trans.get("Befehleentfernen");
 
-        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, "Abgelaufene Befehle entfernen", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+        if (JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("AbgelaufeneBefehleentfernen"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
             return;
         }
 
@@ -1289,15 +1290,15 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
 
         AttackManager.getSingleton().removeElements(sAttackPlan, toRemove);
         attackModel.fireTableDataChanged();
-        showSuccess(toRemove.size() + " Befehl(e) entfernt");
+        showSuccess(toRemove.size() + trans.get("Befehleentfernt"));
     }
 
     public boolean deleteSelection(boolean pAsk) {
         List<Attack> selectedAttacks = getSelectedAttacks();
 
         if (pAsk) {
-            String message = ((selectedAttacks.size() == 1) ? "Befehl " : (selectedAttacks.size() + " Befehle ")) + "wirklich löschen?";
-            if (selectedAttacks.isEmpty() || JOptionPaneHelper.showQuestionConfirmBox(this, message, "Befehle löschen", "Nein", "Ja") != JOptionPane.YES_OPTION) {
+            String message = ((selectedAttacks.size() == 1) ? trans.get("Befehl") : (selectedAttacks.size() + trans.get("Befehle"))) + trans.get("wirklichloeschen");
+            if (selectedAttacks.isEmpty() || JOptionPaneHelper.showQuestionConfirmBox(this, message, trans.get("Befehleloeschen"), trans.get("Nein"), trans.get("Ja")) != JOptionPane.YES_OPTION) {
                 return false;
             }
         }
@@ -1305,7 +1306,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         jxAttackTable.editingCanceled(new ChangeEvent(this));
         AttackManager.getSingleton().removeElements(sAttackPlan, selectedAttacks);
         attackModel.fireTableDataChanged();
-        showSuccess(selectedAttacks.size() + " Befehl(e) gelöscht");
+        showSuccess(selectedAttacks.size() + trans.get("Befehlegeloescht"));
         return true;
     }
 
@@ -1317,7 +1318,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         if (!getSelectedAttacks().isEmpty()) {
             jTimeChangeDialog.setVisible(true);
         } else {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
         }
     }
 
@@ -1330,7 +1331,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             jChangeAttackTypeDialog.pack();
             jChangeAttackTypeDialog.setVisible(true);
         } else {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
         }
     }
 
@@ -1341,7 +1342,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             }
             attackModel.fireTableDataChanged();
         } else {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
         }
     }
 
@@ -1352,13 +1353,13 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             }
             attackModel.fireTableDataChanged();
         } else {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
         }
     }
 
     public void transferToScript() {
         if (getSelectedAttacks().isEmpty()) {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
             return;
         }
         jScriptExportDialog.pack();
@@ -1369,11 +1370,16 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     private void transferToSelectionTool() {
         List<Attack> selection = getSelectedAttacks();
         if (selection.isEmpty()) {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
             return;
         }
         List<Village> villages = new ArrayList<>();
-        int result = JOptionPaneHelper.showQuestionThreeChoicesBox(this, "Herkunft oder Zieldörfer übertragen?", "Übertragen", "Herkunft", "Ziele", "Abbrechen");
+        int result = JOptionPaneHelper.showQuestionThreeChoicesBox(this, 
+                trans.get("HerkunftZieldoerfer"), 
+                trans.get("Uebertragen"), 
+                trans.get("Herkunft"), 
+                trans.get("Ziele"), 
+                trans.get("Abbrechen"));
         if (result == JOptionPane.YES_OPTION) {
             //target   
             for (Attack a : selection) {
@@ -1393,7 +1399,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             return;
         }
         DSWorkbenchSelectionFrame.getSingleton().updateSelection(villages);
-        showInfo(villages.size() + ((villages.size() == 1) ? " Dorf" : " Dörfer") + " in die Auswahlübersicht übertragen");
+        showInfo(villages.size() + ((villages.size() == 1) ? trans.get("Dorf") : trans.get("Doerfer")) + trans.get("In_die_auswahlueberischt"));
     }
 
     public void transferSelection(TRANSFER_TYPE pType) {
@@ -1444,7 +1450,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         try {
             List<Attack> attacks = getSelectedAttacks();
             if (attacks.isEmpty()) {
-                showInfo("Keine Befehle ausgewählt");
+                showInfo(trans.get("KeineBefehleausgewaehlt"));
                 return;
             }
             StringBuilder buffer = new StringBuilder();
@@ -1453,11 +1459,11 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(buffer.toString()), null);
-            String result = "Daten in Zwischenablage kopiert.";
+            String result = trans.get("DateninZwischenablagekopiert");
             showSuccess(result);
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            String result = "Fehler beim Kopieren in die Zwischenablage.";
+            String result = trans.get("FehlerbeimKopierenindieZwischenablage");
             // JOptionPaneHelper.showErrorBox(this, result, "Fehler");
             showError(result);
         }
@@ -1467,27 +1473,25 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         try {
             List<Attack> attacks = getSelectedAttacks();
             if (attacks.isEmpty()) {
-                showInfo("Keine Befehle ausgewählt");
+                showInfo(trans.get("KeineBefehleausgewaehlt"));
                 return;
             }
             
-            String b = AttackListFormatter.AttackListToBBCodes(this, attacks, "Angriffsplan");
+            String b = AttackListFormatter.AttackListToBBCodes(this, attacks, trans.get("Angriffsplan"));
             StringTokenizer t = new StringTokenizer(b, "[");
             int cnt = t.countTokens();
             if (cnt > 1000) {
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Die ausgewählten Befehle benötigen mehr als 1000 BB-Codes\n"
-                        + "und können daher im Spiel (Forum/IGM/Notizen) nicht auf einmal dargestellt werden.\n"
-                        + "Trotzdem exportieren?", "Zu viele BB-Codes", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("Befehletausendcodes"), trans.get("ZuvieleBBCodes"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                     return;
                 }
             }
 
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b), null);
-            String result = "Daten in Zwischenablage kopiert.";
+            String result = trans.get("DateninZwischenablagekopiert");
             showSuccess(result);
         } catch (Exception e) {
             logger.error("Failed to copy data to clipboard", e);
-            String result = "Fehler beim Kopieren in die Zwischenablage.";
+            String result = trans.get("FehlerbeimKopierenindieZwischenablage");
             showError(result);
         }
     }
@@ -1496,7 +1500,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         List<Attack> toExport = getSelectedAttacks();
 
         if (toExport.isEmpty()) {
-            showInfo("Keine Befehle ausgewählt");
+            showInfo(trans.get("KeineBefehleausgewaehlt"));
             return;
         }
 
@@ -1509,11 +1513,11 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         try {
             chooser = new JFileChooser(dir);
         } catch (Exception e) {
-            JOptionPaneHelper.showErrorBox(this, "Konnte Dateiauswahldialog nicht öffnen.\nMöglicherweise verwendest du Windows Vista. Ist dies der Fall, beende DS Workbench, klicke mit der rechten Maustaste auf DSWorkbench.exe,\n" + "wähle 'Eigenschaften' und deaktiviere dort unter 'Kompatibilität' den Windows XP Kompatibilitätsmodus.", "Fehler");
+            JOptionPaneHelper.showErrorBox(this, trans.get("Dateiauswahldialog"), trans.get("Fehler"));
             return;
         }
 
-        chooser.setDialogTitle("Datei auswählen");
+        chooser.setDialogTitle(trans.get("Dateiauswaehlen"));
 
         chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
@@ -1540,7 +1544,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
 
                 File target = new File(file);
                 if (target.exists()) {
-                    if (JOptionPaneHelper.showQuestionConfirmBox(this, "Bestehende Datei überschreiben?", "Überschreiben", "Nein", "Ja") == JOptionPane.NO_OPTION) {
+                    if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("BestehendeDatei"), trans.get("Ueberschreiben"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.NO_OPTION) {
                         //do not overwrite
                         return;
                     }
@@ -1549,8 +1553,8 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                 AttackPlanHTMLExporter.doExport(target, selectedPlan, toExport);
                 //store current directory
                 GlobalOptions.addProperty("screen.dir", target.getParent());
-                showSuccess("Befehle erfolgreich gespeichert");
-                if (JOptionPaneHelper.showQuestionConfirmBox(this, "Möchtest du die erstellte Datei jetzt im Browser betrachten?", "Information", "Nein", "Ja") == JOptionPane.YES_OPTION) {
+                showSuccess(trans.get("Befehleerfolgreichgespeichert"));
+                if (JOptionPaneHelper.showQuestionConfirmBox(this, trans.get("DateiBrowserbetrachten"), trans.get("Information"), trans.get("Nein"), trans.get("Ja")) == JOptionPane.YES_OPTION) {
                     BrowserInterface.openPage(target.toURI().toURL().toString());
                 }
             } catch (Exception e) {
@@ -1559,7 +1563,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                 } else {
                     logger.error("Failed to write attacks to HTML file <INVALID>", e);
                 }
-                showError("Fehler beim Speichern der HTML Datei");
+                showError(trans.get("FehlerSpeichernHTMLDatei"));
             }
         }
     }
@@ -1568,23 +1572,23 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         List<Attack> toExport = getSelectedAttacks();
 
         if (toExport.isEmpty()) {
-            showInfo("Keine Befehle ausgewählt");
+            showInfo(trans.get("KeineBefehleausgewaehlt"));
             return;
         }
 
         AttacksToTextExportDialog dia = new AttacksToTextExportDialog(DSWorkbenchAttackFrame.getSingleton(), true);
         dia.setLocationRelativeTo(this);
         if (dia.setupAndShow(toExport)) {
-            showSuccess("Befehle erfolgreich gespeichert");
+            showSuccess(trans.get("Befehleerfolgreichgespeichert"));
         } else {
-            showInfo("Abbruch oder Fehler beim Speichern der Befehle");
+            showInfo(trans.get("AbbruchSpeichern"));
         }
     }
 
     private void sendAttacksToBrowser() {
         List<Attack> attacks = getSelectedAttacks();
         if (attacks.isEmpty()) {
-            showInfo("Keine Befehle ausgewählt");
+            showInfo(trans.get("KeineBefehleausgewaehlt"));
             return;
         }
         int sentAttacks = 0;
@@ -1645,18 +1649,18 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
 
         String usedProfile = "";
         if (profile != null) {
-            usedProfile = "als " + profile.toString();
+            usedProfile = trans.get("als") + profile.toString();
         }
-        String message = "<html>" + sentAttacks + " von " + attacks.size() + " Befehle(n) " + usedProfile + " in den Browser &uuml;bertragen";
+        String message = "<html>" + sentAttacks + trans.get("von") + attacks.size() + trans.get("Befehlen_HTML") + usedProfile + trans.get("Browseruebertragen_HTML");
         if(errors != 0) {
-            message += "<br/>" + errors + " Befehl(e) haben einen internen fehler produziert. Bitte stelle sicher, dass die Truppen eingelesen sind. Sollte dies nicht helfen erstelle im Forum einen Post";
+            message += "<br/>" + errors + trans.get("BefehleinternenFehler");
         }
         if (ignoredAttacks != 0) {
-            message += "<br/>" + ignoredAttacks + " Befehl(e) ignoriert, da sie bereits &uuml;bertragen wurden";
+            message += "<br/>" + ignoredAttacks + trans.get("Befehleignoriert");
         }
 
         if (clickAccountEmpty) {
-            message += "<br/>Keine weiteren Klicks auf dem Klick-Konto!";
+            message += trans.get("KlickKonto");
         }
         message += "</html>";
         showInfo(message);
@@ -1665,7 +1669,7 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     private boolean copyToInternalClipboard() {
         List<Attack> selection = getSelectedAttacks();
         if (selection.isEmpty()) {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
             return false;
         }
         StringBuilder b = new StringBuilder();
@@ -1676,10 +1680,10 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
         }
         try {
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(b.toString()), null);
-            showSuccess(cnt + ((cnt == 1) ? " Befehl kopiert" : " Befehle kopiert"));
+            showSuccess(cnt + ((cnt == 1) ? trans.get("Befehlkopiert") : trans.get("Befehlekopiert")));
             return true;
         } catch (HeadlessException hex) {
-            showError("Fehler beim Kopieren der Befehle");
+            showError(trans.get("FehlerKopierenBefehle"));
             return false;
         }
     }
@@ -1687,13 +1691,13 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
     private void cutToInternalClipboard() {
         int size = getSelectedAttacks().size();
         if (size == 0) {
-            showInfo("Keine Befehle gewählt");
+            showInfo(trans.get("KeinBefehlgewaehlt"));
             return;
         }
         if (copyToInternalClipboard() && deleteSelection(false)) {
-            showSuccess(size + ((size == 1) ? " Befehl ausgeschnitten" : " Befehle ausgeschnitten"));
+            showSuccess(size + ((size == 1) ? trans.get("Befehlausgeschnitten") : trans.get("Befehleausgeschnitten")));
         } else {
-            showError("Fehler beim Ausschneiden der Befehle");
+            showError(trans.get("FehlerAusschneidenBefehle"));
         }
     }
 
@@ -1710,38 +1714,38 @@ public class AttackTableTab extends javax.swing.JPanel implements ListSelectionL
                     cnt++;
                 }
             }
-            showSuccess(cnt + ((cnt == 1) ? " Befehl eingefügt" : " Befehle eingefügt"));
+            showSuccess(cnt + ((cnt == 1) ? trans.get("Befehleingefuegt") : trans.get("Befehleeingefuegt")));
         } catch (UnsupportedFlavorException | IOException ufe) {
             logger.error("Failed to copy attacks from internal clipboard", ufe);
-            showError("Fehler beim Einfügen der Befehle");
+            showError(trans.get("FehlerEinfuegenBefehle"));
         }
         attackModel.fireTableDataChanged();
     }
 
     private void sendAttackToRetimeFrame() {
         if (getSelectedAttacks().isEmpty()) {
-            showInfo("Kein Befehle gewählt");
+            showInfo(trans.get("KeinBefehlegewaehlt"));
             return;
         }
         Attack attack = getSelectedAttacks().get(0);
 
         StringBuilder b = new StringBuilder();
-        b.append("Herkunft: ").append(attack.getSource().toString()).append("\n");
-        b.append("Ziel: ").append(attack.getTarget().toString()).append("\n");
+        b.append(trans.get("Herkunft_")).append(attack.getSource().toString()).append("\n");
+        b.append(trans.get("Ziel_")).append(attack.getTarget().toString()).append("\n");
         SimpleDateFormat f = null;
         if (ServerSettings.getSingleton().isMillisArrival()) {
             f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss:SSS");
         } else {
             f = TimeManager.getSimpleDateFormat("dd.MM.yy HH:mm:ss");
         }
-        b.append("Ankunft: ").append(f.format(attack.getArriveTime())).append("\n");
+        b.append(trans.get("Ankunft:")).append(f.format(attack.getArriveTime())).append("\n");
 
 
         if (RetimerDataPanel.getSingleton().readAttackFromString(b.toString())) {
-            showSuccess("Befehl in Retimer übertragen");
+            showSuccess(trans.get("BefehlRetimeruebertragen"));
             TacticsPlanerWizard.show();
         } else {
-            showError("Kein gültiger Angriffsbefehl gefunden");
+            showError(trans.get("KeinAngriffsbefehlgefunden"));
         }
     }
 
