@@ -15,6 +15,7 @@
  */
 package de.tor.tribes.ui;
 
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.ui.components.LayerOrderPanel;
 import de.tor.tribes.util.interfaces.LayerOrderTooltipListener;
 import de.tor.tribes.util.translation.TranslationManager;
@@ -34,13 +35,13 @@ public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements 
     private static Translator trans = TranslationManager.getTranslator("ui.LayerOrderConfigurationFrame");
     
     private static LayerOrderConfigurationFrame SINGLETON = null;
-    private HashMap<String, String> tooltips = new HashMap<>();
-    private String tooltipLayer = null;
+    private HashMap<Layer, String> tooltips = new HashMap<>();
+    private Layer tooltipLayer = null;
     private String generalInformation = null;
     private LayerOrderPanel panel = null;
 
     @Override
-    public void fireShowTooltipEvent(String pLayer) {
+    public void fireShowTooltipEvent(Layer pLayer) {
         if (pLayer == null) {
             tooltipLayer = null;
             jTextPane1.setText(generalInformation);
@@ -80,62 +81,23 @@ public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements 
 
     private void buildTooltipMap() {
 
-        generalInformation = "<html><font font size='-1'>Im oberen Bereich sind alle Ebenen aufgef&uuml;hrt,"
-                + " die DS Workbench im Hauptfenster zeichnen kann. Dabei werden <b>dunkelgraue</b> Ebenen gezeichnet, w&auml;hrend <b>hellgraue</b>"
-                + " Ebenen ausgeblendet sind und so keinerlei Aufwand (Speicher, CPU) verursachen.<br/>"
-                + " Fahre mit der Maus &uuml;ber die Symbole der einzelnen Ebenen, um Hinweise zu den Ebenen zu erhalten. Mit gedr&uuml;ckter"
-                + " Maustaste kannst du die Position der einzelnen Ebenen verschieben, wobei eine Position weiter links die Ebene in den Hintergrund"
-                + " verschiebt, w&auml;hrend eine Position weiter rechts die Ebene weiter im Vordergrund platziert.<br/>Eine Besonderheit bilden die Ebenen"
-                + " 'D&ouml;rfer' und 'Markierungen'. Diese Ebenen sind zum einen miteinander verbunden, zum anderen bestimmen sie, welche Ebenen"
-                + " sichtbar und welche unsichtbar sind, da Ebenen links (unterhalb) dieser Ebenen nicht gezeichnet werden.</font></html>";
+        generalInformation = trans.get("generalInformation");
 
         URL warnURL = null;
         try {
             warnURL = new File("./graphics/icons/warning.png").toURI().toURL();
         } catch (MalformedURLException ignored) {
         }
-        tooltips.put("Markierungen", "<html><font font size='-1'><b>Markierungen</b><br/>Diese Ebene enthält Farbmarkierungen von Spielern und St&auml;mmen."
-                + " Sie ist immer sichtbar, kann jedoch entweder unterhalb oder oberhalb der Dorfebene gezeichnet werden, wodurch Markierungen"
-                + " deutlicher dargestellt werden k&ouml;nnen.<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;Diese Ebene ist mit der Ebene 'D&ouml;rfer verbunden. Ebenen links (unterhalb) einer dieser beiden Ebenen"
-                + " werden nicht gezeichnet.</font></html>");
-        tooltips.put("Dörfer", "<html><font font size='-1'><b>D&ouml;rfer</b><br/>Die Dorfebene enth&auml;lt alle Dorfgrafiken. Sie ist immer sichtbar"
-                + " und bestimmt, welche anderen Ebenen sichtbar sind. Alle Ebenen die sich links (unterhalb) der Dorfebene befinden,"
-                + " werden <u>nicht</u> gezeichnet.<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;Diese Ebene ist mit der Ebene 'Markierungen' verbunden. Ebenen links (unterhalb) einer dieser beiden Ebenen"
-                + " werden nicht gezeichnet.</font></html>");
-
-        tooltips.put("Zeichnungen", "<html><font font size='-1'><b>Zeichnungen</b><br/>Diese Ebene enth&auml;lt alle Zeichnungen (Kreise, Rechtecke,"
-                + " usw.) die auf der Hauptkarte eingezeichnet sind.<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;Wenn du viele transparente Zeichnungen oder Freihandzeichnungen verwendest, k&ouml;nnte"
-                + " das Zeichnen dieser Ebene sehr aufw&auml;ndig sein. Wenn du Performanceprobleme bemerkst, versuch diese Ebene auszublenden.</html>");
-
-        tooltips.put("Dorfsymbole", "<html><font font size='-1'><b>Dorfsymbole</b><br/>Diese Ebene enth&auml;lt Symbole mit deinen einzelne D&ouml;rfer"
-                + " markiert sind. Dies sind z.B. Gruppenmarkierungen oder Markierungen von kürzlich geadelten D&ouml;rfern.</html>");
-        tooltips.put("Truppendichte", "<html><font font size='-1'><b>Truppendichte</b><br/>Diese Ebene zeigt im unteren Bereich der D&ouml;rfer auf der Karte"
-                + " Balken an, welche die Truppenmenge im entsprechenden Dorf repr&auml;sentieren. Diese Balken werden nat&uuml;rlich nur f&uuml;r D&ouml;rfer"
-                + " angezeigt, zu denen DS Workbench auch Truppeninformationen besitzt. Diese k&ouml;nnen &uuml;ber den Import von InGame-Informationen oder"
-                + " &uuml;ber Berichte eingelesen werden.<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;Sind Truppeninformationen zu vielen D&ouml;rfern vorhanden, so kann das Zeichnen dieser Ebene,"
-                + " sehr aufw&auml;ndig sein. Wenn du Performanceprobleme bemerkst, versuch diese Ebene auszublenden.</html>");
-        tooltips.put("Notizmarkierungen", "<html><font font size='-1'><b>Notizmarkierungen</b><br/>Diese Ebene stellt Markierungen von Notizen dar."
-                + " Sind einem Dorf Notizen zugeordnet und sind f&uuml;r diese Notizen Kartenmarkierungen eingestellt, so werden die auf der Hauptkarte"
-                + " angezeigt wenn diese Ebene eingeblendet ist.</html>");
-        tooltips.put("Angriffe", "<html><font font size='-1'><b>Angriffe</b><br/>Diese Ebene stellt Angriffe, die sich in Befehlspl&auml;nen befinden,"
-                + " auf der Hauptkarte dar, sofern die Angriffe eingezeichnet werden sollen. In den DS Workbench Einstellungen unter 'Befehle' kann man"
-                + " weitere Eigenschaften dieser sog. Befehlsvektoren festlegen (z.B. Aktuelle Truppenposition anzeigen oder die Laufrichtung einzeichnen)<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;In der Regel wird empfohlen, diese Ebene auszublenden. Dies dient zum einen der &Uuml;bersichtlichkeit,"
-                + " zum anderen ist das Zeichnen dieser Ebene, besonders wenn Truppenposition und Laufrichtung eingezeichnet werden, sehr aufw&auml;ndig.</html>");
-        tooltips.put("Unterstützungen", "<html><font font size='-1'><b>Unterst&uuml;tzungen</b><br/>Diese Ebene stellt dar, in welchen D&ouml;rfern Unterst&uuml;tzungen "
-                + " stehen und wo diese herkommen. Unterst&uuml;tzungen werden nur eingezeichnet, wenn man in der Truppen&uuml;bersicht in der Tabelle"
-                + " 'Unterst&uuml;tzungen' Eintr&auml;ge ausgew&auml;hlt hat.</html>");
-        tooltips.put("Kirchenradien", "<html><font font size='-1'><b>Kirchenradien</b><br/>Diese Ebene zeichnet Kirchenradien ein, die in der Kirchen&uuml;bersicht"
-                + " aufgef&uuml;hrt sind. Kirchenradien einzelner Spieler werden dabei zu einer Region zusammengefasst. Diese Ebene ist nur auf Welten von Bedeutung,"
-                + " auf die Kirche aktiviert ist.<br/><br/>"
-                + "<img src='" + warnURL + "'/>&nbsp;Hat man sehr viele Kirchen eingetragen, so wird empfohlen, diese Ebene nur bei Bedarf einzublenden,"
-                + " da das Zusammenfassen vieler Kirchenradien sehr aufw&auml;ndig ist und so die Darstellungszeit der Karte stark beeinflusst wird.</html>");
-        tooltips.put("Wachturmradien", "<html><font font size='-1'><b>Wachturmradien</b><br/>Diese Ebene zeichnet Wachturmradien ein, die in der Wachturm&uuml;bersicht"
-                + " aufgef&uuml;hrt sind. Diese Ebene ist nur auf Welten von Bedeutung, auf der Wachtürme aktiviert sind.<br/><br/>");
+        tooltips.put(Layer.MARKERS, trans.get("MARKERS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.VILLAGES, trans.get("VILLAGES").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.DRAWINGS, trans.get("DRAWINGS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.VILLAGE_SYMBOLS, trans.get("VILLAGE_SYMBOLS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.TROOP_DENSITY, trans.get("TROOP_DENSITY").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.NOTES_MARKER, trans.get("NOTES_MARKER").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.ATTACKS, trans.get("ATTACKS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.SUPPORTS, trans.get("SUPPORTS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.CHURCH_RADIUS, trans.get("CHURCH_RADIUS").replaceAll("\\{warnURL\\}", warnURL.toString()));
+        tooltips.put(Layer.WATCHTOWER_RADIUS, trans.get("WATCHTOWER_RADIUS").replaceAll("\\{warnURL\\}", warnURL.toString()));
     }
 
     /** This method is called from within the constructor to
@@ -202,12 +164,8 @@ public class LayerOrderConfigurationFrame extends javax.swing.JFrame implements 
         setVisible(false);
     }//GEN-LAST:event_fireCloseFrameEvent
 
-    public String getLayerOrder() {
-        String res = "";
-        for (LayerOrderPanel.Layer l : panel.getLayers()) {
-            res += l.getName() + ";";
-        }
-        return res;
+    public String getLayerPropertyString() {
+        return panel.getLayerPropertyString();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

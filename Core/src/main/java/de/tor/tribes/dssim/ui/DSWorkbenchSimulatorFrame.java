@@ -1278,7 +1278,6 @@ public class DSWorkbenchSimulatorFrame extends AbstractDSWorkbenchFrame {
 
     private void fireAlwaysOnTopChangeEvent(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fireAlwaysOnTopChangeEvent
         setAlwaysOnTop(jAlwaysOnTopButton.isSelected());
-        //TODO Entfernen??
     }//GEN-LAST:event_fireAlwaysOnTopChangeEvent
 
     private void fireAimChurchStateChangedEvent(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fireAimChurchStateChangedEvent

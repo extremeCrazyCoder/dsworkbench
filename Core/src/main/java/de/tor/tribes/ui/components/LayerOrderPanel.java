@@ -15,14 +15,12 @@
  */
 package de.tor.tribes.ui.components;
 
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.ui.panels.MapPanel;
 import de.tor.tribes.ui.renderer.map.MapRenderer;
-import de.tor.tribes.util.Constants;
 import de.tor.tribes.util.GlobalOptions;
 import de.tor.tribes.util.ImageUtils;
 import de.tor.tribes.util.interfaces.LayerOrderTooltipListener;
-import de.tor.tribes.util.translation.TranslationManager;
-import de.tor.tribes.util.translation.Translator;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Composite;
@@ -44,75 +42,68 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 import javax.imageio.ImageIO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Torridity
  */
 public class LayerOrderPanel extends javax.swing.JPanel {
-
-    private Translator trans = TranslationManager.getTranslator("ui.compoents.LayerOrderPanel");
+    private static Logger logger = LogManager.getLogger("LayerOrderPanel");
     
     int activeLayer = -1;
     int focusLayer = -1;
     private List<Layer> layers = new ArrayList<>();
-    private HashMap<String, BufferedImage> iconMap = new HashMap<>();
+    private HashMap<Layer, BufferedImage> iconMap = new HashMap<>();
     private LayerOrderTooltipListener tooltipListener = null;
 
     /** Creates new form LayerOrderPanel */
     public LayerOrderPanel(LayerOrderTooltipListener pListener) {
         initComponents();
         tooltipListener = pListener;
-        Vector<String> v = new Vector<>(Constants.LAYERS.size());
-        for (int i = 0; i < Constants.LAYERS.size(); i++) {
-            v.add("");
-        }
-
+        
         String layerOrder = GlobalOptions.getProperty("layer.order");
+        boolean newInit = false;
         if (layerOrder == null) {
-            for(String layer: Constants.LAYERS.keySet()) {
-                v.set(Constants.LAYERS.get(layer), layer);
-            }
+            newInit = true;
         } else {
             //try to use stored layers
-            String[] layers = layerOrder.split(";");
-            if (layers.length == Constants.LAYER_COUNT) {
+            String[] orderedLlayers = layerOrder.split(";");
+            if (orderedLlayers.length == Layer.values().length) {
                 //layer sizes are equal, so set layers in stored order
-                int cnt = 0;
-                for (String layer : layers) {
-                    if (layer.equals(trans.get("Formen"))) {
-                        //disable old forms id
-                        v.set(cnt, trans.get("Zeichnungen"));
-                    } else {
-                        v.set(cnt, layer);
+                try {
+                    for (String layer : orderedLlayers) {
+                        layers.add(Layer.valueOf(layer));
                     }
-                    cnt++;
+                } catch(IllegalArgumentException e) {
+                    logger.debug("Exception during load", e);
+                    newInit = true;
                 }
             } else {
                 //layer number has changed since value was stored, so rebuild
-                for(String layer: Constants.LAYERS.keySet()) {
-                    v.set(Constants.LAYERS.get(layer), layer);
-                }
+                newInit = true;
+            }
+        }
+        if(newInit) {
+            layers.clear();
+            for(Layer layer: Layer.values()) {
+                layers.add(layer);
             }
         }
 
-        for (String layer : v) {
-            layers.add(new Layer(layer, null, Constants.LAYERS.get(layer)));
-        }
-
         try {
-            iconMap.put(trans.get("Angriffe"), ImageIO.read(LayerOrderPanel.class.getResource("/res/barracks.png")));
-            iconMap.put(trans.get("Dorfsymbole"), ImageIO.read(new File("graphics/icons/village_symbols.png")));
-            iconMap.put(trans.get("Zeichnungen"), ImageIO.read(LayerOrderPanel.class.getResource("/res/ui/draw_small.gif")));
-            iconMap.put(trans.get("Notizmarkierungen"), ImageIO.read(new File("graphics/icons/note.png")));
-            iconMap.put(trans.get("Doerfer"), ImageIO.read(new File("graphics/icons/village.png")));
-            iconMap.put(trans.get("Unterstuetzungen"), ImageIO.read(new File("graphics/icons/def.png")));
-            iconMap.put(trans.get("Markierungen"), ImageIO.read(new File("graphics/icons/mark.png")));
-            iconMap.put(trans.get("Truppendichte"), ImageIO.read(new File("graphics/icons/village_troops.png")));
-            iconMap.put(trans.get("Kirchenradien"), ImageIO.read(new File("graphics/icons/church_layer.png")));
-            iconMap.put(trans.get("Wachturmradien"), ImageIO.read(new File("graphics/icons/watchtower_layer.png")));
+            iconMap.put(Layer.ATTACKS, ImageIO.read(LayerOrderPanel.class.getResource("/res/barracks.png")));
+            iconMap.put(Layer.VILLAGE_SYMBOLS, ImageIO.read(new File("graphics/icons/village_symbols.png")));
+            iconMap.put(Layer.DRAWINGS, ImageIO.read(LayerOrderPanel.class.getResource("/res/ui/draw_small.gif")));
+            iconMap.put(Layer.NOTES_MARKER, ImageIO.read(new File("graphics/icons/note.png")));
+            iconMap.put(Layer.VILLAGES, ImageIO.read(new File("graphics/icons/village.png")));
+            iconMap.put(Layer.SUPPORTS, ImageIO.read(new File("graphics/icons/def.png")));
+            iconMap.put(Layer.MARKERS, ImageIO.read(new File("graphics/icons/mark.png")));
+            iconMap.put(Layer.TROOP_DENSITY, ImageIO.read(new File("graphics/icons/village_troops.png")));
+            iconMap.put(Layer.CHURCH_RADIUS, ImageIO.read(new File("graphics/icons/church_layer.png")));
+            iconMap.put(Layer.WATCHTOWER_RADIUS, ImageIO.read(new File("graphics/icons/watchtower_layer.png")));
         } catch (Exception ignored) {
         }
 
@@ -170,7 +161,7 @@ public class LayerOrderPanel extends javax.swing.JPanel {
                 }
 
                 if (focusLayer != -1) {
-                    tooltipListener.fireShowTooltipEvent(layers.get(idx).getName());
+                    tooltipListener.fireShowTooltipEvent(layers.get(idx));
                 } else {
                     tooltipListener.fireShowTooltipEvent(null);
                 }
@@ -232,13 +223,13 @@ public class LayerOrderPanel extends javax.swing.JPanel {
         Ellipse2D markerEllipse = null;
         for (Layer l : layers) {
             g2d.setColor(Color.LIGHT_GRAY);
-            switch (l.getName()) {
-                case "Dörfer":
+            switch (l) {
+                case VILLAGES:
                     gotVillages = true;
                     markerLayer = false;
                     villageLayer = true;
                     break;
-                case "Markierungen":
+                case MARKERS:
                     gotMarkers = true;
                     markerLayer = true;
                     villageLayer = false;
@@ -297,7 +288,7 @@ public class LayerOrderPanel extends javax.swing.JPanel {
 
             g2d.setColor(Color.BLACK);
             g2d.draw(l.getDragEllipse());
-            BufferedImage im = iconMap.get(l.getName());
+            BufferedImage im = iconMap.get(l);
             if (im != null) {
                 g2d.drawImage(im.getScaledInstance(16, 16, BufferedImage.SCALE_SMOOTH), (int) l.getDragEllipse().getX() + 4, (int) l.getDragEllipse().getY() + 4, this);
             }
@@ -325,8 +316,6 @@ public class LayerOrderPanel extends javax.swing.JPanel {
             g2d.setColor(Color.BLACK);
             g2d.draw(a);
             g2d.setComposite(before);
-            markerEllipse = null;
-            villageEllipse = null;
         }
         //sort layers
         Collections.sort(layers, new Comparator<Layer>() {
@@ -350,59 +339,20 @@ public class LayerOrderPanel extends javax.swing.JPanel {
     }
 
     private void propagateLayerOrder() {
-        List<Integer> layerOrder = new ArrayList<>();
-        for (Layer l : layers) {
-            layerOrder.add(Constants.LAYERS.get(l.getName()));
-        }
-        MapPanel.getSingleton().getMapRenderer().setDrawOrder(layerOrder);
-        MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+        MapPanel.getSingleton().getMapRenderer().setDrawOrder(layers);
+        MapPanel.getSingleton().getMapRenderer().initiateRedraw(null);
     }
 
     public List<Layer> getLayers() {
         return layers;
     }
-
-    public static class Layer {
-
-        private String name = null;
-        private int idx = -1;
-        private Color col = null;
-        private Ellipse2D dragEllipse = null;
-
-        public Layer(String pName, Color pColor, int pIdx) {
-            name = pName;
-            idx = pIdx;
-            col = pColor;
+    
+    public String getLayerPropertyString() {
+        String res = "";
+        for (Layer l : layers) {
+            res += l.toString() + ";";
         }
-
-        public Ellipse2D getDragEllipse() {
-            return dragEllipse;
-        }
-
-        public void setDragEllipse(Ellipse2D pEl) {
-            dragEllipse = pEl;
-        }
-
-        public Color getColor() {
-            return col;
-        }
-
-        public void setIndex(int pIdx) {
-            idx = pIdx;
-        }
-
-        public int getIndex() {
-            return idx;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
+        return res;
     }
 
     /** This method is called from within the constructor to

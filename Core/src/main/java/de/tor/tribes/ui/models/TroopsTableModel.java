@@ -17,6 +17,7 @@ package de.tor.tribes.ui.models;
 
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.UnitHolder;
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.types.ext.NoAlly;
 import de.tor.tribes.types.ext.Tribe;
@@ -428,6 +429,6 @@ public class TroopsTableModel extends AbstractTableModel {
                 break;
         }
         //update troops layer
-        MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.TROOP_LAYER);
+        MapPanel.getSingleton().getMapRenderer().initiateRedraw(Layer.TROOP_DENSITY);
     }
 }

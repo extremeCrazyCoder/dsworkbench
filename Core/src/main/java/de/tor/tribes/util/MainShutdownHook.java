@@ -59,7 +59,7 @@ public class MainShutdownHook extends Thread {
                 return;
             }
             GlobalOptions.saveUserData();
-            GlobalOptions.addProperty("layer.order", LayerOrderConfigurationFrame.getSingleton().getLayerOrder());
+            GlobalOptions.addProperty("layer.order", LayerOrderConfigurationFrame.getSingleton().getLayerPropertyString());
             DSWorkbenchMainFrame.getSingleton().storeProperties();
             GlobalOptions.saveProperties();
             GlobalOptions.storeViewStates();

@@ -15,11 +15,13 @@
  */
 package de.tor.tribes.util.interfaces;
 
+import de.tor.tribes.types.Layer;
+
 /**
  *
  * @author Torridity
  */
 public interface LayerOrderTooltipListener {
 
-    void fireShowTooltipEvent(String pLayer);
+    void fireShowTooltipEvent(Layer pLayer);
 }

@@ -20,6 +20,7 @@ import de.tor.tribes.dssim.ui.DSWorkbenchSimulatorFrame;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.UnitHolder;
 import de.tor.tribes.types.FightReport;
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.types.ext.Barbarians;
 import de.tor.tribes.types.ext.Tribe;
@@ -211,7 +212,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
             @Override
             public void dataChangedEvent(String pGroup) {
-                getMapRenderer().initiateRedraw(MapRenderer.TAG_MARKER_LAYER);
+                getMapRenderer().initiateRedraw(Layer.VILLAGE_SYMBOLS);
             }
         });
 
@@ -224,7 +225,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
             @Override
             public void dataChangedEvent(String pGroup) {
-                getMapRenderer().initiateRedraw(MapRenderer.ATTACK_LAYER);
+                getMapRenderer().initiateRedraw(Layer.ATTACKS);
             }
         });
         MarkerManager.getSingleton().addManagerListener(new GenericManagerListener() {
@@ -236,7 +237,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
             @Override
             public void dataChangedEvent(String pGroup) {
-                getMapRenderer().initiateRedraw(MapRenderer.MARKER_LAYER);
+                getMapRenderer().initiateRedraw(Layer.MARKERS);
             }
         });
         NoteManager.getSingleton().addManagerListener(new GenericManagerListener() {
@@ -248,7 +249,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
             @Override
             public void dataChangedEvent(String pGroup) {
-                getMapRenderer().initiateRedraw(MapRenderer.NOTE_LAYER);
+                getMapRenderer().initiateRedraw(Layer.NOTES_MARKER);
             }
         });
         TroopsManager.getSingleton().addManagerListener(new GenericManagerListener() {
@@ -260,7 +261,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
             @Override
             public void dataChangedEvent(String pGroup) {
-                getMapRenderer().initiateRedraw(MapRenderer.TROOP_LAYER);
+                getMapRenderer().initiateRedraw(Layer.TROOP_DENSITY);
             }
         });
     }
@@ -1499,7 +1500,7 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
     }//GEN-LAST:event_fireVillagePopupActionEvent
 
     private void fireResizeEvent(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_fireResizeEvent
-        MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+        MapPanel.getSingleton().getMapRenderer().initiateRedraw(null);
     }//GEN-LAST:event_fireResizeEvent
 
     @Override
@@ -1574,9 +1575,9 @@ public class MapPanel extends JPanel implements DragGestureListener, // For reco
 
         positionUpdate = true;
         if (pZoomed) {
-            getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+            getMapRenderer().initiateRedraw(null);
         } else {
-            getMapRenderer().initiateRedraw(MapRenderer.MAP_LAYER);
+            getMapRenderer().initiateRedraw(Layer.MARKERS);
         }
     }
 

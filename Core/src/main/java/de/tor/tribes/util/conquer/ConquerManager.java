@@ -20,6 +20,7 @@ import de.tor.tribes.control.ManageableType;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.ServerManager;
 import de.tor.tribes.types.Conquer;
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.types.ext.Ally;
 import de.tor.tribes.types.ext.Barbarians;
 import de.tor.tribes.types.ext.Tribe;
@@ -182,7 +183,7 @@ public class ConquerManager extends GenericManager<Conquer> {
         
         updateAcceptance();
         try {
-            MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.TAG_MARKER_LAYER);
+            MapPanel.getSingleton().getMapRenderer().initiateRedraw(Layer.VILLAGE_SYMBOLS);
         } catch (Exception ignored) {
         }
     }
@@ -378,7 +379,7 @@ public class ConquerManager extends GenericManager<Conquer> {
     private void fireConquersChangedEvents() {
         revalidate(true);
         try {
-            MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.TAG_MARKER_LAYER);
+            MapPanel.getSingleton().getMapRenderer().initiateRedraw(Layer.VILLAGE_SYMBOLS);
         } catch (Exception e) {
             //failed to initialize redraw because renderer is still null
         }

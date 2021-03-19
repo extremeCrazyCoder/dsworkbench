@@ -17,6 +17,7 @@ package de.tor.tribes.ui.renderer.map;
 
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.UnitHolder;
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.types.drawing.AbstractForm;
 import de.tor.tribes.types.ext.*;
 import de.tor.tribes.ui.ImageManager;
@@ -57,18 +58,8 @@ import org.apache.logging.log4j.Logger;
  * @author extremeCrazyCoder
  */
 public class MapRenderer {
-
     private static Logger logger = LogManager.getLogger("MapRenderer");
-    public static final int ALL_LAYERS = 0;
-    public static final int MAP_LAYER = 1;
-    public static final int MARKER_LAYER = 2;
-    public static final int BASIC_DECORATION_LAYER = 3;
-    public static final int ATTACK_LAYER = 4;
-    public static final int TAG_MARKER_LAYER = 5;
-    public static final int LIVE_LAYER = 6;
-    public static final int NOTE_LAYER = 7;
-    public static final int TROOP_LAYER = 8;
-    public static final int WATCHTOWER_LAYER = 9;
+    
     private boolean bMapRedrawRequired = true;
     private Village[][] mVisibleVillages = null;
     private HashMap<Village, Rectangle> mVillagePositions = null;
@@ -83,7 +74,7 @@ public class MapRenderer {
     private double dCurrentFieldWidth = 1.0;
     private double dCurrentFieldHeight = 1.0;
     private double dCurrentZoom = 0.0;
-    private List<Integer> mDrawOrder = null;
+    private List<Layer> mDrawOrder = null;
     private Popup mInfoPopup = null;
     private Village mPopupVillage = null;
     private BufferedImage mBackBuffer = null;
@@ -107,19 +98,7 @@ public class MapRenderer {
 
     public MapRenderer() {
         mVisibleVillages = new Village[iVillagesX][iVillagesY];
-        mDrawOrder = new LinkedList<>();
-        Vector<String> layerVector = new Vector<>(Constants.LAYER_COUNT);
-        for (int i = 0; i < Constants.LAYER_COUNT; i++) {
-            layerVector.add("");
-        }
-
-        for(String layer: Constants.LAYERS.keySet()) {
-            layerVector.set(Constants.LAYERS.get(layer), layer);
-        }
-
-        for (String s : layerVector) {
-            mDrawOrder.add(Constants.LAYERS.get(s));
-        }
+        mDrawOrder = Arrays.asList(Layer.values());
     }
 
     /**
@@ -127,8 +106,8 @@ public class MapRenderer {
      *
      * @param pDrawOrder
      */
-    public void setDrawOrder(List<Integer> pDrawOrder) {
-        mDrawOrder = new LinkedList<>(pDrawOrder);
+    public void setDrawOrder(List<Layer> pDrawOrder) {
+        mDrawOrder = new ArrayList<>(pDrawOrder);
     }
 
     /**
@@ -136,36 +115,34 @@ public class MapRenderer {
      *
      * @param pType
      */
-    public synchronized void initiateRedraw(int pType) {
-        if (pType == TAG_MARKER_LAYER) {
-            mTagLayer.reset();
-            //System.out.println("TAG");
-        }
-
-        if (pType == MARKER_LAYER) {
-            ////  System.out.println("MARK");
-            mMapLayer.reset();
-            bMapRedrawRequired = true;
-        }
-
-        if (pType == NOTE_LAYER) {
-            //  System.out.println("NOTE");
-            mNoteLayer.reset();
-        }
-        if (pType == TROOP_LAYER) {
-            //  System.out.println("TROOP");
-            mTroopDensityLayer.reset();
-        }
-        if (pType == ALL_LAYERS) {
+    public synchronized void initiateRedraw(Layer pToRedraw) {
+        if(pToRedraw == null) {
             mMapLayer.reset();
             mTroopDensityLayer.reset();
             mTagLayer.reset();
             mNoteLayer.reset();
             bMapRedrawRequired = true;
+            return;
         }
-        if (pType == MAP_LAYER) {
-            //   System.out.println("MAP");
-            bMapRedrawRequired = true;
+        
+        switch(pToRedraw) {
+            case VILLAGE_SYMBOLS:
+                mTagLayer.reset();
+                break;
+                
+            case VILLAGES:
+            case MARKERS:
+                mMapLayer.reset();
+                bMapRedrawRequired = true;
+                break;
+                
+            case NOTES_MARKER:
+                mNoteLayer.reset();
+                break;
+                
+            case TROOP_DENSITY:
+                mTroopDensityLayer.reset();
+                break;
         }
     }
 
@@ -208,7 +185,7 @@ public class MapRenderer {
                         g2d = (Graphics2D) mBackBuffer.getGraphics();
                         ImageUtils.setupGraphics(g2d);
                         //set redraw required flag if size has changed
-                        initiateRedraw(ALL_LAYERS);
+                        initiateRedraw(null);
                         bMapRedrawRequired = true;
                     } else {
                         //only get graphics
@@ -236,18 +213,21 @@ public class MapRenderer {
                 mRenderSettings.calculateSettings(MapPanel.getSingleton().getVirtualBounds());
 
                 boolean markOnTop = false;
-                if (mDrawOrder.indexOf(0) > mDrawOrder.indexOf(1)) {
-                    markOnTop = true;
-                }
                 boolean gotMap = false;
                 boolean gotMarkers = false;
 
-                for (Integer layer : mDrawOrder) {
+                for (Layer lay : mDrawOrder) {
                     //check for marker and map layer
-                    if (layer == 0) {
+                    if (lay == Layer.MARKERS) {
                         gotMarkers = true;
-                    } else if (layer == 1) {
+                        if(!gotMap) {
+                            markOnTop = false;
+                        }
+                    } else if (lay == Layer.VILLAGES) {
                         gotMap = true;
+                        if(!gotMarkers) {
+                            markOnTop = true;
+                        }
                     }
 
                     if (gotMap && gotMarkers) {
@@ -263,15 +243,15 @@ public class MapRenderer {
                     }
 
                     //check for all other layers
-                    switch (layer) {
-                        case 2:
+                    switch (lay) {
+                        case VILLAGE_SYMBOLS:
                             try {
                                 mTagLayer.performRendering(mRenderSettings, g2d);
                             } catch (Exception e) {
                                 logger.warn("Failed to render group layer", e);
                             }
                             break;
-                        case 3:
+                        case TROOP_DENSITY:
                             //render troop density
                             try {
                                 mTroopDensityLayer.performRendering(mRenderSettings, g2d);
@@ -279,35 +259,35 @@ public class MapRenderer {
                                 logger.warn("Failed to render troop density layer", e);
                             }
                             break;
-                        case 4:
+                        case NOTES_MARKER:
                             try {
                                 mNoteLayer.performRendering(mRenderSettings, g2d);
                             } catch (Exception e) {
                                 logger.warn("Failed to render note layer", e);
                             }
                             break;
-                        case 5:
+                        case ATTACKS:
                             try {
                                 mAttackLayer.performRendering(mRenderSettings, g2d);
                             } catch (Exception e) {
                                 logger.warn("Failed to render attack layer", e);
                             }
                             break;
-                        case 6:
+                        case SUPPORTS:
                             try {
                                 mSupportLayer.performRendering(mRenderSettings, g2d);
                             } catch (Exception e) {
                                 logger.warn("Failed to render support layer", e);
                             }
                             break;
-                        case 7:
+                        case DRAWINGS:
                             try {
                                 mFormsLayer.performRendering(mRenderSettings, g2d);
                             } catch (Exception e) {
                                 logger.warn("Failed to render forms layer", e);
                             }
                             break;
-                        case 8:
+                        case CHURCH_RADIUS:
                             try {
                                 if (ServerSettings.getSingleton().isChurch()
                                         && GlobalOptions.getProperties().getBoolean("show.church")) {
@@ -317,7 +297,7 @@ public class MapRenderer {
                                 logger.warn("Failed to render church layer", e);
                             }
                             break;
-                        case 9:
+                        case WATCHTOWER_RADIUS:
                             try {
                                 if (ServerSettings.getSingleton().isWatchtower()
                                         && GlobalOptions.getProperties().getBoolean("show.watchtower")) {

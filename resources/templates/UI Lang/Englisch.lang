@@ -54,18 +54,6 @@ ui.compoents.ProfileQuickChangePanel.Standard=default
 ui.compoents.ProfileQuickChangePanel.ProfilSchnellauswahl=Quick profile selection
 ui.compoents.ProfileQuickChangePanel.Schnellauswahl=Allows quick selection of the user profile with which transports are transferred to the browser
 
-ui.compoents.LayerOrderPanel.Formen=molding
-ui.compoents.LayerOrderPanel.Zeichnungen=drawings
-ui.compoents.LayerOrderPanel.Angriffe=Attacks
-ui.compoents.LayerOrderPanel.Dorfsymbole=Village symbols
-ui.compoents.LayerOrderPanel.Notizmarkierungen=Note markers
-ui.compoents.LayerOrderPanel.Doerfer=Villages
-ui.compoents.LayerOrderPanel.Unterstuetzungen=Supports
-ui.compoents.LayerOrderPanel.Markierungen=Markings
-ui.compoents.LayerOrderPanel.Truppendichte=Troop density
-ui.compoents.LayerOrderPanel.Kirchenradien=Church radii
-ui.compoents.LayerOrderPanel.Wachturmradien=Watchtower radii
-
 ui.compoents.DateTimeField.ddMMyyyy=dd.MM.yyyy
 ui.compoents.DateTimeField.HHmmssSSS=HH:mm:ss:SSS
 ui.compoents.DateTimeField.HHmmss=HH:mm:ss
@@ -904,6 +892,17 @@ ui.UnitOrderBuilder.Schliessen=Close
 
 ui.LayerOrderConfigurationFrame.Informationen=Informationen
 ui.LayerOrderConfigurationFrame.Schliessen=Close
+ui.LayerOrderConfigurationFrame.generalInformation=<html>The top area lists all the layers that DS Workbench can draw in the main window. <b> dark gray </b> layers are drawn while <b> light gray </b> layers are hidden and do not cause any expenditure (memory, CPU). <br/> Move the mouse over the Symbols of the individual levels for information on the levels. With the mouse button pressed you can move the position of the individual layers, whereby one position further to the left moves the layer into the background, while one position further to the right places the layer further in the foreground. <br/> The layers are special. Villages' and 'Markings'. On the one hand, these layers are connected to one another, and on the other hand, they determine which layers are visible and which are invisible, since layers to the left (below) of these layers are not drawn.</html> 
+ui.LayerOrderConfigurationFrame.MARKERS=<html><b> Markings </b> <br/> This layer contains color markings of players and stems. It is always visible, but can be drawn either below or above the village level, which allows markings to be shown more clearly. <br/> <br/> <img src = '{warnURL}' /> &nbsp; This level is with connected to the village level. Layers to the left (below) of one of these two layers are not drawn.</html> 
+ui.LayerOrderConfigurationFrame.VILLAGES=<html><b> Villages </b> <br/> The village level contains all village graphics. It is always visible and determines which other levels are visible. All levels to the left (below) of the village level are <u> not </u> drawn. <br/> <br/> <img src = '{warnURL}' /> &nbsp; This level is with the level 'Markers' connected. Layers to the left (below) of one of these two layers are not drawn.</html>
+ui.LayerOrderConfigurationFrame.DRAWINGS=<html><b> Drawings </b> <br/> This level contains all drawings (circles, rectangles, etc.) that are drawn on the main map. <br/> <br/> <img src = '{warnURL} '/> &nbsp; If you use a lot of transparent drawings or freehand drawings, drawing this layer could be a lot of work. If you notice performance issues, try to hide this layer. </html>
+ui.LayerOrderConfigurationFrame.VILLAGE_SYMBOLS=<html><b> Village symbols </b> <br/> This level contains symbols with your individual villages marked. These are e.g. group markings or markings of recently ennobled villages.</html>
+ui.LayerOrderConfigurationFrame.TROOP_DENSITY=<html><b> Troop density </b> <br/> This level shows bars in the lower area of the villages on the map, which represent the number of troops in the corresponding village. These bars are of course only displayed for those villages for which DS Workbench also has troop information. These can be read in via the import of in-game information or via reports. <br/> <br/> <img src = '{warnURL}' /> &nbsp; Are troop information available on many villages , so drawing this plane can be very time-consuming. If you notice performance issues, try to hide this layer. </html>
+ui.LayerOrderConfigurationFrame.NOTES_MARKER=<html><b> Note markings </b> <br/> This level represents the markings of notes. If notes are assigned to a village and map markings are set for these notes, they will be displayed on the main map when this level is shown. </html>
+ui.LayerOrderConfigurationFrame.ATTACKS=<html><b> Attacks </b> <br/> This level shows attacks that are in command plans on the main map, provided that the attacks are to be plotted. In the DS Workbench settings under 'Commands' you can define further properties of these so-called command vectors (e.g. display current troop position or draw the direction of movement) <br/> <br/> <img src = '{warnURL}' /> &nbsp; In it is usually recommended to hide this level. On the one hand, this serves for clarity, and on the other hand, the drawing of this level, especially when the troop position and direction of movement are drawn, is very time-consuming.</html>
+ui.LayerOrderConfigurationFrame.SUPPORTS=<html><b> Support </b> <br/> This level shows which villages support support and where it comes from. Supports are only shown if you have selected entries in the troop overview in the table 'Supports'.</html>
+ui.LayerOrderConfigurationFrame.CHURCH_RADIUS=<html><b> Church radii </b> <br/> This level draws in church radii that are listed in the church overview. Church radii of individual players are combined to form a region. This level is only important on worlds on which Church is activated. <br/> <br/> <img src = '{warnURL}' />&nbsp;If you have entered a large number of churches, it is recommended to only use this level to be shown if necessary, as the consolidation of many church radii is very time-consuming and thus the display time of the map is strongly influenced. </html>
+ui.LayerOrderConfigurationFrame.WATCHTOWER_RADIUS=<html><b>Wachturmradien</b><br/>Diese Ebene zeichnet Wachturmradien ein, die in der Wachturm&uuml;bersicht aufgef&uuml;hrt sind. Diese Ebene ist nur auf Welten von Bedeutung, auf der Wachtürme aktiviert sind.<br/><br/>
 
 ui.windows.ClockFrame.istabgelaufen=' has expired
 ui.windows.ClockFrame.zwischenzeitlichabgelaufen=The following timers have expired in the meantime: \n
@@ -1008,7 +1007,7 @@ ui.windows.DSWorkbenchMainFrame.Karte=Map
 ui.windows.DSWorkbenchMainFrame.ROI=ROI
 ui.windows.DSWorkbenchMainFrame.Speichernunter=Save as...
 ui.windows.DSWorkbenchMainFrame.keineDoerfer=-no villages-
-ui.windows.DSWorkbenchMainFrame.crashString=Apparently DS Workbench was not terminated correctly, so data may have been lost. \N abackup exists for the current profile (created: %s). Do you want to restore this?
+ui.windows.DSWorkbenchMainFrame.crashString=Apparently DS Workbench was not terminated correctly, so data may have been lost.\nA backup exists for the current profile (created: %s). Do you want to restore this?
 ui.windows.DSWorkbenchMainFrame.Absturz=Crash?
 ui.windows.DSWorkbenchMainFrame.Nein=No
 ui.windows.DSWorkbenchMainFrame.Ja=Yes
@@ -2259,6 +2258,17 @@ util.BuildingSettings.storage=Storage
 util.BuildingSettings.hide=Hide
 util.BuildingSettings.wall=Wall
 
+types.Layer.MARKERS=Markers
+types.Layer.VILLAGES=Villages
+types.Layer.VILLAGE_SYMBOLS=Village symbols
+types.Layer.TROOP_DENSITY=Troop density
+types.Layer.NOTES_MARKER=Note markers
+types.Layer.ATTACKS=Attacks
+types.Layer.SUPPORTS=Supports
+types.Layer.DRAWINGS=Drawings
+types.Layer.CHURCH_RADIUS=Church radius
+types.Layer.WATCHTOWER_RADIUS=Watchtower radius
+
 dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightDesc=Paladin with Items are not supported right now. You can use the simulator without Items
 dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightTitle=Paladin with Items
 
@@ -2330,3 +2340,4 @@ ui.panels.AttackTableTab.KeinAngriffsbefehlgefunden=No valid attack command foun
 ui.panels.AttackTableTab.BefehlRetimeruebertragen=Transfer command to retimer 
 ui.panels.AttackTableTab.Herkunft_=Origin:
 ui.panels.AttackTableTab.Ziel_=Target:
+

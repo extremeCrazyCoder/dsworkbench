@@ -2519,7 +2519,7 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             setBlocking(false);
             setVisible(false);
             DSWorkbenchMainFrame.getSingleton().serverSettingsChangedEvent();
-            MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+            MapPanel.getSingleton().getMapRenderer().initiateRedraw(null);
             MinimapPanel.getSingleton().redraw();
             
             if(Math.abs(GlobalOptions.getProperties().getDouble("ribbon.size") - menueSizeFromSlider()) > 0.1) {
@@ -2528,8 +2528,14 @@ public class DSWorkbenchSettingsDialog extends javax.swing.JDialog implements
             }
             
             if(! GlobalOptions.getProperty("ui.language").equals(jLanguageChooser.getSelectedItem().toString())) {
+                TranslationManager.getSingleton().setLanguage(jLanguageChooser.getSelectedItem().toString());
+                String languageChange = trans.get("Sprachaenderung");
+                String restart = trans.get("Neustarterforderlich");
+                TranslationManager.getSingleton().setLanguage(GlobalOptions.getProperty("ui.language"));
+                
                 GlobalOptions.addProperty("ui.language", jLanguageChooser.getSelectedItem().toString());
-                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, trans.get("Sprachaenderung"), trans.get("Neustarterforderlich"));
+                
+                JOptionPaneHelper.showInformationBox(DSWorkbenchSettingsDialog.this, languageChange, restart);
             }
             GlobalOptions.saveProperties();
         } catch (Throwable t) {

@@ -53,24 +53,6 @@ public class JDomUtils {
         return new SAXBuilder().build(inStream);
     }
     
-    //TODO remove this at next version
-    public static Document getOldDocument(String pDocument) throws Exception {
-        return getOldDocument(new ByteArrayInputStream(pDocument.getBytes()));
-    }
-
-    public static Document getOldDocument(File xmlFile) throws Exception {
-        return getOldDocument(new FileInputStream(xmlFile));
-    }
-    
-    public static Document getOldDocument(InputStream inStream) throws Exception {
-        String data = IOUtils.toString(inStream);
-        
-        if(data.startsWith("<?xml")) {
-            data = data.substring(data.indexOf("?>") + 2);
-        }
-        return getDocument("<data>" + data + "</data>");
-    }
-    
     public static List<Element> getNodes(Document document, String path) {
         return getList(document.getRootElement(), path);
     }

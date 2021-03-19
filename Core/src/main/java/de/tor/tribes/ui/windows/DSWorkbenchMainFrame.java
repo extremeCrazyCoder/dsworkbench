@@ -17,6 +17,7 @@ package de.tor.tribes.ui.windows;
 
 import de.tor.tribes.dssim.ui.DSWorkbenchSimulatorFrame;
 import de.tor.tribes.io.DataHolder;
+import de.tor.tribes.types.Layer;
 import de.tor.tribes.types.Tag;
 import de.tor.tribes.types.UserProfile;
 import de.tor.tribes.types.ext.Tribe;
@@ -2462,7 +2463,7 @@ private void fireGraphicPackChangedEvent(java.awt.event.ItemEvent evt) {//GEN-FI
     }
   }
     if (initialized) {
-    MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+    MapPanel.getSingleton().getMapRenderer().initiateRedraw(null);
   }
 }//GEN-LAST:event_fireGraphicPackChangedEvent
 
@@ -2508,7 +2509,7 @@ private void fireChangeClipboardWatchEvent(java.awt.event.MouseEvent evt) {//GEN
 
     private void fireShowHideSupportsEvent(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fireShowHideSupportsEvent
       GlobalOptions.addProperty("include.support", Boolean.toString(jIncludeSupport.isSelected()));
-      MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.TROOP_LAYER);
+      MapPanel.getSingleton().getMapRenderer().initiateRedraw(Layer.TROOP_DENSITY);
     }//GEN-LAST:event_fireShowHideSupportsEvent
 
     private void fireDisplayChurch(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fireDisplayChurch

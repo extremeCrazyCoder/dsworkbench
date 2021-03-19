@@ -158,7 +158,7 @@ public class MinimapPanel extends javax.swing.JPanel implements GenericManagerLi
                 if (!showControls && iCurrentView == ID_MINIMAP) {
                     Point p = mousePosToMapPosition(e.getX(), e.getY());
                     DSWorkbenchMainFrame.getSingleton().centerPosition(p.getX(), p.getY());
-                    MapPanel.getSingleton().getMapRenderer().initiateRedraw(MapRenderer.ALL_LAYERS);
+                    MapPanel.getSingleton().getMapRenderer().initiateRedraw(null);
                     if (MinimapZoomFrame.getSingleton().isVisible()) {
                         MinimapZoomFrame.getSingleton().toFront();
                     }

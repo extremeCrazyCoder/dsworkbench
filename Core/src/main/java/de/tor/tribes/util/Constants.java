@@ -16,7 +16,6 @@
 package de.tor.tribes.util;
 
 import java.awt.Color;
-import java.util.HashMap;
 
 /**
  *
@@ -35,24 +34,12 @@ public class Constants {
     public final static Color NAP_MARKER = new Color(127, 0, 127);
     public final static Color ALLY_MARKER = new Color(0, 160, 244);
     public final static String SERVER_DIR = "./servers";
-    public final static HashMap<String, Integer> LAYERS = new HashMap<>();
-    public final static int LAYER_COUNT = 10;
     public final static boolean DEBUG = false;
     
     public final static Color WINNER_GREEN = new Color(96, 238, 90);
     public final static Color LOSER_RED = new Color(255, 99, 71);
     
     static {
-        LAYERS.put("Markierungen", 0);
-        LAYERS.put("Dörfer", 1);
-        LAYERS.put("Dorfsymbole", 2);
-        LAYERS.put("Truppendichte", 3);
-        LAYERS.put("Notizmarkierungen", 4);
-        LAYERS.put("Angriffe", 5);
-        LAYERS.put("Unterstützungen", 6);
-        LAYERS.put("Zeichnungen", 7);
-        LAYERS.put("Kirchenradien", 8);
-        LAYERS.put("Wachturmradien", 9);
         if (DEBUG) {
             System.err.println("DEBUG MODE ENABLED!");
         }

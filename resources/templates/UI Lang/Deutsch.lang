@@ -54,18 +54,6 @@ ui.compoents.ProfileQuickChangePanel.Standard=Standard
 ui.compoents.ProfileQuickChangePanel.ProfilSchnellauswahl=Profil-Schnellauswahl
 ui.compoents.ProfileQuickChangePanel.Schnellauswahl=Erlaubt die Schnellauswahl des Benutzerprofils mit dem Transporte in den Browser \u00fcbertragen werden
 
-ui.compoents.LayerOrderPanel.Formen=Formen
-ui.compoents.LayerOrderPanel.Zeichnungen=Zeichnungen
-ui.compoents.LayerOrderPanel.Angriffe=Angriffe
-ui.compoents.LayerOrderPanel.Dorfsymbole=Dorfsymbole
-ui.compoents.LayerOrderPanel.Notizmarkierungen=Notizmarkierungen
-ui.compoents.LayerOrderPanel.Doerfer=D\u00f6rfer
-ui.compoents.LayerOrderPanel.Unterstuetzungen=Unterst\u00fctzungen
-ui.compoents.LayerOrderPanel.Markierungen=Markierungen
-ui.compoents.LayerOrderPanel.Truppendichte=Truppendichte
-ui.compoents.LayerOrderPanel.Kirchenradien=Kirchenradien
-ui.compoents.LayerOrderPanel.Wachturmradien=Wachturmradien
-
 ui.compoents.DateTimeField.ddMMyyyy=dd.MM.yyyy
 ui.compoents.DateTimeField.HHmmssSSS=HH:mm:ss:SSS
 ui.compoents.DateTimeField.HHmmss=HH:mm:ss
@@ -904,6 +892,17 @@ ui.UnitOrderBuilder.Schliessen=Schlie\u00dfen
 
 ui.LayerOrderConfigurationFrame.Informationen=Informationen
 ui.LayerOrderConfigurationFrame.Schliessen=Schlie\u00dfen
+ui.LayerOrderConfigurationFrame.generalInformation=<html>Im oberen Bereich sind alle Ebenen aufgef&uuml;hrt, die DS Workbench im Hauptfenster zeichnen kann. Dabei werden <b>dunkelgraue</b> Ebenen gezeichnet, w&auml;hrend <b>hellgraue</b> Ebenen ausgeblendet sind und so keinerlei Aufwand (Speicher, CPU) verursachen.<br/> Fahre mit der Maus &uuml;ber die Symbole der einzelnen Ebenen, um Hinweise zu den Ebenen zu erhalten. Mit gedr&uuml;ckter Maustaste kannst du die Position der einzelnen Ebenen verschieben, wobei eine Position weiter links die Ebene in den Hintergrund verschiebt, w&auml;hrend eine Position weiter rechts die Ebene weiter im Vordergrund platziert.<br/>Eine Besonderheit bilden die Ebenen 'D&ouml;rfer' und 'Markierungen'. Diese Ebenen sind zum einen miteinander verbunden, zum anderen bestimmen sie, welche Ebenen sichtbar und welche unsichtbar sind, da Ebenen links (unterhalb) dieser Ebenen nicht gezeichnet werden.</html>
+ui.LayerOrderConfigurationFrame.MARKERS=<html><b>Markierungen</b><br/>Diese Ebene enthält Farbmarkierungen von Spielern und St&auml;mmen. Sie ist immer sichtbar, kann jedoch entweder unterhalb oder oberhalb der Dorfebene gezeichnet werden, wodurch Markierungen deutlicher dargestellt werden k&ouml;nnen.<br/><br/><img src='{warnURL}'/>&nbsp;Diese Ebene ist mit der Ebene 'D&ouml;rfer verbunden. Ebenen links (unterhalb) einer dieser beiden Ebenen werden nicht gezeichnet.</html>
+ui.LayerOrderConfigurationFrame.VILLAGES=<html><b>D&ouml;rfer</b><br/>Die Dorfebene enth&auml;lt alle Dorfgrafiken. Sie ist immer sichtbar und bestimmt, welche anderen Ebenen sichtbar sind. Alle Ebenen die sich links (unterhalb) der Dorfebene befinden, werden <u>nicht</u> gezeichnet.<br/><br/><img src='{warnURL}'/>&nbsp;Diese Ebene ist mit der Ebene 'Markierungen' verbunden. Ebenen links (unterhalb) einer dieser beiden Ebenen werden nicht gezeichnet.</html>
+ui.LayerOrderConfigurationFrame.DRAWINGS=<html><b>Zeichnungen</b><br/>Diese Ebene enth&auml;lt alle Zeichnungen (Kreise, Rechtecke, usw.) die auf der Hauptkarte eingezeichnet sind.<br/><br/><img src='{warnURL}'/>&nbsp;Wenn du viele transparente Zeichnungen oder Freihandzeichnungen verwendest, k&ouml;nnte das Zeichnen dieser Ebene sehr aufw&auml;ndig sein. Wenn du Performanceprobleme bemerkst, versuch diese Ebene auszublenden.</html>
+ui.LayerOrderConfigurationFrame.VILLAGE_SYMBOLS=<html><b>Dorfsymbole</b><br/>Diese Ebene enth&auml;lt Symbole mit deinen einzelne D&ouml;rfer markiert sind. Dies sind z.B. Gruppenmarkierungen oder Markierungen von kürzlich geadelten D&ouml;rfern.</html>
+ui.LayerOrderConfigurationFrame.TROOP_DENSITY=<html><b>Truppendichte</b><br/>Diese Ebene zeigt im unteren Bereich der D&ouml;rfer auf der Karte Balken an, welche die Truppenmenge im entsprechenden Dorf repr&auml;sentieren. Diese Balken werden nat&uuml;rlich nur f&uuml;r D&ouml;rfer angezeigt, zu denen DS Workbench auch Truppeninformationen besitzt. Diese k&ouml;nnen &uuml;ber den Import von InGame-Informationen oder &uuml;ber Berichte eingelesen werden.<br/><br/><img src='{warnURL}'/>&nbsp;Sind Truppeninformationen zu vielen D&ouml;rfern vorhanden, so kann das Zeichnen dieser Ebene, sehr aufw&auml;ndig sein. Wenn du Performanceprobleme bemerkst, versuch diese Ebene auszublenden.</html>
+ui.LayerOrderConfigurationFrame.NOTES_MARKER=<html><b>Notizmarkierungen</b><br/>Diese Ebene stellt Markierungen von Notizen dar. Sind einem Dorf Notizen zugeordnet und sind f&uuml;r diese Notizen Kartenmarkierungen eingestellt, so werden die auf der Hauptkarte angezeigt wenn diese Ebene eingeblendet ist.</html>
+ui.LayerOrderConfigurationFrame.ATTACKS=<html><b>Angriffe</b><br/>Diese Ebene stellt Angriffe, die sich in Befehlspl&auml;nen befinden, auf der Hauptkarte dar, sofern die Angriffe eingezeichnet werden sollen. In den DS Workbench Einstellungen unter 'Befehle' kann man weitere Eigenschaften dieser sog. Befehlsvektoren festlegen (z.B. Aktuelle Truppenposition anzeigen oder die Laufrichtung einzeichnen)<br/><br/><img src='{warnURL}'/>&nbsp;In der Regel wird empfohlen, diese Ebene auszublenden. Dies dient zum einen der &Uuml;bersichtlichkeit, zum anderen ist das Zeichnen dieser Ebene, besonders wenn Truppenposition und Laufrichtung eingezeichnet werden, sehr aufw&auml;ndig.</html>
+ui.LayerOrderConfigurationFrame.SUPPORTS=<html><b>Unterst&uuml;tzungen</b><br/>Diese Ebene stellt dar, in welchen D&ouml;rfern Unterst&uuml;tzungen  stehen und wo diese herkommen. Unterst&uuml;tzungen werden nur eingezeichnet, wenn man in der Truppen&uuml;bersicht in der Tabelle 'Unterst&uuml;tzungen' Eintr&auml;ge ausgew&auml;hlt hat.</html>
+ui.LayerOrderConfigurationFrame.CHURCH_RADIUS=<html><b>Kirchenradien</b><br/>Diese Ebene zeichnet Kirchenradien ein, die in der Kirchen&uuml;bersicht aufgef&uuml;hrt sind. Kirchenradien einzelner Spieler werden dabei zu einer Region zusammengefasst. Diese Ebene ist nur auf Welten von Bedeutung, auf die Kirche aktiviert ist.<br/><br/><img src='{warnURL}'/>&nbsp;Hat man sehr viele Kirchen eingetragen, so wird empfohlen, diese Ebene nur bei Bedarf einzublenden, da das Zusammenfassen vieler Kirchenradien sehr aufw&auml;ndig ist und so die Darstellungszeit der Karte stark beeinflusst wird.</html>
+ui.LayerOrderConfigurationFrame.WATCHTOWER_RADIUS=<html><b> Watchtower radius </b> <br/> This level draws in watchtower radii that are listed in the watchtower overview. This level only matters on worlds where watchtowers are activated.</html>
 
 ui.windows.ClockFrame.istabgelaufen=Timer'%s' ist abgelaufen
 ui.windows.ClockFrame.zwischenzeitlichabgelaufen=Die folgenden Timer sind zwischenzeitlich abgelaufen:\n
@@ -2259,6 +2258,17 @@ util.BuildingSettings.storage=Speicher
 util.BuildingSettings.hide=Versteck
 util.BuildingSettings.wall=Wall
 
+types.Layer.MARKERS=Markierungen
+types.Layer.VILLAGES=D\u00F6rfer
+types.Layer.VILLAGE_SYMBOLS=Dorfsymbole
+types.Layer.TROOP_DENSITY=Truppendichte
+types.Layer.NOTES_MARKER=Notizmarkierungen
+types.Layer.ATTACKS=Angriffe
+types.Layer.SUPPORTS=Unterstützungen
+types.Layer.DRAWINGS=Zeichnungen
+types.Layer.CHURCH_RADIUS=Kirchenradien
+types.Layer.WATCHTOWER_RADIUS=Wachturmradien
+
 dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightDesc=Paladine mit Items werden derzeit nicht supported. Der Simulator kann dennoch ohne Items benutzt werden
 dssim.ui.DSWorkbenchSimulatorFrame.ItemKnightTitle=Paladin mit Items
 
@@ -2330,3 +2340,4 @@ ui.panels.AttackTableTab.KeinAngriffsbefehlgefunden=Kein g\u00fcltiger Angriffsb
 ui.panels.AttackTableTab.BefehlRetimeruebertragen=Befehl in Retimer \u00fcbertragen
 ui.panels.AttackTableTab.Herkunft_=Herkunft:
 ui.panels.AttackTableTab.Ziel_=Ziel:
+
