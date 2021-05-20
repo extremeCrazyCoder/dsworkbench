@@ -140,7 +140,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="trans.get(&quot;DankeDSWorkbenchverwenden.&quot;)" type="code"/>
+              <Connection code="trans.get(&quot;DankeDSWorkbenchverwenden&quot;)" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

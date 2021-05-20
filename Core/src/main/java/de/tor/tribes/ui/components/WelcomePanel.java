@@ -184,7 +184,7 @@ public class WelcomePanel extends JXPanel {
 
         jxCloseLabel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jxCloseLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jxCloseLabel.setText(trans.get("DankeDSWorkbenchverwenden."));
+        jxCloseLabel.setText(trans.get("DankeDSWorkbenchverwenden"));
         jxCloseLabel.setEnabled(false);
         jxCloseLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jxCloseLabel.setMaximumSize(new java.awt.Dimension(319, 40));
