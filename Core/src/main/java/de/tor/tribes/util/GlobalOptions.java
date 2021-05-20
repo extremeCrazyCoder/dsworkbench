@@ -420,13 +420,13 @@ public class GlobalOptions {
             } else {
                 logger.info("Setting selected server to " + pServer);
                 SELECTED_SERVER = pServer;
-                TimeManager.updateTimeZone(SELECTED_SERVER);
             }
         } else {
             logger.info("Setting selected server to " + pServer);
             SELECTED_SERVER = pServer;
-            TimeManager.updateTimeZone(SELECTED_SERVER);
         }
+        
+        TimeManager.updateTimeZone(SELECTED_SERVER);
     }
 
     public static void setLastArriveTime(Date pTime) {
