@@ -53,12 +53,11 @@ public class AboutDialog extends javax.swing.JDialog {
         jLabelWebLink = new javax.swing.JLabel();
         jLabelForum = new javax.swing.JLabel();
         jLabelForumLink = new javax.swing.JLabel();
-        jLabelEmail = new javax.swing.JLabel();
-        jLabelEmailMail = new javax.swing.JLabel();
         jDebugButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jLabelCopyright = new javax.swing.JLabel();
+        jLabelCopyright1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("About");
@@ -130,25 +129,6 @@ public class AboutDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabelForumLink, gridBagConstraints);
 
-        jLabelEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelEmail.setText("<html><u><b>eMail:</b></u></html>");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(jLabelEmail, gridBagConstraints);
-
-        jLabelEmailMail.setText("mr.pcs@web.de");
-        jLabelEmailMail.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(jLabelEmailMail, gridBagConstraints);
-
         jDebugButton.setText("Debug");
         jDebugButton.setToolTipText("Schaltet den Debug-Modus an (nur nach Aufforderung benötigt)");
         jDebugButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -174,7 +154,7 @@ public class AboutDialog extends javax.swing.JDialog {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -184,7 +164,7 @@ public class AboutDialog extends javax.swing.JDialog {
         jLabelCopyright.setText("<html>\n&copy; Torridity (2008-2018)<br>\n&copy; extremeCrazyCoder (2017-2021)<br>\n&copy; Mecqq (2020-2021)\n</html>\n");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -192,6 +172,17 @@ public class AboutDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(jLabelCopyright, gridBagConstraints);
         jLabelCopyright.getAccessibleContext().setAccessibleName("© Torridity (2008-2018)\n© Mecqq (2020-2021)");
+
+        jLabelCopyright1.setText("<html>\nopen source projects used:\n<a href=\"https://gitlab.com/catamphetamine/country-flag-icons/-/blob/45cad7f8cc5b16a4d0b8ad98f0f79422203052aa/LICENSE\">https://catamphetamine.gitlab.io/country-flag-icons</a>\n</html>\n");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(jLabelCopyright1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -246,8 +237,7 @@ private void fireDebugOnEvent(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_
     private javax.swing.JButton jDebugButton;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabelCopyright;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelEmailMail;
+    private javax.swing.JLabel jLabelCopyright1;
     private javax.swing.JLabel jLabelForum;
     private javax.swing.JLabel jLabelForumLink;
     private javax.swing.JLabel jLabelWeb;

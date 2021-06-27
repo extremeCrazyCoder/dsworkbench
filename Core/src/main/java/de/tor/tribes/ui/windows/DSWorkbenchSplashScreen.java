@@ -15,7 +15,6 @@
  */
 package de.tor.tribes.ui.windows;
 
-import de.tor.tribes.dssim.ui.DSWorkbenchSimulatorFrame;
 import de.tor.tribes.io.DataHolder;
 import de.tor.tribes.io.DataHolderListener;
 import de.tor.tribes.io.ServerManager;
@@ -214,6 +213,14 @@ public class DSWorkbenchSplashScreen extends javax.swing.JFrame implements DataH
 
                 //first start wizard
                 if (!new File("./hfsw").exists()) {
+                    logger.debug("Starting language selection");
+                    LanguageSelection langSelect = new LanguageSelection(this, true);
+                    langSelect.setLocationRelativeTo(this);
+                    langSelect.setVisible(true);
+                    logger.debug("Awaiting language selection");
+                    GlobalOptions.addProperty("language", langSelect.getSelected());
+                    logger.debug("Selected Language: {}", langSelect.getSelected());
+                    
                     logger.debug(" - Initializing first start wizard");
                     Map result = new HashMap<>();
 
